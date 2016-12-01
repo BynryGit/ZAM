@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>ZAM | Add Security</title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <!-- Vendor styles -->
+
+
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"/>
+    <link rel="stylesheet"
+          href="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/sweetalert/lib/sweet-alert.css' %}"/>
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}"/>
+
+    <style type="text/css">
+
+        .page-header {
+            margin-top: 1%;
+        }
+
+        .bac-but {
+            margin-bottom: 2px;
+            text-align: right;
+        }
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        .btn-primary2:hover {
+
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+
+        }
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        .bac-clr {
+            background: linear-gradient(to left, #fff -20%, #7160A9 40%) repeat scroll 0% 0% !important;
+            border: 1px solid #E4E5E7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+        }
+
+        #side-menu li .nav-second-level li a {
+            color: #FFFFFF;
+        }
+
+        .hpanel.hblue .panel-body {
+            border-top: 2px solid #7160A9;
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+   .small-logo {
+    display: none;
+    text-align: center;
+    padding-top: 6px;
+    font-size: 28px;
+    font-weight: 800;
+    float: left;
+    display: block;
+    color: #7160A9;}
+
+        .text-primary {
+            color: #7160A9;
+        }
+
+        /*--------------------------------------------------*/
+        #side-menu li.treeview ul li a {
+            background: #fff !important;
+            color: #6A6C6F !important;
+            font-weight: 700;
+        }
+
+        #side-menu li.treeview ul li.active a {
+            background-color: #7160A9 !important;
+            color: #FFF !important;
+        }
+
+        #side-menu li.treeview ul li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff !important;
+
+        }
+/*--------------------------------------------------*/
+    </style>
+
+</head>
+<body>
+
+<!-- Simple splash screen-->
+
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<div class="splash" style="opacity:0.4;" id="load">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+
+    <!-- <div id="logo" class="light-version">
+        <span>
+           ZAM
+        </span>
+    </div> -->
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo">
+            <span class="text-primary">Zeus Asset Management</span>
+        </div>
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-speaker"></i>
+                    </a>
+
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-mail"></i>
+                        <span class="label label-success"></span>
+                    </a>
+                    <ul class="dropdown-menu hdropdown animated flipInX">
+                        <div class="title">
+                            You have 4 new messages
+                        </div>
+                        <li>
+                            <a>
+                                It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Lorem Ipsum is simply dummy.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See All Messages</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/signing-out/">
+                        <i class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.full_name }}</span><br>
+                <small class="text-muted">{{ request.session.user_role }}</small>
+
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Marketing Manager' %}
+                <li>
+                    <a href="/crm-index/"> <span class="nav-label">Client Relationship Management</span></a>
+                </li>
+            {% endif %}
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+            <li><a href="/open-research-page/?tab_id=1">Research</a></li>
+            {% endif %}
+                <li><a href="/open-discussion-forum/">Discussion Forum</a></li>
+              {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+            <li class="treeview active">
+               <a href="#"><span class="nav-label">Security Data Management</span><span class="fa arrow"></span> </a>
+                   <ul class="nav nav-second-level">
+                    	<li class="active"><a href="/open-security-page/">Security</a></li>
+                    	 <li><a href="/open-security-price-page/">Price</a></li>
+                   </ul>
+            </li>
+            {% endif %}
+	        {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' %}
+	           <li>
+	                    <a href="/open-trade/"> <span class="nav-label">Trade</span></a>
+	                </li>
+	                <li>
+	                    <a href="/open-position/"> <span class="nav-label">Position</span></a>
+	                </li>
+	        {% endif %} 
+            <li >
+                <a href="/index/"> <span class="nav-label">Dashboard</span></a>
+            </li>
+            {% if request.session.user_role == 'Super Admin' %}             	<li class="treeview">                     <a href="#"><span class="nav-label">Planning Tool</span><span class="fa arrow"></span> </a>                     <ul class="nav nav-second-level">                         <li><a href="/open-YFinAdvisor-index/">Planning Tool Input</a></li>                         <li><a href="/open-YFinAdvisor-customer/">Customer</a></li>                     </ul>                 </li>             {% endif %}             {% if request.session.user_role == 'Super Admin' or request.session.user_role == 'Admin' %}	 		<li>                     <a href="/open-user-index/"> <span class="nav-label">User Management</span></a>                 </li>             {% endif %}
+                <li>
+                    <a href="/open-rename-password/"> <span class="nav-label">Change Password</span></a>
+                </li>
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel">
+            <div class="bac-clr">
+  <h3 style="display:inline;" class="font-light m-b-xs font-col">
+                    Security Data Management >
+                </h3>
+                    <h4 style="display:inline;" class="font-light m-b-xs font-col">
+                    Add Security
+                </h4>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="content animate-panel">
+        <div class="hpanel hblue">
+            <div class="panel-body">
+                <div class="page-header row">
+                    <div class="col-md-10">
+                        <h4 class="pull-left"> Security Details</h4>
+                    </div>
+                </div>
+                {% comment %}<form action="/save-security-details/" method="POST" id="frmsecurity">{% endcomment %}
+                <form id="security_form">
+                    <div class="row">
+                        <div class="form-group col-lg-4">
+                            <label id="lbl_name">Security*</label>
+                            <input autocomplete="off" required type="text" value="" class="form-control" id="txtSecurity"
+                                   name="txtSecurity">
+                        </div>
+
+                        <div class="form-group col-lg-4">
+                            <label id="lbl_asset">Asset Class*</label>
+                            <select autocomplete="off" required class="form-control js-source-states" name="selectAssetClass"
+                                    id="selectAssetClass">
+                                <option value=""></option>
+                                {% for class in asset_class_list %}
+                                    <option value="{{ class.asset_class_id }}">{{ class.asset_class_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group col-lg-4">
+                            <label id="lbl_sub">Asset Sub Class*</label>
+                            <select autocomplete="off" required class="form-control js-source-states" name="selectAssetSubClass"
+                                    id="selectAssetSubClass">
+                                {% comment %}  {% for subclass in sub_asset_class_list %}
+                                <option value="{{ subclass.asset_sub_class_id  }}">{{ subclass.asset_sub_class_name  }}</option>
+                            {% endfor %}{% endcomment %}
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                    <div class="form-group col-lg-4">
+                            <label id="lbl_sector">Sector*</label>
+                            <select autocomplete="off" required class="form-control js-source-states" name="selectSector" id="selectSector">
+                               <option value=""></option>
+                                {% for sector in sector_list %}
+                                    <option value="{{ sector.sector_id }}">{{ sector.sector_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group col-lg-4">
+                            <label id="lbl_type">Type*</label>
+                            <select autocomplete="off" required class="form-control js-source-states" name="selectType" id="selectType">
+                               <option value=""></option>
+                                {% for securitytype in securitytype_list %}
+                                    <option value="{{ securitytype.securitytype_id }}">{{ securitytype.securitytype }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label id="lbl_bi">Benchmark Index*</label>
+                            <select autocomplete="off" class="form-control js-source-states" name="selectBenchmarkIndex"
+                                    id="selectBenchmarkIndex">
+                                <option value=""></option>
+                                {% for benchmarkindex in benchmarkindex_list %}
+                                    <option value="{{ benchmarkindex.benchmarkindex_id }}">{{ benchmarkindex.benchmarkindex }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                     <div class="form-group col-lg-4">
+                            <label id="lbl_bt">Bloomberg Ticker*</label><label id="lbl_error_ticker"  style="color:white; visibility:hidden;">&nbsp; Already Exists</label>
+                            <input autocomplete="off" type="text" value="" class="form-control" id="txtbloombergticker"
+                                   name="txtbloombergticker">
+                        </div>
+
+                        <div class="form-group col-lg-4">
+                            <label id="lbl_cntry">Country*</label>
+                            <select autocomplete="off" required class="form-control js-source-states" name="selectCountry"
+                                    id="selectCountry">
+                            <option value=""></option>
+                                {% for country in country_list %}
+                                    <option value="{{ country.country_id }}">{{ country.country_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label id="lbl_curr">Currency*</label>
+                            <select autocomplete="off" required class="form-control js-source-states" name="selectCurrency"
+                                    id="selectCurrency">
+                                    <option value=""></option>
+                                   {% for currency in currency_list %}
+                                    <option value="{{ currency.currency_id }}">{{ currency.currency }}</option>
+                                {% endfor %} 
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                    <div class="form-group col-lg-3">
+                            <label id="lbl_lotsize">Lot Size*</label>
+                            <input autocomplete="off" type="text" onkeypress="return isNumberKey(event);" class="form-control" id="txtLotSize" name="txtLotSize">
+                        </div>
+
+                        <div class="form-group col-lg-3">
+                            <label>ISIN</label>
+                            <input autocomplete="off" type="text" value="" class="form-control" id="txtIsin" name="txtIsin">
+                        </div>
+
+
+                        <div class="form-group col-lg-3">
+                            <label>Beta</label><label id="lbl_beta" style="color:white"></label>
+                            <input autocomplete="off" type="text" value="" onkeypress="return validateFloatKeyPress(this,event);"
+                                   class="form-control" min="1" max="10" id="txtBeta"
+                                   name="txtBeta">
+                        </div>
+
+                        <div class="form-group col-lg-3">
+                            <label id="lbl_selectSecurityState">State*</label>
+                            <select autocomplete="off" class="form-control js-source-states" name="selectSecurityState"
+                                    id="selectSecurityState">
+                            <option value=""></option>
+                                {% for state in state_list %}
+                                    <option value="{{ state.state_id }}">{{ state.state }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="pull-right">
+                            <a type="button" href="/open-security-page/" class="btn btn-outline btn-danger">Cancel</a>
+                            <button type="button" id="btn_save" class="btn btn-outline btn-success">&nbsp;&nbsp;Save&nbsp;&nbsp;</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+<!-- Vendor scripts -->
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+<script src="{% static 'vendor/datatables/media/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' %}"></script>
+
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"></script>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'custom-js/security_add.js' %}"></script>
+
+<!-- App scripts -->
+<script src="scripts/homer.js">
+
+</script>
+
+<script>
+
+    {% comment %}$(function () {
+        $(".js-source-states").select2();
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            $('a[data-toggle="tab"]').removeClass('btn-primary');
+            $('a[data-toggle="tab"]').addClass('btn-default');
+            $(this).removeClass('btn-default');
+            $(this).addClass('btn-primary');
+        })
+
+        $('.next').click(function () {
+            var nextId = $(this).parents('.tab-pane').next().attr("id");
+            $('[href=#' + nextId + ']').tab('show');
+        })
+
+        $('.prev').click(function () {
+            var prevId = $(this).parents('.tab-pane').prev().attr("id");
+            $('[href=#' + prevId + ']').tab('show');
+        })
+
+        $('.submitWizard').click(function () {
+
+            var approve = $(".approveCheck").is(':checked');
+            if (approve) {
+                // Got to step 1
+                $('[href=#step1]').tab('show');
+
+                // Serialize data to post method
+                var datastring = $("#simpleForm").serialize();
+
+                // Show notification
+                swal({
+                    title: "Thank you!",
+                    text: "You approved our example form!",
+                    type: "success"
+                });
+            } else {
+                // Show notification
+                swal({
+                    title: "Error!",
+                    text: "You have to approve form checkbox.",
+                    type: "error"
+                });
+            }
+        })
+    });
+
+
+    $("#btn_save").click(function () {
+    
+      if ($('#txtLotSize').val() === "" || $('#txtLotSize').val() === null) {
+            $('#lbl_lotsize').css("color", "red");
+        } else {
+            $('#lbl_lotsize').css("color", "#6A6C6F");
+        }
+
+        if ($('#txtSecurity').val() === "" || $('#txtSecurity').val() === null) {
+            $('#lbl_name').css("color", "red");
+        } else {
+            $('#lbl_name').css("color", "#6A6C6F");
+        }
+
+
+        if ($('#selectAssetClass').val() === "" || $('#selectAssetClass').val() == null) {
+            $('#lbl_asset').css("color", "red");
+        } else {
+            $('#lbl_asset').css("color", "#6A6C6F");
+        }
+
+        if ($('#selectAssetSubClass').val() === "" || $('#selectAssetSubClass').val() == null) {
+            $('#lbl_sub').css("color", "red");
+        } else {
+            $('#lbl_sub').css("color", "#6A6C6F");
+        }
+
+
+         if ($('#selectSector').val() === "" || $('#selectSector').val() == null) {
+            $('#lbl_sector').css("color", "red");
+        } else {
+            $('#lbl_sector').css("color", "#6A6C6F");
+        }
+
+        if ($('#selectType').val() === "" || $('#selectType').val() == null) {
+            $('#lbl_type').css("color", "red");
+        } else {
+            $('#lbl_type').css("color", "#6A6C6F");
+        }
+
+
+        if ($('#selectBenchmarkIndex').val() === "" || $('#selectBenchmarkIndex').val() === null) {
+            $('#lbl_bi').css("color", "red");
+        } else {
+            $('#lbl_bi').css("color", "#6A6C6F");
+        }
+        
+        if ($('#txtbloombergticker').val() === "" || $('#txtbloombergticker').val() === null) {
+            $('#lbl_bt').css("color", "red");
+        } else {
+            $('#lbl_bt').css("color", "#6A6C6F");
+        }
+
+
+        if ($('#selectCountry').val() === "" || $('#selectCountry').val() == null) {
+            $('#lbl_cntry').css("color", "red");
+        } else {
+            $('#lbl_cntry').css("color", "#6A6C6F");
+        }
+
+        if ($('#selectCurrency').val() === "" || $('#selectCurrency').val() === null) {
+            $('#lbl_curr').css("color", "red");
+        } else {
+            $('#lbl_curr').css("color", "#6A6C6F");
+        }
+
+        if ($('#selectSecurityState').val() == "" || $('#selectSecurityState').val() === null) {
+            $('#lbl_selectSecurityState').css("color", "red");
+        } else {
+            $('#lbl_selectSecurityState').css("color", "#6A6C6F");
+        }
+
+
+        var beta = $('#txtBeta').val();
+        if (beta < 0) {
+        		$('#lbl_beta').html('&nbsp Should be greater than -1');
+        		$('#lbl_beta').css("color", "red");
+        		return false;
+        }
+        else if (beta > 10) {
+				$('#lbl_beta').html('&nbsp Should be less than 10');
+        		$('#lbl_beta').css("color", "red");
+        		return false;
+        }
+        else{
+            $('#lbl_beta').html('&nbsp ');
+            $('#lbl_beta').css("color", "white");
+        }
+
+     /*   if (beta == "" || beta == null) {
+            $('#txtBeta').val(0)
+        }*/
+
+
+        if ($('#txtSecurity').val() === "" || $('#selectAssetClass').val() === "" ||
+                $('#selectAssetSubClass').val() === "" || $('#selectType').val() === "" ||
+                $('#selectBenchmarkIndex').val() === "" || $('#selectCountry').val() === "" === "" || $('#txtbloombergticker').val() === "" ||
+                $('#selectCurrency').val() === "" || $('#txtSecurity').val() === null || $('#selectAssetClass').val() === null ||
+                $('#selectAssetSubClass').val() === null || $('#selectType').val() === null || $('#txtbloombergticker').val() === null ||
+                $('#selectBenchmarkIndex').val() === null || $('#selectCountry').val() === null === null ||
+                $('#selectCurrency').val() === null || $('#selectSecurityState').val() == "" || $('#selectSecurityState').val() === null ||
+                $('#selectSector').val() === "" || $('#selectSector').val() == null ||$('#txtLotSize').val() === "" || $('#txtLotSize').val() === null
+
+        ) {
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: '/save-security-details/',
+            data: $('#security_form').serialize(),
+            success: function (response) {
+                if (response.success == "true")
+                    location.href = "/open-security-page/"
+                else if(response.success == "ticker_available")
+                    $('#lbl_error_ticker').css('color','red');
+                    $('#lbl_error_ticker').css('visibility','visible');
+            },
+            error: function (response) {
+                alert('cant save');
+                location.href = "/open-security-page/"
+                console.log(response);
+            },
+            beforeSend: function () {
+                $("#load").show();
+            },
+            	error : function(response){
+                console.log(response);
+                alert('error');
+                $("#load").hide();
+            },
+            		complete: function () {
+                $("#load").hide();
+            }
+
+        });
+    });
+
+
+    $("#selectAssetClass").change(function () {
+        add_relevent_value('/add-subassetclass-security/', "#selectAssetSubClass", $('#selectAssetClass :selected').val());
+    });
+
+    $("#selectCountry").change(function () {
+        select_relevent_currency('/add-currency-security/', "#selectCurrency", $('#selectCountry :selected').val());
+    });
+
+    function add_relevent_value(url, dropdown, id) {
+        $(dropdown).empty();
+        $(dropdown).text('');
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: {'id': id},
+            success: function (response) {
+                if (response.success == "true") {
+                    $.each(response.result, function (index, item) {
+                        $(dropdown).append('<option value="' + item.id + '">' + item.name + '</option>');
+                    });
+                    var i = $(dropdown).first().val()
+                    $(dropdown).select2().select2("val", i);
+                }
+            },
+            error: function (response) {
+                console.log(response);
+            },
+        });
+    }
+    
+    function select_relevent_currency(url, dropdown, id) {    
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: {'id': id},
+            success: function (response) {
+                if (response.success == "true") {
+                    $.each(response.result, function (index, item) {
+                    		$(dropdown).select2().select2("val", item.id );                       
+                    });
+                }
+            },
+            error: function (response) {
+                console.log(response);
+            },
+        });
+    }
+
+    //------------------------------validation for float field for Client IP-------------------//
+
+     function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57 || charCode == 43 || charCode == 45 ))
+            return false;
+        return true;
+    }
+
+    function validateFloatKeyPress(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var number = el.value.split('.');
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        //just one dot
+        if (number.length > 1 && charCode == 46) {
+            return false;
+        }
+        //get the carat position
+        var caratPos = getSelectionStart(el);
+        var dotPos = el.value.indexOf(".");
+        if (caratPos > dotPos && dotPos > -1 && (number[1].length > 1)) {
+            if (charCode == 8)
+                return true;
+            else
+                return false;
+        }
+        return true;
+    }
+
+
+    function getSelectionStart(o) {
+        if (o.createTextRange) {
+            var r = document.selection.createRange().duplicate()
+            r.moveEnd('character', o.value.length)
+            if (r.text == '') return o.value.length
+            return o.value.lastIndexOf(r.text)
+        } else return o.selectionStart
+    }
+    //-----------------------------------end-------------------------//{% endcomment %}
+
+</script>
+
+</body>
+</html>

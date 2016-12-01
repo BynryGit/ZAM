@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>YfinAdvisor | Implementation</title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"/>
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}"/>
+
+
+    <style type="text/css">
+
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+        }
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff;
+        }
+
+        .btn-primary2:hover {
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+
+        }
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        .bac-clr {
+            background: linear-gradient(to left, #fff -20%, #7160A9 60%) repeat scroll 0% 0% !important;
+            border: 1px solid #E4E5E7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+        }
+
+        #side-menu li .nav-second-level li a {
+            color: #FFFFFF;
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+        .small-logo {
+            display: none;
+            text-align: center;
+            padding-top: 18px;
+            font-size: 14px;
+            font-weight: 800;
+            float: left;
+            display: block;
+
+            color: #7160A9;
+
+        }
+
+        .text-primary {
+            color: #7160A9;
+        }
+
+        #details {
+            height: 45px;
+            padding: 10px;
+            display: block;
+            background-color: #7160A9;
+            color: white;
+            text-align: center;
+            position: absolute;
+            top: 10px;
+
+        }
+
+        .btn-primary2:focus {
+
+            background-color: transparent;
+            border-color: #7160A9 !important;
+            color: #6a6c6f;
+        }
+
+        #refresh {
+            padding: 7px;
+            height: 45px;
+            margin-left: 850px;
+            margin-top: -14px;
+            display: block;
+            background-color: #7160A9;
+            color: white;
+            text-align: center;
+            position: right;
+            top: 7px;
+
+        }
+
+        .flot-chart-pie-content {
+            width: 200px;
+            height: 200px;
+            margin: auto;
+        }
+
+        .flot-pie-chart {
+            display: block;
+            padding-top: 50px;
+            height: 100px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a
+        href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+
+    <!-- <div id="logo" class="light-version">
+        <span>
+            ZAM
+        </span>
+    </div> -->
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo" style="padding-top: 0px">
+            <img src="{% static 'images/zam-logo-1.png' %}" style="width: 130px" class="img-circle m-b"
+                 alt="logo"></img>
+        </div>
+        <div>
+
+        </div>
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                {% if request.session.user_role == 'Super Admin' %}
+                <li>
+                    <a href="/open-YFinAdvisor-customer/">
+                       <i title="Back to Super Admin" class="fa fa-user-secret"></i>
+                   </a>
+                </li>
+                {% endif %}
+                <li class="dropdown">
+                    <a href="/signing-out/">
+                        <i title="Logout" class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.customer_full_name }}</span><br>
+                <small class="text-muted">{{ request.session.customer_user_role }}</small>
+
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            <li class="active">
+                <a href="/customer/"> <span class="nav-label">My Planning Tool</span></a>
+            </li>
+            <li>
+                <a href="/customer/customer-details/"> <span class="nav-label">Personal Information</span></a>
+            </li>
+            {% if request.session.user_role != 'Super Admin' %}
+                <li><a href="/open-discussion-forum/">Discussion Forum</a></li>
+                </li>
+                <li >
+                    <a href="/customer/change-password/"> <span class="nav-label">Change Password</span></a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+    <div class="content animate-panel">
+
+        <div class="row">
+            <div class="hpanel">
+                <div class="panel-heading hbuilt">
+                    <div class="row">
+                        <br>
+
+                        <div class="col-lg-3 col-md-3 col-xs-3">
+                            <div class=" pull-left form-group">
+                                <a href="/customer/open-setting-goals/" class="btn btn-outline btn-primary2 ">Back</a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-xs-5">
+                            <h4 class="text-right">Implementation</h4>
+                        </div>
+
+                        <div class="col-lg-5 col-xs-5" style="text-align: right">
+                            <a href="/customer/customer-report/" target="_blank" class="btn btn-outline btn-primary2 " title="Download Report"><i class="fa fa-download"></i></a>&nbsp;&nbsp;
+                            <a href="/customer/open-roadmap/" class="btn btn-outline btn-primary2 ">See your Road
+                                Map</a>
+                        </div>
+
+                    </div>
+
+
+                    {#                    <div class="row ">#}
+                    {#                        <div class="col-lg-12 col-xs-12 text-center">#}
+                    {#                            <img src="{% static 'images/implimentation.png' %}" class="img-circle m-b " alt="logo"><br>#}
+                    {#                            <a href="/customer/open-roadmap/" class="btn btn-outline btn-primary2 ">See your Road#}
+                    {#                                Map</a>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+                    <div class="hpanel">
+                        <div class="panel-heading hbuilt">
+                            {% for goal_data in meter_list %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-3">
+                                        <label>Goal {{ goal_data.index }}:</label>
+                                        <strong>{{ goal_data.goal_cat_name }}</strong>
+                                        <br>
+                                        <label>Amount:</label>
+                                        <strong>{{ goal_data.goal_amounts }}</strong>
+                                        <br>
+                                        <label>Year:</label>
+                                        <strong>{{ goal_data.goal_year }}</strong>
+                                    </div>
+                                    <div class="col-md-6" style="text-align: left">
+                                        <canvas id="gauge_{{ goal_data.index }}" style="width: 100%"></canvas>
+                                        <div id="console"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="div_{{ goal_data.index }}"></div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-flot/jquery.flot.js' %}"></script>
+<script src="{% static 'vendor/jquery-flot/jquery.flot.resize.js' %}"></script>
+<script src="{% static 'vendor/jquery-flot/jquery.flot.pie.js' %}"></script>
+<script src="{% static 'vendor/flot.curvedlines/curvedLines.js' %}"></script>
+<script src="{% static 'vendor/jquery.flot.spline/index.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/peity/jquery.peity.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"/>
+<script src="{% static 'scripts/charts.js' %}"/>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"/>
+
+<script>var CANV_GAUGE_FONTS_PATH = "{% static 'vendor/canv-gauge-master/fonts' %}"</script>
+<script src="{% static 'vendor/canv-gauge-master/gauge.js' %}"></script>
+
+<script>
+    //units       : 'Km/h',
+/*    var gauge_list = ['gauge_1', 'gauge_2', 'gauge_3', 'gauge_4']
+    var gauge_value = ['20', '30', '40', '50']
+    for (i = 0; i <= gauge_list.length; i++) {
+
+    }*/
+
+    var meter_data = {{ meter_reading }};
+    for(k=0;k<=meter_data.length-1;k++)
+    {
+        j = k + 1;
+        if (k != meter_data.length-1){
+            $("#div_"+j).append('<hr>');
+        }
+        meter_gauge(k);
+    }
+
+    function meter_gauge(i){
+        j = i + 1;
+        window['gauge'+i] = new Gauge({
+            renderTo: 'gauge_'+j,
+            width: document.body.offsetWidth,
+            height: document.body.offsetHeight,
+            glow: true,
+            units       : '%',
+            title: false,
+            minValue: 0,
+            maxValue: 100,
+            majorTicks: ['0', '20', '40', '60', '80', '100'],
+            minorTicks: 2,
+            strokeTicks: false,
+            highlights: [
+                {from: 0, to: 20, color: '#b30000'},
+                {from: 20, to: 40, color: '#ffcc00'},
+                {from: 40, to: 60, color: '#ffcc00'},
+                {from: 60, to: 80, color: '#ffcc00'},
+                {from: 80, to: 100, color: '#006600'}
+            ],
+            colors: {
+                plate: '#222',
+                majorTicks: '#f5f5f5',
+                minorTicks: '#ddd',
+                title: '#fff',
+                units: '#ccc',
+                numbers: '#eee',
+                needle: {start: 'rgba(240, 128, 128, 1)', end: 'rgba(255, 160, 122, .9)'}
+            }
+        });
+
+        window['gauge'+i].onready = function () {
+            window['gauge'+i].setValue(meter_data[i]);
+        };
+
+
+        window['gauge'+i].draw();
+
+        window.onresize = function () {
+            window['gauge'+i].updateConfig({
+                width: document.body.offsetWidth,
+                height: document.body.offsetHeight
+            });
+        };
+    }
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

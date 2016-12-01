@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title> ZAM | View Security Price</title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <!-- Vendor styles -->
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"/>
+    <link rel="stylesheet"
+          href="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/sweetalert/lib/sweet-alert.css' %}"/>
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.css' %}"/>
+
+
+    <style type="text/css">
+
+        .page-header {
+            margin-top: 1%;
+        }
+
+        .bac-but {
+            margin-bottom: 1px;
+            text-align: right;
+        }
+
+        .pad-top {
+            padding-top: 7px;
+        }
+
+        .pad-bottom {
+            padding-bottom: 7px;
+        }
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        .btn-primary2:hover {
+
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+
+        }
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        .bac-clr {
+            background: linear-gradient(to left, #fff -20%, #7160A9 40%) repeat scroll 0% 0% !important;
+            border: 1px solid #E4E5E7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+        }
+
+        #side-menu li .nav-second-level li a {
+            color: #FFFFFF;
+        }
+
+        .hpanel.hblue .panel-body {
+            border-top: 2px solid #7160A9;
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+        .small-logo {
+            display: none;
+            text-align: center;
+            padding-top: 6px;
+            font-size: 28px;
+            font-weight: 800;
+            float: left;
+            display: block;
+            color: #7160A9;
+        }
+
+        .text-primary {
+            color: #7160A9;
+        }
+
+        /*--------------------------------------------------*/
+        #side-menu li.treeview ul li a {
+            background: #fff !important;
+            color: #6A6C6F !important;
+            font-weight: 700;
+        }
+
+        #side-menu li.treeview ul li.active a {
+            background-color: #7160A9 !important;
+            color: #FFF !important;
+        }
+
+        #side-menu li.treeview ul li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff !important;
+
+        }
+
+        /*--------------------------------------------------*/
+
+    </style>
+
+</head>
+<body>
+
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<div class="splash" style="opacity:0.4;" id="load">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+
+
+<!-- Header -->
+<div id="header">
+
+
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo">
+            <span class="text-primary">Zeus Asset Management</span>
+        </div>
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-speaker"></i>
+                    </a>
+
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-mail"></i>
+                        <span class="label label-success"></span>
+                    </a>
+                    <ul class="dropdown-menu hdropdown animated flipInX">
+                        <div class="title">
+                            You have 4 new messages
+                        </div>
+                        <li>
+                            <a>
+                                It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Lorem Ipsum is simply dummy.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See All Messages</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/signing-out/">
+                        <i title="Logout" class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.full_name }}</span><br>
+                <small class="text-muted">{{ request.session.user_role }}</small>
+
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Marketing Manager' %}
+                <li>
+                    <a href="/crm-index/"> <span class="nav-label">Client Relationship Management</span></a>
+                </li>
+            {% endif %}
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+                <li><a href="/open-research-page/?tab_id=1">Research</a></li>
+            {% endif %}
+            <li><a href="/open-discussion-forum/">Discussion Forum</a></li>
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+                <li class="treeview active">
+                    <a href="#"><span class="nav-label">Security Data Management</span><span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/open-security-page/">Security</a></li>
+                        <li class="active"><a href="/open-security-price-page/">Price</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+	        {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' %}
+	           <li>
+	                    <a href="/open-trade/"> <span class="nav-label">Trade</span></a>
+	                </li>
+	                <li>
+	                    <a href="/open-position/"> <span class="nav-label">Position</span></a>
+	                </li>
+	        {% endif %} 
+            <li>
+                <a href="/index/"> <span class="nav-label">Dashboard</span></a>
+            </li>
+            {% if request.session.user_role == 'Super Admin' %}             	<li class="treeview">                     <a href="#"><span class="nav-label">Planning Tool</span><span class="fa arrow"></span> </a>                     <ul class="nav nav-second-level">                         <li><a href="/open-YFinAdvisor-index/">Planning Tool Input</a></li>                         <li><a href="/open-YFinAdvisor-customer/">Customer</a></li>                     </ul>                 </li>             {% endif %}             {% if request.session.user_role == 'Super Admin' or request.session.user_role == 'Admin' %}	 		<li>                     <a href="/open-user-index/"> <span class="nav-label">User Management</span></a>                 </li>             {% endif %}
+                <li>
+                    <a href="/open-rename-password/"> <span class="nav-label">Change Password</span></a>
+                </li>
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+
+
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel">
+            <div class="bac-clr">
+                <a class="small-header-action" href="">
+                    <!-- <div class="clip-header">
+                        <i class="fa fa-arrow-up"></i>
+                    </div> -->
+                </a>
+
+                <h3 style="display:inline;" class="font-light m-b-xs font-col">
+                    Security Data Management >
+                </h3>
+                <h4 style="display:inline;" class="font-light m-b-xs font-col">
+                    View Price
+                </h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="content animate-panel">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="hpanel hblue">
+                    <div class="panel-body">
+                        <div class="page-header row">
+                            <div class="col-md-9">
+                                <h4 class="pull-left">Price Details</h4>
+                            </div>
+                            <div class="col-md-3 bac-but">
+                                <a href="/open-security-price-page/" class="btn btn-outline btn-danger2">Cancel</a>
+                                <input id="edit_button" type="button" class="btn btn-outline btn-success"
+                                       value="&nbsp;&nbsp;Edit&nbsp;&nbsp;">
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <form id="security_price_form">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label" id="lbl_price_date">Date*</label>
+
+                                            <div class="input-group date">
+                                                <input autocomplete="off" id="price_date" name="price_date"
+                                                       value="{{ security_price_date }}" type="text"
+                                                       class="form-control"
+                                                       readonly>
+                                    	<span class="input-group-addon">
+                                    	<i class="glyphicon glyphicon-th"></i>
+                                    	</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <input type="hidden" name="security_price_id"
+                                                   value="{{ security_price_id }}">
+                                            <input type="hidden" name="flag" id="flag"
+                                                   value="{{ flag }}">
+                                            <label class="control-label" id="lbl_asset">Asset Class*</label>
+                                            <select required class="form-control js-source-states"
+                                                    name="selectAssetClass"
+                                                    id="selectAssetClass">
+                                                {% for class in asset_class_list %}
+                                                    <option value="{{ class.asset_class_id }}">{{ class.asset_class_name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label class="control-label" id="lbl_sub">Asset Sub Class*</label>
+                                            <select required class="form-control js-source-states"
+                                                    name="selectAssetSubClass"
+                                                    id="selectAssetSubClass">
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3">
+                                        <div class="form-group">
+                                            <label id="lbl_ticker" class="control-label">Bloomberg Ticker*</label>
+                                            <select autocomplete="off" required
+                                                    class="form-control js-source-states"
+                                                    name="selectBloombergTicker"
+                                                    id="selectBloombergTicker">
+                                                <option value="" disabled selected></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label id="lbl_sec" class="control-label">Security*</label>
+                                            <input autocomplete="off" name="selectSecurity" type="text"
+                                                   id="selectSecurity" readonly
+                                                   class="form-control"
+                                                   required>
+                                            {% comment %} <select class="form-control js-source-states" name="selectSecurity"
+                                                    id="selectSecurity">
+                                            </select>{% endcomment %}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label id="lbl_txtInPrice" class="control-label">In Price*</label><label>(Local
+                                            Currency)</label>
+                                            <input name="txtInPrice" type="text" id="txtInPrice" class="form-control"
+                                                   value="{{ security_in_price|floatformat:2 }}"
+                                                   onkeypress="return validateFloatKeyPress(this,event);"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label id="lbl_pri" class="control-label">Last Price*</label><label>(Local
+                                            Currency)</label>
+                                            <input name="txtLastPrice" type="text" id="txtLastPrice"
+                                                   class="form-control" value="{{ security_last_price|floatformat:2 }}"
+                                                   onkeypress="return validateFloatKeyPress(this,event);"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3">
+                                        <div class="form-group">
+                                            <label id="lbl_txt1D" class="control-label">%1D*</label>
+                                            <input autocomplete="off" name="txt1D" type="text"
+                                                   value="{{ security_one_d|floatformat:2 }}" id="txt1D"
+                                                   class="form-control"
+                                                   onkeypress="return validateFloatKeyPress(this,event);"
+                                                   required>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label" id="lbl_txtInFxRate">In FX Rate*</label>
+                                            <input autocomplete="off" name="txtInFxRate"
+                                                   value="{{ security_fx_rate_in|floatformat:2 }}" type="text"
+                                                   id="txtInFxRate"
+                                                   class="form-control"
+                                                   onkeypress="return validateFloatKeyPress(this,event);"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label" id="lbl_txtLastFxRate">Last FX Rate*</label>
+                                            <input autocomplete="off" name="txtLastFxRate"
+                                                   value="{{ security_fx_rate_last|floatformat:2 }}" type="text"
+                                                   id="txtLastFxRate"
+                                                   class="form-control"
+                                                   onkeypress="return validateFloatKeyPress(this,event);"
+                                                   required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label">USD In</label>
+                                            <input autocomplete="off" readonly name="txtUsdIn"
+                                                   value="{{ security_usd_in|floatformat:2 }}" type="text"
+                                                   id="txtUsdIn"
+                                                   onkeypress="return validateFloatKeyPress(this,event);"
+                                                   class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label">USD Last</label>
+                                            <label id="lbl_txtAdjustedPrice" style="color:white">&nbsp
+                                                Fill Out the Price </label>
+                                            <input autocomplete="off" readonly name="txtUsdLast"
+                                                   value="{{ security_usd_last|floatformat:2 }}" type="text"
+                                                   id="txtUsdLast"
+                                                   onkeypress="return validateFloatKeyPress(this,event);"
+                                                   class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                {% comment %}<div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Created By</label>
+                                            <input readonly name="created_by" type="text" id="created_by"
+                                                   class="form-control" value="{{ security_price_created_by }}"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Created Date</label>
+                                            <input readonly name="created_date" type="text" id="created_date"
+                                                   class="form-control" value="{{ security_price_created_date }}"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Updated By</label>
+                                            <input readonly name="updated_by" type="text" id="updated_by"
+                                                   class="form-control" value="{{ security_price_updated_by }}"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Updated Date</label>
+                                            <input readonly name="updated_date" type="text" id="updated_date"
+                                                   class="form-control" required
+                                                   value="{{ security_price_updated_date }}">
+                                        </div>
+                                    </div>
+                                </div>{% endcomment %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="modal fade hmodal-danger" id="modal_delete" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="color-line"></div>
+                <div class="modal-header" style="padding:10px;">
+                    <h4 class="modal-title">ZAM</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Do you really want to delete this record?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+<script src="{% static 'vendor/datatables/media/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' %}"></script>
+
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"></script>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js' %}"></script>
+
+
+<script>
+    var check_edit_flag = 0;
+
+    $(document).ready(function () {
+        $(".js-source-states").select2();
+        $(".js-source-states-2").select2();
+
+        $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+        $.fn.datepicker.defaults.endDate = "+0d";
+        $('.input-group.date').datepicker({}).on('changeDate', function (e) {
+            $(this).datepicker('hide');
+        });
+
+        $("#selectAssetClass").select2("val", {{assetclass_id}});
+        add_relevent_value_load('/add-subassetclass-security/', "#selectAssetSubClass", $('#selectAssetClass :selected').val());
+
+
+        $("#selectSecurity").val({{ security_id }});
+        $("#selectSecurity").select2("val", {{security_id}});
+
+
+    });
+
+
+    $(document).ready(function () {
+        {% comment %}if($('#flag').val()=='view'){
+            $("#security_price_form input").prop("disabled", true);
+            $("#security_price_form select").prop("disabled", true);
+        }else if($('#flag').val()=='Edit'){
+            $("#security_price_form input").prop("disabled", false);
+            $("#security_price_form select").prop("disabled", false);
+        }{% endcomment %}
+        console.log('-----------------------------');
+
+        if ('{{flag}}' == 'view') {
+            $("#security_price_form input").prop("disabled", true);
+            $("#security_price_form select").prop("disabled", true);
+        } else if ('{{flag}}' == 'edit') {
+            console.log('trueeeee');
+            $("#security_price_form input").prop("disabled", false);
+            $("#security_price_form select").prop("disabled", false);
+            $('#edit_button').val('Save ');
+            $('#edit_button').attr('id', 'save_button');
+            check_edit_flag = 1;
+        }
+
+
+    });
+
+    $("#edit_button").click(function () {
+        $("#security_price_form input").prop("disabled", false);
+        $("#security_price_form select").prop("disabled", false);
+        $('#edit_button').val('Save ');
+        $('#edit_button').attr('id', 'save_button');
+        if (check_edit_flag == 0) {
+            check_edit_flag = 1;
+        }
+        else {
+            check_edit_flag == 0
+            if ($('#price_date').val() === "" || $('#price_date').val() == null) {
+                $('#lbl_price_date').css("color", "red");
+            } else {
+                $('#lbl_price_date').css("color", "#6A6C6F");
+            }
+
+            if ($('#selectAssetClass').val() === "" || $('#selectAssetClass').val() == null) {
+                $('#lbl_asset').css("color", "red");
+            } else {
+                $('#lbl_asset').css("color", "#6A6C6F");
+            }
+
+            if ($('#selectAssetSubClass').val() === "" || $('#selectAssetSubClass').val() == null) {
+                $('#lbl_sub').css("color", "red");
+            } else {
+                $('#lbl_sub').css("color", "#6A6C6F");
+            }
+
+            if ($('#txt1D').val() === "" || $('#txt1D').val() == null) {
+                $('#lbl_txt1D').css("color", "red");
+            } else {
+                $('#lbl_txt1D').css("color", "#6A6C6F");
+            }
+
+
+            if ($('#selectSecurity').val() === "" || $('#selectSecurity').val() == null) {
+                $('#lbl_sec').css("color", "red");
+            } else {
+                $('#lbl_sec').css("color", "#6A6C6F");
+            }
+
+            if ($('#txtInPrice').val() === "" || $('#txtInPrice').val() === null) {
+                $('#lbl_txtInPrice').css("color", "red");
+            } else {
+                $('#lbl_txtInPrice').css("color", "#6A6C6F");
+            }
+
+            if ($('#selectBloombergTicker').val() === "" || $('#selectBloombergTicker').val() == null) {
+                $('#lbl_ticker').css("color", "red");
+            } else {
+                $('#lbl_ticker').css("color", "#6A6C6F");
+            }
+
+            if ($('#txtLastPrice').val() === "" || $('#txtLastPrice').val() === null) {
+                $('#lbl_pri').css("color", "red");
+            } else {
+                $('#lbl_pri').css("color", "#6A6C6F");
+            }
+
+            if ($('#txtInFxRate').val() === "" || $('#txtInFxRate').val() === null) {
+                $('#lbl_txtInFxRate').css("color", "red");
+            } else {
+                $('#lbl_txtInFxRate').css("color", "#6A6C6F");
+            }
+
+            if ($('#txtLastFxRate').val() === "" || $('#txtLastFxRate').val() === null) {
+                $('#lbl_txtLastFxRate').css("color", "red");
+            } else {
+                $('#lbl_txtLastFxRate').css("color", "#6A6C6F");
+            }
+
+
+            if ($('#txtSecurity').val() === "" || $('#selectAssetClass').val() === "" ||
+                    $('#selectAssetSubClass').val() === "" || $('#selectSecurity').val() === "" ||
+                    $('#txtLastPrice').val() === "" || $('#txtInPrice').val() === "" === "" ||
+                    $('#selectCurrency').val() === "" || $('#selectAssetClass').val() === null ||
+                    $('#selectAssetSubClass').val() === null || $('#selectSecurity').val() === null ||
+                    $('#price_date').val() === "" || $('#price_date').val() == null ||
+                    $('#txtInFxRate').val() === "" || $('#txtInFxRate').val() === null ||
+                    $('#txtLastFxRate').val() === "" || $('#txtLastFxRate').val() === null ||
+                    $('#txtInPrice').val() === "" || $('#txtInPrice').val() === null ||
+                    $('#txt1D').val() === "" || $('#txt1D').val() == null ||
+                    $('#selectBloombergTicker').val() === "" || $('#selectBloombergTicker').val() == null
+            ) {
+                return false;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: '/update-security-price-details/',
+                data: $('#security_price_form').serialize(),
+                success: function (response) {
+                    if (response.success == "true") {
+                        location.href = "/open-security-price-page/"
+                    }
+                },
+                error: function (response) {
+                    alert('cant save');
+                    console.log(response);
+                },
+                beforeSend: function () {
+                    $("#load").show();
+                },
+                error: function (response) {
+                    console.log(response);
+                    alert('error');
+                    $("#load").hide();
+                },
+                complete: function () {
+                    $("#load").hide();
+                }
+
+            });
+
+        }
+
+    });
+
+    $("#save_button").click(function () {
+        $("#security_price_form input").prop("disabled", true);
+        $("#security_price_form select").prop("disabled", true);
+        $('#save_button').val('  Edit  ');
+        $('#save_button').attr('id', 'edit_button');
+
+    });
+
+    $("#txtInPrice").focusout(function () {
+        $("#txtUsdIn").val(get_rate($("#txtInPrice").val(), $("#txtInFxRate").val()))
+    });
+
+    $("#txtInFxRate").focusout(function () {
+        $("#txtUsdIn").val(get_rate($("#txtInPrice").val(), $("#txtInFxRate").val()))
+    });
+
+    $("#txtLastPrice").focusout(function () {
+        $("#txtUsdLast").val(get_rate($("#txtLastPrice").val(), $("#txtLastFxRate").val()))
+    });
+
+    $("#txtLastFxRate").focusout(function () {
+        $("#txtUsdLast").val(get_rate($("#txtLastPrice").val(), $("#txtLastFxRate").val()))
+    });
+
+    function get_rate(dividend, divisor) {
+        ans = dividend / divisor
+        if ($.isNumeric(ans))
+            return ans.toFixed(2);
+        else
+            return " ";
+
+    }
+
+
+    $("#selectAssetClass").change(function () {
+        add_relevent_value_security('/add-subassetclass-security/', "#selectAssetSubClass", $('#selectAssetClass :selected').val());
+    });
+
+    $("#selectAssetSubClass").change(function () {
+        //add_relevent_value('/add-securities-list/', "#selectSecurity", $('#selectAssetSubClass :selected').val());
+        add_relevent_value_to_ticker('/add-bloombergTicker-list/', "#selectBloombergTicker", $('#selectAssetSubClass :selected').val());
+    })
+    $("#selectBloombergTicker").change(function () {
+        //add_security_by_ticker('/add-securities-list/', "#selectSecurity", $('#selectAssetSubClass :selected').val());
+        add_security_by_ticker('/add-security-intextbox/', "#selectSecurity", $('#selectBloombergTicker :selected').val());
+    });
+
+    function add_relevent_value(url, dropdown, id) {
+        $(dropdown).empty();
+        $(dropdown).select2("val", "");
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: {'id': id},
+            success: function (response) {
+                if (response.success == "true") {
+                    $.each(response.result, function (index, item) {
+                        $(dropdown).append('<option value="' + item.id + '">' + item.name + '</option>');
+                    });
+                    //$(dropdown).selectedIndex = 0;
+                    //$("#selectCurrency option:first-child").attr("selected", true);
+                    var i = $(dropdown).first().val()
+                    $(dropdown).select2().select2("val", i);
+                }
+            },
+            error: function (response) {
+                console.log(response);
+            },
+        });
+    }
+
+    function add_relevent_value_security(url, dropdown, id) {
+        $(dropdown).empty();
+        $(dropdown).select2("val", "");
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: {'id': id},
+            success: function (response) {
+                if (response.success == "true") {
+                    $.each(response.result, function (index, item) {
+                        $(dropdown).append('<option value="' + item.id + '">' + item.name + '</option>');
+                    });
+                    var i = $(dropdown).first().val()
+                    $(dropdown).select2().select2("val", i);
+                    add_relevent_value_to_ticker('/add-securities-list/', "#selectBloombergTicker", $('#selectAssetSubClass :selected').val());
+                }
+            },
+            error: function (response) {
+                console.log(response);
+            },
+        });
+    }
+
+    function add_relevent_value_to_ticker(url, dropdown, id) {
+        $(dropdown).empty();
+        $(dropdown).select2("val", "");
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: {'id': id},
+            success: function (response) {
+                if (response.success == "true") {
+                    $.each(response.result, function (index, item) {
+                        $(dropdown).append('<option value="' + item.id + '">' + item.name + '</option>');
+                    });
+                    var i = $(dropdown).first().val()
+                    $(dropdown).select2().select2("val", i);
+                    add_security_by_ticker('/add-security-intextbox/', "#selectSecurity", $('#selectBloombergTicker :selected').val());
+                }
+            },
+            error: function (response) {
+                console.log(response);
+            },
+        });
+    }
+
+    function add_relevent_value_load(url, dropdown, id) {
+        $(dropdown).empty();
+        $(dropdown).select2("val", "");
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: {'id': id},
+            success: function (response) {
+                if (response.success == "true") {
+                    $.each(response.result, function (index, item) {
+                        $(dropdown).append('<option value="' + item.id + '">' + item.name + '</option>');
+                    });
+                    var i = $(dropdown).first().val()
+                    //$(dropdown).select2().select2("val", i);
+                    $("#selectAssetSubClass").select2("val", {{ subassetclass_id }});
+                    //add_relevent_value_security_load('/add-securities-list/', "#selectSecurity", $('#selectAssetSubClass :selected').val());
+                    add_relevent_value_security_load('/add-bloombergTicker-list/', "#selectBloombergTicker", $('#selectAssetSubClass :selected').val());
+
+                }
+            },
+            error: function (response) {
+                console.log(response);
+            },
+        });
+    }
+
+    {% comment %} function add_relevent_value_security_load(url, dropdown, id) {
+         $(dropdown).empty();
+         $(dropdown).select2("val", "");
+         $.ajax({
+             type: "GET",
+             url: url,
+             data: {'id': id},
+             success: function (response) {
+                 if (response.success == "true") {
+                     $.each(response.result, function (index, item) {
+                         $(dropdown).append('<option value="' + item.id + '">' + item.name + '</option>');
+                     });
+                     $("#selectSecurity").select2("val", {{security_id}});
+                 }
+             },
+             error: function (response) {
+                 console.log(response);
+             },
+         });
+     }{% endcomment %}
+
+
+    function add_relevent_value_security_load(url, dropdown, id) {
+        $(dropdown).empty();
+        $(dropdown).select2("val", "");
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: {'id': id},
+            success: function (response) {
+                if (response.success == "true") {
+                    $.each(response.result, function (index, item) {
+                        $(dropdown).append('<option value="' + item.id + '">' + item.name + '</option>');
+                    });
+                    $(dropdown).select2("val", {{security_id}});
+                    add_security_by_ticker('/add-security-intextbox/', "#selectSecurity", $('#selectBloombergTicker :selected').val());
+                }
+            },
+            error: function (response) {
+                console.log(response);
+            },
+        });
+    }
+
+    function add_security_by_ticker(url, dropdown, id) {
+        $(dropdown).val("");
+        console.log(id);
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: {'id': id},
+            success: function (response) {
+                console.log(response);
+                if (response.success == "true") {
+                    $(dropdown).val(response.result);
+                }
+            },
+            error: function (response) {
+                console.log(response);
+            },
+        });
+    }
+
+    function validateFloatKeyPress(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var number = el.value.split('.');
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        //just one dot
+        if (number.length > 1 && charCode == 46) {
+            return false;
+        }
+        //get the carat position
+        var caratPos = getSelectionStart(el);
+        var dotPos = el.value.indexOf(".");
+        if (caratPos > dotPos && dotPos > -1 && (number[1].length > 1)) {
+            if (charCode == 8)
+                return true;
+            else
+                return false;
+        }
+        return true;
+    }
+
+    //thanks: http://javascript.nwbox.com/cursor_position/
+    function getSelectionStart(o) {
+        if (o.createTextRange) {
+            var r = document.selection.createRange().duplicate()
+            r.moveEnd('character', o.value.length)
+            if (r.text == '') return o.value.length
+            return o.value.lastIndexOf(r.text)
+        } else return o.selectionStart
+    }
+
+    //-----------------------------------end-------------------------//
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>ZAM | View User</title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"/>
+    <link rel="stylesheet"
+          href="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/sweetalert/lib/sweet-alert.css' %}"/>
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}"/>
+
+    <style type="text/css">
+
+        .page-header {
+            margin-top: 1%;
+        }
+
+        .bac-but {
+            margin-bottom: 2px;
+            text-align: right;
+        }
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        .btn-primary2:hover {
+
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+
+        }
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        .bac-clr {
+            background: linear-gradient(to left, #fff -20%, #7160A9 40%) repeat scroll 0% 0% !important;;
+            border: 1px solid #E4E5E7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+        }
+
+        #side-menu li .nav-second-level li a {
+            color: #FFFFFF;
+        }
+
+        .hpanel.hblue .panel-body {
+            border-top: 2px solid #7160A9;
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+        .small-logo {
+            display: none;
+            text-align: center;
+            padding-top: 6px;
+            font-size: 28px;
+            font-weight: 800;
+            float: left;
+            display: block;
+            color: #7160A9;
+        }
+
+        .text-primary {
+            color: #7160A9;
+        }
+
+        #side-menu li.treeview ul li a {
+            background: #fff !important;
+            color: #6A6C6F !important;
+            font-weight: 700;
+        }
+
+        #side-menu li.treeview ul li.active a {
+            background-color: #7160A9 !important;
+            color: #FFF !important;
+        }
+
+        #side-menu li.treeview ul li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff !important;
+
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<div class="splash" style="opacity:0.4;" id="load">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+
+    <!-- <div id="logo" class="light-version">
+        <span>
+           ZAM
+        </span>
+    </div> -->
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo">
+            <span class="text-primary">Zeus Asset Management</span>
+        </div>
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-speaker"></i>
+                    </a>
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-mail"></i>
+                        <span class="label label-success"></span>
+                    </a>
+                    <ul class="dropdown-menu hdropdown animated flipInX">
+                        <div class="title">
+                            You have 4 new messages
+                        </div>
+                        <li>
+                            <a>
+                                It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Lorem Ipsum is simply dummy.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See All Messages</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/signing-out/">
+                        <i title="Logout" class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.full_name }}</span><br>
+                <small class="text-muted">{{ request.session.user_role }}</small>
+
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Marketing Manager' %}
+                <li>
+                    <a href="/crm-index/"> <span class="nav-label">Client Relationship Management</span></a>
+                </li>
+            {% endif %}
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+            <li><a href="/open-research-page/?tab_id=1">Research</a></li>
+            {% endif %}
+               <li><a href="/open-discussion-forum/">Discussion Forum</a></li>
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+                <li class="treeview">
+                    <a href="#"><span class="nav-label">Security Data Management</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/open-security-page/">Security</a></li>
+                        <li><a href="/open-security-price-page/">Price</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' %}
+               <li>
+                        <a href="/open-trade/"> <span class="nav-label">Trade</span></a>
+                    </li>
+                    <li>
+                        <a href="/open-position/"> <span class="nav-label">Position</span></a>
+                    </li>
+            {% endif %} 
+            <li >
+                <a href="/index/"> <span class="nav-label">Dashboard</span></a>
+            </li>
+            {% if request.session.user_role == 'Super Admin' %}
+                <li class="treeview">
+                    <a href="#"><span class="nav-label">Planning Tool</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/open-YFinAdvisor-index/">Planning Tool Input</a></li>
+                        <li><a href="/open-YFinAdvisor-customer/">Customer</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+            {% if request.session.user_role == 'Super Admin' or request.session.user_role == 'Admin' %}
+                <li  class="active">
+                    <a href="/open-user-index/"> <span class="nav-label">User Management</span></a>
+                </li>
+            {% endif %}
+
+                <li>
+                    <a href="/open-rename-password/"> <span class="nav-label">Change Password</span></a>
+                </li>
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel">
+            <div class="bac-clr">
+                <h3 style="display:inline;" class="font-light m-b-xs font-col">
+                    User Management >
+                </h3>
+                <h4 style="display:inline;" class="font-light m-b-xs font-col">
+                    View User
+                </h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="content animate-panel">
+        <div class="hpanel hblue">
+            <div class="panel-body">
+                <div class="page-header row">
+                    <div class="col-md-9">
+                        <h4 class="pull-left"> User Details</h4>
+                    </div>
+                    <div class="col-md-3 bac-but">
+                        <a href="/open-user-index/" class="btn btn-outline btn-danger2">Cancel</a>&nbsp;&nbsp;
+                        <input id="edit_button" type="button" class="btn btn-outline btn-success"
+                               value="&nbsp;&nbsp;Edit&nbsp;&nbsp;">
+                    </div>
+                </div>
+                <form id="user_form">
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label id="lbl_error_msg" style="color:red"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="hidden"
+                               value="{{ user_id }}" name="user_id" class="form-control">
+
+                        <div class="col-md-2" style="padding-right: 0px;">
+                            <label class="control-label">
+                                Title
+                            </label>
+                            <select name="title" id="title" class="form-control js-source-states">
+                                <option value="{{ role_id }}"> {{user_title}}</option>
+                                <option value="Mr."> Mr.</option>
+                                <option value="Mrs."> Mrs.</option>
+                                <option value="Ms."> Ms.</option>
+                                <option value="Dr."> Dr.</option>
+                                <option value="Mas."> Mas.</option>
+                                <option value="Prof."> Prof.</option>
+                                <option value="Smt."> Smt.</option>
+                                <option value="Miss."> Miss.</option>
+                            </select>
+                            <label class="error" style="color:red; display:none;"></label>
+                        </div>
+                        <div class="form-group col-lg-5">
+                            <label class="control-label" id="lbl_first_name" for="FirstName">First Name*</label>
+                            <input type="text" title="Please enter you first name" required=""
+                                   value="{{ first_name }}" name="first_name" id="first_name" class="form-control">
+                        </div>
+
+                        <div class="form-group col-lg-5">
+                            <label class="control-label" id="lbl_last_name" for="LastName">Last Name*</label>
+                            <input type="text" title="Please enter you last name" required=""
+                                   value="{{ last_name }}" name="last_name" id="last_name" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="form-group col-lg-4">
+                            <label class="control-label" id="lbl_contact_no_name" for="contactno">Contact No</label><label id="lbl_contact_no"
+                                                                                                  style="color:white">&nbsp
+                            Fill out Contact Number</label>
+                            <input type="text" onkeypress="return validateFloatKeyPress(this,event);" required=""
+                                   value="{{ contact_no }}" name="contact_no" id="contact_no" class="form-control">
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label class="control-label" id="lbl_username_name" for="username">Username*</label><label id="lbl_username"
+                                                                                                style="color:white">&nbsp
+                            Fill out Username</label>
+                            <input type="text" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" title="Please enter you username"
+                                   required="" value="{{ user_name }}" name="username" id="username"
+                                   class="form-control">
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <label class="control-label" id="lbl_selectuserrole" for="username">User Role*</label>
+                            <select required class="form-control js-source-states" name="selectuserrole"
+                                    id="selectuserrole"
+                                    id="selectuserrole">
+                                {% for userrole in user_role_list %}
+                                    <option value="{{ userrole.role_id }}">{{ userrole.role }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-lg-2">
+                            <br>
+                            <input type="checkbox" name="change_pwd" id="change_pwd" value="checked">
+                            <label class="control-label" for="password">Change Password</label>
+                            <input type="hidden" name="password_change" id="password_change">
+
+                        </div>
+                        <div class="form-group col-lg-5">
+                            <label class="control-label" for="password">Password*</label><label id="lbl_password"
+                                                                                                style="color:white">&nbsp
+                            Fill out Password</label>
+
+                            <input type="password" data-toggle="validator" data-minlength="10"
+                                   title="Please enter your password" required=""
+                                   name="password" id="password" class="form-control"/>
+
+                            <div id="pwd_policy">
+                            <span class="help-block" id="strength" style="color:red">
+                                &nbsp &nbsp * The password should be 8-15 characters with 1 upper case  <br>
+                                &nbsp &nbsp &nbsp &nbsp letter, 1 number and 1 special character.
+                            </span>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-5">
+                            <label class="control-label" for="password">Confirm Password</label><label
+                                id="lbl_confirm_password" style="color:white">&nbsp Fill out Username</label>
+                            <input type="password" title="Please enter your password" required=""
+                                   name="confirm_password" id="confirm_password"
+                                   data-match="#password"
+                                   data-match-error="Whoops, these don't match" class="form-control"/>
+
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-lg-3">
+                            <label>Created By</label>
+                            <input type="text" readonly value="{{ created_by }}" class="form-control"
+                                   id="txtCreatedN" name="txtCreatedN">
+                        </div>
+
+                        <div class="form-group col-lg-3">
+                            <label>Creeated Date</label>
+                            <input type="text" readonly value="{{ created_date }}" class="form-control"
+                                   id="txtCreateD" name="txtCreateD">
+                        </div>
+
+                        <div class="form-group col-lg-3">
+                            <label>Updated By</label>
+                            <input type="text" readonly value="{{ updated_by }}" class="form-control"
+                                   id="txtUpdatedN" name="txtUpdatedN">
+                        </div>
+
+                        <div class="form-group col-lg-3">
+                            <label>Updated Date</label>
+                            <input type="text" readonly value="{{ updated_date }}" class="form-control"
+                                   id="txtUpdaedD" name="txtUpdaedD">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+<!-- Vendor scripts -->
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+<script src="{% static 'vendor/datatables/media/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' %}"></script>
+
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"></script>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js' %}"></script>
+
+
+<!-- App scripts -->
+
+<script>
+    var check_edit_flag = 0;
+    $("#pwd_policy").hide();
+    $(function () {
+        $('#change_pwd').attr('checked', false)
+        $("#selectuserrole").select2().select2("val", {{user_role.role_id}});
+        $('#password_change').val('0');
+        $("#user_form input").prop("disabled", true);
+        $("#user_form select").prop("disabled", true);
+
+        $(".js-source-states").select2();
+        $(".js-source-states-2").select2();
+        $('.input-group.date').datepicker({});
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            $('a[data-toggle="tab"]').removeClass('btn-primary');
+            $('a[data-toggle="tab"]').addClass('btn-default');
+            $(this).removeClass('btn-default');
+            $(this).addClass('btn-primary');
+        })
+
+        $('.next').click(function () {
+            var nextId = $(this).parents('.tab-pane').next().attr("id");
+            $('[href=#' + nextId + ']').tab('show');
+        })
+
+        $('.prev').click(function () {
+            var prevId = $(this).parents('.tab-pane').prev().attr("id");
+            $('[href=#' + prevId + ']').tab('show');
+        })
+
+        $('.submitWizard').click(function () {
+            var approve = $(".approveCheck").is(':checked');
+            if (approve) {
+                // Got to step 1
+                $('[href=#step1]').tab('show');
+
+                // Serialize data to post method
+                var datastring = $("#simpleForm").serialize();
+
+                // Show notification
+                swal({
+                    title: "Thank you!",
+                    text: "You approved our example form!",
+                    type: "success"
+                });
+
+            } else {
+                // Show notification
+                swal({
+                    title: "Error!",
+                    text: "You have to approve form checkbox.",
+                    type: "error"
+                });
+            }
+        })
+    });
+
+    $(document).ready(function () {
+        //alert('vkm chandel');
+        //$("#security_form input").prop("disabled", true);
+        // $("#security_form select").prop("disabled", true);
+    });
+
+    $('#change_pwd').change(function () {
+        if ($(this).is(":checked")) {
+            $('#password_change').val('1');
+            $("#password").attr('readonly', false);
+            $("#confirm_password").attr('readonly', false);
+
+        } else {
+            $('#password_change').val('0');
+            $("#password").attr('readonly', true);
+            $("#confirm_password").attr('readonly', true);
+        }
+    });
+
+    $("#edit_button").click(function () {
+        if (check_edit_flag == 0) {
+            check_edit_flag = 1;
+            $("#user_form input").prop("disabled", false);
+            $("#user_form select").prop("disabled", false);
+            {% if user_role.role == 'Super Admin' %}
+                $('#selectuserrole').prop('disabled', true);
+            {% else %}
+                $('#selectuserrole').prop('disabled', false);
+            {% endif %}
+            $('#edit_button').val('Save ');
+            $('#edit_button').attr('id', 'save_button');
+
+            $("#password").attr('readonly', true);
+            $("#confirm_password").attr('readonly', true);
+        }
+        else {
+
+            var password_rex = /(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W)^.{7,17}$/
+            var email_pattern = /[^@]+@[^@]+\.[a-zA-Z]{2,6}/
+
+            var valid_no = true;
+            var check_password = false;
+            var check_username = true;
+
+            console.log($('#password').val());
+
+            if ($('#first_name').val() === "" || $('#first_name').val() == null) {
+                $('#lbl_first_name').css("color", "red");
+            } else {
+                $('#lbl_first_name').css("color", "#6A6C6F");
+            }
+            if ($('#last_name').val() === "" || $('#last_name').val() == null) {
+                $('#lbl_last_name').css("color", "red");
+            } else {
+                $('#lbl_last_name').css("color", "#6A6C6F");
+            }
+
+            if ($('#selectuserrole').val() === "" || $('#selectuserrole').val() == null) {
+                $('#lbl_selectuserrole').css("color", "red");
+            } else {
+                $('#lbl_selectuserrole').css("color", "#6A6C6F");
+            }
+
+
+
+            if (!$('#contact_no').val() == "" || $('#contact_no').val() == null) {
+                if ($('#contact_no').val().length < 10) {
+                    valid_no = false;
+                    $('#lbl_contact_no').html("&nbsp; &nbsp; Minimum length should be 10.")
+                    $('#lbl_contact_no').css("color", "red");
+                } else {
+                    valid_no = true;
+                    $('#lbl_contact_no').css("color", "white");
+                }
+            } else {
+                valid_no = true;
+                $('#lbl_contact_no').css("color", "white");
+            }
+
+
+
+            if ($('#username').val() === "" || $('#username').val() == null) {
+                $('#lbl_username_name').css("color", "red");
+            }
+            else if (!email_pattern.test($('#username').val())) {
+                $('#lbl_username_name').css("color", "#6A6C6F");
+                $('#lbl_username').html("&nbsp;should be in Email Format")
+                $('#lbl_username').css("color", "red");
+                check_username = false;
+            }
+            else {
+                $('#lbl_username_name').css("color", "#6A6C6F");
+                $('#lbl_username').css("color", "white");
+                check_username = true;
+            }
+
+
+            /*---------------------------------------------------------------*/
+
+            if ($("#change_pwd").is(':checked')) {
+
+                if ($('#password').val() === "" || $('#password').val() == null) {
+                    $('#lbl_password').css("color", "red");
+                    return false;
+                } else {
+                    $('#lbl_password').css("color", "#6A6C6F");
+                    if (!password_rex.test($('#password').val())) {
+                        $("#pwd_policy").show();
+                        return false;
+                    }
+                    else
+                        $("#pwd_policy").hide();
+                }
+                if ($('#confirm_password').val() != $('#password').val()) {
+                    $('#lbl_confirm_password').css("color", "red");
+                    $('#lbl_confirm_password').html("&nbsp; &nbsp; Passwords Don't Match");
+                    return false;
+                } else {
+                    $('#lbl_confirm_password').css("color", "white");
+                    $('#lbl_confirm_password').text("");
+                    check_password = true;
+                }
+
+            }
+            else {
+                check_password = true;
+            }
+
+            /*---------------------------------------------------------------*/
+
+            if ($('#selectuserrole').val() === "" || $('#selectuserrole').val() === null)
+                $('#selectuserrole').css("color", "red");
+            else
+                $('#selectuserrole').css("color", "white");
+
+
+            if ($('#first_name').val() == null || $('#last_name').val() === "" || $('#last_name').val() == null || $('#username').val() === "" || $('#username').val() == null || $('#selectuserrole').val() === "" || $('#selectuserrole').val() === null || valid_no == false || check_username == false || check_password == false) {
+                return false;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: '/update-userdetails-up/',
+                data: $('#user_form').serialize(),
+                success: function (response) {
+                    console.log(response);
+                    console.log('===============fdgkj df==============================');
+                    if (response.success == "true") {
+                        $('#lbl_error_msg').text('');
+                        location.href = "/open-user-index/"
+                    }
+                    else if (response.success == "exist") {
+                        $('#lbl_error_msg').text(response.error_msg);
+                    }
+                },
+                error: function (response) {
+                    alert('cant save');
+                    console.log(response);
+                },
+                beforeSend: function () {
+                    $("#load").show();
+                },
+                error: function (response) {
+                    console.log(response);
+                    alert('error');
+                    $("#load").hide();
+                },
+                complete: function () {
+                    $("#load").hide();
+                }
+
+            });
+        }
+    });
+
+    $("#save_button").click(function () {
+        $("#user_form input").prop("readonly", true);
+        $("#user_form select").prop("readonly", true);
+        $('#save_button').val('  Edit  ');
+        $('#save_button').attr('id', 'edit_button');
+    });
+
+
+    //thanks: http://javascript.nwbox.com/cursor_position/
+    function getSelectionStart(o) {
+        if (o.createTextRange) {
+            var r = document.selection.createRange().duplicate()
+            r.moveEnd('character', o.value.length)
+            if (r.text == '') return o.value.length
+            return o.value.lastIndexOf(r.text)
+        } else return o.selectionStart
+    }
+
+    //-----------------------------------end-------------------------//
+
+</script>
+
+</body>
+</html>

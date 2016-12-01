@@ -1,0 +1,176 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='BankDetails',
+            fields=[
+                ('bank_id', models.AutoField(serialize=False, primary_key=True)),
+                ('bank_name', models.CharField(max_length=200, null=True)),
+                ('bank_icon', models.CharField(max_length=150, null=True)),
+                ('row_status', models.CharField(default=None, max_length=150, null=True, choices=[(b'Active', b'Active'), (b'Inactive', b'Inactive')])),
+                ('created_by', models.CharField(max_length=150, null=True)),
+                ('created_date', models.DateTimeField(null=True)),
+                ('updated_by', models.CharField(max_length=150, null=True)),
+                ('updated_date', models.DateTimeField(null=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Customer_Product',
+            fields=[
+                ('customer_product_id', models.AutoField(serialize=False, primary_key=True)),
+                ('product_name', models.CharField(max_length=200, null=True, blank=True)),
+                ('amount', models.CharField(max_length=200, null=True, blank=True)),
+                ('created_by', models.CharField(max_length=150, null=True)),
+                ('row_status', models.CharField(default=None, max_length=150, null=True, choices=[(b'Active', b'Active'), (b'Inactive', b'Inactive')])),
+                ('created_date', models.DateTimeField(null=True)),
+                ('updated_by', models.CharField(max_length=150, null=True)),
+                ('updated_date', models.DateTimeField(null=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='CustomerBankAccountDetails',
+            fields=[
+                ('CustomerBankAccount_id', models.AutoField(serialize=False, primary_key=True)),
+                ('bank', models.CharField(default=None, max_length=200, null=True, choices=[(b'Active', b'Active'), (b'Inactive', b'Inactive')])),
+                ('amount', models.FloatField(max_length=200, null=True)),
+                ('row_status', models.CharField(default=None, max_length=150, null=True, choices=[(b'Active', b'Active'), (b'Inactive', b'Inactive')])),
+                ('created_by', models.CharField(max_length=150, null=True)),
+                ('created_date', models.DateTimeField(null=True)),
+                ('updated_by', models.CharField(max_length=150, null=True)),
+                ('updated_date', models.DateTimeField(null=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='CustomerChildrenInfo',
+            fields=[
+                ('child_id', models.AutoField(serialize=False, primary_key=True)),
+                ('child_name', models.CharField(max_length=255, null=True)),
+                ('child_gender', models.CharField(max_length=255, null=True)),
+                ('child_dob', models.DateTimeField(null=True)),
+                ('age', models.IntegerField(null=True)),
+                ('row_status', models.CharField(default=None, max_length=150, null=True, choices=[(b'Active', b'Active'), (b'Inactive', b'Inactive')])),
+                ('created_by', models.CharField(max_length=150, null=True)),
+                ('created_date', models.DateTimeField(null=True)),
+                ('updated_by', models.CharField(max_length=150, null=True)),
+                ('updated_date', models.DateTimeField(null=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='CustomerPersonalInfo',
+            fields=[
+                ('customer_personal_info_id', models.AutoField(serialize=False, primary_key=True)),
+                ('first_name', models.CharField(max_length=255, null=True)),
+                ('report_description', models.CharField(max_length=5000, null=True)),
+                ('last_name', models.CharField(max_length=255, null=True)),
+                ('spouse_first_name', models.CharField(max_length=255, null=True)),
+                ('spouse_last_name', models.CharField(max_length=255, null=True)),
+                ('age', models.IntegerField(null=True)),
+                ('spouse_age', models.IntegerField(null=True)),
+                ('gender', models.CharField(max_length=255, null=True)),
+                ('spouse_gender', models.CharField(max_length=255, null=True)),
+                ('marital_status', models.CharField(default=b'NO', max_length=255, choices=[(b'MARRIED', b'MARRIED'), (b'UNMARRIED', b'UNMARRIED')])),
+                ('no_of_child', models.IntegerField(default=0)),
+                ('dob', models.DateTimeField(null=True)),
+                ('registration_date', models.DateTimeField(null=True)),
+                ('spouse_dob', models.DateTimeField(null=True)),
+                ('occupation', models.CharField(default=None, max_length=150, null=True, choices=[(b'SELF EMPLOYED', b'SELF EMPLOYED'), (b'PRIVATE SALARIED', b'PRIVATE SALARIED'), (b'GOVT SALARIED', b'GOVT SALARIED')])),
+                ('spouse_occupation', models.CharField(default=None, max_length=150, null=True, choices=[(b'SELF EMPLOYED', b'SELF EMPLOYED'), (b'PRIVATE SALARIED', b'PRIVATE SALARIED'), (b'GOVT SALARIED', b'GOVT SALARIED')])),
+                ('monthly_salary', models.FloatField(max_length=15, null=True)),
+                ('spouse_monthly_salary', models.FloatField(max_length=15, null=True)),
+                ('govt_benefit', models.CharField(default=None, max_length=150, null=True, choices=[(b'YES', b'YES'), (b'NO', b'NO')])),
+                ('spouse_govt_benefit', models.CharField(default=None, max_length=150, null=True, choices=[(b'YES', b'YES'), (b'NO', b'NO')])),
+                ('home_loan', models.FloatField(max_length=15, null=True)),
+                ('car_loan', models.FloatField(max_length=15, null=True)),
+                ('cibil_score', models.FloatField(max_length=15, null=True)),
+                ('total_salary', models.FloatField(max_length=15, null=True)),
+                ('start_saving', models.FloatField(max_length=15, null=True)),
+                ('mortgage', models.FloatField(max_length=15, null=True)),
+                ('credit_card_deb', models.FloatField(max_length=15, null=True)),
+                ('other_loans', models.FloatField(max_length=15, null=True)),
+                ('profile_updated', models.CharField(default=None, max_length=150, null=True, choices=[(b'YES', b'YES'), (b'NO', b'NO')])),
+                ('row_status', models.CharField(default=None, max_length=150, null=True, choices=[(b'Active', b'Active'), (b'Inactive', b'Inactive')])),
+                ('created_by', models.CharField(max_length=150, null=True)),
+                ('created_date', models.DateTimeField(null=True)),
+                ('updated_by', models.CharField(max_length=150, null=True)),
+                ('updated_date', models.DateTimeField(null=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='CustomerVariable',
+            fields=[
+                ('CustomerVariable_id', models.AutoField(serialize=False, primary_key=True)),
+                ('amount', models.FloatField(max_length=15, null=True)),
+                ('row_status', models.CharField(default=None, max_length=150, null=True, choices=[(b'Active', b'Active'), (b'Inactive', b'Inactive')])),
+                ('created_by', models.CharField(max_length=150, null=True)),
+                ('created_date', models.DateTimeField(null=True)),
+                ('updated_by', models.CharField(max_length=150, null=True)),
+                ('updated_date', models.DateTimeField(null=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Goal',
+            fields=[
+                ('goal_id', models.AutoField(serialize=False, primary_key=True)),
+                ('goal_target_year', models.CharField(max_length=200, null=True, blank=True)),
+                ('goal_target_date', models.DateTimeField(null=True)),
+                ('goal_name', models.CharField(max_length=200, null=True, blank=True)),
+                ('amount', models.CharField(max_length=200, null=True, blank=True)),
+                ('amount_allocated', models.CharField(max_length=200, null=True, blank=True)),
+                ('created_by', models.CharField(max_length=150, null=True)),
+                ('row_status', models.CharField(default=None, max_length=150, null=True, choices=[(b'Active', b'Active'), (b'Inactive', b'Inactive')])),
+                ('goal_status', models.CharField(default=None, max_length=150, null=True, choices=[(b'Met', b'Met'), (b'Not Met', b'Not Met'), (b'May Be', b'May Be')])),
+                ('created_date', models.DateTimeField(null=True)),
+                ('updated_by', models.CharField(max_length=150, null=True)),
+                ('updated_date', models.DateTimeField(null=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Goal_Category',
+            fields=[
+                ('goal_cat_id', models.AutoField(serialize=False, primary_key=True)),
+                ('goal_cat', models.CharField(max_length=200, null=True)),
+                ('goal_priorities', models.CharField(max_length=150, null=True)),
+                ('goal_percentage', models.FloatField(max_length=10, null=True)),
+                ('created_by', models.CharField(max_length=150, null=True)),
+                ('created_date', models.DateTimeField(null=True)),
+                ('updated_by', models.CharField(max_length=150, null=True)),
+                ('updated_date', models.DateTimeField(null=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Goal_Target_Year',
+            fields=[
+                ('goal_target_year_id', models.AutoField(serialize=False, primary_key=True)),
+                ('goal_target_year', models.CharField(max_length=200, null=True)),
+                ('created_by', models.CharField(max_length=150, null=True)),
+                ('created_date', models.DateTimeField(null=True)),
+                ('updated_by', models.CharField(max_length=150, null=True)),
+                ('updated_date', models.DateTimeField(null=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Product',
+            fields=[
+                ('product_id', models.AutoField(serialize=False, primary_key=True)),
+                ('product', models.CharField(max_length=200, null=True)),
+                ('created_by', models.CharField(max_length=150, null=True)),
+                ('created_date', models.DateTimeField(null=True)),
+                ('updated_by', models.CharField(max_length=150, null=True)),
+                ('updated_date', models.DateTimeField(null=True)),
+            ],
+        ),
+        migrations.AddField(
+            model_name='goal',
+            name='goal_cat_id',
+            field=models.ForeignKey(related_name='gol_cat_id', to='customerapp.Goal_Category', null=True),
+        ),
+    ]

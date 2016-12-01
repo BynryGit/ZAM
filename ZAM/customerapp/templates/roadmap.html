@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    {% load humanize %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>YfinAdvisor | RoadMap</title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"/>
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/toastr/build/toastr.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/rangeslider.js-2.1.1/rangeslider.css' %}"/>
+
+    <style type="text/css">
+
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+        }
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff;
+        }
+
+        .btn-primary2:hover {
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+
+        }
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        #side-menu li .nav-second-level li a {
+            color: #FFFFFF;
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+        .small-logo {
+            display: none;
+            text-align: center;
+            padding-top: 18px;
+            font-size: 14px;
+            font-weight: 800;
+            float: left;
+            display: block;
+
+            color: #7160A9;
+
+        }
+
+        .text-primary {
+            color: #7160A9;
+        }
+
+        #details {
+            height: 45px;
+            padding: 10px;
+            display: block;
+            background-color: #7160A9;
+            color: white;
+            text-align: center;
+            position: absolute;
+            top: 10px;
+
+        }
+
+        .btn-primary2:focus {
+
+            background-color: transparent;
+            border-color: #7160A9 !important;
+            color: #6a6c6f;
+        }
+
+        .flot-chart-pie-content {
+            width: 200px;
+            height: 200px;
+            margin: auto;
+        }
+
+        .flot-pie-chart {
+            display: block;
+            padding-top: 50px;
+            height: 300px;
+        }
+
+        .rangeslider__handle {
+            width: 25px;
+            height: 25px;
+            top: -8px !important;
+        }
+
+        .rangeslider--horizontal {
+            height: 12px;
+            width: 100%;
+        }
+
+        .rangeslider__fill {
+            background:none repeat scroll 0% 0%;
+            position: absolute;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a
+        href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+
+    <!-- <div id="logo" class="light-version">
+        <span>
+            ZAM
+        </span>
+    </div> -->
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo" style="padding-top: 0px">
+            <img src="{% static 'images/zam-logo-1.png' %}" style="width: 130px" class="img-circle m-b"
+                 alt="logo">
+        </div>
+        <div>
+
+        </div>
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                <!-- <li class="dropdown">
+                     <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                         <i class="pe-7s-mail"></i>
+                         <span class="label label-success">4</span>
+                     </a>
+                    <ul class="dropdown-menu hdropdown animated flipInX">
+                         <div class="title">
+                             You have 4 new messages
+                         </div>
+                         <li>
+                             <a>
+                                 It is a long established.
+                             </a>
+                         </li>
+                         <li>
+                             <a>
+                                 There are many variations.
+                             </a>
+                         </li>
+                         <li>
+                             <a>
+                                 Lorem Ipsum is simply dummy.
+                             </a>
+                         </li>
+                         <li>
+                             <a>
+                                 Contrary to popular belief.
+                             </a>
+                         </li>
+                         <li class="summary"><a href="#">See All Messages</a></li>
+                     </ul>-->
+                </li>
+                {% if request.session.user_role == 'Super Admin' %}
+                <li>
+                    <a href="/open-YFinAdvisor-customer/">
+                       <i title="Back to Super Admin" class="fa fa-user-secret"></i>
+                   </a>
+                </li>
+                {% endif %}
+                <li class="dropdown">
+                    <a href="/signing-out/">
+                        <i title="Logout" class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.customer_full_name }}</span><br>
+                <small class="text-muted">{{ request.session.customer_user_role }}</small>
+
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            <li class="active">
+                <a href="/customer/"> <span class="nav-label">My Planning Tool</span></a>
+            </li>
+            <li>
+                <a href="/customer/customer-details/"> <span class="nav-label">Personal Information</span></a>
+            </li>
+            {% if request.session.user_role != 'Super Admin' %}
+                <li><a href="/open-discussion-forum/">Discussion Forum</a></li>
+                </li>
+                <li >
+                    <a href="/customer/change-password/"> <span class="nav-label">Change Password</span></a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+    <div class="content animate-panel">
+
+        <div class="row">
+            <div class="hpanel">
+                <div class="panel-heading hbuilt">
+                    <div class="row">
+                        <br>
+
+                        <div class="col-lg-2 col-md-2 col-xs-2">
+                            <div class=" pull-left form-group">
+                                <a href="/customer/open-implementation/" class="btn btn-outline btn-primary2 ">Back</a>&nbsp;&nbsp;
+                            </div>
+                        </div>
+
+                        <div class="col-lg-8 col-md-8 col-xs-8">
+                            <h4 class="text-center">RoadMap</h4>
+                        </div>
+                        <div class="col-lg-2 col-xs-2" style="text-align: right">
+                            <a href="/customer/customer-report/" target="_blank" class="btn btn-outline btn-primary2 " title="Download Report"><i class="fa fa-download"></i></a>&nbsp;&nbsp;
+                        </div>
+                    </div>
+
+                    <div class="hpanel">
+                        <div class="panel-heading hbuilt">
+                            <br>
+                            {% for goals in goal_data %}
+                                <div class="row ">
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="col-lg-4 form-group">
+                                                <label>Goal {{ goals.index }}:</label>
+                                                <br>
+                                                <h5>{{ goals.goal_cat_name }}</h5>
+                                            </div>
+                                            <div class="col-lg-4 form-group">
+                                                <label>Amount:</label>
+                                                <br>
+                                                <h5>₹{{ goals.goal_amount|intcomma }}</h5>
+                                            </div>
+                                            <div class="col-lg-4 form-group">
+                                                <label>By When:</label>
+                                                <br>
+                                                <h5 id="goal_year_{{ goals.index }}">{{ goals.goal_year }}</h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 form-group">
+                                                <label>Monthly Saving Required</label>&nbsp;
+                                                <a type="button" id="saving_{{ goals.index }}"
+                                                   class="btn btn-primary2"
+                                                   style="cursor: default;">₹{{ goals.goal_emi|intcomma }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <label>Debt</label>
+                                                </div>
+                                                <div class="col-lg-6" style="text-align: right">
+                                                    <label>Equities</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <input type="range" id="implRange_{{ goals.index }}" value="0"
+                                                           min="-2" max="2" autocomplete="off"
+                                                           onchange="debt_equity_calc(this.id,this.name)"
+                                                           name="{{ goals.goal_id }}" data-rangeslider>
+                                                </div>
+                                            </div>
+                                            <br>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <label>Start Now</label>
+                                                </div>
+                                                <div class="col-lg-6" style="text-align: right">
+                                                    <label>Start after 5 years</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <input type="range" id="yearRange_{{ goals.index }}"
+                                                           onchange="year_calc(this.id,this.name)"
+                                                           name="{{ goals.goal_id }}" value="0"
+                                                           min="0" max="5" data-rangeslider
+                                                            autocomplete="off">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="div_{{ goals.index }}"></div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-flot/jquery.flot.js' %}"></script>
+<script src="{% static 'vendor/jquery-flot/jquery.flot.resize.js' %}"></script>
+<script src="{% static 'vendor/jquery-flot/jquery.flot.pie.js' %}"></script>
+<script src="{% static 'vendor/flot.curvedlines/curvedLines.js' %}"></script>
+<script src="{% static 'vendor/jquery.flot.spline/index.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/peity/jquery.peity.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+<script src="{% static 'vendor/datatables/media/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'dataTables.tableTools.js' %}"></script>
+<script src="{% static 'vendor/toastr/build/toastr.min.js' %}"></script>
+<script src="{% static 'vendor/jquery.tabletojson.min.js' %}"></script>
+<script src="{% static 'vendor/rangeslider.js-2.1.1/rangeslider.js' %}"></script>
+
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"></script>
+<script src="{% static 'scripts/charts.js' %}"></script>
+
+<script>
+
+    toastr.options = {
+        "debug": false,
+        "newestOnTop": false,
+        "positionClass": "toast-top-center",
+        "closeButton": true,
+        "debug": false,
+        "toastClass": "animated fadeInDown",
+    };
+
+    $(function () {
+        var $document = $(document);
+        var selector = '[data-rangeslider]';
+        var $inputRange = $(selector);
+        $inputRange.rangeslider({polyfill: false});
+    });
+
+
+    function int_slider(){
+        var $document = $(document);
+        var selector = '[data-rangeslider]';
+        var $inputRange = $(selector);
+        $inputRange.rangeslider({polyfill: false});
+    }
+
+    var count = {{ count }};
+
+    for (k = 0; k <= count - 1; k++) {
+        j = k + 1;
+        if (k != count - 1) {
+            $("#div_" + j).append('<hr>');
+        }
+    }
+
+
+
+    function year_calc(id, name) {
+        toastr.clear();
+        var year = $("#" + id).val();
+        var goal_id = name;
+        id = id.split('_');
+        var goal_date = $("#goal_year_" + id[1]).text();
+        goal_year = goal_date.split('/');
+        var d = new Date();
+        var n = d.getFullYear();
+        var year_dif = goal_year[2] - n;
+        if (year_dif < year) {
+            toastr.error("Selected Year beyond Target Year!");
+            $("#saving_" + id[1]).text("NA");
+            return false;
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/customer/implementation-year-calc/',
+            data: {'year': year, 'goal_id': goal_id},
+            success: function (response) {
+                if (response.success == "true") {
+                    $("#implRange_" + id[1]).rangeslider('destroy');
+                    $("#implRange_" + id[1]).val(0);
+                    int_slider();
+                    $("#saving_" + id[1]).text("₹" + format(response.emi));
+                }
+                else {
+                    toastr.error('Server error');
+                }
+            },
+
+        });
+    }
+
+    function format(num) {
+        var n = num.toString(), p = n.indexOf('.');
+        return n.replace(/\d(?=(?:\d{3})+(?:\.|$))/g, function ($0, i) {
+            return p < 0 || i < p ? ($0 + ',') : $0;
+        });
+    }
+
+    function debt_equity_calc(id, name) {
+        var index = $("#" + id).val();
+        var goal_id = name;
+        id = id.split('_');
+        var rate = 0;
+        if (index == -2){
+            rate = 0.052
+        }
+        else if (index == -1){
+            rate = 0.0874
+        }
+        else if (index == 0){
+            rate = 0.111
+        }
+        else if (index == 1){
+            rate = 0.1346
+        }
+        else if (index == 2){
+            rate = 0.17
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/customer/implementation-debt-equity-calc/',
+            data: {'rate': rate, 'goal_id': goal_id},
+            success: function (response) {
+                if (response.success == "true") {
+                    $("#yearRange_" + id[1]).rangeslider('destroy');
+                    $("#yearRange_" + id[1]).val(0);
+                    int_slider();
+                    $("#saving_" + id[1]).text("₹" + format(response.emi));
+                }
+                else {
+                    toastr.error('Server error');
+                }
+            },
+
+        });
+    }
+
+</script>
+
+</body>
+</html>

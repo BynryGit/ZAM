@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>YfinAdvisor | My Planning Tool</title>
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"/>
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/toastr/build/toastr.min.css' %}"/>
+
+    <style type="text/css">
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        #7160A9
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        .btn-primary2:hover {
+
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+
+        }
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        .bac-clr {
+            background: linear-gradient(to left, #fff -20%, #7160A960%) repeat scroll 0% 0% !important;
+            border: 1px solid #E4E5E7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+        }
+
+        #side-menu li .nav-second-level li a {
+            color: #FFFFFF;
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+        .small-logo {
+            display: none;
+            text-align: center;
+            padding-top: 18px;
+            font-size: 14px;
+            font-weight: 800;
+            float: left;
+            display: block;
+
+            color: #7160A9;
+
+        }
+
+        .text-primary {
+            color: #7160A9;
+        }
+
+        .btn-primary2:focus {
+
+            background-color: transparent;
+            border-color: #7160A9 !important;
+            color: #6a6c6f;
+        }
+
+        .btn-primary2:focus {
+
+            background-color: transparent;
+            border-color: #7160A9 !important;
+            color: #6a6c6f;
+        }
+
+        <!--
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+        }
+
+        -->
+
+        #lbl_pb {
+            margin-left: 109px;
+        }
+
+        #pbank {
+            margin-left: 109px;
+        }
+
+        #lbl_pa {
+            margin-left: 122px;
+        }
+
+        #bank_usr {
+            height: 20px;
+            width: 40px;
+        }
+
+        #bank_pass {
+            height: 20px;
+            width: 40px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a
+        href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+
+    <!-- <div id="logo" class="light-version">
+        <span>
+            ZAM
+        </span>
+    </div> -->
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo" style="padding-top: 0px">
+            <img src="{% static 'images/zam-logo-1.png' %}" style="width: 130px" class="img-circle m-b"
+                 alt="logo"></img>
+        </div>
+        <div>
+
+        </div>
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <!--  <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                         <i class="pe-7s-mail"></i>
+                         <span class="label label-success">4</span>
+                     </a> -->
+                    <ul class="dropdown-menu hdropdown animated flipInX">
+                        <div class="title">
+                            You have 4 new messages
+                        </div>
+                        <li>
+                            <a>
+                                It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Lorem Ipsum is simply dummy.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See All Messages</a></li>
+                    </ul>
+                </li>
+                {% if request.session.user_role == 'Super Admin' %}
+                <li>
+                    <a href="/open-YFinAdvisor-customer/">
+                       <i title="Back to Super Admin" class="fa fa-user-secret"></i>
+                   </a>
+                </li>
+                {% endif %}
+                <li class="dropdown">
+                    <a href="/signing-out/">
+                        <i class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.customer_full_name }}</span><br>
+                <small class="text-muted">{{ request.session.customer_user_role }}</small>
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            <li class="active">
+                <a href="/customer/"> <span class="nav-label">My Planning Tool</span></a>
+            </li>
+            <li>
+                <a href="/customer/customer-details/"> <span class="nav-label">Personal Information</span></a>
+            </li>
+            <li>
+            {% if request.session.user_role != 'Super Admin' %}
+                <li><a href="/open-discussion-forum/">Discussion Forum</a></li>
+                </li>
+                <li >
+                    <a href="/customer/change-password/"> <span class="nav-label">Change Password</span></a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</aside>
+
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+    <div class="content animate-panel">
+
+        <div class="hpanel">
+
+            <div class="panel-heading hbuilt">
+                <div class="row">
+                    <div class="col-lg-1 pull-left">
+                        <a href="/customer/open-other-saving-product/" class="btn btn-outline btn-primary2 ">Back</a>&nbsp;&nbsp;
+                    </div>
+                    <div class="col-lg-10" style="text-align: center">
+                        <h4><span class="font-icon-name">Direct Brokerage Account</span></h4>
+                    </div>
+                    <div class="col-lg-1 pull-right">
+                        <a type="button" href="/customer/open-property/" id=""
+                           class="btn btn-outline btn-primary2  wid">Next</a>
+                    </div>
+                </div>
+                <div class="hpanel">
+                    <div class="panel-heading hbuilt">
+                        <br>
+
+                        <div class="row" id="select_bank">
+                            <div class="col-lg-1 col-md-1 col-xs-12"></div>
+
+                            <div class="col-lg-2 col-md-6 col-xs-12">
+                                <div class="text-center">
+                                    <input type="radio" class="sel" id="radio1" name="direct_brokrage_product_radio" class="sel" value="ICICI Direct"
+                                               value="1"><strong>ICICI Direct</strong>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-xs-12">
+                                <div class="text-center">
+                                    <input type="radio" class="sel" id="radio2" name="direct_brokrage_product_radio" value="Indiabulls">
+                                    <strong>Indiabulls</strong>
+                                </div>
+                            </div>
+
+                            <!-- <div class="row" style="padding-top:25px;"> -->
+                            <div class="col-lg-2 col-md-2 col-xs-12">
+                                <div class="text-center">
+                                    <input type="radio" class="sel" id="radio3" name="direct_brokrage_product_radio" value="Sharekhan">
+                                    <strong>Sharekhan</strong>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-2 col-md-2 col-xs-12">
+                                <div class="text-center">
+                                    <input type="radio" class="sel" id="radio4" name="direct_brokrage_product_radio"
+                                            value="HDFC Direct">
+                                    <strong>HDFC Direct</strong>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-xs-12">
+                                <div class="text-center">
+                                    <input type="radio" class="sel" name="direct_brokrage_product_radio" id="radio5" value="Add Manually">
+                                    <strong>Add Manually</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div id="div_product">
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12 ">
+                                    <div class="col-md-4 col-xs-12 ">
+                                        <label>Product</label>
+                                        <input type="text" id="txt_product" class="form-control"
+                                               value="Direct Brokerage Account" pattern="[A-Za-z]+" readonly
+                                               required="required">
+                                    </div>
+                                    <div class="col-md-4 col-xs-12 ">
+                                        <label>Product Name</label>
+                                        <input type="text" id="txt_product_name" class="form-control"
+                                                pattern="[A-Za-z]+">
+                                    </div>
+                                    <div class="col-md-4 col-xs-12 ">
+                                        <label id="lbl_amount">Amount*</label>
+                                        <input type="text" name="txt_amount" class="form-control"
+                                               id="txt_amount" onkeypress="return validateFloatKeyPress(this,event);"
+                                               required="required" maxlength="13">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <a class="btn btn-outline btn-primary2 " onclick="save_product();"
+                                   style=" margin-left: 41%;width:19%">&nbsp;Add Product&nbsp;</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-flot/jquery.flot.js' %}"></script>
+<script src="{% static 'vendor/jquery-flot/jquery.flot.resize.js' %}"></script>
+<script src="{% static 'vendor/jquery-flot/jquery.flot.pie.js' %}"></script>
+<script src="{% static 'vendor/flot.curvedlines/curvedLines.js' %}"></script>
+<script src="{% static 'vendor/jquery.flot.spline/index.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/peity/jquery.peity.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"></script>
+<script src="{% static 'scripts/charts.js' %}"></script>
+
+<script src="{% static 'vendor/toastr/build/toastr.min.js' %}"></script>
+<script>
+
+    toastr.options = {
+        "debug": false,
+        "newestOnTop": false,
+        "positionClass": "toast-top-center",
+        "closeButton": true,
+        "debug": false,
+        "toastClass": "animated fadeInDown",
+    };
+
+    $('input[type=radio]').prop('checked', function () {
+        return this.getAttribute('checked') == 'unchecked';
+    });
+
+    $("#div_product").hide();
+
+    $('.sel').click(function () {
+        if (this.id == 'radio5') {
+            document.getElementById("txt_product_name").readOnly = false;
+            $("#txt_product_name").val('');
+        } else {
+            $('#txt_product_name').attr('readonly', true);
+            $("#txt_product_name").val($('#' + this.id).val());
+        }
+        $("#div_product").show();
+    });
+
+    function validateFloatKeyPress(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var number = el.value.split('.');
+        if (number[0].length >= 12 && charCode == 46) {
+            return false;
+        }
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        if (number[1].length > 1) {
+            return false;
+        }
+
+        if (number.length > 1 && charCode == 46) {
+            return false;
+        }
+        var caratPos = getSelectionStart(el);
+        var dotPos = el.value.indexOf(".");
+        if (caratPos > dotPos && dotPos > -1 && (number[1].length > 1) && (number[1].length < 3)) {
+            if (charCode == 8)
+                return true;
+            else
+                return false;
+        }
+        return true;
+    }
+
+    function save_product() {
+        var product_amount = $("#txt_amount").val();
+        var product_name = $("#txt_product_name").val();
+        if (product_amount == "") {
+            $('#lbl_amount').css("color", "red");
+            return false;
+        } else {
+            $('#lbl_amount').css("color", "#6a6c6f");
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/customer/save-product/',
+            data: {
+                'product_amount': product_amount,
+                'product_name': product_name,
+                'product_id': 5,
+            },
+            success: function (response) {
+                if (response.success == 'true') {
+                    $("#txt_amount").val('');
+   		    $("#txt_product_name").val('');
+                    toastr.success('Product saved successfully');
+                } else {
+                    toastr.error('Sever Error');
+                }
+            },
+            error: function (response) {
+                alert("Error!");
+            },
+
+        });
+    }
+</script>
+
+</body>
+</html>
+

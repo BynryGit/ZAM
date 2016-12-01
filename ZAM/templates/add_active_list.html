@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>ZAM | Add Active List </title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/sweetalert/lib/sweet-alert.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/dropzone.css' %}"/>
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/toastr/build/toastr.min.css' %}"/>
+    <style type="text/css">
+        .span-width {
+            width: 83%;
+            margin: 22px;
+        }
+
+        .label-margin {
+
+            margin: 5%;
+        }
+
+        .wid {
+            min-width: 65px;
+        }
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        .btn-primary2:hover {
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+
+        }
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        .bac-clr {
+            background: linear-gradient(to left, #fff -20%, #7160A9 40%) repeat scroll 0% 0% !important;
+            border: 1px solid #E4E5E7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+        }
+
+        #side-menu li.treeview ul li a {
+            background: #fff !important;
+            color: #6A6C6F !important;
+            font-weight: 700;
+        }
+
+        #side-menu li.treeview ul li.active a {
+            background-color: #7160A9 !important;
+            color: #FFF !important;
+        }
+
+        #side-menu li.treeview ul li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff !important;
+
+        }
+
+        .hpanel.hblue .panel-body {
+            border-top: 2px solid #7160A9;
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+        .small-logo {
+            display: none;
+            text-align: center;
+            padding-top: 6px;
+            font-size: 28px;
+            font-weight: 800;
+            float: left;
+            display: block;
+            color: #7160A9;
+        }
+
+        .text-primary {
+            color: #7160A9;
+        }
+
+        #wizardControl .nav-tabs .active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<div class="splash" style="opacity:0.4;" id="load">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+
+    <!-- <div id="logo" class="light-version">
+        <span>
+           ZAM
+        </span>
+    </div> -->
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo">
+            <span class="text-primary">Zeus Asset Management</span>
+        </div>
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-speaker"></i>
+                    </a>
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-mail"></i>
+                        <span class="label label-success"></span>
+                    </a>
+                    <ul class="dropdown-menu hdropdown animated flipInX">
+                        <div class="title">
+                            No new Notification
+                        </div>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/signing-out/">
+                        <i title="Logout" class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.full_name }}</span><br>
+                <small class="text-muted">{{ request.session.user_role }}</small>
+
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Marketing Manager' %}
+                <li>
+                    <a href="/crm-index/"> <span class="nav-label">Client Relationship Management</span></a>
+                </li>
+            {% endif %}
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+            <li class="active"><a href="/open-research-page/?tab_id=1">Research</a></li>
+            {% endif %}
+                <li ><a href="/open-discussion-forum/">Discussion Forum</a></li>
+              {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+                <li class="treeview">
+                <a href="#"><span class="nav-label">Security Data Management</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/open-security-page/">Security</a></li>
+                    <li><a href="/open-security-price-page/">Price</a></li>
+                </ul>
+            </li>
+            {% endif %}
+	        {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' %}
+	           <li>
+	                    <a href="/open-trade/"> <span class="nav-label">Trade</span></a>
+	                </li>
+	                <li>
+	                    <a href="/open-position/"> <span class="nav-label">Position</span></a>
+	                </li>
+	        {% endif %} 
+                    <li>
+                <a href="/index/"> <span class="nav-label">Dashboard</span></a>
+            </li>
+            {% if request.session.user_role == 'Super Admin' %}
+            <li class="treeview">
+                <a href="#"><span class="nav-label">Planning Tool</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="/open-YFinAdvisor-index/">Planning Tool Input</a></li>
+                    <li><a href="/open-YFinAdvisor-customer/">Customer</a></li>
+                </ul>
+            </li>
+            {% endif %}
+            {% if request.session.user_role == 'Super Admin' or request.session.user_role == 'Admin' %}
+            <li><a href="/open-user-index/"> <span class="nav-label">User Management</span></a></li>
+            {% endif %}
+            <li>
+                <a href="/open-rename-password/"> <span class="nav-label">Change Password</span></a>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+
+
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel baccol">
+            <div class="bac-clr">
+                <!-- <a class="small-header-action" href="">
+                    <div class="clip-header">
+                        <i class="fa fa-arrow-up"></i>
+                    </div>
+                </a> -->
+                <div>
+                    <h3 style="display:inline;" class="font-light m-b-xs font-col">
+                        <a href="/open-research-page/?tab_id=2" style="color:#FFFFFF;">Research</a> >
+                    </h3>
+                    <h4 style="display:inline;" class="font-light m-b-xs font-col">
+                        Active List
+                    </h4>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="content animate-panel">
+        <div class="hpanel hblue">
+            <div class="panel-body">
+				
+				    <div class="text-left m-b-md" id="wizardControl">
+                    <ul class="nav nav-tabs">
+                        <li id="tab1" class="active"><a data-toggle="tab" href="#tab-1"><h5>Active List</h5></a></li>
+                        <li id="tab2"><a data-toggle="tab" href="#tab-2"><h5>Research Log</h5></a></li>
+                    </ul>
+                </div>
+
+				<div class="tab-content" id="tabs">
+               <div id="tab-1" class="tab-pane active">
+
+                <!-- <div class="panel-body"> -->
+                <div class="row">
+                    <div class="form-group col-lg-3">
+                        <label id="lbl_name">Company/Security Name*</label>
+                        <input type="text" value="" autocomplete="off" name="txt_company_name"
+                               id="txt_company_name"
+                               class="form-control" required onblur="calc_msi()">
+                    </div>
+
+                    <div class="form-group col-lg-3">
+                        <label id="lbl_country">Country*</label>
+                        <select autocomplete="off" class="form-control js-source-states" name="txt_country_name"
+                                id="txt_country_name" onchange="select_relevent_currency()">
+                            <option value="" disabled selected></option>
+                            {% for country in country_obj %}
+                                <option value="{{ country.country_id }}">{{ country.country_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group col-lg-3">
+                        <label id="lbl_currency">Currency*</label>
+                        <select autocomplete="off" class="form-control js-source-states" name="txt_currency_name"
+                                id="txt_currency_name">
+                            <option value="" disabled selected></option>
+                            {% for currency in currency_obj %}
+                                <option value="{{ currency.currency_id }}">{{ currency.currency }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group col-lg-3">
+                        <label id="lbl_bticker">Bloomberg Ticker*</label>
+                        <input type="text" value="" autocomplete="off" name="txt_bloomberg_ticker"
+                               id="txt_bloomberg_ticker"
+                               class="form-control" onblur="calc_msi()" required>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="form-group col-lg-4">
+                        <label>Congruence</label><label id="lbl_contact_no" style="color:white"></label>
+                        <select class="form-control js-source-states" required
+                                name="drp_congruence" autocomplete="off" id="drp_congruence">
+                            <option value='' disabled selected></option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Industry Analysis</label>
+                        <select class="form-control js-source-states" required
+                                name="drp_indusrty" autocomplete="off" id="drp_indusrty">
+                            <option value='' disabled selected></option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label>Valuation(Local)</label>
+                        <!-- <label id="lbl_val" style="color:white">&nbsp Please fill out</label> -->
+                        <input type="text" value="" id="txt_vt_price" autocomplete="off"
+                               name="txt_vt_price" onblur="calculation()"
+                               onkeypress="return validateFloatKeyPress(this,event);"
+                               class="form-control">
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="form-group col-lg-4">
+                        <label>CMP(Local)</label>
+                        <!-- <label id="lbl_cmp" style="color:white">&nbsp Please fill out</label> -->
+                        <input type="text" value="" id="txt_cmp" autocomplete="off" name="txt_cmp"
+                               onkeypress="return validateFloatKeyPress(this,event);"
+                               class="form-control" onblur="calculation(); calc_msi();">
+                    </div>
+
+                    <div class="form-group col-lg-4">
+                        <label>Move Since Inception(Local)</label>
+                        <input type="text" value="" autocomplete="off" name="txt_msi"
+                               id="txt_msi"
+                               class="form-control" readonly>
+                    </div>
+
+                    <div class="form-group col-lg-4">
+                        <label>Upside/Downside(%)</label><!-- <label id="lbl_pri" style="color:white">&nbsp Please
+                              Select Client Priority</label> -->
+                        <input type="text" value="" id="txt_updn" autocomplete="off" name="txt_updn"
+                               onkeypress="return validateFloatKeyPress(this,event);"
+                               class="form-control" readonly="">
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-lg-4">
+                        <label>Model</label>
+									 <span class="form-control pull-right ">
+									   <input required id="model_file" type="file" name="model_file" size="50"
+                                              onchange="" accept="all/*">
+									 </span>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label>Investment Note</label>
+									 <span class="form-control pull-right ">
+									   <input required id="invst_file" type="file" name="invst_file" size="50"
+                                              onchange="" accept="all/*">
+									 </span>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <label>Latest Company Presentation</label>
+									 <span class="form-control pull-right ">
+									   <input required id="analyst_file" type="file" name="analyst_file" size="50"
+                                              onchange="" accept="all/*">
+									 </span>
+                    </div>
+
+                </div>
+
+                <div class="row ">
+                    <br>
+                    <div class="col-lg-12">
+                        <div>
+                            <label>Miscellaneous</label><label id="lbl_upl" style="color:white">&nbsp You can
+                            Upload upto 10 attachments only</label>
+
+                            <div class="dropzone" style=" min-height: 70px; border-color: #e4e5e7 !important;"
+                                 id="my-awesome-dropzone"></div>
+                            <input type="hidden" class="form-control" id="attachment" name="attachments">
+                             <input type="hidden" class="form-control" id="attachments" name="attachment"> 
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-right m-t-xs">
+                       <a class="btn btn-outline btn-danger" href="/open-research-page/?tab_id=2">Cancel</a>
+                       <button class="btn btn-outline btn-success " onclick="save()" id="save_company">&nbsp; Save
+                           &nbsp;</button>
+                       <button class="btn btn-outline btn-success " onclick="save_next()" id="save_company_details" value="Save & Next">
+                           Save & Next
+                       </button>
+                   </div>
+              </div>
+              
+              <div id="tab-2" class="tab-pane">
+              			<p id="LOG" style="color:white; text-align:center;">Please fill Active List First
+                                					!!!</p>
+              			<form id="ac_communication" method="POST">
+                    <div class="row">
+                        <input type="hidden" id="activelist_company_id" name="ac_company_id">
+                        <input type="text" hidden name="ac_desc_date" id="ac_desc_date">
+
+                        <div class="form-group col-lg-6">
+                            <label id="ac_lbl_cdate">Date*</label>
+                            <!-- <label id="lbl_cdate" style="color:white">&nbsp Select Date</label> -->
+
+                            <div class="input-group date">
+                                <input type="text" class="form-control" readonly name="ac_cdate" id="ac_cdate">
+                                    	<span class="input-group-addon">
+                                    	<i class="glyphicon glyphicon-th"></i>
+                                    	</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label id="lbl_actype">Type*</label>
+                            <select class="form-control js-source-states" name="ac_select_contact_type"
+                                    id="ac_select_contact_type">
+                                <option value='' disabled selected></option>
+                                {% for types in com_types %}
+                                    <option value="{{ types.com_type_id }}">{{ types.com_type_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <!-- <div class="form-group col-lg-4">
+                            <label id="ac_lbl_zamp">Zeus Personnel* </label>
+                            <select class="form-control js-source-states" name="ac_zam_person" id="ac_zam_person">
+                                <option value='' disabled selected></option>
+                                {% for zam_contacts in zam_contact_person_list %}
+                                    <option value="{{ zam_contacts.zam_contact_person }}">{{ zam_contacts.zam_person_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div> -->
+                    </div>
+                    
+                    <div id="acompany_personnel">  
+                    <div class="row">
+                    		<div class="form-group col-lg-6">
+                            <label id="lbl_acp">Company Personnel*</label>
+                            <input type="text" name="company_personnel" id="aocompany_personnel" class="form-control"></input>
+                        </div>
+                        
+                        <div class="form-group col-lg-6">
+                            <label>Designation</label>
+                            <!-- <label id="lbl_ctype" style="color:white">&nbsp Select Type</label> -->
+                            <input type="text" name="designation" id="adesignation" class="form-control"></input>
+                        </div>
+                     </div>
+                   </div>     
+                     
+                   <div id="aanalyst">  
+                     <div  class="row">
+                    		<div class="form-group col-lg-6">
+                            <label id="lbl_ab">Bank*</label>
+                            <input type="text" name="bank" id="abank" class="form-control"></input>
+                        </div>
+                        
+                        <div class="form-group col-lg-6">
+                            <label id="lbl_aa">Analyst*</label>
+                            <input type="text" name="analyst" id="aoanalyst" class="form-control"></input>
+                        </div>
+                     </div>
+                   </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-lg-12">
+                            <label>Description</label><label id="ac_lbl_cdesc" style="color:white">&nbsp Fill out
+                            Description</label>
+															<textarea style="resize: none;" class="form-control"
+                                                                      id="ac_cdesc" name="ac_cdesc">
+                                       		</textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-lg-12">
+                            <div>
+                                <label>Upload Attachment</label><label id="ac_lbl_upl" style="color:white">&nbsp You can
+                                Upload upto 10 attachments only</label>
+
+                                <div class="dropzone" style=" min-height: 70px; border-color: #e4e5e7 !important;"
+                                     id="my-active-dropzone"></div>
+                                <input type="hidden" class="form-control" id="ac_attachment" name="ac_attachments">
+                                <input type="hidden" class="form-control" id="ac_attachments" name="ac_attachment">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-right m-t-xs">
+                        <a type="button" class="btn btn-outline btn-danger" href="/open-research-page/?tab_id=2">Cancel</a>
+                        <button type="button" id="ac_save_com" class="btn  btn-outline btn-success wid"
+                                data-dismiss="modal">&nbsp;Save&nbsp;</button>
+                    </div>
+                </form>
+              
+              </div>
+                
+                <!-- </form> -->
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+<script src="{% static 'vendor/sparkline/validator.js' %}"></script>
+<script src="{% static 'vendor/sweetalert/lib/sweet-alert.min.js' %}"></script>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-validation/jquery.validate.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'vendor/moment/dropzone1.js' %}"></script>
+<script src="{% static 'custom-js/research.js' %}"></script>
+
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"></script>
+<script src="{% static 'vendor/toastr/build/toastr.min.js' %}"></script>
+
+<script>
+
+    toastr.options = {
+        "debug": false,
+        "newestOnTop": false,
+        "positionClass": "toast-top-center",
+        "closeButton": true,
+        "debug": false,
+        "toastClass": "animated fadeInDown",
+    };
+
+    $(function () {
+        $(".js-source-states").select2();
+        $('#ac_cdesc').val("");
+
+        $('.input-group.date').datepicker({
+            format: "dd/mm/yyyy"
+        }).on('changeDate', function (e) {
+            $(this).datepicker('hide');
+            $(this).datepicker({maxDate: 0});
+
+        });
+
+        $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+        var currentDate = new Date();
+        $("#ac_cdate").datepicker("setDate",currentDate);
+
+        Dropzone.options.myAwesomeDropzone = {
+            autoProcessQueue: true,
+            uploadMultiple: true,
+            paramName: "file",
+            maxFiles: 10,
+            method: 'post',
+            parallelUploads: 1,
+            url: '/activelist-file-upload/',
+            dictDefaultMessage: "Drop or Browse up to 10 images (1MB or higher in size)",
+            addRemoveLinks: true,
+            acceptedFiles: '',
+            dictInvalidFileType: 'This file type is not supported.',
+            dictMaxFilesExceeded: "You can not upload more than 10 images.",
+
+            init: function () {
+
+                var myDropzone = this;
+                var reordered_array = new Array();
+                var temp_image_files = new Array();
+
+                this.on("sending", function () {
+                    return false;
+                });
+                
+        		this.on("addedfile", function(file, response){
+        
+        	
+          if (myDropzone.files.length > 10){
+             $('#lbl_upl').css("color", "red");
+              this.removeFile(file);  
+          }
+          temp_image_files.push(file);
+        });                   
+
+
+                //      var mainlenghtiszero = $('.dz-preview').length;
+               this.on("success", function (files, response) {
+        				
+        				$('#attachment').val($('#attachment').val()+","+response.attachid);
+             		$('a .dz-remove').attr('href','/remove-activelistmisc-image/?image_id='+response.attachid);
+                    reordered_array.push(response.attachid);
+                    
+						  $('#attachment').val(reordered_array);           
+						  $('#attachments').val(reordered_array);           
+                   
+                });
+                
+                 this.on("removedfile", function(file){ 
+							deleting_image_id = reordered_array[temp_image_files.indexOf(file)];
+					
+		          		$.ajax({url: "/remove-activelistmisc-image/?image_id="+deleting_image_id, success: function(result){
+		                  arr = $('#attachment').val();
+		                  arr = arr.split(',');
+		                  console.log('Before Id Remove : '+ arr);
+		                  arr = jQuery.grep(arr, function(value) {
+		                      return value != deleting_image_id;
+		              		 });
+		                  console.log('After Id Remove : '+ arr);
+		                  $('#attachment').val(arr);
+		          		}});
+								arr =$('#attachments').val();
+	        					arr = arr.split(',');
+	        					arr = jQuery.grep(arr, function(value) {
+	        							return value != deleting_image_id;
+							   });
+	
+	        					$('#attachments').val(arr);
+								var index=myDropzone.files.length;
+								var temp_image_id = reordered_array[temp_image_files.indexOf(file)];
+								
+								reordered_array = jQuery.grep(reordered_array, function(value) {
+	        							return value != temp_image_id;
+							   });
+							   
+							   temp_image_files = jQuery.grep(temp_image_files, function(value) {
+	        							return value != file;
+							   }); 
+							   $('#attachments').val(reordered_array); 		          		
+          		});
+
+                this.on("maxfilesexceeded", function (file) {
+
+                    this.removeFiles(file);
+                    $('#addUp').css("color", "red");
+
+                });
+            }
+        }
+        
+        
+        Dropzone.options.myActiveDropzone = {
+            autoProcessQueue: true,
+            uploadMultiple: true,
+            paramName: "file",
+            maxFiles: 10,
+            method: 'post',
+            parallelUploads: 1,
+            url: '/active-files-upload/',
+            dictDefaultMessage: "Drop or Browse up to 10 images (1MB or higher in size)",
+            addRemoveLinks: true,
+            acceptedFiles: '',
+            dictInvalidFileType: 'This file type is not supported.',
+            dictMaxFilesExceeded: "You can not upload more than 10 images.",
+
+
+
+             init: function () {
+
+                var myDropzone = this;
+                var reordered_array = new Array();
+                var temp_image_files = new Array();
+
+                this.on("sending", function () {
+                    return false;
+                });
+                
+        		this.on("addedfile", function(file, response){
+                      if (myDropzone.files.length > 10){
+                         $('#ac_lbl_upl').css("color", "red");
+                          this.removeFile(file);
+                      }
+                      temp_image_files.push(file);
+                });
+
+
+                //      var mainlenghtiszero = $('.dz-preview').length;
+               this.on("success", function (files, response) {
+        				
+        				$('#ac_attachment').val($('#ac_attachment').val()+","+response.attachid);
+             		$('a .dz-remove').attr('href','/active-files-remove/?image_id='+response.attachid);
+                    reordered_array.push(response.attachid);
+                    
+						  $('#ac_attachment').val(reordered_array);           
+						  $('#ac_attachments').val(reordered_array);           
+                   
+                });
+                
+                 this.on("removedfile", function(file){ 
+							deleting_image_id = reordered_array[temp_image_files.indexOf(file)];
+					
+		          		$.ajax({url: "/active-files-remove/?image_id="+deleting_image_id, success: function(result){
+		                  arr = $('#ac_attachment').val();
+		                  arr = arr.split(',');
+		                  console.log('Before Id Remove : '+ arr);
+		                  arr = jQuery.grep(arr, function(value) {
+		                      return value != deleting_image_id;
+		              		 });
+		                  console.log('After Id Remove : '+ arr);
+		                  $('#ac_attachment').val(arr);
+		          		}});
+								arr =$('#ac_attachments').val();
+	        					arr = arr.split(',');
+	        					arr = jQuery.grep(arr, function(value) {
+	        							return value != deleting_image_id;
+							   });
+	
+	        					$('#ac_attachments').val(arr);
+								var index=myDropzone.files.length;
+								var temp_image_id = reordered_array[temp_image_files.indexOf(file)];
+								
+								reordered_array = jQuery.grep(reordered_array, function(value) {
+	        							return value != temp_image_id;
+							   });
+							   
+							   temp_image_files = jQuery.grep(temp_image_files, function(value) {
+	        							return value != file;
+							   }); 
+							   $('#ac_attachments').val(reordered_array); 		          		
+          		});
+
+                this.on("maxfilesexceeded", function (file) {
+
+                    this.removeFiles(file);
+                    $('#addUp').css("color", "red");
+
+                });
+            }
+        }
+        
+        $("#ac_save_com").click(function (e) {
+        
+        		 var dates = new Date();
+		        dates = dates.toString();
+		        date = dates.split(" ");
+		        var time = formatAMPM();
+		        var date = date[0] + " " + date[2] + " " + date[1] + " " + date[3] + " " + time
+		        $("#ac_desc_date").val(date);
+        
+        		if ($('#activelist_company_id').val() === "") {
+                $('#LOG').css("color", "red");
+                return false;
+
+            } else {
+                $('#LOG').css("color", "white");
+            }
+
+        var attachment = $("#ac_attachment").val();
+        //alert(attachment);
+
+       
+
+        check = add_active_log();
+        if (check == false)
+            return false
+
+				if ($('#ac_select_contact_type option:selected').val() === "" || $('#select_contact_type option:selected').val ===null) {
+                $('#lbl_actype').css("color", "red");
+                return false;
+            } else {
+                $('#lbl_actype').css("color", "#6A6C6F");
+            }            
+            
+    
+            if ( $('#ac_select_contact_type option:selected').text() == "Management"){
+            	if ($('#aocompany_personnel').val() === "") {
+                $('#lbl_acp').css("color", "red");
+                return false;
+            	}else{
+                $('#lbl_acp').css("color", "#6A6C6F");
+            	} 
+            }
+            
+            if ( $('#ac_select_contact_type option:selected').text() == "Analyst"){
+            	if ($('#abank').val() === "") {
+                $('#lbl_ab').css("color", "red");
+            	}else{
+                $('#lbl_ab').css("color", "#6A6C6F");
+            	}
+            	
+            	if ($('#aoanalyst').val() === "") {
+                $('#lbl_aa').css("color", "red");
+                return false;
+            	}else{
+                $('#lbl_aa').css("color", "#6A6C6F");
+            	} 
+            	
+            	if ($('#abank').val() === "" || $('#aoanalyst').val() === ""){
+            	return false;
+            }
+            }
+            
+            if ($("#ac_select_contact_type option:selected").val() != "") {
+            		if ($("#ac_cdesc").val()==""  && $("#ac_attachment").val() == "" ) {
+                	alert("Please either Fill Out Description or Upload the attachment");
+                	return false;
+            		}
+        			}
+
+ 
+        
+        $.ajax({
+            type: 'POST',
+            url: '/save-activelog/',
+            data: $("#ac_communication").serialize(),
+            success: function (response) {
+                if (response.success == 'true') {
+                    location.href = "/open-research-page/?tab_id=2";
+                }
+            },
+            error: function (response) {
+                console.log(response);
+                alert("Error");
+            },
+            beforeSend: function () {
+                $("#load").show();
+            },
+            error: function (response) {
+                console.log(response);
+                alert('error');
+                $("#load").hide();
+            },
+            complete: function () {
+                $("#load").hide();
+            }
+
+
+        });
+
+    });
+
+    });
+
+    function select_relevent_currency() {
+        var id = $("#txt_country_name").val();
+        $.ajax({
+            type: "GET",
+            url: '/add-currency-security/',
+            data: {'id': id},
+            success: function (response) {
+                if (response.success == "true") {
+                    $.each(response.result, function (index, item) {
+                        $("#txt_currency_name").select2().select2("val", item.id);
+                    });
+                }
+            },
+            error: function (response) {
+                console.log(response);
+            },
+        });
+    }
+
+    function calc_msi() {
+        var txt_company_name = $("#txt_company_name").val();
+        var txt_bloomberg_ticker = $("#txt_bloomberg_ticker").val();
+        var txt_cmp = $("#txt_cmp").val();
+        if (txt_bloomberg_ticker == "" || txt_company_name == "" || txt_cmp == "") {
+            $("#txt_msi").val("undefined");
+            return false;
+        }
+        else {
+            //alert(txt_company_name);
+            //alert(txt_bloomberg_ticker);
+            //alert(txt_cmp);
+            $.ajax({
+                type: 'POST',
+                url: '/get-price-msi/',
+                data: {'sec_name': txt_company_name, 'bloomberg_ticker': txt_bloomberg_ticker},
+                success: function (response) {
+                    console.log(response);
+                    if (response.success == "true") {
+                        var price = response.price
+                        var fx_rate = response.fx_rate
+                        var cmp = (txt_cmp / fx_rate)
+                        price = (price / fx_rate)
+                        var msi = cmp / price
+                        msi = msi - 1;
+                        msi = msi.toFixed(2);
+                        $("#txt_msi").val(msi);
+                    }
+                    else {
+                    		toastr.error('Cannot calculate Move since inception as price is not added.');
+                        $("#txt_msi").val("undefined");
+                    }
+
+                },
+                error: function (response) {
+                    console.log(response);
+                    alert("Error");
+                    $("#txt_msi").val("undefined");
+                },
+            });
+        }
+    }
+
+    function calculation() {
+        var cmp;
+        var count;
+        var updn;
+        var vt;
+
+        if ($('#txt_vt_price').val() === "" || $('#txt_vt_price').val() === null) {
+            $('#txt_vt_price').val("0");
+        }
+
+        if ($('#txt_cmp').val() == 0) {
+            $("#txt_updn").val("undefined");
+        }
+        else {
+            vt = $('#txt_vt_price').val();
+            cmp = $('#txt_cmp').val();
+            updn = vt / cmp;
+            updn = (updn - 1) * 100;
+            updn = updn.toFixed(2);
+            $("#txt_updn").val(updn);
+        }
+    }
+
+    function validateFloatKeyPress(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var number = el.value.split('.');
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+
+        if (number.length > 1 && charCode == 46) {
+            return false;
+        }
+
+        var caratPos = getSelectionStart(el);
+        var dotPos = el.value.indexOf(".");
+        if (caratPos > dotPos && dotPos > -1 && (number[1].length > 1)) {
+            if (charCode == 8)
+                return true;
+            else
+                return false;
+        }
+        return true;
+    }
+
+    //thanks: http://javascript.nwbox.com/cursor_position/
+    function getSelectionStart(o) {
+        if (o.createTextRange) {
+            var r = document.selection.createRange().duplicate()
+            r.moveEnd('character', o.value.length)
+            if (r.text == '') return o.value.length
+            return o.value.lastIndexOf(r.text)
+        } else return o.selectionStart
+    }
+
+    function save() {
+
+        var check_invst = 0;
+        var check_mnmt = 0;
+        var check_ana = 0;
+        var check_model = 0;
+        var txt_company_name = $("#txt_company_name").val();
+        var txt_country_name = $("#txt_country_name :selected").val();
+        var txt_currency_name = $("#txt_currency_name :selected").val();
+        var txt_bloomberg_ticker = $("#txt_bloomberg_ticker").val();
+        var drp_congruence = $("#drp_congruence :selected").text();
+        var drp_indusrty = $("#drp_indusrty :selected").text();
+        var txt_vt_price = $("#txt_vt_price").val();
+        var txt_cmp = $("#txt_cmp").val();
+        var txt_msi = $("#txt_msi").val();
+        var txt_updn = $("#txt_updn").val();
+        var attachment=$("#attachment").val();
+        var invst_file = document.getElementById("invst_file");
+        invst_file = invst_file.files[0];
+        
+        var analyst_file = document.getElementById("analyst_file");
+        analyst_file = analyst_file.files[0];
+        var model_file = document.getElementById("model_file");
+        model_file = model_file.files[0];
+        var formData = new FormData();
+
+        if (txt_company_name == "" && txt_country_name == "" && txt_bloomberg_ticker == ""
+                && txt_vt_price == "" && txt_cmp == "") {
+            $('#lbl_name').css("color", "red");
+            $('#lbl_country').css("color", "red");
+            $('#lbl_currency').css("color", "red");
+            $('#lbl_bticker').css("color", "red");
+            //$('#lbl_val').css("color", "red");
+            //$('#lbl_cmp').css("color", "red");
+            return false;
+        }
+        if (txt_company_name == "") {
+            $('#lbl_name').css("color", "red");
+            return false;
+        }
+        else {
+            $('#lbl_name').css("color", "#6a6c6f");
+        }
+        if (txt_country_name == "") {
+            $('#lbl_country').css("color", "red");
+            return false;
+        }
+        else {
+            $('#lbl_country').css("color", "#6a6c6f");
+        }
+        if (txt_currency_name == "") {
+            $('#lbl_currency').css("color", "red");
+            return false;
+        }
+        else {
+            $('#lbl_currency').css("color", "#6a6c6f");
+        }
+        if (txt_bloomberg_ticker == "") {
+            $('#lbl_bticker').css("color", "red");
+            return false;
+        }
+        else {
+            $('#lbl_bticker').css("color", "#6a6c6f");
+        }
+        if (txt_vt_price == "") {
+            txt_vt_price = 0;
+        }
+        if (txt_cmp == "") {
+            txt_cmp = 0;
+        }
+        if (drp_congruence == "") {
+            drp_congruence = "No";
+        }
+        if (drp_indusrty == "") {
+            drp_indusrty = "No";
+        }
+        if (invst_file == undefined) {
+            invst_file = "";
+        }
+        else {
+            check_invst = 1;
+            formData.append("invst_file", invst_file);
+        }
+        
+        if (analyst_file == undefined) {
+            analyst_file = "";
+        }
+        else {
+            check_ana = 1;
+            formData.append("analyst_file", analyst_file);
+        }
+        if (model_file == undefined) {
+            model_file = "";
+        }
+        else {
+            check_model = 1;
+            formData.append("model_file", model_file);
+        }
+
+        formData.append("txt_company_name", txt_company_name);
+        formData.append("txt_currency_name", txt_currency_name);
+        formData.append("txt_country_name", txt_country_name);
+        formData.append("txt_bloomberg_ticker", txt_bloomberg_ticker);
+        formData.append("drp_congruence", drp_congruence);
+        formData.append("drp_indusrty", drp_indusrty);
+        formData.append("txt_vt_price", txt_vt_price);
+        formData.append("txt_cmp", txt_cmp);
+        formData.append("txt_msi", txt_msi);
+        formData.append("txt_updn", txt_updn);
+        formData.append("check_mnmt", check_mnmt);
+        formData.append("check_model", check_model);
+        formData.append("check_ana", check_ana);
+        formData.append("check_invst", check_invst);
+        formData.append("attachment", attachment);
+
+        $.ajax({
+            type: 'POST',
+            url: '/save-activelist-company/',
+            data: formData,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                console.log(response);
+                if (response.success == "true") {
+
+                    location.href = "/open-research-page/?tab_id=2"
+                }
+            },
+            error: function (response) {
+                console.log(response);
+                alert("Error");
+            },
+            beforeSend: function () {
+                $("#load").show();
+            },
+            error: function (response) {
+                console.log(response);
+                alert('error');
+                $("#load").hide();
+            },
+            complete: function () {
+                $("#load").hide();
+            }
+        });
+    }
+    
+        function save_next() {
+
+        var check_invst = 0;
+        var check_mnmt = 0;
+        var check_ana = 0;
+        var check_model = 0;
+        var txt_company_name = $("#txt_company_name").val();
+        var txt_country_name = $("#txt_country_name :selected").val();
+        var txt_currency_name = $("#txt_currency_name :selected").val();
+        var txt_bloomberg_ticker = $("#txt_bloomberg_ticker").val();
+        var drp_congruence = $("#drp_congruence :selected").text();
+        var drp_indusrty = $("#drp_indusrty :selected").text();
+        var txt_vt_price = $("#txt_vt_price").val();
+        var txt_cmp = $("#txt_cmp").val();
+        var txt_msi = $("#txt_msi").val();
+        var txt_updn = $("#txt_updn").val();
+        var attachment=$("#attachment").val();
+        var invst_file = document.getElementById("invst_file");
+        invst_file = invst_file.files[0];
+        
+        var analyst_file = document.getElementById("analyst_file");
+        analyst_file = analyst_file.files[0];
+        var model_file = document.getElementById("model_file");
+        model_file = model_file.files[0];
+        var formData = new FormData();
+
+        if (txt_company_name == "" && txt_country_name == "" && txt_bloomberg_ticker == ""
+                && txt_vt_price == "" && txt_cmp == "") {
+            $('#lbl_name').css("color", "red");
+            $('#lbl_country').css("color", "red");
+            $('#lbl_currency').css("color", "red");
+            $('#lbl_bticker').css("color", "red");
+            //$('#lbl_val').css("color", "red");
+            //$('#lbl_cmp').css("color", "red");
+            return false;
+        }
+        if (txt_company_name == "") {
+            $('#lbl_name').css("color", "red");
+            return false;
+        }
+        else {
+            $('#lbl_name').css("color", "#6a6c6f");
+        }
+        if (txt_country_name == "") {
+            $('#lbl_country').css("color", "red");
+            return false;
+        }
+        else {
+            $('#lbl_country').css("color", "#6a6c6f");
+        }
+        if (txt_currency_name == "") {
+            $('#lbl_currency').css("color", "red");
+            return false;
+        }
+        else {
+            $('#lbl_currency').css("color", "#6a6c6f");
+        }
+        if (txt_bloomberg_ticker == "") {
+            $('#lbl_bticker').css("color", "red");
+            return false;
+        }
+        else {
+            $('#lbl_bticker').css("color", "#6a6c6f");
+        }
+        if (txt_vt_price == "") {
+            txt_vt_price = 0;
+        }
+        if (txt_cmp == "") {
+            txt_cmp = 0;
+        }
+        if (drp_congruence == "") {
+            drp_congruence = "No";
+        }
+        if (drp_indusrty == "") {
+            drp_indusrty = "No";
+        }
+        if (invst_file == undefined) {
+            invst_file = "";
+        }
+        else {
+            check_invst = 1;
+            formData.append("invst_file", invst_file);
+        }
+        
+        if (analyst_file == undefined) {
+            analyst_file = "";
+        }
+        else {
+            check_ana = 1;
+            formData.append("analyst_file", analyst_file);
+        }
+        if (model_file == undefined) {
+            model_file = "";
+        }
+        else {
+            check_model = 1;
+            formData.append("model_file", model_file);
+        }
+
+        formData.append("txt_company_name", txt_company_name);
+        formData.append("txt_currency_name", txt_currency_name);
+        formData.append("txt_country_name", txt_country_name);
+        formData.append("txt_bloomberg_ticker", txt_bloomberg_ticker);
+        formData.append("drp_congruence", drp_congruence);
+        formData.append("drp_indusrty", drp_indusrty);
+        formData.append("txt_vt_price", txt_vt_price);
+        formData.append("txt_cmp", txt_cmp);
+        formData.append("txt_msi", txt_msi);
+        formData.append("txt_updn", txt_updn);
+        formData.append("check_mnmt", check_mnmt);
+        formData.append("check_model", check_model);
+        formData.append("check_ana", check_ana);
+        formData.append("check_invst", check_invst);
+        formData.append("attachment", attachment);
+
+        $.ajax({
+            type: 'POST',
+            url: '/save-activelist-company/',
+            data: formData,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                console.log(response);
+                if (response.success == "true") {
+                			$('#activelist_company_id').val(response.activelist_company_id);
+                        $("#tab1").removeClass("active");
+                        $("#tab-1").removeClass("active");
+                        $("#tab2").addClass("active");
+                        $("#tab-2").addClass("active");
+                    //location.href = "/open-research-page/?tab_id=2"
+                }
+            },
+            error: function (response) {
+                console.log(response);
+                alert("Error");
+            },
+            beforeSend: function () {
+                $("#load").show();
+            },
+            error: function (response) {
+                console.log(response);
+                alert('error');
+                $("#load").hide();
+            },
+            complete: function () {
+                $("#load").hide();
+            }
+        });
+    }
+    
+    function formatAMPM() {
+        var date = new Date()
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        var strTime = hours + ':' + minutes + ' ' + ampm;
+        return strTime;
+    }
+</script>
+
+</body>
+</html>
+                                        

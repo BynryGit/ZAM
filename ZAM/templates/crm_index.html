@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>ZAM | CRM-Index</title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"></link>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"></link>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"></link>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"></link>
+    <link rel="stylesheet"
+          href="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/dropzone.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/sweetalert/lib/sweet-alert.css' %}"/>
+
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}"></link>
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}"></link>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}"></link>
+    <link rel="stylesheet" href="{% static 'dataTables.tableTools.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}"/>
+
+
+    <style type="text/css">
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        /*--------------------------------------------------*/
+        #side-menu li.treeview ul li a {
+            background: #fff !important;
+            color: #6A6C6F !important;
+            font-weight: 700;
+        }
+
+        #side-menu li.treeview ul li.active a {
+            background-color: #7160A9 !important;
+            color: #FFF !important;
+        }
+
+        #side-menu li.treeview ul li:hover a {
+            background-color: #7160A9 !important;
+            color: #FFF !important;
+
+        }
+/*--------------------------------------------------*/
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #FFF !important;
+
+        }
+
+        .btn-primary2:hover {
+
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2:focus {
+
+            background-color: transparent;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+
+        }
+
+
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        .bac-clr {
+            background: linear-gradient(to left, #fff -20%, #7160A9 40%) repeat scroll 0% 0% !important;;
+            border: 1px solid #E4E5E7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+        }
+
+        #side-menu li .nav-second-level li a {
+            color: #FFFFFF;
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+        .small-logo {
+            display: none;
+            text-align: center;
+            padding-top: 6px;
+            font-size: 28px;
+            font-weight: 800;
+            float: left;
+            display: block;
+            color: #7160A9;
+        }
+
+        .text-primary {
+            color: #7160A9;
+        }
+
+        .hide_column {
+            display: none;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a
+        href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+
+    <!-- <div id="logo" class="light-version">
+        <span>
+            ZAM
+        </span>
+    </div> -->
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo">
+            <span class="text-primary">Zeus Asset Management</span>
+        </div>
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-speaker"></i>
+                    </a>
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-mail"></i>
+                        {% if request.session.user_role == 'Marketing Manager' %}
+                        <span class="label label-success">{{total_count}}</span>
+                        {% endif %}
+                    </a>
+                    {% if request.session.user_role == 'Marketing Manager' %}
+                    <ul class="dropdown-menu hdropdown animated flipInX">
+                        <div class="title">
+                            You have {{total_count}} new messages
+                        </div>
+                        <li>
+                            <a href="/open-discussion-forum/">
+                                Question ({{question_count}})
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/open-discussion-forum/">
+                                Response ({{response_count}})
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/open-discussion-forum/">
+                                Reply ({{responseto_count}})
+                            </a>
+                        </li>
+                        <li class="summary"><a href="/open-discussion-forum/">See All Messages</a></li>
+                    </ul>
+                    {% endif %}
+                </li>
+                <li class="dropdown">
+                    <a href="/signing-out/">
+                        <i title="Logout" class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.full_name }}</span><br>
+                <small class="text-muted">{{ request.session.user_role }}</small>
+
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            <!--<li class="treeview active">-->
+                <!--<a href="#"><span class="nav-label">Portfolio Management</span><span class="fa arrow"></span> </a>-->
+                <!--<ul class="nav nav-second-level">-->
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Marketing Manager' %}
+            <li class="active">
+                <a href="/crm-index/"> <span class="nav-label">Client Relationship Management</span></a>
+            </li>
+            {% endif %}
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+            <li><a href="/open-research-page/?tab_id=1">Research</a></li>
+            {% endif %}
+            <li><a href="/open-discussion-forum/">Discussion Forum</a></li>
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+            <li class="treeview">
+                <a href="#"><span class="nav-label">Security Data Management</span><span
+                        class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/open-security-page/">Security</a></li>
+                    <li><a href="/open-security-price-page/">Price</a></li>
+                </ul>
+            </li>
+            {% endif %}
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' %}
+            <li>
+                <a href="/open-trade/"> <span class="nav-label">Trade</span></a>
+            </li>
+            <li>
+                <a href="/open-position/"> <span class="nav-label">Position</span></a>
+            </li>
+            {% endif %}
+            <li>
+                <a href="/index/"> <span class="nav-label">Dashboard</span></a>
+            </li>
+                <!--</ul>-->
+            <!--</li>-->
+            {% if request.session.user_role == 'Super Admin' %}
+            <li class="treeview"><a href="#"><span class="nav-label">Planning Tool</span><span class="fa arrow"></span>
+            </a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/open-YFinAdvisor-index/">Planning Tool Input</a></li>
+                    <li><a href="/open-YFinAdvisor-customer/">Customer</a></li>
+                </ul>
+            </li>
+            {% endif %} {% if request.session.user_role == 'Super Admin' or request.session.user_role == 'Admin' %}
+            <li><a href="/open-user-index/"> <span class="nav-label">User Management</span></a></li>
+            {% endif %}
+            <li>
+                <a href="/open-rename-password/"> <span class="nav-label">Change Password</span></a>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+
+    <!--     <div class="normalheader transition animated fadeIn">
+            <div class="hpanel">
+                <div class="panel-body">
+                    <a class="small-header-action" href="">
+                        <div class="clip-header">
+                            <i class="fa fa-arrow-up"></i>
+                        </div>
+                    </a>
+
+                    <div id="hbreadcrumb" class="pull-right m-t-lg">
+
+                    </div>
+
+                    <h2 class="font-light m-b-xs">
+                        CRM[Customer Relationship Management]
+                    </h2>
+                    <small>Here you can add new clien and view existing.</small>
+                </div>
+            </div>
+        </div> -->
+
+
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel ">
+            <div class="bac-clr">
+                <h3 style="display:inline;" class="font-light m-b-xs font-col">
+                    Client Relationship Management
+                </h3>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content animate-panel">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="hpanel">
+                    <div class="panel-heading hbuilt">
+                        <div class="table-responsive panel-body">
+                            <div class="row ">
+                                <div class="col-lg-10 form-group">
+                                    <form action="">
+                                        <div class="input-group form-group">
+                                            <input type="text" class="form-control " id="txtSearch"
+                                                   placeholder="Search Client" name="s"/>
+								<span class="input-group-btn">
+									<span class="btn btn btn-default">
+                                        <span class="fa fa-search"></span>
+                                    </span>
+								</span>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-lg-2 form-group">
+                                    <div id="hbreadcrumb" class="pull-right ">
+                                        <a href="/add-client/" class="btn btn-outline btn-primary2 ">Add Client</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table id="crm_index_table" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th style="display:none"></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>Firm</th>
+                                    <th>Firm Type</th>
+                                    <th>Location</th>
+                                    <th>Contact No</th>
+                                    <th>ECV</th>
+                                    <th>Reference Person</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <!-- <td>Vkm SoftWare Corp.</td>
+                                    <td>IT</td>
+                                    <td>Pune</td>
+                                    <td>9192939495</td>
+                                    <td>99999</td>
+                                    <td>1</td>
+                                    <td class="text-center">16/10/2015</td>
+                                    <td class="text-center"><a type="button" class="btn btn-default btn-success btn-xs btn-outline " href="/view-client/" >View</a></td>							 -->
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!----------------- Modal for Add Communication   -->
+
+<div class="modal fade" id="addCommunication" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form id="communication" method="POST">
+                    <div class="row">
+                        <input type="hidden" id="client_idd" value="{{ client.client_id }}" name="client_id"></input>
+
+                        <h3 style="text-align:center">Communication Log</h3>
+
+                        <div class="form-group col-lg-6">
+                            <label id="lbl_cdate">Date*</label>
+
+                            <div class="input-group date">
+                                <input type="text" class="form-control" readonly name="cdate" id="cdate">
+                                    	<span class="input-group-addon">
+                                    	<i class="glyphicon glyphicon-th"></i>
+                                    	</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label id="lbl_ctype">Type*</label>
+                            <select class="form-control js-source-states" name="select_contact_type"
+                                    id="select_contact_type">
+                                <option value='' disabled selected></option>
+                                {% for types in com_types %}
+                                <option value="{{ types.com_type_id }}">{{ types.com_type_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label id="lbl_per">Client Contact Person*</label>
+                            <select class="form-control js-source-states" name="person" id="person">
+                                <option value='' disabled selected></option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group col-lg-6">
+                            <label id="lbl_zam">Zeus Personnel{{ zam_contact_person_list }}* </label>
+                            <select class="form-control js-source-states" name="zam_person" id="zam_person">
+                                <option value='' disabled selected></option>
+                                {% for zam_contacts in zam_contact_person_list %}
+                                <option value="{{ zam_contacts.zam_contact_person }}">{{ zam_contacts.zam_person_name
+                                    }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-lg-12">
+                            <label id="lbl_cdesc">Description*</label>
+															<textarea style="resize: none;" class="form-control"
+                                                                      id="cdesc" name="cdesc">
+                                       		</textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div style="animation-delay: 0.1s;" class="col-lg-12 animated-panel zoomIn">
+                            <div>
+                                <label>Upload Attachment</label><label id="lbl_upl" style="color:white">&nbsp You can
+                                Upload upto 10 attachments only</label>
+
+                                <div class="dropzone" style=" min-height: 70px; border-color: #e4e5e7 !important;"
+                                     id="my-awesome-dropzone"></div>
+                                <input type="hidden" class="form-control" id="attachment" name="attachment">
+                                <input type="hidden" class="form-control" id="attachments" name="attachments">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline btn-danger" data-dismiss="modal">Cancel</button>
+                        <button type="button" id="save_com" class="btn  btn-outline btn-success wid"
+                                data-dismiss="modal">&nbsp;Save&nbsp;</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-------------     End Modal for Add Communication -->
+
+
+<div class="modal fade hmodal-danger" id="modal_delete" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header" style="padding:10px;">
+                <h4 class="modal-title">ZAM</h4>
+            </div>
+            <div class="modal-body">
+                <p>Do you really want to delete this record?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+<script src="{% static 'vendor/datatables/media/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+<script src="{% static 'vendor/jquery.table2excel.js' %}"></script>
+<script src="{% static 'dataTables.tableTools.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'vendor/moment/dropzone1.js' %}"></script>
+<script src="{% static 'vendor/sweetalert/lib/sweet-alert.min.js' %}"></script>
+
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"></script>
+
+
+<script>
+    $(function () {
+
+
+        $('#cdesc').val('');
+       
+        
+        
+        $('#addCommunication').on('shown.bs.modal', function () {
+           	$('#select_contact_type').select2().select2("val", '');
+            $('#cdate').val("");
+            $('#person').select2().select2("val", '');
+           	$('#zam_person').select2().select2("val", '');
+            $('#cdesc').val("");
+            $('#lbl_cdate').css("color", "#6A6C6F");
+          	$('#lbl_ctype').css("color", "#6A6C6F");
+          	$('#lbl_per').css("color", "#6A6C6F");
+          	$('#lbl_zam').css("color", "#6A6C6F");
+          	$('#lbl_cdesc').css("color", "#6A6C6F");
+           
+        });
+
+        var dataTable = $('#crm_index_table').dataTable({
+            "dom": 'T<"clear">lfrtip',
+            tableTools: {
+                "sSwfPath": "{% static 'swf/copy_csv_xls_pdf.swf' %}",
+                "aButtons": [{
+                    "sExtends": "xls",
+                    "sFileName": "Client List.xls",
+                    "sButtonText": "Export to Excel",
+                    "oSelectorOpts": {filter: 'applied', order: 'current'},
+                }],
+
+            },
+
+
+            "ajax": "/get-client-list/",
+            "columns": [
+                {"data": "id", "sClass": "hide_column"},
+                {"data": "view"},
+                {"data": "comm"},
+                {"data": "firm"},
+                {"data": "firm_type"},
+                {"data": "location"},
+                {"data": "contact_no"},
+                {"data": "ecv"},
+                {"data": "refrence_person"},
+                {"data": "edit"},
+                {"data": "delete"}
+            ],
+            "columnDefs": [
+                {"targets": 1, "orderable": false},
+                {"targets": 2, "orderable": false},
+                {"targets": 9, "orderable": false},
+                {"targets": 10, "orderable": false},
+                //		{"targets":  0 ,"visible": false},
+                //		{  "targets": 7, "width": "5%", },
+
+            ],
+              drawCallback: function () {
+                var page_min = 10;
+                var $api = this.api();
+                var pages = $api.page.info().pages;
+                var rows = $api.data().length;
+                var page = $api.page.info().page;
+
+                if (pages === 1) {
+                    $('#crm_index_table_paginate').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                    $('#crm_index_table_next').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                    $('#crm_index_table_previous').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                } else if (page === 0) {
+                    $('#crm_index_table_previous').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                }
+            }
+
+
+        });
+
+        // SEARCH FUNCTIONALITY //
+
+        $("#txtSearch").keyup(function () {
+            $('#crm_index_table').dataTable().fnFilter($("#txtSearch").val());
+
+        });
+
+
+        $('#crm_index_table tbody').on('click', '.delete', function () {
+            var row = $(this).closest('tr');
+            var nRow = row[0];
+            client_id = ($(row).find('td').eq(0).text());
+            delete_security_log(row, nRow);
+        });
+
+        $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+        $.fn.datepicker.defaults.endDate = "+0d";
+        $('.input-group.date').datepicker({}).on('changeDate', function (e) {
+            $(this).datepicker('hide');
+            $(this).datepicker({maxDate: 0});
+            
+
+        });
+
+        $(".js-source-states").select2();
+        $(".js-source-states-2").select2();
+
+
+        /*---------------------------------------Add Communication-------------------------------*/
+
+        $("#save_com").click(function () {
+				if ($('#cdate').val() === "") {
+                $('#lbl_cdate').css("color", "red");
+            } else {
+                $('#lbl_cdate').css("color", "#6A6C6F");
+            }
+
+            if ($('#select_contact_type ').val() === "" || $('#select_contact_type ').val() === null) {
+                $('#lbl_ctype').css("color", "red");
+            } else {
+                $('#lbl_ctype').css("color", "#6A6C6F");
+            }
+
+            if ($('#person').val() === "" || $('#person').val() === null){
+                $('#lbl_per').css("color", "red");
+            } else {
+                $('#lbl_per').css("color", "#6A6C6F");
+            }
+
+            if ($('#zam_person ').val() === "" || $('#zam_person ').val() === null){
+                $('#lbl_zam').css("color", "red");
+            } else {
+                $('#lbl_zam').css("color", "#6A6C6F");
+            }
+
+            if ($('#cdesc').val() === "") {
+                $('#lbl_cdesc').css("color", "red");
+            } else {
+                $('#lbl_cdesc').css("color", "#6A6C6F");
+            }
+
+            if ($('#select_contact_type').val() === "" || $('#cdate').val() === "" || $('#select_contact_type ').val() === null ||
+                  	$('#person').val() === null || $('#zam_person ').val() === null ||
+                    $('#person').val() === "" || $('#zam_person').val() === "" || $('#cdesc').val() === ""
+            ) {
+
+                return false;
+            }
+
+
+            $.ajax({
+                type: 'POST',
+                url: '../add-communication/',
+                data: $('#communication').serialize(),
+                success: function (response) {
+                    console.log(response);
+                    if (response.success == "true") {
+                        location.reload();
+                    }
+                },
+                error: function (response) {
+                    console.log(response);
+                }
+            })
+        });
+
+        /*-------------------end------------------------*/
+
+        Dropzone.options.myAwesomeDropzone = {
+            autoProcessQueue: true,
+            uploadMultiple: true,
+            paramName: "file",
+            maxFiles: 10,
+            method: 'post',
+            parallelUploads: 1,
+            url: '/files-upload/',
+            dictDefaultMessage: "Drop or Browse up to 10 images (1MB or higher in size)",
+            addRemoveLinks: true,
+            acceptedFiles: '',
+            dictInvalidFileType: 'This file type is not supported.',
+            dictMaxFilesExceeded: "You can not upload more than 10 images.",
+
+                      init: function () {
+
+                var myDropzone = this;
+                var reordered_array = new Array();
+                var temp_image_files = new Array();
+
+                this.on("sending", function () {
+                    return false;
+                });
+                
+        this.on("addedfile", function(file, response){
+        
+        	
+          if (myDropzone.files.length > 10){
+              $('#lbl_upl').css("color", "red");
+              this.removeFile(file);  
+          }
+          temp_image_files.push(file);
+        });                   
+
+
+                //      var mainlenghtiszero = $('.dz-preview').length;
+               this.on("success", function (files, response) {
+        				
+        				$('#attachment').val($('#attachment').val()+","+response.attachid);
+             		$('a .dz-remove').attr('href','/files-remove/?image_id='+response.attachid);
+                    reordered_array.push(response.attachid);
+                    
+						  $('#attachment').val(reordered_array);           
+						  $('#attachments').val(reordered_array);           
+                   
+                });
+                
+                 this.on("removedfile", function(file){ 
+							deleting_image_id = reordered_array[temp_image_files.indexOf(file)];
+					
+		          		$.ajax({url: "/files-remove/?image_id="+deleting_image_id, success: function(result){
+		                  arr = $('#attachment').val();
+		                  arr = arr.split(',');
+		                  console.log('Before Id Remove : '+ arr);
+		                  arr = jQuery.grep(arr, function(value) {
+		                      return value != deleting_image_id;
+		              		 });
+		                  console.log('After Id Remove : '+ arr);
+		                  $('#attachment').val(arr);
+		          		}});
+								arr =$('#attachments').val();
+	        					arr = arr.split(',');
+	        					arr = jQuery.grep(arr, function(value) {
+	        							return value != deleting_image_id;
+							   });
+	
+	        					$('#attachments').val(arr);
+								var index=myDropzone.files.length;
+								var temp_image_id = reordered_array[temp_image_files.indexOf(file)];
+								
+								reordered_array = jQuery.grep(reordered_array, function(value) {
+	        							return value != temp_image_id;
+							   });
+							   
+							   temp_image_files = jQuery.grep(temp_image_files, function(value) {
+	        							return value != file;
+							   }); 
+							   $('#attachments').val(reordered_array); 		          		
+          		});
+
+
+            }
+        }
+
+
+    });
+
+
+    function opencommunication(id) {
+        $("#person").empty();
+        $('#client_idd').val(id);
+        $.ajax({
+            type: 'GET',
+            url: '/get-contact-person/',
+            data: {'client_id': id},
+            success: function (response) {
+            	 $('#zam_person').html('');
+            	 $('#select_contact_type').html('');
+            
+                $.each(response.contact_person_listt, function (index, item) {
+                    $('#person').append('<option value="' + item.contact_person + '">' + item.person_name + '</option>');
+                });
+                $.each(response.zam_contact_person_list, function (index, item) {
+                    $('#zam_person').append('<option value="' + item.zam_contact_person + '">' + item.zam_person_name + '</option>');
+                });
+                $.each(response.com_types, function (index, item) {
+                    $('#select_contact_type').append('<option value="' + item.com_type_id + '">' + item.com_type_name + '</option>');
+                });
+            },
+            error: function (response) {
+                console.log("Error" + response);
+            }
+        });
+        $("#addCommunication").modal('show');
+    }
+
+    function delete_security_log(id, nRow) {
+        swal({
+                    title: "Are you sure you want to delete this record ?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                    closeOnConfirm: true,
+                    closeOnCancel: true
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        swal("Deleted!");
+
+                        $.ajax({
+                            type: 'GET',
+                            url: '/change-status/',
+                            data: {'client_id': client_id},
+                            success: function (response) {
+                                if (response.success == 'true') {
+                                    //dataTable.dataTable().fnDeleteRow(nRow);
+                                    location.reload();
+                                }
+                                else {
+
+                                    alert('ERRORS ' + response.error_message);
+                                }
+                            },
+                            error: function (response) {
+                                alert(response.error_message);
+                            },
+
+                        });
+                    } else {
+
+                    }
+
+
+                });
+
+    }
+    
+    function remove_file() {
+
+        var reordered_array = $('#attachments').val();
+        reordered_array = reordered_array.split(",")
+        n = reordered_array.length;
+        if (n == 1) {
+            $('#attachments').val("");
+        }
+        else {
+            reordered_array = reordered_array.pop();
+            $('#attachments').val(reordered_array)
+
+        }
+    }
+
+
+
+</script>
+
+</body>
+</html>

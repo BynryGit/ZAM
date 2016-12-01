@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>ZAM| Search Comunication Details</title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/dropzone.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}"/>
+    <link rel="stylesheet"
+          href="{% static 'vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css' %}"/>
+    <link rel="stylesheet"
+          href="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'dataTables.tableTools.css' %}"/>
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+
+    <style type="text/css">
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .mar {
+            margin-top: 5%;
+
+        }
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        .btn-primary2:hover {
+
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+
+        }
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        .bac-clr {
+            background: linear-gradient(to left, #fff -20%, #7160A9 60%) repeat scroll 0% 0% !important;
+            border: 1px solid #E4E5E7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+        }
+
+        #side-menu li .nav-second-level li a {
+            color: #FFFFFF;
+        }
+
+        .hpanel.hblue .panel-body {
+            border-top: 2px solid #7160A9;
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+        .small-logo {
+            display: none;
+            text-align: center;
+            padding-top: 6px;
+            font-size: 28px;
+            font-weight: 800;
+            float: left;
+            display: block;
+            color: #7160A9;
+
+        }
+
+        .text-primary {
+            color: #7160A9;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo">
+            <span class="text-primary">Zeus Asset Management</span>
+        </div>
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-speaker"></i>
+                    </a>
+
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-mail"></i>
+                        {% if request.session.user_role == 'Marketing Manager' %}
+                        <span class="label label-success">{{total_count}}</span>
+                        {% endif %}
+                    </a>
+                    {% if request.session.user_role == 'Marketing Manager' %}
+                    <ul class="dropdown-menu hdropdown animated flipInX">
+                        <div class="title">
+                            You have {{total_count}} new messages
+                        </div>
+                        <li>
+                            <a href="/open-discussion-forum/">
+                                Question ({{question_count}})
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/open-discussion-forum/">
+                                Response ({{response_count}})
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/open-discussion-forum/">
+                                Reply ({{responseto_count}})
+                            </a>
+                        </li>
+                        <li class="summary"><a href="/open-discussion-forum/">See All Messages</a></li>
+                    </ul>
+                    {% endif %}
+                </li>
+                <li class="dropdown">
+                    <a href="/signing-out/">
+                        <i title="Logout" class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.full_name }}</span><br>
+                <small class="text-muted">{{ request.session.user_role }}</small>
+
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Marketing Manager' %}
+                <li class="active">
+                    <a href="/crm-index/"> <span class="nav-label">Client Relationship Management</span></a>
+                </li>
+            {% endif %}
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+            <li><a href="/open-research-page/?tab_id=1">Research</a></li>
+            {% endif %}
+                <li ><a href="/open-discussion-forum/">Discussion Forum</a></li>
+              {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+                <li class="treeview">
+                <a href="#"><span class="nav-label">Security Data Management</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/open-security-page/">Security</a></li>
+                    <li><a href="/open-security-price-page/">Price</a></li>
+                </ul>
+            </li>
+            {% endif %}
+        {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' %}
+           <li>
+                    <a href="/open-trade/"> <span class="nav-label">Trade</span></a>
+                </li>
+                <li>
+                    <a href="/open-position/"> <span class="nav-label">Position</span></a>
+                </li>
+        {% endif %}
+            <li>        
+                <a href="/index/"> <span class="nav-label">Dashboard</span></a>
+            </li>
+            {% if request.session.user_role == 'Super Admin' %}
+            <li class="treeview"><a href="#"><span class="nav-label">Planning Tool</span><span class="fa arrow"></span>
+            </a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/open-YFinAdvisor-index/">Planning Tool Input</a></li>
+                    <li><a href="/open-YFinAdvisor-customer/">Customer</a></li>
+                </ul>
+            </li>
+            {% endif %} {% if request.session.user_role == 'Super Admin' or request.session.user_role == 'Admin' %}
+            <li><a href="/open-user-index/"> <span class="nav-label">User Management</span></a></li>
+            {% endif %}
+                <li>
+                    <a href="/open-rename-password/"> <span class="nav-label">Change Password</span></a>
+                </li>
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel">
+            <div class="bac-clr">
+                <!-- <a class="small-header-action" href="">
+                    <div class="clip-header">
+                        <i class="fa fa-arrow-up"></i>
+                    </div>
+                </a> -->
+
+                <h3 style="display:inline;" class="font-light m-b-xs font-col">
+                    Client Relationship Management >
+                </h3>
+                <h4 style="display:inline;" class="font-light m-b-xs font-col">
+                    Client Communication
+                </h4>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="content animate-panel">
+        <div class="hpanel hblue ">
+            <div class="panel-body">
+                <div class="page-header row">
+                    <div class="col-md-10">
+                        <h4 class="pull-left"> Search Communication Details </h4>
+                    </div>
+                </div>
+                <!-- For Table Client Communication -->
+
+
+                <div class="form-group">
+
+                    <div class="row">
+                        <input type="hidden" id="client_id" value="{{ client_id }}"></input>
+
+                        <div class="form-group col-lg-5">
+                            <label>Type</label><!-- <label id="lbl_type" style="color:white">&nbsp Type</label> -->
+                            <select class="form-control js-source-states" required name="comm_type" id="comm_type">
+                                <option value='' selected></option>
+                                {% for types in com_types %}
+                                    <option value="{{ types.com_type_id }}">{{ types.com_type_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group col-lg-5">
+                            <label>Client Contact Person</label><!-- <label id="lbl_per" style="color:white">&nbsp Client Contact Person</label> -->
+                            <select class="form-control js-source-states" required name="con_person" id="con_person">
+                                <option value='' selected></option>
+                                {% for contacts in contact_person_list %}
+                                    <option value="{{ contacts.contact_person }}">{{ contacts.person_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-lg-5">
+                            <label>Zeus Personnel</label><!-- <label id="lbl_zam" style="color:white">&nbsp Select Zeus Personnel</label> -->
+                            <select class="form-control js-source-states" name="zam_person" id="zam_person">
+                                <option value='' selected></option>
+                                {% for zam_contacts in zam_contact_person_list %}
+                                    <option value="{{ zam_contacts.zam_contact_person }}">{{ zam_contacts.zam_person_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group col-lg-5">
+                            <label>Period in Months</label><!-- <label id="lbl_period" style="color:white">&nbsp Period in
+                            Months</label> -->
+                            <input type="text" id="com_period" name="com_period" onkeypress="return isNumberKey(event)"
+                                   maxlength="2"
+                                   class="form-control"></input>
+                        </div>
+
+                        <div class="form-group col-lg-2">
+                            <label>&nbsp;</label><br>
+                            <button type="button" id="search_communication" class="btn btn-outline btn-success">Search
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="communication_table">
+                            <thead>
+                            <tr>
+                                <th><span>Date</span></th>
+                                <th><span>Type</span></th>
+                                <th><span>Client Contact Person</span></th>
+                                <th><span>Zeus Personnel</span></th>
+                                <th><span>Description</span></th>
+                                <th class="text-center"><span>Read More</span></th>
+                            </tr>
+                            </thead>
+                            <tbody id="tbodyid">
+                            {% for comm in communication_list %}
+                                <tr>
+                                    <td>{{ comm.comm_date }}</td>
+                                    <td>{{ comm.comm_type }}</td>
+                                    <td>{{ comm.comm_person }}</td>
+                                    <td>{{ comm.comm_zam_person }}</td>
+                                    <td>{{ comm.comm_desc }}</td>
+                                    <td class="text-center">
+                                        <button type="button" id="{{ comm.comm_id }}"
+                                                class="btn btn-default btn-success btn-xs btn-outline"
+                                                onclick="readmore({{ comm.comm_id }})"> Read More
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!---------READ MORE------------>
+
+
+<div class="modal fade" id="readmore_box" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <form id="" method="POST">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label>Communication Date</label><br>
+                            <input type="text" readonly id="vw_com_date" class="form-control"></input>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label>Communication Type</label><br>
+                            <input type="text" id="vw_com_type" readonly class="form-control"></input>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label>Client Contact Person</label><br>
+                            <input type="text" id="vw_com_person" readonly class="form-control"></input>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label>Zeus Personnel</label><br>
+                            <input type="text" id="vw_zam_com_person" readonly class="form-control"></input>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-lg-12">
+                            <label>Description</label><br/>
+                            <textarea id="vw_com_desc" style="resize: none;" readonly class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-lg-12">
+                            <label>Attachments</label>
+                            <ul id="attachment_list">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-------------END------------------->
+
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+<script src="{% static 'vendor/moment/dropzone.js' %}"></script>
+<script src="{% static 'vendor/moment/moment.js' %}"></script>
+<script src="{% static 'vendor/xeditable/bootstrap3-editable/js/bootstrap-editable.min.js' %}"></script>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'vendor/datatables/media/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/datatables/media/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/jquery.table2excel.js' %}"></script>
+<script src="{% static 'dataTables.tableTools.js' %}"></script>
+
+<!-- App scripts -->
+
+<script type="text/javascript">
+
+    var table = $('#communication_table').DataTable();
+
+    function set_table() {
+        $('#communication_table').dataTable({
+            'destroy': true,
+            "dom": 'T<"clear">lfrtip',
+            tableTools: {
+                "sSwfPath": "{% static 'swf/copy_csv_xls_pdf.swf' %}",
+                "aButtons": [{
+                    "sExtends": "xls",
+                    "sFileName": "Search Communication Details.xls",
+                    "sButtonText": "Export to Excel",
+                    "oSelectorOpts": {filter: 'applied', order: 'current'},
+                    "mColumns": [0, 1, 2, 3, 4]
+                }],
+            },
+            "columnDefs": [{"targets": 5, "orderable": false}],
+
+            /* "ajax": "/get-communication-list/?client_id=22",
+             "columns" : [
+             { "data" : "comm_date"},
+             { "data" : "comm_type" },
+             { "data" : "comm_person" },
+             { "data" : "comm_zam_person"},
+             { "data" : "comm_desc"},
+             { "data" : "comm_desc"}
+
+             ]*/
+        });
+    }
+    $(function () {
+        $(".js-source-states").select2();
+        $('.input-group.date').datepicker({});
+        set_table();
+
+        /*  $('#communication_table').dataTable({
+         "ajax": "/get-communication-list/?client_id=22",
+         "columns" : [
+         { "data" : "comm_date"},
+         { "data" : "comm_type" },
+         { "data" : "comm_person" },
+         { "data" : "comm_zam_person"},
+         { "data" : "comm_desc"}
+
+         ]
+
+         });*/
+
+        Dropzone.options.myAwesomeDropzone = {
+            autoProcessQueue: true,
+            uploadMultiple: false,
+            paramName: "file",
+            maxFiles: 10,
+            method: 'post',
+            parallelUploads: 1,
+            url: '/business/image-upload/',
+            dictDefaultMessage: "Drop or Browse up to 10 images (1MB or higher in size)",
+            addRemoveLinks: true,
+            acceptedFiles: '',
+            dictInvalidFileType: 'This file type is not supported.',
+            dictMaxFilesExceeded: "You can not upload more than 10 images.",
+
+            // The setting up of the dropzone
+            init: function () {
+
+                var myDropzone = this;
+                var reordered_array = new Array();
+                var temp_image_files = new Array();
+
+                // Listen to the sendingmultiple event. In this case, it's the sending multiple event instead
+                // of the sending event because uploadMultiple is set to true.
+                this.on("sending", function () {
+                    // Gets triggered when the form is actually being sent.
+                    // Hide the success button or the complete form.
+                    return false;
+                });
+
+                $(".js-source-states").select2();
+                $(".js-source-states-2").select2();
+                //      var mainlenghtiszero = $('.dz-preview').length;
+                this.on("success", function (files, response) {
+                    //  $('#image_count').val($('#image_count').val()+response.id+",");
+
+                    reordered_array.push(response.id);
+                    var image_id = response['id'];
+                    console.log(image_id);
+                    $('.dz-preview a .dz-remove').attr('href', '/remove-image/?image_id=' + image_id);
+                    console.log(response['id'] + ' ---------------- ' + response.id);
+
+                    $('#image_count').val(reordered_array); // assign value to image_count as update
+                    console.log('ADD PRODUCT SUCCESS FILE');
+                    console.log(reordered_array);
+                });
+
+                this.on("maxfilesexceeded", function (file) {
+                    $('#dropzone_max_file_error').foundation('reveal', 'open');
+                    this.removeFile(file);
+
+                });
+            }
+        }
+        //------------------To get the communication list-----------//
+
+        $("#search_communication").click(function (event) {
+
+
+
+            /*          if ($('#comm_type').val() === "") {
+             $('#lbl_type').css("color", "red");
+             } else {
+             $('#lbl_type').css("color", "white");
+             }
+
+             if ($('#con_person').val() === "") {
+             $('#lbl_per').css("color", "red");
+             } else {
+             $('#lbl_per').css("color", "white");
+             }
+
+
+             if ($('#zam_person option:selected').val() === "") {
+             $('#lbl_zam').css("color", "red");
+             } else {
+             $('#lbl_zam').css("color", "white");
+             }
+
+             if ($('#com_period').val() === "") {
+             $('#lbl_period').css("color", "red");
+             } else {
+             $('#lbl_period').css("color", "white");
+             }   */
+
+            var comm_type = $('#comm_type').val();
+            var con_person = $('#con_person').val();
+            var zam_person = $('#zam_person').val();
+            var com_period = $('#com_period').val();
+
+            var pri = $('#com_period').val();
+
+            if (pri >= 13) {
+                alert("Please enter months between 1 to 12");
+                return false;
+            }
+
+            if (pri < 0) {
+                alert("Please enter months between 1 to 12");
+                return false;
+            }
+
+
+            if (comm_type != "" || con_person != "" || zam_person != "" || com_period != "") {
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/search-communication/',
+                    data: {
+                        'comm_type': $('#comm_type').val(),
+                        'zam_contact': $('#zam_person').val(),
+                        'contact_person': $('#con_person').val(),
+                        'comm_month': $('#com_period').val(),
+                        'client_id': $('#client_id').val()
+                    },
+
+
+                    success: function (response) {
+                        //$('#communication_table tbody').empty();
+
+                        var table = $('#communication_table').DataTable();
+                        table.clear().draw();
+                        $.each(response.communication_list, function (index, item) {
+                            console.log(response.communication_list);
+                            table.row.add([
+                                item.comm_date,
+                                item.comm_type,
+                                item.comm_person,
+                                item.comm_zam_person,
+                                item.comm_desc,
+                                "<td class='text-center'>" +
+                                "<button name='" + item.comm_id + "' class='btn btn-default btn-success btn-xs btn-outline' onclick='readmore(" + item.comm_id + ")'>Read More</button>" +
+                                "</td>"
+                            ]).draw(false);
+                        });
+                    },
+
+                });
+
+            }
+
+            else {
+
+                alert("Can not Search on Blank Field");
+                return false;
+            }
+
+            //$("#tbodyid").empty();
+            {#            $("#comm_type").select2().select2("val", '');;#}
+            {#            $("#con_person").select2().select2("val", '');;#}
+            {#            $("#zam_person").select2().select2("val", '');;#}
+            {#            $("#com_period").val("");#}
+
+        });
+
+        //---------------------------end----------------------//
+
+
+    });
+
+    function readmore(id_val) {
+        $('#attachment_list').empty();
+        $.ajax({
+            type: 'GET',
+            url: '/get-communication-msg/',
+            data: {'communication_id': id_val},
+            success: function (response) {
+                console.log(response)
+                if (response.success == 'true') {
+                    $('#vw_com_date').val(response.communication_date);
+                    $('#vw_com_type').val(response.communication_type);
+                    $('#vw_zam_com_person').val(response.zam_contact_person);
+                    $('#vw_com_person').val(response.contact_person);
+                    $('#vw_com_desc').val(response.communication_desc);
+                    $('#vw_com_att').text(response.attachments);
+
+                    $.each(response.attachment_list, function (index, attachment) {
+                        $('#attachment_list').append('<li><a  title="download document"  href=' + attachment.attachment_url + '  download = ' + attachment.attachment_name + ' target="_blank"><span>' + " " + attachment.attachment_name + '</span></a></li>');
+                    });
+                    $("#readmore_box").modal('show');
+                }
+            },
+            error: function (response) {
+                console.log("Error" + response);
+            }
+
+        });
+    }
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57 || charCode == 43 || charCode == 45 ))
+            return false;
+        return true;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>ZAM | Registration Form</title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"/>
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}"/>
+
+
+    <style type="text/css">
+        .wid {
+            min-width: 65px;
+        }
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        .btn-primary2:hover {
+
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+
+        }
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        .bac-clr {
+            background: linear-gradient(to left, #fff -20%, #7160A9 40%) repeat scroll 0% 0% !important;
+            border: 1px solid #E4E5E7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+        }
+
+        #side-menu li .nav-second-level li a {
+            color: #FFFFFF;
+        }
+
+        .hpanel.hblue .panel-body {
+            border-top: 2px solid #7160A9;
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+        .small-logo {
+            display: none;
+            text-align: center;
+            padding-top: 18px;
+            font-size: 14px;
+            font-weight: 800;
+            float: left;
+            display: block;
+
+            color: #7160A9;
+
+        }
+
+        .text-primary {
+            color: #7160A9;
+        }
+    </style>
+
+</head>
+<body class="blank">
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+
+<!-- <div class="pull-left m">
+    <a href="index.html" class="btn btn-primary">Back to Dashboard</a>
+</div> -->
+<div class="login-container animate-panel">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center m-b-md">
+                <h2> Zeus Asset Management </h2>
+
+                <h3>User Registration</h3>
+                <!-- <small>This is the best app ever!</small> -->
+            </div>
+            <div class="hpanel hblue">
+                <div class="panel-body">
+
+                    {% comment %}<form id="signup_form" data-toggle="validator" action="/signing-up/" method="POST">{% endcomment %}
+                    <form id="signup_form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <P id="error_msg"></P>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="FirstName">First Name*</label><label id="lbl_first_name"
+                                                                                                   style="color:white">&nbsp
+                            Fill out First Name</label>
+                            <input type="text" placeholder="First Name" title="Please enter you first name" required=""
+                                   value="" name="first_name" id="first_name" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="LastName">Last Name*</label><label id="lbl_last_name"
+                                                                                                 style="color:white">&nbsp
+                            Fill out Last Name</label>
+                            <input type="text" placeholder="Last Name" title="Please enter you last name" required=""
+                                   value="" name="last_name" id="last_name" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="username">Username*</label><label id="lbl_username"
+                                                                                                style="color:white">&nbsp
+                            Fill out Username</label>
+                            <input type="text" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" placeholder="example@gmail.com"
+                                   title="Please enter you username"
+                                   required="" value="" name="username" id="username" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="username">User Role*</label><label id="lbl_selectuserrole"
+                                                                                                 style="color:white">&nbsp
+                            Please Select User Role</label>
+                            <select required class="form-control js-source-states" name="selectuserrole"
+                                    id="selectuserrole">
+                                {% for userrole in user_role_list %}
+                                    <option value="{{ userrole.role_id }}">{{ userrole.role }}</option>
+                                {% endfor %}
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="password">Password*</label><label id="lbl_password"
+                                                                                                style="color:white">&nbsp
+                            Fill out Password</label>
+                            {% comment %}<input  type="password" name="newpass" id="inputPassword" class="form-control" pattern="(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[*@#\$%&\?])^\D.{8,18}" placeholder="******"  required="required" maxlength="15" data-error="Password must be between 8 to 18 characters, starts with letter and must contain one uppercase letter, one lowercase letter, one number and among these special characters &,*,$,%,^,#,@">{% endcomment %}
+                            <input type="password" data-toggle="validator" data-minlength="8" data-maxlength="15"
+                                   title="Please enter your password" placeholder="******" required="" value=""
+                                   name="password" id="password" class="form-control"/>
+
+                            <div id="pwd_policy">
+                            <span class="help-block" id="strength" style="color:red">
+                                &nbsp &nbsp * The password should be 8-15 characters with 1 upper case  <br>
+                                &nbsp &nbsp &nbsp &nbsp letter, 1 number and 1 special character.
+                            </span>
+                            </div>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="password">Confirm Password</label><label
+                                id="lbl_confirm_password" style="color:white">&nbsp Fill out Username</label>
+                            <input type="password" title="Please enter your password" placeholder="******" required=""
+                                   value="" name="confirm_password" id="confirm_password" data-match="#password"
+                                   data-match-error="Whoops, these don't match" class="form-control"/>
+
+                            <div class="help-block with-errors"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <button type="button" id="register_btn" class="btn btn-success btn-outline col-xs-12">
+                                    Register
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <a class="btn  btn-block btn-outline btn-primary2" href="/open-login-page/">Back</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Vendor scripts -->
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+<script src="{% static 'vendor/datatables/media/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' %}"></script>
+
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"></script>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js' %}"></script>
+
+{% comment %}<script src="{% static 'vendor/validator.js' %}"></script>{% endcomment %}
+<!-- App scripts -->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".js-source-states").select2();
+        $(".js-source-states-2").select2();
+        $('.input-group.date').datepicker({});
+
+        $("#pwd_policy").hide();
+
+        $("#register_btn").click(function () {
+            //var password_rex = /(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[*@#\$%&\?])^\D.{7,17}$/
+            // var password_rex =/^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{8,}$/
+            //var password_rex = /(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[*@#\$%&\?])^.{7,17}$/
+
+            var password_rex = /(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W)^.{7,17}$/
+
+            var email_pattern = /[^@]+@[^@]+\.[a-zA-Z]{2,6}/
+
+            if ($('#first_name').val() === "" || $('#first_name').val() == null) {
+                $('#lbl_first_name').css("color", "red");
+            } else {
+                $('#lbl_first_name').css("color", "white");
+            }
+            if ($('#last_name').val() === "" || $('#last_name').val() == null) {
+                $('#lbl_last_name').css("color", "red");
+            } else {
+                $('#lbl_last_name').css("color", "white");
+            }
+            if ($('#username').val() === "" || $('#username').val() == null) {
+                $('#lbl_username').html("&nbsp; &nbsp;Fill out Username")
+                $('#lbl_username').css("color", "red");
+            }
+            else if (!email_pattern.test($('#username').val())) {
+                $('#lbl_username').html("&nbsp; &nbsp; Username should be in Email ID Format")
+                $('#lbl_username').css("color", "red");
+            }
+            else {
+                $('#lbl_username').css("color", "white");
+
+
+            }
+            if ($('#password').val() === "" || $('#password').val() == null) {
+                $('#lbl_password').css("color", "red");
+                return false;
+            } else {
+                $('#lbl_password').css("color", "white");
+                if (!password_rex.test($('#password').val())) {
+                    $("#pwd_policy").show();
+                    return false;
+                }
+                else
+                    $("#pwd_policy").hide();
+            }
+            console.log($('#confirm_password').val() != $('#password').val());
+            console.log($('#confirm_password').val());
+            console.log($('#password').val());
+            if ($('#confirm_password').val() != $('#password').val()) {
+                $('#lbl_confirm_password').css("color", "red");
+                $('#lbl_confirm_password').html("&nbsp; &nbsp; Passwords Don't Match");
+                return false;
+            } else {
+                $('#lbl_confirm_password').css("color", "white");
+                $('#lbl_confirm_password').text("");
+            }
+
+            if ($('#selectuserrole').val() === "" || $('#selectuserrole').val() === null)
+                $('#selectuserrole').css("color", "red");
+            else
+                $('#selectuserrole').css("color", "white");
+
+            if ($('#first_name').val() === "" || $('#first_name').val() == null || $('#last_name').val() === "" || $('#last_name').val() == null || $('#username').val() === "" || $('#username').val() == null || $('#password').val() === "" || $('#password').val() == null||$('#selectuserrole').val() === "" || $('#selectuserrole').val() === null) {
+                return false;
+            }
+            $.ajax({
+                type: "POST",
+                url: '/signing-up/',
+                data: $('#signup_form').serialize(),
+                success: function (response) {
+                    console.log(response);
+                    $('#error_msg').html(response.error_msg);
+                    if (response.success == "true") {
+                        console.log(response);
+                        $('#error_msg').html(response.error_msg);
+                        if (response.success == "true") {
+                            $('#first_name').val("")
+                            $('#last_name').val("")
+                            $('#username').val("")
+                            $('#password').val("")
+                            $('#confirm_password').val("")
+                        }
+                    }
+                },
+                error: function (response) {
+                    alert('cant save');
+                    console.log(response);
+                },
+
+            });
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>

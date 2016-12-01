@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>ZAM | My Planning Tool</title>
+
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"/>
+    <link rel="stylesheet"
+          href="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.css' %}"/>
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/sweetalert/lib/sweet-alert.css' %}"/>
+        <link rel="stylesheet" href="{% static 'vendor/toastr/build/toastr.min.css' %}"/>
+
+    <style type="text/css">
+
+        .page-header {
+            margin-top: 1%;
+        }
+
+        .bac-but {
+            margin-bottom: 2px;
+            text-align: right;
+        }
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        .btn-primary2:hover {
+
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+
+        }
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        .bac-clr {
+            background: linear-gradient(to left, #fff -20%, #7160A9 40%) repeat scroll 0% 0% !important;
+            border: 1px solid #E4E5E7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+        }
+
+        #side-menu li .nav-second-level li a {
+            color: #FFFFFF;
+        }
+
+        .hpanel.hblue .panel-body {
+            border-top: 2px solid #7160A9;
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+        .small-logo {
+            display: none;
+            text-align: center;
+            padding-top: 6px;
+            font-size: 28px;
+            font-weight: 800;
+            float: left;
+            display: block;
+            color: #7160A9;
+        }
+
+        .text-primary {
+            color: #7160A9;
+        }
+                #wizardControl .nav-tabs .active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+        }
+        
+        .modal-dialog {
+    width: 830px;
+    margin: 30px auto;
+}
+
+        /*--------------------------------------------------*/
+        #side-menu li.treeview ul li a {
+            background: #fff !important;
+            color: #6A6C6F !important;
+            font-weight: 700;
+        }
+
+        #side-menu li.treeview ul li.active a {
+            background-color: #7160A9 !important;
+            color: #FFF !important;
+        }
+
+        #side-menu li.treeview ul li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff !important;
+
+        }
+
+        /*--------------------------------------------------*/
+    </style>
+
+</head>
+<body>
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a
+        href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo" style="padding-top: 5px">
+            {#            <img src="{% static 'images/imgpsh_fullsize.jpg' %}" style="width: 45px" class="img-circle m-b" alt="logo">#}
+            {#            <span class="text-primary">YfinAdvisor</span>#}
+            <span class="text-primary">Zeus Asset Management</span>
+
+
+        </div>
+        <div>
+
+        </div>
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <!--  <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                         <i class="pe-7s-mail"></i>
+                         <span class="label label-success">4</span>
+                     </a> -->
+                    <ul class="dropdown-menu hdropdown animated flipInX">
+                        <div class="title">
+                            You have 4 new messages
+                        </div>
+                        <li>
+                            <a>
+                                It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Lorem Ipsum is simply dummy.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See All Messages</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/signing-out/">
+                        <i title="Logout" class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.full_name }}</span><br>
+                <small class="text-muted">{{ request.session.user_role }}</small>
+
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Marketing Manager' %}
+                <li>
+                    <a href="/crm-index/"> <span class="nav-label">Client Relationship Management</span></a>
+                </li>
+            {% endif %}
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+                <li><a href="/open-research-page/?tab_id=1">Research</a></li>
+            {% endif %}
+            <li><a href="/open-discussion-forum/">Discussion Forum</a></li>
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+                <li class="treeview">
+                   <a href="#"><span class="nav-label">Security Data Management</span><span class="fa arrow"></span> </a>
+                       <ul class="nav nav-second-level">
+                           <li><a href="/open-security-page/">Security</a></li>
+                           <li><a href="/open-security-price-page/">Price</a></li>
+                       </ul>
+                </li>
+            {% endif %}
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' %}
+                <li>
+                    <a href="/open-trade/"> <span class="nav-label">Trade</span></a>
+                </li>
+                <li>
+                    <a href="/open-position/"> <span class="nav-label">Position</span></a>
+                </li>
+            {% endif %}
+            <li>
+                <a href="/index/"> <span class="nav-label">Dashboard</span></a>
+            </li>
+            {% if request.session.user_role == 'Super Admin' %}
+                <li class="treeview">
+                    <a href="#"><span class="nav-label">Planning Tool</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/open-YFinAdvisor-index/">Planning Tool Input</a></li>
+                        <li><a href="/open-YFinAdvisor-customer/">Customer</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+            {% if request.session.user_role == 'Super Admin' or request.session.user_role == 'Admin' %}
+                <li>
+                    <a href="/open-user-index/"> <span class="nav-label">User Management</span></a>
+                </li>
+            {% endif %}
+                <li>
+                    <a href="/open-rename-password/"> <span class="nav-label">Change Password</span></a>
+                </li>
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+
+<div id="wrapper">
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel">
+            <div class="bac-clr">
+                <h3 style="display:inline;" class="font-light m-b-xs font-col">
+                    Planning Tool Input
+                </h3>
+                <h4 style="display:inline;" class="font-light m-b-xs font-col">
+
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div class="content animate-panel">
+
+        <div class="hpanel">
+
+            <div class="panel-heading hbuilt">
+
+                <div class="text-left m-b-md" id="wizardControl">
+                    <input hidden type="text" id="tab_active" value="1">
+                    <ul class="nav nav-tabs">
+                        <li id="tab1" class="active"><a data-toggle="tab" href="#tab-1"><h5>Variable</h5></a></li>
+                        <li id="tab2" class=""><a data-toggle="tab" href="#tab-2"><h5>Full Asset Tool</h5></a></li>
+                        <li id="tab3" class=""><a data-toggle="tab" href="#tab-3"><h5>Goal Setting Parameter</h5></a></li>
+                    </ul>
+                </div>
+
+                <div class="tab-content" id="tabs">
+                    <div id="tab-1" class="tab-pane active">
+                        <div class="row">
+                            <form id="variable_frm" method="POST">
+                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label id="lbl_variableType" class="control-label">Type*</label>
+                                        <select autocomplete="off" required class="form-control js-source-states"
+                                                name="selectVariableType"
+                                                id="selectVariableType">
+                                            <option value=""></option>
+                                            {% for type in variableType %}
+                                                <option value="{{ type.variableType_id }}">{{ type.variableType }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label id="lbl_variable" class="control-label">Variable*</label>
+                                        <input name="txt_variable" type="text" id="txt_variable" class="form-control"
+                                               required>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-xs-10">
+                                    <div class="form-group">
+                                        <label id="lbl_percentage" class="control-label">Percentage(%)*</label><label id="lbl_var_per" style="color:white">&nbsp </label>   
+                                        <input name="txt_percentage" type="text"
+                                               onkeypress="return validateFloatKeyPress(this,event);"
+                                               id="txt_percentage" class="form-control"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-xs-2">
+                                    <div class="form-group pull-right">
+                                        <label class="control-label">&nbsp;&nbsp;&nbsp;</label>
+                                        <button type="button" id="add_variable" class="btn btn-outline btn-success">
+                                            &nbsp;&nbsp; + &nbsp;&nbsp;</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="panel-body">
+                            <div>
+                                <table cellpadding="1" cellspacing="1" id="goal_table"
+                                       class="table table-condensed table-striped"
+                                       style="width:100%;height:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Sr.No.</th>
+                                        <th>Type</th>
+                                        <th>Variables</th>
+                                        <th>Percentage(%)</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-2" class="tab-pane">
+                
+                            <div class="row">
+                        <div class="col-lg-3 col-md-6 col-xs-12">
+                            <h4><i class="fa fa-circle" sizes="2*2"></i> <a class="font-icon-name" 
+                                id="ab">
+                                Bank Accounts</a></h4>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-xs-12">
+                            <h4><i class="fa fa-circle" sizes="2*2"></i> <a class="font-icon-name"
+                                                                             
+                                id="cd"> Other Saving products</a>
+                            </h4>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-xs-12">
+                            <h4><i class="fa fa-circle" sizes="2*2"></i> <a class="font-icon-name"
+                                                                             
+                                id="ef">Direct Equity</a></h4>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-xs-12">
+                            <h4><i class="fa fa-circle" sizes="2*2"></i> <a class="font-icon-name"
+                                                                            
+                                id="gh">Equity Funds
+                               </a></h4>
+                        </div>
+                    </div>
+                    
+                                        <div id="add_bank" >
+                                            <div class="hpanel">
+                                                <div class="panel-heading hbuilt">
+                                                        <div class="row">
+                                                             <h3 style="text-align:center">Bank Account</h3>
+                                                            <div class="col-lg-12 bank_contain" >  
+                                                        <form id="bank_account_form" method="POST">
+                                                                    <div class="row">
+                                                                        <input type="hidden" name="product" value="Bank Account"></input>
+                                                                        <div class="col-lg-3 col-md-3 col-xs-12 form-group">
+                                                                         <label id="lbl_bn" class="control-label">Bank Name*</label>        
+                                                                       <input type="text"  id="bank_name" name="pname" class="form-control "   pattern="[A-Za-z]+" required="required"></input>
+                                                                       </div>           
+                                                    
+                                                                        <div class="col-lg-3 col-md-3 col-xs-12 form-group">
+                                                                        <label id="lbl_at" class="control-label">Account Type*</label>
+                                                                            <select class="form-control js-source-states"  name="account_type" id="account_type">   
+                                                                                <option value="" selected></option>
+                                                                        {% for acc in account_type %}
+                                                                            <option value="{{ acc.acc_type_id }}">{{ acc.acc_name }}</option>
+                                                                    {% endfor %}
+                                                                        </select>   
+                                                                       </div>           
+                                                                        
+                                                                    <div class="col-lg-3 col-md-6 col-xs-12 form-group">
+                                                                     <label id="lbl_bb" class="control-label">Balance*</label>  
+                                                                            <input name="balance" type="text" id="bank_balance" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-lg-3 col-md-6 col-xs-12 form-group">    
+                                                                            <label id="lbl_bd" class="control-label">Duration*(In Year)</label>
+                                                                        <input type="bank_duration" name="duration" class="form-control" onkeypress="return isNumberKey(event);" id="bank_dur"></input>
+                                                                        </div>
+                                                                    </div>  
+                                                                    
+                                                                    <div class="row">
+                                                                        <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                                     <label id="lbl_bpr" class="control-label">Pre-tax Rate(LTM)*(In %)</label><label id="lbl_BPRE" style="color:white">&nbsp </label>  
+                                                                            <input name="pretax" type="text" id="bank_pre" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                                     <label id="lbl_bpo" class="control-label">Post tax return (LTM)*(In %)</label><label id="lbl_BPOS" style="color:white">&nbsp </label>
+                                                                            <input name="posttax" type="text" id="bank_pos" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                        </div>
+                                                                        
+                                                                        <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                                     <label id="lbl_bl" class="control-label">Liquidity*</label>    
+                                                                            <input name="liquidity" type="text" id="bank_liq" class="form-control" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                                        <div class="text-right m-t-xs">
+                                                                <a 
+                                                                 class="btn btn-outline btn-danger  cancel_div">Cancel</a>
+                                                                <button class="btn btn-outline btn-success " id="bank_account">&nbsp; Save
+                                                                    &nbsp;</button>
+                                                                </div>
+                                                                </div>
+                                                    </div>
+                                                </div>  
+                                            </div>  
+                                        </div>
+                                        
+                                        <div id="other_saving_product" >
+                                            <div class="hpanel">
+                                                <div class="panel-heading hbuilt">
+                                                        <div class="row">
+                                                             <h3 style="text-align:center">Other Saving Products</h3>
+                                                <div class="col-lg-12"> 
+                                                <form id="other_saving_product_form" method="POST">
+                                                        <input hidden name="product" value="Other Saving Product"></input>
+                                                            <div class="row">
+                                                                <div class="col-lg-4 col-md-4 col-xs-12 form-group">
+                                                                 <label id="lbl_os" class="control-label">Other Saving Products*</label>        
+                                                               <input type="text"  id="othr_sav" name="pname" class="form-control "   pattern="[A-Za-z]+" required="required"></input>
+                                                               </div>           
+                                            
+                                                                    
+                                                                
+                                                            <div class="col-lg-4 col-md-4 col-xs-12 form-group">
+                                                             <label id="lbl_ob" class="control-label">Balance*</label>  
+                                                                    <input name="balance" type="text" id="othr_bal" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-4 col-xs-12 form-group">    
+                                                                    <label id="lbl_od" class="control-label">Duration*(In Year)</label>
+                                                                <input type="text" name="duration" class="form-control" onkeypress="return isNumberKey(event);" id="othr_dur"></input>
+                                                                </div>
+                                                            </div>  
+                                                            
+                                                            <div class="row">
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_opr" class="control-label">Pre-tax Rate(LTM)*(In %)</label><label id="lbl_OPPRE" style="color:white">&nbsp </label>     
+                                                                    <input name="pretax" type="text" id="othr_pre" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_opo" class="control-label">Post tax return (LTM)*(In %)</label><label id="lbl_OPPOS" style="color:white">&nbsp </label>     
+                                                                    <input name="posttax" type="text" id="othr_po" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_ol" class="control-label">Liquidity*</label>    
+                                                                    <input name="liquidity" type="text" id="othr_li" class="form-control" required>
+                                                                </div>
+                                                        </div>
+                                                        </form>
+                                                                <div class="text-right m-t-xs">
+                                                        <a  class="btn btn-outline btn-danger  cancel_div">Cancel</a>
+                                                        <button class="btn btn-outline btn-success " id="other_saving">&nbsp; Save
+                                                            &nbsp;</button>
+                                                        </div>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>  
+                                        </div>
+                                        
+                                        <div id="direct_equity" > 
+                                            <div class="hpanel">
+                                                <div class="panel-heading hbuilt">
+                                                        <div class="row">
+                                                             <h3 style="text-align:center">Direct Equity</h3>
+                                                                <div class="col-lg-12">  
+                                                                <form id="direct_equity_form" method="POST">
+                                                                    <input hidden name="product" value="Direct Equity"></input>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-4 col-md-4 col-xs-12 form-group">
+                                                                             <label id="lbl_dn" class="control-label">Direct Equity Products*</label>       
+                                                                        <input type="text"  id="dir_eq" name="pname" class="form-control" pattern="[A-Za-z]+" required="required"></input>
+                                                                        </div>          
+                                            
+                                                                    
+                                                                
+                                                            <div class="col-lg-4 col-md-4 col-xs-12 form-group">
+                                                             <label id="lbl_db" class="control-label">Balance*</label>  
+                                                                    <input name="balance" type="text" id="dir_bal" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-4 col-xs-12 form-group">    
+                                                                    <label id="lbl_dd" class="control-label">Duration*(In Year)</label>
+                                                                <input type="text" name="duration"  class="form-control "  onkeypress="return isNumberKey(event);"  id="dir_dur"></input>
+                                                                </div>
+                                                            </div>  
+                                                            
+                                                            <div class="row">
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_dpr" class="control-label">Pre-tax Rate(LTM)*(In %)</label><label id="lbl_DEPRE" style="color:white">&nbsp </label>     
+                                                                    <input name="pretax" type="text" id="dir_pre" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_dpo" class="control-label">Post tax return (LTM)*(In %)</label><label id="lbl_DEPOS" style="color:white">&nbsp </label>     
+                                                                    <input name="posttax" type="text" id="dir_pro" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_dl" class="control-label">Liquidity*</label>    
+                                                                    <input name="liquidity" type="text" id="dir_liq" class="form-control" required>
+                                                                </div>
+                                                        </div>
+                                                        </form>
+                                                                <div class="text-right m-t-xs">
+                                                        <a  class="btn btn-outline btn-danger cancel_div ">Cancel</a>
+                                                        <button class="btn btn-outline btn-success " id="direct_equity_product">&nbsp; Save
+                                                            &nbsp;</button>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>      
+                                        </div>  
+                                        
+                                        <div id="equity_funds" > 
+                                            <div class="hpanel">
+                                                <div class="panel-heading hbuilt">
+                                                        <div class="row">
+                                                             <h3 style="text-align:center">Equity Funds</h3>
+                                                                <div class="col-lg-12">  
+                                                                <form id="equity_fund_form" method="POST">
+                                                                    <input hidden name="product" value="Equity Fund"></input>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-4 col-md-4 col-xs-12 form-group">
+                                                                             <label id="lbl_ef" class="control-label"> Equity Fund Product*</label>     
+                                                                        <input type="text"  id="eq_fu" name="pname" class="form-control " style="width:100%;"  pattern="[A-Za-z]+" required="required"></input>
+                                                                        </div>          
+                                            
+                                                                    
+                                                                
+                                                            <div class="col-lg-4 col-md-4 col-xs-12 form-group">
+                                                             <label id="lbl_eb" class="control-label">Balance*</label>  
+                                                                    <input name="balance" type="text" id="eq_ba" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-4 col-xs-12 form-group">    
+                                                                    <label id="lbl_ed" class="control-label">Duration*(In Year)</label>
+                                                                <input type="text" name="duration" class="form-control " onkeypress="return isNumberKey(event);" id="eq_dur"></input>
+                                                                </div>
+                                                            </div>  
+                                                            
+                                                            <div class="row">
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_ep" class="control-label">Pre-tax Rate(LTM)*(In %)</label><label id="lbl_EFPRE" style="color:white">&nbsp </label>      
+                                                                    <input name="pretax" type="text" id="eq_pre" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_epo" class="control-label">Post tax return (LTM)*(In %)</label><label id="lbl_EFPOS" style="color:white">&nbsp </label> 
+                                                                    <input name="posttax" type="text" id="eq_po" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_el" class="control-label">Liquidity*</label>    
+                                                                    <input name="liquidity" type="text" id="eq_liq" class="form-control" required>
+                                                                </div>
+                                                        </div>
+                                                        </form>
+                                                                <div class="text-right m-t-xs">
+                                                        <a  class="btn btn-outline btn-danger cancel_div ">Cancel</a>
+                                                        <button class="btn btn-outline btn-success " id="equity_fund">&nbsp; Save
+                                                            &nbsp;</button>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>      
+                                        </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-xs-12">
+                            <h4><i class="fa fa-circle" sizes="2*2"></i> <a class="font-icon-name"
+                                                                          
+                                id="ij">
+                                Provident Fund</a></h4>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-xs-12">
+                            <h4><i class="fa fa-circle" sizes="2*2"></i> <a class="font-icon-name"
+                                                                            
+                                id="kl">Property</a></h4>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-xs-12">
+                            <h4><i class="fa fa-circle" sizes="2*2"></i> <a class="font-icon-name"
+                                                                             
+                                id="mn">
+                                Gold</a></h4>
+                        </div>
+
+                    </div>                      
+                                
+                                            <div id="provident_fund" > 
+                                            <div class="hpanel">
+                                                <div class="panel-heading hbuilt">
+                                                        <div class="row">
+                                                             <h3 style="text-align:center">Provident Fund</h3>
+                                                    <div class="col-lg-12"> 
+                                                        <form id="provident_fund_form" method="POST">
+                                                            <input hidden name="product" value="Provident Fund"></input>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-4 col-md-4 col-xs-12 form-group">
+                                                                         <label id="lbl_pn" class="control-label">Provident Fund Product*</label>       
+                                                                       <input type="text"  id="pro_fu" name="pname" class="form-control " style="width:100%;"  pattern="[A-Za-z]+" required="required"></input>
+                                                                       </div>           
+    
+                                                            <div class="col-lg-4 col-md-4 col-xs-12 form-group">
+                                                             <label id="lbl_prob" class="control-label">Balance*</label>    
+                                                                    <input name="balance" type="text" id="pro_bal" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-4 col-xs-12 form-group">    
+                                                                    <label id="lbl_prod" class="control-label">Duration*(In Year)</label>
+                                                                <input type="text" name="duration"  class="form-control " onkeypress="return isNumberKey(event);" id="pro_dur"></input>
+                                                                </div>
+                                                            </div>  
+                                                            
+                                                            <div class="row">
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_pr_pre" class="control-label">Pre-tax Rate(LTM)*(In %)</label><label id="lbl_PFPRE" style="color:white">&nbsp </label>  
+                                                                    <input name="pretax" type="text" id="pro_pr" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_pr_po" class="control-label">Post tax return (LTM)*(In %)</label><label id="lbl_PFPOS" style="color:white">&nbsp </label>   
+                                                                    <input name="posttax" type="text" id="pro_po" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_pr_liq" class="control-label">Liquidity*</label>    
+                                                                    <input name="liquidity" type="text" id="pro_li" class="form-control" required>
+                                                                </div>
+                                                        </div>
+                                                        </form>
+                                                                <div class="text-right m-t-xs">
+                                                        <a  class="btn btn-outline btn-danger cancel_div ">Cancel</a>
+                                                        <button class="btn btn-outline btn-success " id="provident_fund_product">&nbsp; Save
+                                                            &nbsp;</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>              
+                                
+                            <div id="property" >    
+                                <div class="hpanel">
+                                                <div class="panel-heading hbuilt">
+                                                        <div class="row">
+                                                             <h3 style="text-align:center">Property</h3>
+                                    <div class="col-lg-12">         
+                                                <form id="property_form" method="POST">
+                                                        <input hidden name="product" value="Property"></input>
+                                                            <div class="row">
+                                                                <div class="col-lg-4 col-md-4 col-xs-12 form-group">
+                                                                 <label id="lbl_prop" class="control-label">Property Product*</label>       
+                                                               <input type="text"  id="property_name" name="pname" class="form-control " style="width:100%;"  pattern="[A-Za-z]+" required="required"></input>
+                                                               </div>           
+                                            
+                                                                    
+                                                                
+                                                            <div class="col-lg-4 col-md-4 col-xs-12 form-group">
+                                                             <label id="lbl_prop_bal" class="control-label">Balance*</label>    
+                                                                    <input name="balance" type="text" id="property_bal" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-4 col-xs-12 form-group">    
+                                                                    <label id="lbl_pro_dur" class="control-label">Duration*(In Year)</label>
+                                                                <input type="text" name="duration"  class="form-control " onkeypress="return isNumberKey(event);" id="property_dur"></input>
+                                                                </div>
+                                                            </div>  
+                                                            
+                                                            <div class="row">
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_pro_t" class="control-label">Pre-tax Rate(LTM)*(In %)</label><label id="lbl_PPRE" style="color:white">&nbsp </label>
+                                                                    <input name="pretax" type="text" id="pro_tax" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_pro_p" class="control-label">Post tax return (LTM)*(In %)</label><label id="lbl_PPOS" style="color:white">&nbsp </label>    
+                                                                    <input name="posttax" type="text" id="pro_pos" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_pro_l" class="control-label">Liquidity*</label> 
+                                                                    <input name="liquidity" type="text" id="pro_liq" class="form-control" required>
+                                                                </div>
+                                                        </div>
+                                                        </form>
+                                                                <div class="text-right m-t-xs">
+                                                        <a class="btn btn-outline btn-danger cancel_div ">Cancel</a>
+                                                        <button class="btn btn-outline btn-success " id="property_product">&nbsp; Save
+                                                            &nbsp;</button>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>          
+                                
+                                
+                             <div id="gold" >   
+                                <div class="hpanel">
+                                                <div class="panel-heading hbuilt">
+                                                        <div class="row">
+                                                             <h3 style="text-align:center">Gold</h3>
+                                    <div class="col-lg-12">   
+                                                <form id="gold_form" method="POST">
+                                                <input hidden name="product" value="Gold"></input>
+                                                            <div class="row">
+                                                                <div class="col-lg-4 col-md-4 col-xs-12 form-group">
+                                                                 <label id="lbl_gol" class="control-label">Gold Product*</label>        
+                                                               <input type="text"  id="gol_na" name="pname" class="form-control " style="width:100%;"  pattern="[A-Za-z]+" required="required"></input>
+                                                               </div>           
+                                            
+                                                                    
+                                                                
+                                                            <div class="col-lg-4 col-md-4 col-xs-12 form-group">
+                                                             <label id="lbl_gol_b" class="control-label">Balance*</label>   
+                                                                    <input name="balance" type="text" id="gol_ba" class="form-control" onkeypress="return validateFloatKeyPress(this,event);" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-4 col-xs-12 form-group">    
+                                                                    <label id="lbl_gol_d" class="control-label">Duration*(In Year)</label>
+                                                                <input type="text" name="duration"   style="width:100%;" class="form-control " onkeypress="return isNumberKey(event);" id="gol_dur"></input>
+                                                                </div>
+                                                            </div>  
+                                                            
+                                                            <div class="row">
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_gol_pre" class="control-label">Pre-tax Rate(LTM)*(In %)</label><label id="lbl_GPRE" style="color:white">&nbsp </label>  
+                                                                    <input name="pretax" type="text" id="gol_pre" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_gol_po" class="control-label">Post tax return (LTM)*(In %)</label><label id="lbl_GPOS" style="color:white">&nbsp </label>   
+                                                                    <input name="posttax" type="text" id="gol_pos" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                                                                </div>
+                                                                
+                                                                <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                                             <label id="lbl_gol_liq" class="control-label">Liquidity*</label>   
+                                                                    <input name="liquidity" type="text" id="gol_liq" class="form-control" required>
+                                                                </div>
+                                                        </div>
+                                                        </form>
+                                                                <div class="text-right m-t-xs">
+                                                        <a  class="btn btn-outline btn-danger cancel_div">Cancel</a>
+                                                        <button class="btn btn-outline btn-success " id="gold_product">&nbsp; Save
+                                                            &nbsp;</button>
+                                                        </div>
+                                                    </div>
+                                        </div>
+                                        </div>
+                                        </div>  
+                                    </div>  
+                                    
+                                        <div class="panel-body" style="margin-top: 20px;">
+                                <div>
+                                <table cellpadding="1" cellspacing="1" id="asset_table"
+                                       class="table table-condensed table-striped"
+                                       style="width:100%;height:100%">
+                                    <thead>
+                                    <tr>
+                                         <th>Product Type</th> 
+                                        <th>Product Name</th>
+                                        <th>Balance</th>
+                                        <th>Duration</th>
+                                        <th>Pre-tax Rate(LTM)</th>
+                                        <th>Post tax return (LTM)</th>
+                                        <th>Liquidity</th>
+                                        <th></th>
+                                        <th></th> 
+                                    </tr>
+                                    </thead>
+                                    <!-- <tbody>
+                                        <tr>
+                                            <th>Bank Account</th>
+                                            <th>SBI</th>
+                                            <th>10,000</th>
+                                            <th>1 Year</th>
+                                            <th>5%</th>
+                                            <th>10%</th>
+                                            <th>5 Years</th>
+                                            <th><a  data-toggle="modal" data-target="#edit_bank" ><i class="fa fa-edit"></i></a> </th>
+                                            <th><a onclick=  ><i class="fa fa-trash-o"></i></a>  </th>
+                                        </tr>
+                                    </tbody> -->
+                                </table>
+                            </div>
+                        </div>                                  
+                                    
+                                </div>
+                                <div id="tab-3" class="tab-pane">
+                                    <div class="row">
+                            <form id="goal_parameter" method="POST">
+                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label id="lbl_pryr" class="control-label">Year*</label>
+                                        <select autocomplete="off" required class="form-control js-source-states"
+                                                name="goal_pr_yr"
+                                                id="goal_pr_yr">
+                                            <option value=""></option>
+                                            {% for type in parameter_year %}
+                                                <option value="{{ type.par_year_id }}">{{ type.par_year }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label id="lbl_para" class="control-label">Parameter*</label>
+                                        <input name="parameter" type="text" id="parameter" class="form-control"
+                                               required>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-xs-10">
+                                    <div class="form-group">
+                                        <label id="lbl_gol_per" class="control-label">Percentage(%)*</label><label id="lbl_gol_per_ale" style="color:white">&nbsp </label>  
+                                        <input name="goal_per" type="text"
+                                               onkeypress="return validateFloatKeyPress(this,event);"
+                                               id="goal_per" class="form-control"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-xs-2">
+                                    <div class="form-group pull-right">
+                                        <label class="control-label">&nbsp;&nbsp;&nbsp;</label>
+                                        <button type="button" id="add_goal_par" class="btn btn-outline btn-success">
+                                            &nbsp;&nbsp; + &nbsp;&nbsp;</button>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>  
+                            
+                            <div class="panel-body">
+                            <div>
+                                <table cellpadding="1" cellspacing="1" id="goal_parameter_table"
+                                       class="table table-condensed table-striped"
+                                       style="width:100%;height:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>Parameter</th>
+                                        <th>Percentage(%)</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                                
+                            </div>
+                  </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="edit_bank" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+  
+                <form id="edit_bank_form" method="POST">
+                            <input hidden type="text" name="bank_id" id="id_bank">
+                            <input hidden type="text" name="product_name" value="Bank Account">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-xs-12 form-group">
+                                     <label id="lbl_ebank" class="control-label">Bank Name*</label>     
+                                   <input type="text"  id="mod_ba_bank" name="pname" class="form-control " style="width:100%;"  pattern="[A-Za-z]+" required="required"></input>
+                                   </div>           
+                
+                                    <div class="col-lg-3 col-md-3 col-xs-12 form-group">
+                                    <label id="lbl_ebanka" class="control-label">Account Type*</label>
+                                        <select class="form-control js-source-states" style="width:100%;" name="account_type" id="mod_ba_acc">  
+                                                <option value="" selected></option>                                             
+                                                {% for acc in account_type %}
+                                            <option value="{{ acc.acc_type_id }}">{{ acc.acc_name }}</option>
+                                        {% endfor %}   
+                                    </select>   
+                                   </div>           
+                                    
+                                <div class="col-lg-3 col-md-6 col-xs-12 form-group">
+                                 <label id="lbl_ebankb" class="control-label">Balance*</label>  
+                                        <input name="balance" type="text" id="mod_ba_bal" class="form-control" required>
+                                    </div>
+                                    
+                                    <div class="col-lg-3 col-md-6 col-xs-12 form-group">    
+                                        <label id="lbl_ebankd" class="control-label">Duration*(In Year)</label>
+                                    <input type="text" name="duration"  onkeypress="return validateFloatKeyPress(this,event);" style="width:100%;" class="form-control " id="mod_ba_du"></input>
+                                    </div>
+                                </div>  
+                                
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                 <label id="lbl_ebankpr" class="control-label">Pre-tax Rate(LTM)*(In %)</label> 
+                                        <input name="pretax" type="text" id="mod_ba_pre" class="form-control" required>
+                                    </div>
+                                    
+                                    <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                 <label id="lbl_ebankpo" class="control-label">Post tax return (LTM)*(In %)</label> 
+                                        <input name="posttax" type="text" id="mod_ba_po" class="form-control" required>
+                                    </div>
+                                    
+                                    <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                                 <label id="lbl_ebankli" class="control-label">Liquidity*</label>   
+                                        <input name="liquidity" type="text" id="mod_ba_li" class="form-control" required>
+                                    </div>
+                                </div>
+                        </form>
+
+                <div class="text-right m-t-xs">
+                    <button type="button" class="btn btn-outline btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="update_bank" class="btn  btn-outline btn-success wid"
+                            data-dismiss="modal">&nbsp;Save&nbsp;</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+ <div class="modal fade" id="edit_product" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+  
+                <form id="edit_product_form" method="POST">
+                            <input hidden type="text" name="product_id" id="product_id">
+                                <div class="row">
+                            <div class="col-lg-4 col-md-4 col-xs-12 form-group">
+                             <label id="lbl_modpn" class="control-label"> Product*</label>      
+                           <input type="text"  id="mod_name" name="pname" class="form-control " style="width:100%;"  pattern="[A-Za-z]+" required="required"></input>
+                           </div>           
+
+                            
+                        <div class="col-lg-4 col-md-4 col-xs-12 form-group">
+                         <label id="lbl_modpb" class="control-label">Balance*</label>   
+                                <input name="balance" type="text" id="mod_bal" class="form-control" required>
+                            </div>
+                            
+                            <div class="col-lg-4 col-md-4 col-xs-12 form-group">    
+                                <label id="lbl_modpd" class="control-label">Duration*(In Year)</label>
+                            <input type="text" name="duration"  class="form-control " id="mod_dur"></input>
+                            </div>
+                        </div>  
+                        
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                         <label id="lbl_modpt" class="control-label">Pre-tax Rate(LTM)*(In %)</label>   
+                                <input name="pretax" type="text" id="mod_tax" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                            </div>
+                            
+                            <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                         <label id="lbl_modpost" class="control-label">Post tax return (LTM)*(In %)</label> 
+                                <input name="posttax" type="text" id="mod_pos" onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                            </div>
+                            
+                            <div class="col-lg-4 col-md-6 col-xs-12 form-group">
+                         <label id="lbl_modliq" class="control-label">Liquidity*</label>    
+                                <input name="liquidity" type="text" id="mod_liq" class="form-control" required>
+                            </div>
+                        </div>
+                    </form>
+
+                <div class="text-right m-t-xs">
+                    <button type="button" class="btn btn-outline btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="update_product" class="btn  btn-outline btn-success wid"
+                            data-dismiss="modal">&nbsp;Save&nbsp;</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+<div class="modal fade" id="edit_goal_par" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form id="edit_goal_par_frm" method="POST">
+                    <div class="row">
+                        <input type="hidden" id="goal_parameter_id" name="goal_parameter_id">
+
+                        <h3 style="text-align:center">Edit Goal Parameter</h3>
+                        
+                        <div class="form-group col-lg-4">
+                            <label id="lbl_par_yr">Year*</label>
+                            <select autocomplete="off" required class="form-control js-source-states"
+                                                name="goal_pr_yr"
+                                                id="mod_goal_pr_yr">
+                                            <option value=""></option>
+                                            {% for type in parameter_year %}
+                                                <option value="{{ type.par_year_id }}">{{ type.par_year }}</option>
+                                            {% endfor %}
+                                        </select>
+                        </div>
+
+                        <div class="form-group col-lg-4">
+                            <label id="lbl_gol_par_edit">Parameter*</label>
+                            <input name="parameter" type="text" id="mod_goal_par" class="form-control"
+                                   required>
+                        </div>
+
+                        <div class="form-group col-lg-4">
+                            <label id="lbl_gol_per_edit">Percentage(%)*</label><label id="lbl_edi_gol_per" style="color:white">&nbsp </label>
+                            <input name="goal_per" onkeypress="return validateFloatKeyPress(this,event);"
+                                   type="text" id="mod_goal_per" class="form-control"
+                                   required>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="text-right m-t-xs">
+                    <button type="button" class="btn btn-outline btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="update_goal_param_btn" class="btn  btn-outline btn-success wid"
+                            data-dismiss="modal">&nbsp;Save&nbsp;</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="edit_variable" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form id="edit_variable_frm" method="POST">
+                    <div class="row">
+                        <input type="hidden" id="company_id" name="company_id">
+
+                        <h3 style="text-align:center">Edit Variable</h3>
+                        <input hidden type="text" name="variable_id_edit" id="id_edit">
+
+                        <div class="form-group col-lg-6">
+                            <label id="lbl_variable_edit">Variable*</label>
+                            <input name="txt_variable_edit" type="text" id="txt_variable_edit" class="form-control"
+                                   required>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label id="lbl_percentage_edit">Percentage*</label>
+                            <input name="txt_percentage_edit" onkeypress="return validateFloatKeyPress(this,event);"
+                                   type="text" id="txt_percentage_edit" class="form-control"
+                                   required>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="text-right m-t-xs">
+                    <button type="button" class="btn btn-outline btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="update_btn" class="btn  btn-outline btn-success wid"
+                            data-dismiss="modal">&nbsp;Save&nbsp;</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+<script src="{% static 'vendor/datatables/media/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' %}"></script>
+
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"></script>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+<script src="{% static 'custom-js/advisor_data.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'vendor/toastr/build/toastr.min.js' %}"></script>
+<script src="{% static 'vendor/sweetalert/lib/sweet-alert.min.js' %}"></script>
+<script src="{% static 'vendor/toastr/build/toastr.min.js' %}"></script>
+
+
+<script>
+   toastr.options = {
+        "debug": false,
+        "newestOnTop": false,
+        "positionClass": "toast-top-center",
+        "closeButton": true,
+        "debug": false,
+        "toastClass": "animated fadeInDown",
+    };
+    $(function () {
+       $("#add_bank").hide();
+          $("#other_saving_product").hide();
+        $("#direct_equity").hide();
+         $("#gold").hide();
+          $("#property").hide();
+           $("#provident_fund").hide();
+            $("#equity_funds").hide();
+    
+     load_asset_data();
+     load_data();
+     load_parameter_data();
+     
+     $(".js-source-states").select2();
+        $(".js-source-states-2").select2();
+   
+
+       
+    });
+
+
+</script>

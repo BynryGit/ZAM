@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    {% load humanize %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>YfinAdvisor | Customer Report</title>
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+
+
+    <style type="text/css">
+        @page {
+            size: letter portrait;
+            margin: 2cm;
+            border: 0pt solid white;
+            @frame header_frame {           /* Static Frame */
+                 -pdf-frame-content: header_content;
+                left: 50pt; width: 512pt; top: 15pt; height: 40pt;
+                border: 0pt solid white;
+            }
+            @frame footer_frame {           /* Another static Frame */
+                 -pdf-frame-content: footer_content;
+                left: 50pt; width: 512pt; top: 750pt; height: 20pt;
+                border: 0pt solid white;
+            }
+        }
+
+        .boxed {
+            border: 1px solid black;
+        }
+
+        .inside_box1 {
+            background-color: #7a489c;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: center;
+            padding-top: 6px;
+        }
+
+        .inside_box2 {
+            font-size: 14px;
+            text-align: center;
+            padding-top: 6px;
+            margin: 20px;
+        }
+
+        .inside_box3 {
+            font-size: 12px;
+            text-align: left;
+            padding-top: 2px;
+            padding-left: 8px;
+            margin: 0px;
+        }
+
+        .inside_box4 {
+            font-size: 12px;
+            text-align: center;
+            padding-top: 2px;
+            padding-left: 8px;
+            margin: 0px;
+        }
+
+        .inside_box5 {
+            background-color: #7a489c;
+            color: white;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            padding-top: 6px;
+        }
+
+        .inside_box6 {
+            background-color: #7a489c;
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            padding-top: 2px;
+        }
+
+        .inside_box7 {
+            font-size: 12px;
+            text-align: left;
+            font-weight: 500;
+            padding-top: 2px;
+            margin: 20px;
+        }
+
+        .inside_box8 {
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            padding-top: 2px;
+            margin: 20px;
+        }
+
+        .td_span {
+            font-size: 12px;
+            text-align: center;
+            font-weight: 500;
+            color: #858383;
+        }
+
+        .td_rule {
+            font-size: 14px;
+            text-align: center;
+            font-weight: 500;
+            color: #7a489c;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div id="header_content" style="border-bottom:1px solid black">
+<!--{#    <img src="/home/hduser/mypython_project/vikas/ZAM_PHASE_2/ZAM/static/images/zam-logo-1.png" alt="logo">#}-->
+    <img src="/home/ec2-user/ZAM/static/images/zam-logo-1.png" style="width: 130px" class="img-circle m-b" alt="logo">
+    <!--<img src="/home/admin1/ZAM_PHASE_2/ZAM/static/images/zam-logo-1.png" style="width: 130px" class="img-circle m-b" alt="logo">-->
+</div>
+<div id="footer_content" style="text-align: right; border-top:1px solid black; padding-top: 5px; margin-top: 5px">
+{#    page <pdf:pagenumber> of <pdf:pagecount>#}
+    page <pdf:pagenumber>
+</div>
+
+<br><br><br><br><br><br><br><br>
+
+<div style="padding-top: 0px">
+    <div style="text-align: center; margin: 0px">
+        <h1 style="font-size: 50px; color: #4dbd8a;">YOUR FINANCIAL PLAN</h1>
+    </div>
+
+    <div style="background-color: grey">
+        <h3 style="padding-left: 15px; padding-top:15px; padding-bottom:0px; margin:0px; font-size: 25px; background-color: grey;color: white">
+            {{user_gender}} {{ first_name|upper }} {{ last_name|upper }}</h3>
+        <div style="padding-bottom: 15px; margin-bottom: 15px;">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="font-size: 18px; background-color: grey;color: white">
+                Prepared On: {{pre_date}}</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label style="font-size: 18px; background-color: grey;color: white">
+                Next Review: {{nxt_date}}</label>
+        </div>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br>
+
+    <p style="font-size: 14px">For further questions, please mail us on <a href="info@yfinadvisor.com" target="_blank">info@yfinadvisor.com</a>
+    </p>
+</div>
+<pdf:nextpage />
+<h1 style="font-size: 25px; color: #4dbd8a; padding-top:10px; padding-bottom: 0px; margin-bottom: 0px">We are glad you are here!</h1>
+<label style="font-size: 14px">Dear {{user_gender}} {{ last_name }}</label>
+
+<p style="font-size: 14px; padding-top: 0px; margin-top: 0px;">Congratulations on taking a huge step towards Your Richest Life! Your Yfin Financial Plan
+    will show you how to take control of your money and give you a complete to-do list to get there. Financial Planning
+    may sound intimidating, but it is really just <span style="font-weight: 700">four simple things</span>.</p>
+
+<img src="/home/ec2-user/ZAM/static/images/new_wizard.png" style="width: 800px" class="img-circle m-b" alt="logo">
+<!--<img src="/home/admin1/ZAM_PHASE_2/ZAM/static/images/new_wizard.png" style="width: 800px" class="img-circle m-b" alt="logo">-->
+
+<p class="inside_box1" style="text-align: center;padding-left: 15px; border: 1px solid black">YOUR FINANCIAL SNAPSHOT</p>
+<br>
+<table>
+    <thead>
+    <th style="width: 15%"></th>
+    <th style="width: 70%">
+        <table style="border: 1px solid black">
+            <tbody>
+            <tr >
+                <td class="inside_box3" style="background-color: lightgrey">Age</td>
+                <td class="inside_box4" style="background-color: lightgrey">{{ age|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box3">Monthly Take home Pay</td>
+                <td class="inside_box4">{{ monthly_salary|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box3" style="background-color: lightgrey">Monthly Spending</td>
+                <td class="inside_box4" style="background-color: lightgrey">{{total_expense|intcomma}}</td>
+            </tr>
+            <tr>
+                <td class="inside_box3">CIBIL Credit Score</td>
+                <td class="inside_box4">{{cibil_score}}</td>
+            </tr>
+            <tr>
+                <td class="inside_box3" style="font-weight: 500;background-color: lightgrey">Savings</td>
+                <td class="inside_box4" style="color: lightgrey; background-color: lightgrey" >--</td>
+            </tr>
+            <tr>
+                <td class="inside_box4" style="font-weight: 0; background-color: lightgrey">Bank Savings Accounts</td>
+                <td class="inside_box4" style="font-weight: 0; background-color: lightgrey">{{ bank_saving|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box4" style="font-weight: 0; background-color: lightgrey">Other Savings</td>
+                <td class="inside_box4" style="font-weight: 0; background-color: lightgrey">{{ other_saving|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box3" style="font-weight: 500">Non Retirement Investments</td>
+                <td class="inside_box4" style="color: white">--</td>
+            </tr>
+            <tr>
+                <td class="inside_box4" style="font-weight: 0">Mutual Funds</td>
+                <td class="inside_box4" style="font-weight: 0">{{ mutual_fund|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box4" style="font-weight: 0">Direct Equity</td>
+                <td class="inside_box4" style="font-weight: 0">{{ direct_equity|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box3" style="font-weight: 500; background-color: lightgrey">Retirement Investments</td>
+                <td class="inside_box4" style="color: lightgrey; background-color: lightgrey">--</td>
+            </tr>
+            <tr>
+                <td class="inside_box4" style="font-weight: 0; background-color: lightgrey">PPF</td>
+                <td class="inside_box4" style="font-weight: 0; background-color: lightgrey">{{ provident_fund|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box4" style="font-weight: 0; background-color: lightgrey">NPF</td>
+                <td class="inside_box4" style="font-weight: 0; background-color: lightgrey">0</td>
+            </tr>
+            <tr>
+                <td class="inside_box3" style="font-weight: 500">Property</td>
+                <td class="inside_box4">{{ property_amount|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box3" style="font-weight: 500; background-color: lightgrey">Gold</td>
+                <td class="inside_box4" style="background-color: lightgrey">{{ gold_amount|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box3" style="font-weight: 500">Others</td>
+                <td class="inside_box4">0</td>
+            </tr>
+            <tr>
+                <td class="inside_box3" style="font-weight: 500; background-color: lightgrey">Mortgage</td>
+                <td class="inside_box4" style=" background-color: lightgrey">{{ mortgage|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box3" style="font-weight: 500">Credit Cards debt</td>
+                <td class="inside_box4">{{ credit_card_deb|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box3" style="font-weight: 500; background-color: lightgrey">Other Loans</td>
+                <td class="inside_box4" style="background-color: lightgrey">{{ other_loans|intcomma }}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </th>
+    <th style="width: 15%"></th>
+    </thead>
+</table>
+<br>
+<br>
+
+<table style="border: 1px solid black">
+    <thead>
+    <th class="inside_box5">TOTAL ASSETS</th>
+    <th class="inside_box5" style="color: black; background-color: white">minus</th>
+    <th class="inside_box5">TOTAL LIABILITIES</th>
+    <th class="inside_box5" style="color: black; background-color: white">equals</th>
+    <th class="inside_box5">NET WORTH</th>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="inside_box2">{{ product_amount|intcomma }}</td>
+        <td class="inside_box2">-</td>
+        <td class="inside_box2">{{ sum|intcomma }}</td>
+        <td class="inside_box2">=</td>
+        <td class="inside_box2">{{ total_sum|intcomma }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<p style="font-size: 10px"><span style="color: #7a489c; font-weight: 400">Note:</span> Your net worth is one measure of
+    your financial health. It changes as you pay down debts,
+    make investments, or take new loans. There's no "right" number, but it should grow each year.</p>
+
+<pdf:nextpage />
+<br>
+<h1 class="inside_box1" style="padding-left: 15px; border: 1px solid black">YOUR INCOME</h1>
+
+<p style="font-size: 14px">You told us that your take-home- pay is {{monthly_salary|intcomma}}. Remember, this will differ a lot from what is
+    your
+    "CTC"- we are talking of all the deductions, including taxes and other contributions you have before
+    the salary comes to you.</p>
+
+<br>
+
+<table>
+    <thead>
+    <th style="width: 25%"></th>
+    <th style="width: 50%">
+        <table>
+            <thead>
+                <th style="width:55%"></th>
+                <th style="width:20%"></th>
+                <th style="width:25%"></th>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="text-align:left; padding: 0px; margin:0px; font-size: 20px; font-weight: 800; color: #4dbd8a;">Take-home Salary</td>
+                <td style="padding: 0px; margin:0px; font-size: 20px; font-weight: 800; color: #4dbd8a;">=</td>
+                <td style="padding: 0px; text-align: right; margin:0px; font-size: 20px; font-weight: 800; color: #4dbd8a;">{{monthly_salary|intcomma}}</td>
+            </tr>
+            <tr>
+                <td style="text-align:left; padding: 0px; margin:0px; font-size: 20px; font-weight: 800; color: #4dbd8a;">Other Income</td>
+                <td style="padding: 0px; margin:0px; font-size: 20px; font-weight: 800; color: #4dbd8a;">=</td>
+                <td style="padding: 0px; text-align: right; margin:0px; font-size: 20px; font-weight: 800; color: #4dbd8a;">0</td>
+            </tr>
+            <tr>
+                <td style="text-align:left; padding: 0px; margin:0px; font-size: 20px; color: #7a489c;">Total Income</td>
+                <td style="padding: 0px; margin:0px; font-size: 20px; color: #7a489c;">=</td>
+                <td style="padding: 0px; text-align: right; margin:0px; font-size: 20px; color: #7a489c;">{{monthly_salary|intcomma}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </th>
+    <th style="width: 25%"></th>
+    </thead>
+</table>
+
+<!--{#<h1 style="padding: 0px; margin:0px; font-size: 30px; font-weight: 800; color: #4dbd8a;">Take-home Salary = Rs#}-->
+<!--{#    50,000</h1>#}-->
+<!--{##}-->
+<!--{#<h1 style="padding: 0px; margin:0px; font-size: 30px; font-weight: 800; color: #4dbd8a;">Other income = Rs 0</h1>#}-->
+<!--{##}-->
+<!--{#<p style="padding: 0px; margin:0px; font-size: 30px; color: #7a489c;">Total Income = Rs 50,000</p>#}-->
+
+<pdf:nextpage />
+<br>
+<h1 class="inside_box1" style="padding-left: 15px; border: 1px solid black">YOUR EXPENSES</h1>
+
+<p style="font-size: 13px; text-align: center; font-weight: 500; color: #858383">Nobody likes to budget, so to make this
+    important process a bit easier, we split spending
+    into two camps and provide rules of thumb about how much is too much.</p>
+
+<div style="font-size: 20px; font-weight: 500">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="color: #4dbd8a">ESSENTIALS</label>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="color: #7a489c"> + </label>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="color: #4dbd8a">CHOICES </label>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label style="color: #7a489c">=</label>
+    &nbsp;&nbsp;&nbsp;&nbsp;<label style="color: #4dbd8a">TOTAL SPENDING</label>
+</div>
+
+<table>
+    <tbody>
+    <tr>
+        <td style="border-right: 1px solid black;" class="td_span">
+            Housing
+        </td>
+        <td style="border-right: 1px solid black;" class="td_span">
+            Shopping
+        </td>
+        <td style="text-align: center"></td>
+    </tr>
+    <tr>
+        <td style="border-right: 1px solid black;" class="td_span">
+            Utilities
+        </td>
+        <td style="border-right: 1px solid black;" class="td_span">
+            Eating Out
+        </td>
+        <td style="text-align: center"></td>
+    </tr>
+    <tr>
+        <td style="border-right: 1px solid black;" class="td_span">
+            Groceries
+        </td>
+        <td style="border-right: 1px solid black;" class="td_span">
+            Personal Care
+        </td>
+        <td style="text-align: center"></td>
+    </tr>
+    <tr>
+        <td style="border-right: 1px solid black;" class="td_span">
+            Transportation
+        </td>
+        <td style="border-right: 1px solid black;" class="td_span">
+            Everything Else
+        </td>
+        <td style="text-align: center"></td>
+    </tr>
+    <tr>
+        <td style="border-right: 1px solid black;" class="td_span">
+            <br>
+        </td>
+        <td style="border-right: 1px solid black;" class="td_span">
+            <br>
+        </td>
+        <td style="text-align: center"></td>
+    </tr>
+    <tr>
+        <td style="border-right: 1px solid black;" class="td_rule">
+            RULE OF THUMB
+        </td>
+        <td style="border-right: 1px solid black;" class="td_rule">
+            RULE OF THUMB
+        </td>
+        <td class="td_rule">
+            RULE OF THUMB
+        </td>
+    </tr>
+    <tr>
+        <td style="border-right: 1px solid black; color: black" class="td_rule">
+            NO MORE THAN <span style="color: #4dbd8a">50%</span> OF YOUR NET INCOME
+        </td>
+        <td style="border-right: 1px solid black; color: black" class="td_rule">
+            NO MORE THAN <span style="color: #4dbd8a">30%</span> OF YOUR NET INCOME
+        </td>
+        <td style="color: black;" class="td_rule">
+            NO MORE THAN <span style="color: #4dbd8a">80%</span> OF YOUR NET INCOME
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<p style="font-size: 13px; font-weight: 500; color: #858383">
+    We like these rules of thumb because people typically need to set aside at least 20% of their income to achieve
+    their
+    Financial Priorities.
+</p>
+
+<p style="font-size: 13px; font-weight: 500; color: #858383">
+    But these guidelines are still pretty general- let's take a look at what your spending looks like.
+</p>
+
+<p style="font-size: 14px; font-weight: 500; color: #858383">
+    How you spend your money is honestly up to you but we are here to help you understand how much you need to put aside
+    to achieve your most important financial priorities.
+</p>
+
+<label style="font-size: 18px; font-weight: 500; color: #4dbd8a">ESSENTIALS ARE {{essential_precentage}}% OF YOUR NET INCOME</label>
+
+<table>
+    <thead>
+    <th style="width: 20%"></th>
+    <th style="width: 60%">
+        <table style="border: 1px solid black">
+            <thead>
+            <th class="inside_box6" style="color: #7a489c">--</th>
+            <th class="inside_box6"></th>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="inside_box7">Housing</td>
+                <td class="inside_box8">{{ housing|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box7">Utilities</td>
+                <td class="inside_box8">{{ utilities|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box7">Groceries</td>
+                <td class="inside_box8">{{ groceries|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box7">Transportation</td>
+                <td class="inside_box8">{{ transportation|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box7">Other Essentials</td>
+                <td class="inside_box8">{{ other_essentials|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box7">Total</td>
+                <td class="inside_box8">{{ total_essential|intcomma }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </th>
+    <th style="width: 20%"></th>
+    </thead>
+</table>
+<br>
+
+<label style="font-size: 18px; font-weight: 500; color: #4dbd8a">CHOICES ARE {{choices_precentage}}% OF YOUR NET INCOME</label>
+
+<table>
+    <thead>
+    <th style="width: 20%"></th>
+    <th style="width: 60%">
+        <table style="border: 1px solid black">
+            <thead>
+            <th class="inside_box6" style="color: #7a489c">--</th>
+            <th class="inside_box6"></th>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="inside_box7">Shopping</td>
+                <td class="inside_box8">{{ shopping|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box7">Eating Out</td>
+                <td class="inside_box8">{{ eating_out|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box7">Personal Care</td>
+                <td class="inside_box8">{{ personal_care|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box7">Others</td>
+                <td class="inside_box8">{{ others|intcomma }}</td>
+            </tr>
+            <tr>
+                <td class="inside_box7">Total</td>
+                <td class="inside_box8">{{ total_choices|intcomma }}</td>
+            </tr>
+            </tbody>
+        </table>
+        </th>
+    <th style="width: 20%"></th>
+    </thead>
+</table>
+
+<p style="font-size: 18px; font-weight: 500; color: #4dbd8a">Total Expenditure is {{expense_precentage}}% of your Net Income- {{total_expense|intcomma}}</p>
+
+<pdf:nextpage />
+<br>
+<h1 class="inside_box1" style="padding-left: 15px; border: 1px solid black">ACHIEVING FINANCIAL SECURITY</h1>
+
+<p style="font-size: 14px;">Now that we know where you stand, we can talk about your Financial Priorities. YfinAdvisoR
+    places three Priorities
+    above the rest:
+
+<p>
+
+<li style="font-size: 14px; padding-left: 20px">Emergency Fund</li>
+
+<li style="font-size: 14px; padding-left: 20px">Retirement</li>
+
+<li style="font-size: 14px; padding-left: 20px">Paying off debts</li>
+
+<p style="font-size: 14px;">These define your financial security and make it possible to accomplish other goals down the
+    road. To make sure you're fully protected, we emphasize hitting certain targets for these
+    goals before moving on to anything else.</p>
+
+<pdf:nextpage />
+<br>
+<div style="font-size: 40px; text-align: center;background-color: #f3f2f1; font-weight: bolder;
+border-bottom: 1px solid black; padding: 0px; margin: 0px; padding-top: 20px; ">
+    YOUR KEY STATS
+</div>
+
+<br>
+
+
+<table style="background-color: #f3f2f1; color: black; font-size: 18px; ">
+    <thead>
+    <th style="text-align: Center; padding-left: 8px; padding-top: 8px; ">WE ADVISE YOU TO SAVE</th>
+    <th style="padding-top: 8px; padding-bottom: 8px">
+        <table style="border-top: 1px solid black; border-bottom: 1px solid black; background-color: white">
+            <thead>
+            <th style="font-size: 32px; border-left: 1px solid black; width: 70%;margin: 0px; padding-top: 14px; padding-bottom: 0px; color: #4dbd8a">
+                {{saving_needed|intcomma}}
+            </th>
+            <th style="width: 30%; border-right: 1px solid black; font-size: 14px; text-align: left; padding-top: 5px; padding-bottom: 0px; padding-right: 5px">
+                PER MONTH
+            </th>
+            </thead>
+        </table>
+    </th>
+    <th style="text-align: center; padding-left: 8px; padding-top: 8px; ">TO YOUR FINANCIAL PRIORITIES</th>
+    </thead>
+</table>
+<br>
+<hr>
+<br>
+<label style="font-size: 16px; color: #0070a3; font-weight: 900 ">HOW THAT'S GOING TO HAPPEN</label>
+
+<table style="background-color: #f3f2f1; color: #858383; font-size: 14px; font-weight: bolder">
+    <thead style="padding-top: 10px; color: black;   ">
+    <th style="width: 39%;padding-left: 5px; padding-top: 10px; padding-bottom: 5px;">
+        WHERE YOUR MONEY GOES TODAY
+    </th>
+    <th style="width: 12%;border-right: 15px solid white; padding-top: 10px; padding-bottom: 5px;">
+
+    </th>
+    <th style="width: 37%; padding-left: 1px; padding-top: 10px; padding-bottom: 5px;">
+        WHAT IT NEEDS TO LOOK LIKE
+    </th>
+    <th style="width: 12%; padding-top: 10px; padding-bottom: 5px;">
+
+    </th>
+    </thead>
+    <tbody>
+    <tr>
+        <td style="padding-left: 10px">INCOME</td>
+        <td style="border-right: 15px solid white; color: #4dbd8a">{{monthly_salary|intcomma}}</td>
+        <td style="padding-left: 15px">INCOME</td>
+        <td style="color: #4dbd8a">{{monthly_salary|intcomma}}</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 10px">SAVINGS</td>
+        <td style="border-right: 15px solid white; color: #0070a3">{{monthly_savings|intcomma}}</td>
+        <td style="padding-left: 15px">SAVINGS</td>
+        <td style="color: #0070a3">{{saving_needed|intcomma}}</td>
+    </tr>
+    <tr>
+        <td style="padding-left: 10px; border-bottom: 5px solid white">SPENDING</td>
+        <td style="border-right: 15px solid white; border-bottom: 5px solid white; color: #0070a3">{{total_expense|intcomma}}</td>
+        <td style="padding-left: 15px; border-bottom: 5px solid white">SPENDING</td>
+        <td style="border-bottom: 5px solid white; color: #0070a3">{{spending_look_like|intcomma}}</td>
+    </tr>
+    <!--<tr>-->
+        <!--<td style="padding-top: 5px; padding-left: 10px">UNDER BUDGET BY:</td>-->
+        <!--<td style="padding-top: 6px; border-right: 15px solid white; color: darkred">{{under_budget|intcomma}}</td>-->
+        <!--<td style="padding-top: 6px; padding-left: 15px">BALANCED BUDGET</td>-->
+        <!--<td style="padding-top: 5px; color: #4dbd8a">Yes</td>-->
+    <!--</tr>-->
+    </tbody>
+</table>
+<br>
+<hr>
+
+<br>
+
+<label style="font-size: 16px; padding-bottom: 0px; margin-bottom: 0px; color: #0070a3; font-weight: 900 ">BOTTOM
+    LINE</label>
+
+<p style="font-size: 14px; padding-top: 0px; margin-top: 0px;">Changes in your day-to-day spending will make sure that
+    you don't spend more than you earn and that you
+    build the funding required to achieve your financial priorities in timeframe that makes sense for you.</p>
+
+<table style="background-color: #f3f2f1; color: black; font-size: 18px; ">
+    <thead>
+    <th style="font-size: 40px; width: 30%;margin: 0px; padding-top: 14px; padding-bottom: 0px; color: darkred">
+        {{saving_needed|intcomma}}
+    </th>
+    <th style="width: 70%; font-size: 15px; text-align: left; padding-top: 5px; padding-bottom: 0px; padding-right: 5px">
+        <p style="padding-bottom: 0px; margin-bottom: 0px; color: darkred">MUST BE REALLOCATED TOWARD FINANCIAL
+            PRIORITIES</p>
+
+        <p style="padding-top: 0px; margin-top: 0px; color: #858383">IN ORDER TO ACHIEVE YOUR GOALS</p>
+    </th>
+    </thead>
+</table>
+<br>
+
+<p style="font-size: 14px; text-align: center">
+    We're not here to micromanage your lifestyle. We know that making budget changes is both a tough and personal
+    process.
+    If you ever have specific questions about a way that you want to cut your spending, we can always discuss it on a
+    follow-up
+    call or via email. Believe me, these cuts may be hard at first, but they will be worth it you make fabulous progress
+    on your
+    Financial Priorities!
+</p>
+
+{% if description != '' %}
+<pdf:nextpage />
+<br>
+<h1 class="inside_box1" style=" background-color: #4dbd8a; color: black">YOUR GOALS</h1>
+<p style="font-size: 14px; font-weight: 500; color: #858383">
+    {{description}}
+</p>
+
+{% endif %}
+
+<pdf:nextpage />
+<br>
+<h1 class="inside_box1" style=" background-color: #4dbd8a; color: black">YOUR GOALS</h1>
+
+<br>
+
+<table>
+    <thead>
+    <th style="width: 10%"></th>
+    <th style="width: 80%">
+        <div style="border: 1px solid black;">
+            <p style="font-size: 30px; padding-top: 15px; color:#7a489c">Monthly Savings: {{monthly_savings|intcomma}}</p>
+        </div>
+    </th>
+    <th style="width: 10%"></th>
+    </thead>
+</table>
+
+<br>
+<br>
+
+
+<table>
+    <thead>
+    <th style="width: 10%"></th>
+    <th style="width: 80%">
+        <table style="border: 1px solid black">
+            <thead>
+            <th class="inside_box6" style="font-size: 16px; font-weight: 600; padding-top: 4px; width: 20%">Order</th>
+            <th class="inside_box6" style="font-size: 16px; font-weight: 600; padding-top: 4px; width: 50%">Goal</th>
+            <th class="inside_box6" style="font-size: 16px; font-weight: 600; padding-top: 4px; width: 30%">Achieved
+            </th>
+            </thead>
+            <tbody style="color: #4dbd8a">
+                {% for goals in  goal_per_obj %}
+                    <tr>
+                        <td class="inside_box7" style="font-size: 16px; text-align: center; padding-top: 4px;">{{goals.index}}</td>
+                        <td class="inside_box8" style="font-size: 16px; text-align: left; padding-top: 4px;">{{goals.goal_name}}</td>
+                        <td class="inside_box8" style="font-size: 16px; text-align: center; padding-top: 4px;">{{goals.goal_status}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </th>
+    <th style="width: 10%"></th>
+    </thead>
+</table>
+
+<pdf:nextpage />
+{% for goals in  goal_per_obj %}
+    {% if goals.goal_cat_name == 'Emergency Fund' %}
+        <br>
+        <h1 class="inside_box1" style=" background-color: #4dbd8a; color: black">GOAL {{goals.index}}: {{goals.goal_name|upper}}</h1>
+
+        <br>
+
+        <p style="font-size: 14px; font-weight: 500; color: #858383">
+            We believe that everyone should have an Emergency Fund equal to 6 months of their net income,
+            and it should only be used in emergencies like Job loss, medical emergency, etc.
+        </p>
+
+        <p style="font-size: 14px; font-weight: 500; color: #858383">
+            You should not use this fund for leisure purposes like vacation, shopping etc and once you break
+            this fund for some emergency, it should again be funded ASAP.
+        </p>
+
+        <table>
+            <tbody>
+            <thead>
+                <th style="width:70%"></th>
+                <th style="width:5%"></th>
+                <th style="width:25%"></th>
+            </thead>
+            <tr>
+                <td>
+                    <p style="font-size: 24px; font-weight: 600; color:#7a489c; padding-bottom: 0px; margin-bottom: 0px">Your Net Income per month</p>
+                </td>
+                <td style="text-align:left">
+                    <p style="font-size: 24px; font-weight: 600; color:#7a489c; padding-bottom: 0px; margin-bottom: 0px"> - </p>
+                </td>
+                <td style="text-align:right">
+                    <p style="font-size: 24px; font-weight: 600; color:#7a489c; padding-bottom: 0px; margin-bottom: 0px">{{monthly_salary|intcomma}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p style="font-size: 24px; font-weight: 600; color:#7a489c; padding-bottom: 0px; margin-bottom: 0px">Your Emergency Fund should have</p>
+                </td>
+                <td style="text-align:left">
+                    <p style="font-size: 24px; font-weight: 600; color:#7a489c; padding-bottom: 0px; margin-bottom: 0px"> - </p>
+                </td>
+                <td style="text-align:right">
+                    <p style="font-size: 24px; font-weight: 600; color:#7a489c; padding-bottom: 0px; margin-bottom: 0px">{{goals.goal_amount|intcomma}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p style="font-size: 24px; font-weight: 600; color:#7a489c; padding-bottom: 0px; margin-bottom: 0px">Funds you already have</p>
+                </td>
+                <td style="text-align:left">
+                    <p style="font-size: 24px; font-weight: 600; color:#7a489c; padding-bottom: 0px; margin-bottom: 0px"> - </p>
+                </td>
+                <td style="text-align:right">
+                    <p style="font-size: 24px; font-weight: 600; color:#7a489c; padding-bottom: 0px; margin-bottom: 0px">{{bank_saving|intcomma}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p style="font-size: 24px; font-weight: 600; color:#7a489c; padding-bottom: 0px; margin-bottom: 0px">Funds required to be added</p>
+                </td>
+                <td style="text-align:left">
+                    <p style="font-size: 24px; font-weight: 600; color:#7a489c; padding-bottom: 0px; margin-bottom: 0px"> - </p>
+                </td>
+                <td style="text-align:right">
+                    <p style="font-size: 24px; font-weight: 600; color:#7a489c; padding-bottom: 0px; margin-bottom: 0px">{{goals.goal_amount_required|intcomma}}</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <!--<table>-->
+            <!--<thead>-->
+            <!--<th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">PLAN</th>-->
+            <!--<th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Aggressive</th>-->
+            <!--<th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Balanced</th>-->
+            <!--<th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Low Risk</th>-->
+            <!--<th style="color: #4dbd8a; font-size: 16px; font-weight: 500">Zero Risk</th>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr>-->
+                <!--<td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">EMI</td>-->
+                <!--<td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_agg|intcomma}}</td>-->
+                <!--<td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_blnc|intcomma}}</td>-->
+                <!--<td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_low|intcomma}}</td>-->
+                <!--<td style="text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_zero|intcomma}}</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+        <!--</table>-->
+
+        <pdf:nextpage />
+
+    {% elif goals.goal_cat_name == 'Retirement Planning' %}
+        <br>
+        <h1 class="inside_box1" style=" background-color: #4dbd8a; color: black">GOAL {{goals.index}}: {{goals.goal_name|upper}}</h1>
+
+        <p style="font-size: 24px; font-weight: 600; color:#7a489c; padding: 0px; margin: 0px">WHY RETIREMENT SHOULD BE YOUR
+            PRIORITY?</p>
+
+        <table >
+            <tbody>
+            <tr>
+                <td style="width: 45%; border-right: 1px solid black; color: #4dbd8a; text-align: center; font-size: 16px; font-weight: 600" >
+                    INFLATION
+                </td>
+                <td style="width: 33%; border-right: 1px solid black; color: #4dbd8a; text-align: center; font-size: 16px; font-weight: 600" >
+                    HEALTHCARE
+                </td>
+                <td style="width: 32%; text-align: center; color: #4dbd8a; text-align: center; font-size: 16px; font-weight: 600">
+                    INDEPENDENCE
+                </td>
+            </tr>
+            <tr>
+                <td style="border-right: 1px solid black; color: #858383; font-size: 14px; font-weight: 600;  margin: 20px">
+                    Put simply, inflation means higher prices. By the time you retire, prices will likely be higher than they
+                    are
+                    today, which means a rupee will not go as far tomorrow as it does today. Since each dollar will buy slightly
+                    less
+                    in the future, the answer is simply to save more.
+                </td>
+                <td style="border-right: 1px solid black; color: #858383; font-size: 14px; font-weight: 600;  margin: 20px">
+                    On one hand, advances in health care mean that we’re living longer.
+                    On the other hand, that means caring for ourselves in old age is more expensive.
+                </td>
+                <td style="text-align: center; color: #858383; font-size: 14px; font-weight: 600;  margin: 20px">
+                    Unlike old generations, who could count on Social Security and large pensions,
+                    we’re largely on our own to fund our retirement.
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <p style="font-size: 24px; font-weight: 600; color:#7a489c; padding: 0px; margin: 0px">Am I On Track?</p>
+
+        <table style="border-bottom: 1px solid grey; text-align:center">
+            <tbody>
+            <tr style="border-top: 1px solid grey; ">
+                <td style="width: 25%; color: #fff; padding-top: 5px; font-size: 16px; font-weight: 600; border-left: 1px solid grey;" >
+                    --
+                </td>
+                <td style="width: 50%; text-align:center; color: #4dbd8a; padding-top: 5px; font-size: 16px; font-weight: 600" >
+                    Current Status
+                </td>
+                <td style="width: 25%; color: #fff; padding-top: 5px; font-size: 16px; font-weight: 600; border-right: 1px solid grey;">
+                    --
+                </td>
+            </tr>
+            <tr style="border: 1px solid grey;">
+                <td style="color: #858383; padding-top: 5px;  font-size: 14px; font-weight: 600" >
+                    <p style="padding: 0px;margin: 0px">I Save</p>
+                    <p style="padding: 0px;margin: 0px; color: #7a489c;">INR {{goals.goal_amount_allocated|intcomma}}</p>
+                    <p style="padding: 0px;margin: 0px">Per Month</p>
+                </td>
+                <td style="color: #858383; padding-top: 5px;  font-size: 14px; font-weight: 600" >
+                    <p style="padding: 0px;margin: 0px">My Post- Retirement Income Is*</p>
+                    <p style="padding: 0px;margin: 0px; "><span style="color: #7a489c;">INR {{goals.goal_amount|intcomma}}</span> Per Year</p>
+                    <p style="padding: 0px;margin: 0px; font-size: 12px;">(In Today's Rupees)</p>
+                </td>
+                <td style="color: #858383; padding-top: 5px; font-size: 14px; font-weight: 600">
+                    <p style="padding: 0px;margin: 0px">Which Is</p>
+                    <p style="padding: 0px;margin: 0px;  color: #7a489c;">{{goals.goal_pre_precentage}}%</p>
+                    <p style="padding: 0px;margin: 0px">Of My Current Salary</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <table style="border-bottom: 1px solid grey; text-align:center">
+            <tbody>
+            <tr style="border-top: 1px solid grey; ">
+                <td style="width: 25%; color: #fff; padding-top: 5px; font-size: 16px; font-weight: 600; border-left: 1px solid grey;" >
+                    --
+                </td>
+                <td style="width: 50%; text-align:center; color: #4dbd8a; padding-top: 5px; font-size: 16px; font-weight: 600" >
+                    YfinAdvisor Recommends
+                </td>
+                <td style="width: 25%; color: #fff; padding-top: 5px; font-size: 16px; font-weight: 600; border-right: 1px solid grey;">
+                    --
+                </td>
+            </tr>
+            <tr style="border: 1px solid grey;">
+                <td style="color: #858383; padding-top: 5px;  font-size: 14px; font-weight: 600" >
+                    <p style="padding: 0px;margin: 0px">I Should Save</p>
+                    <p style="padding: 0px;margin: 0px; color: #7a489c;">INR {{goals.goal_emi|intcomma}}</p>
+                    <p style="padding: 0px;margin: 0px">Per Month</p>
+                </td>
+                <td style="color: #858383; padding-top: 5px;  font-size: 14px; font-weight: 600" >
+                    <p style="padding: 0px;margin: 0px">My Post- Retirement Income Is*</p>
+                    <p style="padding: 0px;margin: 0px; ">
+                        <span style="color: #7a489c;">INR {{goals.goal_final_value|intcomma}}</span> Per Year </p>
+                    <p style="padding: 0px;margin: 0px; font-size: 12px;">(In Today's Rupees)</p>
+                </td>
+                <td style="color: #858383; padding-top: 5px; font-size: 14px; font-weight: 600">
+                    <p style="padding: 0px;margin: 0px">Which Is</p>
+                    <p style="padding: 0px;margin: 0px;  color: #7a489c;">{{goals.goal_future_precentage}}%</p>
+                    <p style="padding: 0px;margin: 0px">Of My Current Salary</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <pdf:nextpage />
+    {% elif goals.goal_cat_name == 'Education' %}
+        <br>
+        <h1 class="inside_box1" style=" background-color: #4dbd8a; color: black">GOAL {{goals.index}}: {{goals.goal_name|upper}}</h1>
+
+        <p style="font-size: 14px; font-weight: 500; color: #858383">
+            Cost of Education has increased between 10-20% per annum for last 2 decades. This is much more than retail inflation and much higher than interest on Fixed Deposits. One must invest in Equity funds to get higher returns in order to sustain the high Education Inflation.
+        </p>
+
+        <p style="font-size: 14px; font-weight: 500; color: #7a489c">
+            School fees in India has risen by more than 150% in 10 years from 2005 to 2015. This means 13% rise annually.
+        </p>
+
+        <p style="font-size: 14px; font-weight: 500; color: #4dbd8a">
+            IIT fees has gone up from Rs 50,000 for the 4 year course to Rs 8 lac in 20 years. This means a 15% rise in fee annually.
+        </p>
+
+        <p style="font-size: 14px; font-weight: 500; color: #7a489c">
+            IIM-A fees have jumped significantly from Rs 1.5 Lacs in 2002 to Rs 19.5 Lacs in 2016. This means 20% rise in fees annually.
+        </p>
+
+        <p style="font-size: 16px; font-weight: 500">Amount required- {{goals.goal_amount|intcomma}}</p>
+
+        <p style="font-size: 16px; font-weight: 500">Target- {{goals.goal_target_year}}</p>
+
+        <table>
+            <thead>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">PLAN</th>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Aggressive</th>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Balanced</th>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Low Risk</th>
+            <th style="color: #4dbd8a; font-size: 16px; font-weight: 500">Zero Risk</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">EMI</td>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_agg|intcomma}}</td>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_blnc|intcomma}}</td>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_low|intcomma}}</td>
+                <td style="text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_zero|intcomma}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <pdf:nextpage />
+    {% elif goals.goal_cat_name == 'Payback Loans' %}
+        <br>
+        <h1 class="inside_box1" style=" background-color: #4dbd8a; color: black">GOAL {{goals.index}}: {{goals.goal_name|upper}}</h1>
+
+        <p style="font-size: 14px; font-weight: 500; color: #858383">
+            Debt problems are a reality for each one of us, at one point or the other one has witnessed some or more of these problems. You could have faced it because of a special situation, such as an illness or a family member's wedding, or simply because you went on a shopping binge, and ended up spending far more than your means.
+        </p>
+
+        <p style="font-size: 14px; font-weight: 500; color: #7a489c">
+            PAYING OFF EXPENSIVE DEBT AT THE EARLIEST IS A WISE DECISION.
+        </p>
+
+        <p style="font-size: 16px; font-weight: 500">Amount required- {{goals.goal_amount|intcomma}}</p>
+
+        <p style="font-size: 16px; font-weight: 500">Target- {{goals.goal_target_year}}</p>
+
+        <table>
+            <thead>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">PLAN</th>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Aggressive</th>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Balanced</th>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Low Risk</th>
+            <th style="color: #4dbd8a; font-size: 16px; font-weight: 500">Zero Risk</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">EMI</td>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_agg|intcomma}}</td>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_blnc|intcomma}}</td>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_low|intcomma}}</td>
+                <td style="text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_zero|intcomma}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <pdf:nextpage />
+    {% elif goals.goal_cat_name == 'Housing' %}
+        <br>
+        <h1 class="inside_box1" style=" background-color: #4dbd8a; color: black">GOAL {{goals.index}}: {{goals.goal_name|upper}}</h1>
+
+        <p style="font-size: 14px; font-weight: 500; color: #858383">
+            Every one of us wants to have his own house to live in and for that one should at least plan to save for the down payment of the house at the earliest. When planning for the down payment, rise in the property prices should be accounted for as your dream house today might not be of the same value in the future.
+        </p>
+
+        <p style="font-size: 16px; font-weight: 500">Amount required- {{goals.goal_amount|intcomma}}</p>
+
+        <p style="font-size: 16px; font-weight: 500">Target- {{goals.goal_target_year}}</p>
+
+        <table>
+            <thead>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">PLAN</th>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Aggressive</th>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Balanced</th>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Low Risk</th>
+            <th style="color: #4dbd8a; font-size: 16px; font-weight: 500">Zero Risk</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">EMI</td>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_agg|intcomma}}</td>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_blnc|intcomma}}</td>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_low|intcomma}}</td>
+                <td style="text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_zero|intcomma}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <pdf:nextpage />
+    {% elif goals.goal_cat_name == 'Wedding' %}
+        <br>
+        <h1 class="inside_box1" style=" background-color: #4dbd8a; color: black">GOAL {{goals.index}}: {{goals.goal_name|upper}}</h1>
+
+        <p style="font-size: 14px; font-weight: 500; color: #858383">
+            Budget of a wedding varies for everyone, but whatever the budget one should start saving for the big day as soon as possible.
+        </p>
+
+        <p style="font-size: 16px; font-weight: 500">Amount required- {{goals.goal_amount|intcomma}}</p>
+
+        <p style="font-size: 16px; font-weight: 500">Target- {{goals.goal_target_year}}</p>
+
+        <table>
+            <thead>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">PLAN</th>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Aggressive</th>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Balanced</th>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Low Risk</th>
+            <th style="color: #4dbd8a; font-size: 16px; font-weight: 500">Zero Risk</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">EMI</td>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_agg|intcomma}}</td>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_blnc|intcomma}}</td>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_low|intcomma}}</td>
+                <td style="text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_zero|intcomma}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <pdf:nextpage />
+    {% else %}
+        <br>
+        <h1 class="inside_box1" style=" background-color: #4dbd8a; color: black">GOAL {{goals.index}}: {{goals.goal_name|upper}}</h1>
+
+        <p style="font-size: 14px; font-weight: 500; color: #858383">
+            You need Rs {{goals.goal_amount|intcomma}} by {{goals.goal_target_year}} for your goal '{{goals.goal_name|upper}}'.
+        </p>
+
+        <p style="font-size: 16px; font-weight: 500">Amount required- {{goals.goal_amount|intcomma}}</p>
+
+        <p style="font-size: 16px; font-weight: 500">Target- {{goals.goal_target_year}}</p>
+
+        <table>
+            <thead>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">PLAN</th>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Aggressive</th>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Balanced</th>
+            <th style="border-right: 1px solid black; color: #4dbd8a; font-size: 16px; font-weight: 500">Low Risk</th>
+            <th style="color: #4dbd8a; font-size: 16px; font-weight: 500">Zero Risk</th>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">EMI</td>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_agg|intcomma}}</td>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_blnc|intcomma}}</td>
+                <td style="border-right: 1px solid black; text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_low|intcomma}}</td>
+                <td style="text-align: center; color: #7a489c; font-size: 16px; font-weight: 500">{{goals.goal_zero|intcomma}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <pdf:nextpage />
+    {% endif %}
+{% endfor %}
+
+</body>
+
+</html>

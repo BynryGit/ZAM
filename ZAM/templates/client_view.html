@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>ZAM | Client View</title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/dropzone.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/sweetalert/lib/sweet-alert.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}"/>
+    <link rel="stylesheet"
+          href="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.css' %}"/>
+    <link rel="stylesheet" href="{% static 'dataTables.tableTools.css' %}"/>
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <style type="text/css">
+        .wid {
+            min-width: 71px;
+        }
+
+        .pan-heading {
+            color: inherit;
+            font-weight: 600;
+            padding: 22px 4px;
+            transition: all .3s;
+            border: 1px solid transparent;
+        }
+
+        .wid {
+            min-width: 65px;
+        }
+
+        .lege {
+            padding-bottom: 1%;
+
+        }
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .widadd {
+            min-width: 71px !important;
+        }
+
+        .mod {
+            min-width: 79px;
+        }
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        .btn-primary2:hover {
+
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2:focus {
+
+            background-color: transparent;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+
+        }
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        .bac-clr {
+            background: linear-gradient(to left, #fff -20%, #7160A9 40%) repeat scroll 0% 0% !important;
+            border: 1px solid #E4E5E7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+        }
+
+        #side-menu li .nav-second-level li a {
+            color: #FFFFFF;
+        }
+
+        .hpanel.hblue .panel-body {
+            border-top: 2px solid #7160A9;
+
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+        .small-logo {
+            display: none;
+            text-align: center;
+            padding-top: 6px;
+            font-size: 28px;
+            font-weight: 800;
+            float: left;
+            display: block;
+            color: #7160A9;
+
+        }
+
+        .text-primary {
+            color: #7160A9;
+        }
+
+        .margin {
+            margin-bottom: 15px;
+
+        }
+
+        #wizardControl .nav-tabs .active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+        }
+        #communication_table_wrapper tr td{
+				text-align: center;        
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<div class="splash" style="opacity:0.4;" id="load">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+
+    <!-- <div id="logo" class="light-version">
+        <span>
+            ZAM
+        </span>
+    </div> -->
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo">
+            <span class="text-primary">Zeus Asset Management</span>
+        </div>
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-speaker"></i>
+                    </a>
+
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-mail"></i>
+                        {% if request.session.user_role == 'Marketing Manager' %}
+                        <span class="label label-success">{{total_count}}</span>
+                        {% endif %}
+                    </a>
+                    {% if request.session.user_role == 'Marketing Manager' %}
+                    <ul class="dropdown-menu hdropdown animated flipInX">
+                        <div class="title">
+                            You have {{total_count}} new messages
+                        </div>
+                        <li>
+                            <a href="/open-discussion-forum/">
+                                Question ({{question_count}})
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/open-discussion-forum/">
+                                Response ({{response_count}})
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/open-discussion-forum/">
+                                Reply ({{responseto_count}})
+                            </a>
+                        </li>
+                        <li class="summary"><a href="/open-discussion-forum/">See All Messages</a></li>
+                    </ul>
+                    {% endif %}
+                </li>
+                <li class="dropdown">
+                    <a href="/signing-out/">
+                        <i title="Logout" class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.full_name }}</span><br>
+                <small class="text-muted">{{ request.session.user_role }}</small>
+
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Marketing Manager' %}
+                <li class="active">
+                    <a href="/crm-index/"> <span class="nav-label">Client Relationship Management</span></a>
+                </li>
+            {% endif %}
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+            <li><a href="/open-research-page/?tab_id=1">Research</a></li>
+            {% endif %}
+               <li ><a href="/open-discussion-forum/">Discussion Forum</a></li>
+              {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+                <li class="treeview">
+                <a href="#"><span class="nav-label">Security Data Management</span><span class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/open-security-page/">Security</a></li>
+                    <li><a href="/open-security-price-page/">Price</a></li>
+                </ul>
+            </li>
+            {% endif %}
+	        {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' %}
+	           <li>
+	                    <a href="/open-trade/"> <span class="nav-label">Trade</span></a>
+	                </li>
+	                <li>
+	                    <a href="/open-position/"> <span class="nav-label">Position</span></a>
+	                </li>
+	        {% endif %} 
+            <li>        
+                <a href="/index/"> <span class="nav-label">Dashboard</span></a>
+            </li>
+            {% if request.session.user_role == 'Super Admin' %}
+            <li class="treeview"><a href="#"><span class="nav-label">Planning Tool</span><span class="fa arrow"></span>
+            </a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/open-YFinAdvisor-index/">Planning Tool Input</a></li>
+                    <li><a href="/open-YFinAdvisor-customer/">Customer</a></li>
+                </ul>
+            </li>
+            {% endif %} {% if request.session.user_role == 'Super Admin' or request.session.user_role == 'Admin' %}
+            <li><a href="/open-user-index/"> <span class="nav-label">User Management</span></a></li>
+            {% endif %}
+                <li>
+                    <a href="/open-rename-password/"> <span class="nav-label">Change Password</span></a>
+                </li>
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+
+
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel">
+            <div class="bac-clr">
+
+                <h3 style="display:inline;" class="font-light m-b-xs font-col">
+                    <a href="/crm-index/" style="color:#FFFFFF;">Client Relationship Management</a> >
+                </h3>
+                <h4 style="display:inline;" class="font-light m-b-xs font-col">
+                    View Client
+                </h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="content animate-panel">
+        <div class="hpanel hblue">
+            <div class="panel-body">
+
+                <!--   <form name="simpleForm" novalidate id="simpleForm" action="#" method="post"> -->
+                <div class="text-left m-b-md" id="wizardControl">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#tab-1"><h5>Client Basic Info</h5></a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-2"><h5>Client IP</h5></a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-3"><h5>Contact Person</h5></a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-4"><h5>Communication Log</h5></a></li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane active">
+                        <!-- ---------------Person Details------------------- -->
+                        <div class="hpanel hgreen">
+                            <div>
+                                <legend class="lege">Firm Details
+                                    <div class="pull-right">
+                                        <a href="/crm-index/" class="btn btn-outline btn-danger2">Cancel</a>&nbsp;&nbsp;
+                                        <button type="button" id="edit_basic"
+                                                class="btn w-xs btn-outline btn-success wid" value="Edit">&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;</button>
+                                    </div>
+                                </legend>
+
+                            </div>
+
+                            <form id="client_view" method="POST">
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label id="lbl_name">Name*</label>
+                                        <input type="text" name="txt_firm_name" value="{{ client.txt_firm_name }}"
+                                               id="txt_firm_name" required class="form-control">
+                                        <input type="hidden" id="ed_sts" value="0"></input>
+                                        <input type="hidden" name="client_id" value="{{ client.client_id }}"></input>
+                                    </div>
+
+                                    <div class="form-group col-lg-6">
+                                        <label id="lbl_type">Type*</label>
+                                        <select class="form-control js-source-states" name="select_firm_type"
+                                                id="select_firm_type">
+                                            <option value="{{ client.select_firm_type }}"
+                                                    selected>{{ client.select_firm_type.firm_name }}</option>
+                                            {% for type in firm_type %}
+                                                <option value="{{ type.firm_type_id }}">{{ type.firm_type_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-lg-4">
+                                        <label>Contact No</label><label id="lbl_contact_no" style="color:white">&nbsp
+                                        </label> 
+                                        <input type="text" class="form-control"
+                                               onkeypress="return validateFloatKeyPresss(this,event);"
+                                               value="{{ client.txt_firm_contact_no }}"
+                                               id="txt_firm_contact_no" name="txt_firm_contact_no">
+                                    </div>
+                                    <div class="form-group col-lg-4">
+                                        <label id="lbl_email"> Email ID*</label><label id="lbl_emailc" style="color:white">&nbsp </label>
+                                        <input type="email" id="txt_firm_email_add"
+                                               value="{{ client.txt_firm_email_add }}" class="form-control"
+                                               name="txt_firm_email_add">
+                                    </div>
+
+                                    <div class="form-group col-lg-4">
+                                        <label>Relationship Manager</label>
+                                        <input type="text" value="{{ client.txt_rln_manag }}" name="txt_rln_manag"
+                                               id="txt_rln_manag" class="form-control">
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label id="lbl_add">Address Line 1*</label>
+                                        <input type="text" id="txt_address_line1" value="{{ client.txt_address_line1 }}"
+                                               name="txt_address_line1" class="form-control" name="company">
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <label>Adrees Line 2</label>
+                                        <input type="text" id="txt_address_line2" value="{{ client.txt_address_line2 }}"
+                                               name="txt_address_line2" class="form-control" name="company">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-lg-3">
+                                        <label id="lbl_country">Country*</label>
+                                        <select class="form-control js-source-states" name="client_country"
+                                                id="client_country">
+                                            <option value="{{ client.client_country }}"
+                                                    selected>{{ client.client_country.country_name }}</option>
+                                            {% for country in country_list %}
+                                                <option value="{{ country.country_id }}">{{ country.country_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-lg-3">
+                                        <label>State</label>
+                                        <input type="text" id="select_state" value="{{ client.select_state }}"
+                                               name="select_state"
+                                               class="form-control">
+                                    </div>
+
+                                    <div class="form-group col-lg-3">
+                                        <label>City</label>
+                                        <input type="text" id="select_city" value="{{ client.select_city }}"
+                                               name="select_city"
+                                               class="form-control">
+                                    </div>
+
+                                    <div class="form-group col-lg-3">
+                                        <label>Pincode</label>
+                                        <input type="text" id="txt_pin_code" onkeypress="return isNumberKey(event)"
+                                               value="{{ client.txt_pin_code }}"
+                                               class="form-control" name="txt_pin_code">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-lg-12">
+                                        <label>Note(s)</label>
+																<textarea style="resize: none;" class="form-control"
+                                                                          id="txt_note"
+                                                                          name="txt_note">{{ client.txt_note }}
+                                       			</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label id="lbl_pri">Client Priority*</label>
+                                        <select class="form-control js-source-states" name="client_priority"
+                                                id="client_priority">
+                                            <option value="{{ client.client_priority.priority_id }}"
+                                                    selected>{{ client.client_priority.priority_name }}</option>
+                                            {% for prior in priority %}
+                                                <option value="{{ prior.priority_id }}">{{ prior.priority_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-lg-6">
+                                        <label>Reference Person</label>
+                                        <input type="text" id="refrence_person" value="{{ client.refrence_person }}"
+                                               class="form-control" name="refrence_person"></input>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <!-- ---------------Contact Person Details------------------- -->
+                    <div id="tab-3" class="tab-pane">
+                        <legend class="lege">Contact Person Details
+                            <div class="pull-right">
+                                <!-- <a type="button" class="btn w-xs btn-outline btn-primary2  widadd" data-toggle="modal"
+                                   data-target="#contactPerson">&nbsp;&nbsp;Add&nbsp;&nbsp;</a> -->
+                            </div>
+                        </legend>
+
+
+                        <form id="contact_person" method="POST">
+                            <div class="row">
+                                <input type="hidden" value="{{ client.client_id }}" name="client_id"></input>
+
+                                <div class="form-group col-lg-6">
+                                    <label id="lbl_first_name">First Name*</label>
+                                    <input type="text" class="form-control" required id="txt_firm_contact_person"
+                                           name="txt_firm_contact_person">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label id="lbl_last_name">Last Name*</label>
+                                    <input type="text" class="form-control" required id="txt_firm_last_contact_person"
+                                           name="txt_firm_last_contact_person">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label id="lbl_cont_no">Contact No*</label>
+                                    <input type="text" onkeypress="return validateFloatKeyPresss(this,event);" required
+                                           id="txt_firm_contact_pareson_contact_no"
+                                           name="txt_firm_contact_pareson_contact_no" class="form-control ">
+                                </div>
+
+                                <div class="form-group col-lg-6">
+                                    <label id="lbl_contact_email">Email ID*</label>
+                                    <input type="email" required id="txt_contact_email_add" class="form-control"
+                                           name="txt_contact_email_add">
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="text-right m-t-xs">
+                            <a class="btn btn-outline btn-danger margin" style=" margin-right:7px;" href="/crm-index/">Cancel</a>
+                            <button class="btn btn-outline btn-success margin" id="add_contact_person">&nbsp; Save
+                                &nbsp;</button>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="contact_person_table">
+                                    <thead>
+                                    <tr>
+                                        <!-- <th><span>Sr.No</span></th> -->
+                                        <th><span>First Name</span></th>
+                                        <th><span>Last Name</span></th>
+                                        <th><span>Contact No</span></th>
+                                        <th><span>Email Id</span></th>
+                                        <!-- <th><span>D</span></th> -->
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for cnt in contact_list %}
+                                        <tr>
+                                            <!-- <td>1</td> -->
+                                            <td>{{ cnt.first_name }}</td>
+                                            <td>{{ cnt.last_name }}</td>
+                                            <td>{{ cnt.contact_person_contact_no }}</td>
+                                            <td>{{ cnt.contact_person_email_id }}</td>
+                                            <!-- <td> <a class="delete table-link danger deleterow"  id= '+response.exercise_list[i].ex_work_id+'  style="cursor: pointer;" ><span class="fa-stack"><i class="fa fa-square fa-stack-2x"></i>' +
+                                                                    '<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i> </span></a> </td> -->
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- ---------------Other Details------------------- -->
+                    <div id="tab-4" class="tab-pane">
+                        <legend class="lege">Communication Log
+                            <div class="pull-right">
+                                <!-- <a type="button" href="/client-communication/?client_id={{ client.client_id }}"
+                                   class="btn w-xs btn-outline btn-success wid">Search</a> -->
+                                <a type="button" class="btn w-xs btn-outline btn-primary2 wid" data-toggle="modal"
+                                   data-target="#addCommunication">Add Communication</a>
+                            </div>
+                        </legend>
+
+                        <div class="form-group">
+
+                            <div class="row">
+                                <input type="hidden" id="s_client_id" value="{{ client.client_id }}"></input>
+
+                                <div class="form-group col-lg-3">
+                                    <label>Type</label><!-- <label id="lbl_type" style="color:white">&nbsp Type</label> -->
+                                    <select class="form-control js-source-states" required name="comm_type"
+                                            id="comm_type">
+                                        <option value='' selected></option>
+                                        {% for types in com_types %}
+                                            <option value="{{ types.com_type_id }}">{{ types.com_type_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-lg-3">
+                                    <label>Client Contact Person</label><!-- <label id="lbl_per" style="color:white">&nbsp Client Contact Person</label> -->
+                                    <select class="form-control js-source-states" required name="con_person"
+                                            id="con_person">
+                                        <option value='' selected></option>
+                                        {% for contacts in contact_person_list %}
+                                            <option value="{{ contacts.contact_person }}">{{ contacts.person_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-lg-3">
+                                    <label>Zeus Personnel</label><!-- <label id="lbl_zam" style="color:white">&nbsp Select Zeus Personnel</label> -->
+                                    <select class="form-control js-source-states" name="zam_person" id="zam_person">
+                                        <option value='' selected></option>
+                                        {% for zam_contacts in zam_contact_person_list %}
+                                            <option value="{{ zam_contacts.zam_contact_person }}">{{ zam_contacts.zam_person_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-lg-2">
+                                    <label>Period in Months</label><!-- <label id="lbl_period" style="color:white">&nbsp Period in
+                            Months</label> -->
+                                    <input type="text" id="com_period" name="com_period"
+                                           onkeypress="return isNumberKey(event)" maxlength="2"
+                                           class="form-control"></input>
+                                </div>
+
+                                <div class="form-group col-lg-1">
+                                    <label>&nbsp;</label><br>
+                                    <button type="button" id="search_communication" style="right-align;"
+                                            class="btn btn-outline btn-success">Search
+                                    </button>
+                                </div>
+                            </div>
+
+
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="communication_table">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">Date</th>
+                                        <th class="text-center">Type</th>
+                                        <th class="text-center">Client Contact Person</th>
+                                        <th class="text-center">Zeus Personnel</th>
+                                        <th class="text-center"><span>Read More</span></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for comm in communication_list %}
+                                        <tr>
+                                            <td>{{ comm.comm_date }}</td>
+                                            <td>{{ comm.comm_type }}</td>
+                                            <td>{{ comm.comm_person }}</td>
+                                            <td>{{ comm.comm_zam_person }}</td>
+                                            <td class="text-center">
+                                                <button type="button" id="{{ comm.comm_id }}"
+                                                        class="btn btn-default btn-success btn-xs btn-outline"
+                                                        onclick="readmore(this)"> Read More
+                                                </button>
+                                            </td>
+
+
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- For the Client IP Tab Firm Details -->
+                    <div id="tab-2" class="tab-pane">
+                        <div class="hpanel hgreen">
+                            <form id="ip_client_view" method="POST" action="/save-client-ip/">
+                                <legend class="lege">Client IP Details
+                                    <div class="pull-right">
+                                        <a href="/crm-index/" class="btn btn-outline btn-danger2">Cancel</a>&nbsp;&nbsp;
+                                        <button type="button" id="edit_ip" class="btn w-xs btn-outline btn-success wid"
+                                                value="Edit">Edit
+                                        </button>
+                                    </div>
+                                </legend>
+                                <div class="row">
+                                    <input type="hidden" name="client_id" value="{{ client.client_id }}"></input>
+
+                                    <div class="form-group col-lg-6">
+                                        <label>Client ECV</label><label id="lbl_ecv" style="color:white">&nbsp Fill out
+                                        ECV</label>
+                                        <input type="text" id="txt_client_ecv" value="{{ client_ip.txt_client_ecv }}"
+                                               onkeypress="return validateFloatKeyPress(this,event);"
+                                               name="txt_client_ecv" class="form-control">
+                                        <input type="hidden" id="ip_sts" type="text" value="0"></input>
+                                    </div>
+
+                                    <div class="col-xs-6 form-group">
+                                        <label id="lbl_risk">Risk Category*</label>
+                                        <select class="form-control js-source-states" name="risk_cat" id="risk_cat">
+                                            <option value="{{ client_ip.risk_cat }}"
+                                                    selected>{{ client_ip.risk_cat }}</option>
+                                            <option>High</option>
+                                            <option>Medium</option>
+                                            <option>Low</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label>First Asset Class Name</label><label id="lbl_first" style="color:white">&nbsp
+                                        Select Asset Class</label>
+                                        <select class="form-control js-source-states" id="txt_first_asset_class"
+                                                class="form-control" name="txt_first_asset_class">
+                                            <option value='{{ client_ip.txt_first_asset_class.asset_class_id }}'>{{ client_ip.txt_first_asset_class.asset_class_name }}</option>
+                                            {% for assets in asset_class %}
+                                                <option value="{{ assets.assetclass_id }}">{{ assets.assetclass_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-lg-6">
+                                        <label>First Asset Class %</label><label id="lbl_firstp" style="color:white">&nbsp
+                                        Fill out Asset Class %</label>
+                                        <input type="text" value="{{ client_ip.txt_first_asset_class_per }}"
+                                               onkeypress="return validateFloatKeyPress(this,event);"
+                                               id="txt_first_asset_class_per" class="form-control"
+                                               name="txt_first_asset_class_per">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <label>Second Asset Class Name</label><label id="lbl_second"
+                                                                                     style="color:white">&nbsp Select
+                                        Asset Class</label>
+                                        <input type="hidden" name="client_ip_id"
+                                               value="{{ client_ip.client_ip_id }}"></input>
+                                        <select class="form-control js-source-states" id="txt_second_asset_class"
+                                                class="form-control" name="txt_second_asset_class">
+                                            <option value='{{ client_ip.txt_second_asset_class.asset_class_id }}'>{{ client_ip.txt_second_asset_class.asset_class_name }}</option>
+                                            {% for assets in asset_class %}
+                                                <option value="{{ assets.assetclass_id }}">{{ assets.assetclass_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+
+                                    <div class="col-xs-6 form-group">
+                                        <label>Second Asset Class %</label><label id="lbl_secondp" style="color:white">&nbsp
+                                        Fill out Asset Class %</label>
+                                        <input class="form-control" name="txt_second_asset_class_per"
+                                               onkeypress="return validateFloatKeyPress(this,event);"
+                                               value="{{ client_ip.txt_second_asset_class_per }}"
+                                               id="txt_second_asset_class_per" type="text" name="expire_month">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                        <label>Third Asset Class Name</label><label id="lbl_third" style="color:white">&nbsp
+                                        Select Asset Class</label>
+                                        <select class="form-control js-source-states" id="txt_third_asset_class"
+                                                class="form-control" name="txt_third_asset_class">
+                                            <option value='{{ client_ip.txt_third_asset_class.asset_class_id }}'>{{ client_ip.txt_third_asset_class.asset_class_name }}</option>
+                                            {% for assets in asset_class %}
+                                                <option value="{{ assets.assetclass_id }}">{{ assets.assetclass_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+
+                                    <div class="col-xs-6 form-group">
+                                        <label>Third Asset Class %</label><label id="lbl_thirdp" style="color:white">&nbsp
+                                        Fill out Asset Class %</label>
+                                        <input class="form-control" type="text" id="txt_third_asset_class_per"
+                                               onkeypress="return validateFloatKeyPress(this,event);"
+                                               value="{{ client_ip.txt_third_asset_class_per }}"
+                                               name="txt_third_asset_class_per">
+                                    </div>
+                                </div>
+
+
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+<!----------------- Modal for Add Communication   -->
+
+<div class="modal fade" id="addCommunication" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form id="communication" method="POST">
+                    <div class="row">
+                        <input type="hidden" value="{{ client.client_id }}" name="client_id"></input>
+
+                        <div class="form-group col-lg-6">
+                            <label id="lbl_cdate">Date*</label>
+
+                            <div class="input-group date">
+                                <input type="text" class="form-control" readonly name="cdate" id="cdate">
+                                    	<span class="input-group-addon">
+                                    	<i class="glyphicon glyphicon-th"></i>
+                                    	</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label id="lbl_ctype">Type*</label>
+                            <select class="form-control js-source-states" name="select_contact_type"
+                                    id="select_contact_type">
+                                <option value='' disabled selected></option>
+                                {% for types in com_types %}
+                                    <option value="{{ types.com_type_id }}">{{ types.com_type_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label id="lbl_per">Client Contact Person*</label>
+                            <select class="form-control js-source-states" name="person" id="person">
+                                <option value='' disabled selected></option>
+                                {% for contacts in contact_person_list %}
+                                    <option value="{{ contacts.contact_person }}">{{ contacts.person_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+
+                        <div class="form-group col-lg-6">
+                            <label id="lbl_zam">Zeus Personnel*</label>
+                            <select class="form-control js-source-states" name="zam_person" id="zam_person_add">
+                                <option value='' disabled selected></option>
+                                {% for zam_contacts in zam_contact_person_list %}
+                                    <option value="{{ zam_contacts.zam_contact_person }}">{{ zam_contacts.zam_person_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-lg-12">
+                            <label id="lbl_cdesc">Description*</label>
+															<textarea style="resize: none;" class="form-control"
+                                                                      id="cdesc" name="cdesc">
+                                       		</textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div style="animation-delay: 0.1s;" class="col-lg-12 animated-panel zoomIn">
+                            <div>
+                                <label>Upload Attachment</label><label id="lbl_upl" style="color:white">&nbsp You can
+                                Upload upto 10 attachments only</label>
+
+                                <div class="dropzone" style=" min-height: 70px; border-color: #e4e5e7 !important;"
+                                     id="my-awesome-dropzone"></div>
+                                <input type="hidden" class="form-control" id="attachment" name="attachment">
+                                <input type="hidden" class="form-control" id="attachments" name="attachments">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline btn-danger" data-dismiss="modal">Cancel</button>
+                        <button type="button" id="save_com" class="btn w-xs btn-outline btn-success wid"
+                                data-dismiss="modal">&nbsp;&nbsp;&nbsp;Save&nbsp;&nbsp;&nbsp;</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<input name="check_lag" type="hidden" id="check_lag" value="{{ flag }}">
+<!-------------     End Modal for Add Communication -->
+
+<!---------READ MORE------------>
+
+
+<div class="modal fade" id="readmore_box" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <form id="" method="POST">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label>Communication Date</label><br>
+                            <input type="text" readonly id="vw_com_date" class="form-control"></input>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label>Communication Type</label><br>
+                            <input type="text" id="vw_com_type" readonly class="form-control"></input>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label>Client Contact Person</label><br>
+                            <input type="text" id="vw_com_person" readonly class="form-control"></input>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label>Zeus Personnel</label><br>
+                            <input type="text" id="vw_zam_com_person" readonly class="form-control"></input>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-lg-12">
+                            <label>Description</label><br/>
+                            <textarea id="vw_com_desc" style="resize: none;" readonly class="form-control"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-lg-12">
+                            <label>Attachments</label>
+                            <ul id="attachment_list">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline btn-danger" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-------------END------------------->
+
+
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<!-- <script src="{%static 'vendor/jquery/jquery.maskedinput.min.js'%}"></script> -->
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+<script src="{% static 'vendor/sweetalert/lib/sweet-alert.min.js' %}"></script>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'vendor/moment/dropzone1.js' %}"></script>
+<script src="{% static 'vendor/datatables/media/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' %}"></script>
+
+
+<script src="{% static 'custom-js/client-view.js' %}"></script>
+
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"></script>
+
+<script>
+
+    $(function () {
+         {% if flag == 'edit' %}
+            $('#ed_sts').val('1');
+            $("#client_view input").prop("disabled", false);
+            $("#client_view select").prop("disabled", false);
+            $("#client_view textarea").prop("disabled", false);
+            $('#edit_basic').text('Save');
+            $("#ip_client_view input").prop("disabled", false);
+            $("#ip_client_view select").prop("disabled", false);
+            $('#edit_ip').text('Save');
+
+        {%else%}
+            $("#client_view input").prop("disabled", true);
+            $("#client_view select").prop("disabled", true);
+            $("#client_view textarea").prop("disabled", true);
+            $("#ip_client_view input").prop("disabled", true);
+            $("#ip_client_view select").prop("disabled", true);
+        {% endif %}
+
+      $('#communication_table').dataTable({
+        "dom": 'T<"clear">lfrtip',
+            "columnDefs": [{"targets": 4, "orderable": false}],
+            "pageLength": 10
+
+        });
+        
+        $('#contact_person_table').dataTable({
+           "paging": false
+
+        });
+
+			
+
+        $("#edit_basic").click(function () {
+            var state_name = $('#select_state').val();
+            var city_name = $('#select_city').val();
+            var reg = /[-!$%^&*#()_+|~=`{}\[\]:";'<>?,.\/]/;
+             var pin= $('#txt_pin_code').val();
+            var p = pin.length;
+
+            var check_contact_no=false;
+            var check_email=false;
+
+            var e_sts = $('#ed_sts').val();
+            if (e_sts == 0 && $('#check_lag').val()=="view") {
+                $('#ed_sts').val('1');
+                $("#client_view input").prop("disabled", false);
+                $("#client_view select").prop("disabled", false);
+                $("#client_view textarea").prop("disabled", false);
+                $('#edit_basic').text('Save');
+                //$('#edit_basic').attr('id','save_button');
+            }
+            else {
+               check = client_validation();
+                if(check==false)
+                    return false
+
+                if (($.isNumeric(state_name) && state_name != "" && state_name != null) || (reg.test(state_name))) {
+                    alert("Please enter valid State Name");
+                    return false;
+                }
+
+                if ($.isNumeric(city_name) && city_name != "" && city_name != null || (reg.test(city_name))) {
+                    alert("Please enter valid City Name");
+                    return false;
+                }
+
+
+
+                if (p != 6 && pin != "" && pin != null) {
+                    alert("Please enter valid Pincode");
+                    return false;
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/update-basic-info/',
+                    data: $('#client_view').serialize(),
+                     success: function (response) {
+                        location.href = "/crm-index/";
+                },
+                error: function (response) {
+                    console.log(response);
+                    alert("Error");
+                },
+                    beforeSend: function () {
+                $("#load").show();
+            },
+            	error : function(response){
+                console.log(response);
+                alert('error');
+                $("#load").hide();
+            },
+            		complete: function () {
+                $("#load").hide();
+            }
+                });
+                /*$('#edit_basic').text('Edit');
+                $("#client_view input").prop("disabled", true);
+                $("#client_view select").prop("disabled", true);
+                $("#client_view textarea").prop("disabled", true);*/
+
+            }
+
+        });
+
+        /*--------end-----------*/
+
+        /* Client IP Info */
+
+        $("#edit_ip").click(function () {
+
+            var check_first_status = false;
+            var check_second_status = false;
+            var check_third_status = false;
+
+            var ip_sts = $('#ip_sts').val();
+
+            if (ip_sts == 0 && $('#check_lag').val()=="view") {
+
+                $('#ip_sts').val('1');
+                $("#ip_client_view input").prop("disabled", false);
+                $("#ip_client_view select").prop("disabled", false);
+                $('#edit_ip').text('Save');
+            }
+            else {
+
+            if ($('#risk_cat option:selected').val() === "") {
+                $('#lbl_risk').css("color", "red");
+            } else {
+                $('#lbl_risk').css("color", "white");
+            }
+
+            var z = $("#txt_first_asset_class_per").val();
+            if ((z != null || z != "") && (z < 0 || z > 100)) {
+                $('#lbl_firstp').css("color", "red");
+                $("#lbl_firstp").html("&nbsp Value should be between 0 to 100");
+                check_first_status = false;
+            } else {
+                $("#lbl_firstp").html("");
+                $('#lbl_firstp').css("color", "white");
+                check_first_status = true;
+
+            }
+
+            var y = $("#txt_second_asset_class_per").val();
+            if ((y != null || y != "") && (y < 0 || y > 100)) {
+                $('#lbl_secondp').css("color", "red");
+                $("#lbl_secondp").html("&nbsp Value should be between 0 to 100");
+                check_second_status = false;
+            } else {
+                $("#lbl_secondp").html("");
+                $('#lbl_secondp').css("color", "white");
+                check_second_status = true;
+
+            }
+
+            var m = $("#txt_third_asset_class_per").val();
+            if ((m != null || m != "") && (m < 0 || m > 100)) {
+                $('#lbl_thirdp').css("color", "red");
+                $("#lbl_thirdp").html("&nbsp Value should be between 0 to 100");
+                check_third_status = false;
+            } else {
+                $("#lbl_thirdp").html("");
+                $('#lbl_thirdp').css("color", "white");
+                check_third_status = true;
+            }
+
+            if (check_second_status == false || check_first_status == false || check_third_status == false || $('#client_id_ip').val() === "" || $('#risk_cat option:selected').val() === "") {
+                return false;
+            }
+        $('#ip_sts').val('0');
+            $.ajax({
+                type: 'POST',
+                url: '/update-client-ip/',
+                data: $('#ip_client_view').serialize(),
+                success: function (response) {
+                    console.log(response);
+                    location.href = "/crm-index/";
+                },
+                error: function (response) {
+                    console.log(response);
+                    alert("Error");
+                },
+                 beforeSend: function () {
+                $("#load").show();
+            },
+            	error : function(response){
+                console.log(response);
+                alert('error');
+                $("#load").hide();
+            },
+            		complete: function () {
+                $("#load").hide();
+            }
+            });
+
+        }
+        });
+
+
+        /*------------end---------------*/
+
+
+        /*---------Add Contact Person  */
+        $('#add_contact_person').click(function () {
+
+            var cont = $('#txt_firm_contact_pareson_contact_no').val();
+            var n1 = cont.length;
+            var cont_email = $('#txt_contact_email_add').val();
+
+            if ($('#txt_firm_contact_person').val() === "") {
+                $('#lbl_first_name').css("color", "red");
+            } else {
+                $('#lbl_first_name').css("color", "#6A6C6F");
+            }
+
+            if ($('#txt_firm_last_contact_person').val() === "") {
+                $('#lbl_last_name').css("color", "red");
+            } else {
+                $('#lbl_last_name').css("color", "#6A6C6F");
+            }
+
+            if ($('#txt_firm_contact_pareson_contact_no').val() === "") {
+                $('#lbl_cont_no').css("color", "red");
+            } else {
+                $('#lbl_cont_no').css("color", "#6A6C6F");
+            }
+
+            if ($('#txt_contact_email_add').val() === "") {
+                $('#lbl_contact_email').css("color", "red");
+            } else {
+                $('#lbl_contact_email').css("color", "#6A6C6F");
+            }
+
+
+            if ($('#txt_firm_contact_person').val() === "" || $('#txt_firm_last_contact_person').val() === "" ||
+                    $('#txt_firm_contact_pareson_contact_no').val() === "" || $('#txt_contact_email_add').val() === ""
+            ) {
+                return false;
+            }
+
+            if (isNaN(cont)) {
+                alert("Please enter valid Contact Number");
+                return false;
+            }
+
+            if (cont.length < 10) {
+
+                alert("Contact Number minimum length should be 10");
+                return false;
+            }
+
+            if (cont_email != "") {
+                var c_atpos = cont_email.indexOf("@");
+                var c_dotpos = cont_email.lastIndexOf(".");
+                var c_len = cont_email.length
+                if (c_atpos < 1 || ( c_dotpos - c_atpos < 2 ) || ( c_len - c_dotpos < 3 )) {
+                    alert("Please enter valid Email Id")
+                    return false;
+                }
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/add-contact-person/',
+                data: $('#contact_person').serialize(),
+                success: function (response) {
+                    console.log(response);
+                    if (response.success == 'true') {
+                        $("#contact_person_table tbody tr").remove();
+                        /*    for (i = 0; i < response.contact_person_list.length; i++) {
+                         $("#exapmle1").append(
+                         "<tr>" +
+                         '<td class="text-left">' + response.contact_person_list[i].person_first_name + '</td>' +
+                         '<td class="text-left">' + response.contact_person_list[i].person_last_name + '</td>' +
+                         '<td class="text-left">' + response.contact_person_list[i].contact_person_contact_no + '</td>' +
+                         '<td class="text-left">' + response.contact_person_list[i].contact_person_email_id + '</td>'+"</tr>"
+                         )
+                         }*/
+                        location.href = "/crm-index/";
+                    }
+                },
+                error: function (response) {
+                    console.log(response);
+                    alert("Error");
+                },
+                 beforeSend: function () {
+                $("#load").show();
+            },
+            	error : function(response){
+                console.log(response);
+                alert('error');
+                $("#load").hide();
+            },
+            		complete: function () {
+                $("#load").hide();
+            }
+            });
+        });
+
+
+        /*-----------end-----------------*/
+
+
+        /*---------------------------------------Add Communication-------------------------------*/
+
+        $("#save_com").click(function () {
+        
+        		 if ($('#cdate').val() === "") {
+                $('#lbl_cdate').css("color", "red");
+            } else {
+                $('#lbl_cdate').css("color", "#6A6C6F");
+            }
+
+
+            if ($('#select_contact_type').val() === "" || $('#select_contact_type').val() === null) {
+                $('#lbl_ctype').css("color", "red");
+            } else {
+                $('#lbl_ctype').css("color", "#6A6C6F");
+            }
+
+           
+
+            if ($('#person ').val() === "" || $('#person').val() === null) {
+                $('#lbl_per').css("color", "red");
+            } else {
+                $('#lbl_per').css("color", "#6A6C6F");
+            }
+
+
+            if ($('#zam_person_add').val() === "" || $('#zam_person_add').val() === null) {
+                $('#lbl_zam').css("color", "red");
+            } else {
+                $('#lbl_zam').css("color", "#6A6C6F");
+            }
+
+            if ($('#cdesc').val() === "") {
+                $('#lbl_cdesc').css("color", "red");
+            } else {
+                $('#lbl_cdesc').css("color", "#6A6C6F");
+            }
+
+            if ($('#select_contact_type').val() === "" || $('#cdate').val() === "" || $('#select_contact_type').val() === null ||
+            			$('#person').val() === null || $('#zam_person_add').val() === null ||
+                    $('#person').val() === "" || $('#zam_person_add').val() === "" || $('#cdesc').val() === ""
+            ) {
+
+                return false;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '../add-communication/',
+                data: $('#communication').serialize(),
+                success: function (response) {
+                    console.log(response);
+                    if (response.success == "true") {
+                        location.href = "/crm-index/";
+                    }
+                },
+                error: function (response) {
+                    console.log(response);
+                },
+                 beforeSend: function () {
+                $("#load").show();
+            },
+            	error : function(response){
+                console.log(response);
+                alert('error');
+                $("#load").hide();
+            },
+            		complete: function () {
+                $("#load").hide();
+            }
+
+            })
+        });
+
+        /*-------------------end------------------------*/
+
+
+        Dropzone.options.myAwesomeDropzone = {
+            autoProcessQueue: true,
+            uploadMultiple: true,
+            paramName: "file",
+            maxFiles: 10,
+            method: 'post',
+            parallelUploads: 1,
+            url: '/files-upload/',
+            dictDefaultMessage: "Drop or Browse up to 10 images (1MB or higher in size)",
+            addRemoveLinks: true,
+            acceptedFiles: '',
+            dictInvalidFileType: 'This file type is not supported.',
+            dictMaxFilesExceeded: "You can not upload more than 10 images.",
+
+           init: function () {
+
+                var myDropzone = this;
+                var reordered_array = new Array();
+                var temp_image_files = new Array();
+
+                this.on("sending", function () {
+                    return false;
+                });
+                
+        this.on("addedfile", function(file, response){
+        
+        	
+          if (myDropzone.files.length > 10){
+              $('#lbl_upl').css("color", "red");
+              this.removeFile(file);  
+          }
+          temp_image_files.push(file);
+        });                   
+
+
+                //      var mainlenghtiszero = $('.dz-preview').length;
+               this.on("success", function (files, response) {
+        				
+        				$('#attachment').val($('#attachment').val()+","+response.attachid);
+             		$('a .dz-remove').attr('href','/files-remove/?image_id='+response.attachid);
+                    reordered_array.push(response.attachid);
+                    
+						  $('#attachment').val(reordered_array);           
+						  $('#attachments').val(reordered_array);           
+                   
+                });
+                
+                 this.on("removedfile", function(file){ 
+							deleting_image_id = reordered_array[temp_image_files.indexOf(file)];
+					
+		          		$.ajax({url: "/files-remove/?image_id="+deleting_image_id, success: function(result){
+		                  arr = $('#attachment').val();
+		                  arr = arr.split(',');
+		                  console.log('Before Id Remove : '+ arr);
+		                  arr = jQuery.grep(arr, function(value) {
+		                      return value != deleting_image_id;
+		              		 });
+		                  console.log('After Id Remove : '+ arr);
+		                  $('#attachment').val(arr);
+		          		}});
+								arr =$('#attachments').val();
+	        					arr = arr.split(',');
+	        					arr = jQuery.grep(arr, function(value) {
+	        							return value != deleting_image_id;
+							   });
+	
+	        					$('#attachments').val(arr);
+								var index=myDropzone.files.length;
+								var temp_image_id = reordered_array[temp_image_files.indexOf(file)];
+								
+								reordered_array = jQuery.grep(reordered_array, function(value) {
+	        							return value != temp_image_id;
+							   });
+							   
+							   temp_image_files = jQuery.grep(temp_image_files, function(value) {
+	        							return value != file;
+							   }); 
+							   $('#attachments').val(reordered_array); 		          		
+          		});
+
+
+            }
+        }
+
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            $('a[data-toggle="tab"]').removeClass('btn-primary');
+            $('a[data-toggle="tab"]').addClass('btn-default');
+            $(this).removeClass('btn-default');
+            $(this).addClass('btn-primary');
+        })
+
+        $('.next').click(function () {
+            var nextId = $(this).parents('.tab-pane').next().attr("id");
+            $('[href=#' + nextId + ']').tab('show');
+        })
+
+        $('.prev').click(function () {
+            var prevId = $(this).parents('.tab-pane').prev().attr("id");
+            $('[href=#' + prevId + ']').tab('show');
+        })
+
+
+        $('.submitWizard').click(function () {
+
+            var approve = $(".approveCheck").is(':checked');
+            if (approve) {
+                // Got to step 1
+                $('[href=#step1]').tab('show');
+
+                // Serialize data to post method
+                var datastring = $("#simpleForm").serialize();
+
+                // Show notification
+                swal({
+                    title: "Thank you!",
+                    text: "You approved our example form!",
+                    type: "success"
+                });
+
+            } else {
+                // Show notification
+                swal({
+                    title: "Error!",
+                    text: "You have to approve form checkbox.",
+                    type: "error"
+                });
+            }
+        })
+
+        //------------------To get the communication list-----------//
+
+        $("#search_communication").click(function (event) {
+
+            var comm_type = $('#comm_type').val();
+            var con_person = $('#con_person').val();
+            var zam_person = $('#zam_person').val();
+            var com_period = $('#com_period').val();
+
+            var pri = $('#com_period').val();
+
+            if (pri >= 13) {
+                alert("Please enter months between 1 to 12");
+                return false;
+            }
+
+            if (pri < 0) {
+                alert("Please enter months between 1 to 12");
+                return false;
+            }
+
+
+            if (comm_type != "" || con_person != "" || zam_person != "" || com_period != "") {
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/search-communication/',
+                    data: {
+                        'comm_type': $('#comm_type').val(),
+                        'zam_contact': $('#zam_person').val(),
+                        'contact_person': $('#con_person').val(),
+                        'comm_month': $('#com_period').val(),
+                        'client_id': $('#s_client_id').val()
+                    },
+
+
+                    success: function (response) {
+                        //$('#communication_table tbody').empty();
+
+                        var table = $('#communication_table').DataTable();
+                        table.clear().draw();
+                        $.each(response.communication_list, function (index, item) {
+                            console.log(response.communication_list);
+                            table.row.add([
+                                item.comm_date,
+                                item.comm_type,
+                                item.comm_person,
+                                item.comm_zam_person,
+                                "<td class='text-center'>" +
+                                "<button name='" + item.comm_id + "' class='btn btn-default btn-success btn-xs btn-outline' onclick='readmore(" + item.comm_id + ")'> Read More</button>" +
+                                "</td>"
+                            ]).draw(false);
+                        });
+                    },
+
+                });
+
+            }
+
+            else {
+
+                alert("Can not Search on Blank Field");
+                return false;
+            }
+
+        });
+    });
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57 || charCode == 43 || charCode == 45 ))
+            return false;
+        return true;
+    }
+
+    function validateFloatKeyPresss(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var number = el.value.split('+');
+        var number1 = el.value.split('-');
+        if (charCode != 45 && charCode != 43 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        //just one dot
+        if (number.length > 1 && charCode == 43) {
+            return false;
+        }
+        if (number1.length > 1 && charCode == 45) {
+            return false;
+        }
+        return true;
+    }
+
+    function validateFloatKeyPress(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var number = el.value.split('.');
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        //just one dot
+        if (number.length > 1 && charCode == 46) {
+            return false;
+        }
+        //get the carat position
+        var caratPos = getSelectionStart(el);
+        var dotPos = el.value.indexOf(".");
+        if (caratPos > dotPos && dotPos > -1 && (number[1].length > 1)) {
+            if (charCode == 8)
+                return true;
+            else
+                return false;
+        }
+        return true;
+    }
+    
+    function remove_file() {
+
+        var reordered_array = $('#attachments').val();
+        reordered_array = reordered_array.split(",")
+        n = reordered_array.length;
+        if (n == 1) {
+            $('#attachments').val("");
+        }
+        else {
+            reordered_array = reordered_array.pop();
+            $('#attachments').val(reordered_array)
+
+        }
+    }
+
+
+    function getSelectionStart(o) {
+        if (o.createTextRange) {
+            var r = document.selection.createRange().duplicate()
+            r.moveEnd('character', o.value.length)
+            if (r.text == '') return o.value.length
+            return o.value.lastIndexOf(r.text)
+        } else return o.selectionStart
+    }
+
+
+    function readmore(id_val) {
+        $('#attachment_list').empty();
+        $.ajax({
+            type: 'GET',
+            url: '/get-communication-msg/',
+            data: {'communication_id': $(id_val).attr("id")},
+            success: function (response) {
+                console.log(response)
+                if (response.success == 'true') {
+                    $('#vw_com_date').val(response.communication_date);
+                    $('#vw_com_type').val(response.communication_type);
+                    $('#vw_zam_com_person').val(response.zam_contact_person);
+                    $('#vw_com_person').val(response.contact_person);
+                    $('#vw_com_desc').text(response.communication_desc);
+                    $('#vw_com_att').text(response.attachments);
+
+                    $.each(response.attachment_list, function (index, attachment) {
+                        $('#attachment_list').append('<li><a  title="Download Document"  href=' + attachment.attachment_url + ' download = ' + attachment.attachment_name + '  target="_blank"><span>' + " " + attachment.attachment_name + '</span></a></li>');
+                    });
+                    $("#readmore_box").modal('show');
+                }
+            },
+            error: function (response) {
+                console.log("Error" + response);
+            }
+
+        });
+    }
+
+    //---------------------------end----------------------//
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>YfinAdvisor | My Planning Tool</title>
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"/>
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/toastr/build/toastr.min.css' %}"/>
+
+    <style type="text/css">
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        .btn-primary2:hover {
+
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+            border-color: #7160A9 !important
+
+        }
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        .bac-clr {
+            background: linear-gradient(to left, #fff -20%, #7160A960%) repeat scroll 0% 0% !important;
+            border: 1px solid #E4E5E7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+        }
+
+        #side-menu li .nav-second-level li a {
+            color: #FFFFFF;
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+        .btn-primary2:focus {
+
+            background-color: transparent;
+            border-color: #7160A9 !important;
+            color: #6a6c6f;
+        }
+
+        .btn-primary2:focus {
+
+            background-color: transparent;
+            border-color: #7160A9 !important;
+            color: #6a6c6f;
+        }
+
+        .small-logo {
+            display: none;
+            text-align: center;
+            padding-top: 18px;
+            font-size: 14px;
+            font-weight: 800;
+            float: left;
+            display: block;
+
+            color: #7160A9;
+
+        }
+
+        .text-primary {
+            color: #7160A9;
+        }
+
+        .btn btn-outline btn-success wid {
+
+        }
+
+        #search_bank {
+            font-size: 14px;
+            margin-top: -41px;
+            margin-left: 560px;
+            background-color: #7160A9;
+            color: white;
+            text-align: center;
+            padding: 7px;
+            display: block;
+
+        }
+
+        #lbl_pb {
+            margin-left: 109px;
+        }
+
+        #pbank {
+            margin-left: 109px;
+        }
+
+        #lbl_pa {
+            margin-left: 122px;
+        }
+
+        #bank_usr {
+            height: 20px;
+            width: 40px;
+        }
+
+        #bank_pass {
+            height: 20px;
+            width: 40px;
+        }
+
+        .autocomplete-suggestions {
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            background: #fff;
+            cursor: default;
+            overflow: auto;
+            width: 315px;
+        }
+
+        .autocomplete-suggestion {
+            padding: 5px 5px;
+            font-size: 1em;
+            white-space: nowrap;
+            overflow: hidden;
+            #font-weight: bold;
+        }
+
+        .autocomplete-selected {
+            background: #f0f0f0;
+        }
+
+        .autocomplete-suggestions strong {
+            font-weight: bold;
+            color: #7160A9;
+            #color: #3399ff;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a
+        href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+
+    <!-- <div id="logo" class="light-version">
+        <span>
+            ZAM
+        </span>
+    </div> -->
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo" style="padding-top: 0px">
+            <img src="{% static 'images/zam-logo-1.png' %}" style="width: 130px" class="img-circle m-b"
+                 alt="logo"></img>
+        </div>
+        <div>
+
+        </div>
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+
+                </li>
+                <li class="dropdown">
+                    <a href="/signing-out/">
+                        <i title="Logout" class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.full_name }}</span><br>
+                <small class="text-muted">{{ request.session.user_role }}</small>
+
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            <li class="active">
+                <a href="/customer/"> <span class="nav-label">My Planning Tool</span></a>
+            </li>
+            <li>
+                <a href="/customer/customer-details/"> <span class="nav-label">Personal Information</span></a>
+            </li>
+            <li>
+            <li><a href="/open-discussion-forum/">Discussion Forum</a></li>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+    <div class="content animate-panel">
+        <div class="hpanel">
+            <div class="panel-heading hbuilt">
+                <div style="margin-bottom:50px;">
+                    <div class=" pull-left">
+                        <a href="/customer/open-add-details/" class="btn btn-outline btn-primary2 ">Back</a>&nbsp;&nbsp;
+                    </div>
+                    <div class="pull-right">
+                        <a type="button" href="/customer/open-other-saving-product/" id=""
+                           class="btn btn-outline btn-primary2  wid">Next</a>
+                    </div>
+                </div>
+
+                <b><h3><span class="font-icon-name" style="margin-left: 20px;"> Link Bank Account</span></h3></b><br>
+                <input type="hidden" id="bank_name" value="{{ bank_list }}"></input>
+
+
+            <div class="row" id="select_bank">
+                            <div class="col-lg-1 col-md-1 col-xs-12"></div>
+
+                            <div class="col-lg-2 col-md-6 col-xs-12">
+                                <div class="text-center">
+                                    <input type="radio" class="sel" id="radio1" name="saving_product_radio" class="sel"
+                                           value="ICICI"><strong>ICICI</strong>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-2 col-md-2 col-xs-12">
+                                <div class="text-center">
+                                    <input type="radio" class="sel" id="radio2" name="saving_product_radio"
+                                           value="HDFC">
+                                    <strong>HDFC</strong>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-xs-12">
+                                <div class="text-center">
+                                    <input type="radio" class="sel" id="radio3" name="saving_product_radio" value="SBI">
+                                    <strong>SBI</strong>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-2 col-md-2 col-xs-12">
+                                <div class="text-center">
+                                    <input type="radio" class="sel" id="radio4" name="saving_product_radio"
+                                           value="AXIS BANK">
+                                    <strong>AXIS BANK</strong>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-2 col-md-2 col-xs-12">
+                                <div class="text-center">
+                                    <input type="radio" class="sel" name="saving_product_radio" id="add_manually"
+                                           value="Add Manually">
+                                    <strong>Add Manually</strong>
+                                </div>
+                            </div>
+                        </div>
+
+
+                <!-- <button class="btn btn-outline btn-primary2 collapsed" style="margin-left:39%; margin-top: 20px;width:24%" id="connect" type="button" data-toggle="collapse" data-target="#connect_bank" aria-expanded="false" aria-controls="collapseE0xample">
+              Connect
+           </button> -->
+                <div id="connect_bank">
+                    <div class="row" style=" padding-top: 1%;">
+                        <form>
+                            <div class="col-md-12 form-group">
+                                <div class="col-md-offset-4 col-md-4 col-xs-12 form-group">
+                                    <label id="lbl_use" class="control-label">Username*</label>
+                                    <input type="text" name="username" id="in_username" class="form-control"
+                                           pattern="[A-Za-z]+" required="required"></input>
+                                </div>
+
+
+                                <div class="col-md-offset-4 col-md-4 col-xs-12 form-group">
+                                    <label id="lbl_pas" class="control-label">Password*</label>
+                                    <input type="password" name="password" class="form-control" id="in_password"
+                                           required="required"></input>
+                                </div>
+                            </div>
+
+                            <div class="col-md-offset-4 col-md-4 col-xs-12 form-group">
+                                <a href="account_table.html" type="submit" style="width: 100%;"
+                                   class="btn btn-outline btn-primary2" id="bank_submit">Submit</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div>
+                    <!-- <h4> <input type="radio" class="i-checks add" name="radio2" id="radio4" style="vertical-align: middle; "  value="1"><span style="margin-left: 18px;">Add Manually</span></input></h4> -->
+                    <div id="add_bank" style=" padding-top: 1%;">
+                        <form id="add_bank_manual" method="POST">
+                            <input type="hidden" name="username" value="{{ request.session.user_id }}"/>
+                            <input type="hidden" name="users_id" value="{{ request.session.login_user }}"/>
+                            <input type="hidden" id="add_bank_id" name="bank_add"/>
+
+                            <div class="row" style="padding-top: 1%;">
+                                <div class="col-lg-3 col-md-3 col-xs-12 form-group">
+                                    <label id="lbl_bn" class="control-label">Bank Name*</label>
+                                    <input type="text" id="bank_add_manually" name="bank_add" class="form-control "
+                                           style="width:100%;" pattern="[A-Za-z]+" required="required"></input>
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-xs-12 form-group">
+                                    <label id="lbl_at" class="control-label">Account Type*</label>
+                                    <select class="form-control js-source-states" style="width:100%;"
+                                            name="account_type" id="account_type">
+                                        <option value="" selected></option>
+                                        {% for acc in account_type %}
+                                            <option value="{{ acc.acc_type_id }}">{{ acc.acc_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-3 col-md-6 col-xs-12 form-group">
+                                    <label id="lbl_cur" class="control-label">Currency*</label>
+                                    <select class="form-control js-source-states" style="width:100%;" name="currency"
+                                            id="currency">
+                                        <option value="" selected></option>
+                                        {% for cur in currency %}
+                                            <option value="{{ cur.curr_id }}">{{ cur.currency_type }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-3 col-md-6 col-xs-12 form-group">
+                                    <label id="lbl_amt" class="control-label">Amount*</label>
+                                    <input type="text" name="amount"
+                                           onkeypress="return validateFloatKeyPress(this,event);" style="width:100%;"
+                                           class="form-control " id="amount"></input>
+                                </div>
+
+
+                                <div class="col-md-12 col-xs-12 form-group" style="text-align:center;">
+                                    <a type="submit" style="width: 25%;" class="btn btn-outline btn-primary2"
+                                       id="bank_save">Save</a>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-flot/jquery.flot.js' %}"></script>
+<script src="{% static 'vendor/jquery-flot/jquery.flot.resize.js' %}"></script>
+<script src="{% static 'vendor/jquery-flot/jquery.flot.pie.js' %}"></script>
+<script src="{% static 'vendor/flot.curvedlines/curvedLines.js' %}"></script>
+<script src="{% static 'vendor/jquery.flot.spline/index.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/peity/jquery.peity.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+
+
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"></script>
+<script src="{% static 'scripts/charts.js' %}"></script>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+<script src="{% static 'vendor/jquery.autocomplete.min.js' %}"></script>
+<script src="{% static 'vendor/toastr/build/toastr.min.js' %}"></script>
+
+
+<script>
+
+    toastr.options = {
+        "debug": false,
+        "newestOnTop": false,
+        "positionClass": "toast-top-center",
+        "closeButton": true,
+        "debug": false,
+        "toastClass": "animated fadeInDown",
+    };
+    $(function () {
+        $(".js-source-states").select2();
+
+        $("#connect_bank").hide();
+        $("#research_bank").hide();
+        $("#add_bank").hide();
+        $('input:radio').change(
+                function () {
+                    $("#connect_bank").show();
+                    $("#add_bank").hide();
+                }
+        );
+
+
+        $('#add_manually').change(
+                function () {
+                    $("#connect_bank").hide();
+                    $("#add_bank").show();
+                }
+        );
+
+
+        $("#bank_save").click(function () {
+            if ($('#bank_add_manually').val() == "") {
+                $('#lbl_bn').css("color", "red");
+            } else {
+                $('#lbl_bn').css("color", "#6A6C6F");
+            }
+
+            if ($('#account_type').val() == "" || $('#account_type').val() == null) {
+                $('#lbl_at').css("color", "red");
+            } else {
+                $('#lbl_at').css("color", "#6A6C6F");
+            }
+
+            if ($('#currency').val() == "" || $('#currency').val() == null) {
+                $('#lbl_cur').css("color", "red");
+            } else {
+                $('#lbl_cur').css("color", "#6A6C6F");
+            }
+
+            if ($('#amount').val() == "") {
+                $('#lbl_amt').css("color", "red");
+            } else {
+                $('#lbl_amt').css("color", "#6A6C6F");
+            }
+
+
+            if ($('#bank_add_manually').val() == "" || $('#bank_add_manually').val() == null ||
+                    $('#account_type').val() == null || $('#account_type').val() == "" ||
+                    $('#amount').val() == null || $('#amount').val() == "" ||
+                    $('#currency').val() == null || $('#currency').val() == ""
+
+            ) {
+
+                return false;
+            }
+
+
+            $.ajax({
+                type: 'POST',
+                url: '/customer/save-bank/',
+                data: $('#add_bank_manual').serialize(),
+                success: function (response) {
+                    if (response.success == "true") {
+                        toastr.success('Bank is added sucessfully.');
+                        $('#account_type').select2().select2("val", '');
+                        $('#bank_add_manually').val("");
+                        $('#currency').select2().select2("val", '');
+                        $('#amount').val("");
+
+                    }
+                    else if (response.success == "Bank Not Match") {
+                        toastr.error('Enter Bank not available. \n Please contact YfinAdvisor Super Admin to add your Bank in the list of Banks.');
+                    }
+                    else {
+
+                    }
+                },
+
+            });
+
+        });
+
+        var bank = JSON.parse($("#bank_name").val());
+        console.log(bank);
+        $('#search_txt').autocomplete({
+            lookup: bank
+        });
+
+        $('#bank_add_manually').autocomplete({
+            lookup: bank,
+            onSelect: function (suggestion) {
+                (suggestion.data);
+                $('#add_bank_id').val(suggestion.data);
+            }
+
+        });
+
+
+    });
+
+
+    function validateFloatKeyPress(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var number = el.value.split('.');
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+
+        if (number.length > 1 && charCode == 46) {
+            return false;
+        }
+
+        var caratPos = getSelectionStart(el);
+        var dotPos = el.value.indexOf(".");
+        if (caratPos > dotPos && dotPos > -1 && (number[1].length > 1)) {
+            if (charCode == 8)
+                return true;
+            else
+                return false;
+        }
+        return true;
+    }
+
+    //thanks: http://javascript.nwbox.com/cursor_position/
+    function getSelectionStart(o) {
+        if (o.createTextRange) {
+            var r = document.selection.createRange().duplicate()
+            r.moveEnd('character', o.value.length)
+            if (r.text == '') return o.value.length
+            return o.value.lastIndexOf(r.text)
+        } else return o.selectionStart
+    }
+
+
+</script>
+

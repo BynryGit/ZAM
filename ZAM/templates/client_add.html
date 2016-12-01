@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>ZAM | Add Client </title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/sweetalert/lib/sweet-alert.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}"/>
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+
+    <style type="text/css">
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        /*--------------------------------------------------*/
+        #side-menu li.treeview ul li a {
+            background: #fff !important;
+            color: #6A6C6F !important;
+            font-weight: 700;
+        }
+
+        #side-menu li.treeview ul li.active a {
+            background-color: #7160A9 !important;
+            color: #FFF !important;
+        }
+
+        #side-menu li.treeview ul li:hover a {
+            background-color: #7160A9 !important;
+            color: #FFF !important;
+
+        }
+/*--------------------------------------------------*/
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #FFF !important;
+
+        }
+
+        .btn-primary2:hover {
+
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2:focus {
+
+            background-color: transparent;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+
+        }
+
+
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        .bac-clr {
+            background: linear-gradient(to left, #fff -20%, #7160A9 40%) repeat scroll 0% 0% !important;;
+            border: 1px solid #E4E5E7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+        }
+
+        #side-menu li .nav-second-level li a {
+            color: #FFFFFF;
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+        .small-logo {
+            display: none;
+            text-align: center;
+            padding-top: 6px;
+            font-size: 28px;
+            font-weight: 800;
+            float: left;
+            display: block;
+            color: #7160A9;
+        }
+
+        .text-primary {
+            color: #7160A9;
+        }
+
+        .hide_column {
+            display: none;
+        }
+
+        #wizardControl .nav-tabs .active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+        }
+
+    </style>
+
+    <!--<style type="text/css">-->
+        <!--.wid {-->
+            <!--min-width: 65px;-->
+        <!--}-->
+
+        <!--.btn-success.btn-outline:hover {-->
+            <!--background-color: #62cb31;-->
+        <!--}-->
+
+        <!--.baccol {-->
+            <!--background-color: #0A37B8;-->
+        <!--}-->
+
+        <!--.font-col {-->
+            <!--color: #FFFFFF;-->
+
+        <!--}-->
+
+        <!--#side-menu li.active a {-->
+            <!--background-color: #7160A9 !important;-->
+            <!--color: #fff;-->
+
+        <!--}-->
+
+        <!--#side-menu li:hover a {-->
+            <!--background-color: #7160A9 !important;-->
+            <!--color: #fff;-->
+
+        <!--}-->
+
+        <!--.btn-primary2:hover {-->
+            <!--background-color: #7160A9 !important;-->
+            <!--border-color: #7160A9 !important;-->
+            <!--color: #FFFFFF-->
+        <!--}-->
+
+        <!--.btn-primary2.btn-outline:hover {-->
+            <!--color: #6a6c6f;-->
+        <!--!important;-->
+            <!--color: #FFFFFF;-->
+
+        <!--}-->
+
+        <!--.btn-primary2.btn-outline {-->
+            <!--color: #6a6c6f;-->
+        <!--!important;-->
+        <!--}-->
+
+        <!--.btn-primary2 {-->
+            <!--border-color: #7160A9 !important;-->
+        <!--}-->
+
+        <!--.bac-clr {-->
+            <!--background: linear-gradient(to left, #fff -20%, #7160A9 40%) repeat scroll 0% 0% !important;-->
+            <!--border: 1px solid #E4E5E7;-->
+            <!--border-radius: 2px;-->
+            <!--padding: 20px;-->
+            <!--position: relative;-->
+        <!--}-->
+
+        <!--#side-menu li .nav-second-level li a {-->
+            <!--color: #FFFFFF;-->
+        <!--}-->
+
+        <!--.hpanel.hblue .panel-body {-->
+            <!--border-top: 2px solid #7160A9;-->
+        <!--}-->
+
+        <!--.label-success {-->
+            <!--background-color: #7160A9;-->
+        <!--}-->
+
+        <!--.small-logo {-->
+            <!--display: none;-->
+            <!--text-align: center;-->
+            <!--padding-top: 6px;-->
+            <!--font-size: 28px;-->
+            <!--font-weight: 800;-->
+            <!--float: left;-->
+            <!--display: block;-->
+            <!--color: #7160A9;-->
+        <!--}-->
+
+        <!--.text-primary {-->
+            <!--color: #7160A9;-->
+        <!--}-->
+
+        <!--#wizardControl .nav-tabs .active a {-->
+            <!--background-color: #7160A9 !important;-->
+            <!--color: #fff;-->
+        <!--}-->
+    <!--</style>-->
+</head>
+<body>
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<div class="splash" style="opacity:0.4;" id="load">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+
+    <!-- <div id="logo" class="light-version">
+        <span>
+           ZAM
+        </span>
+    </div> -->
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo">
+            <span class="text-primary">Zeus Asset Management</span>
+        </div>
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-speaker"></i>
+                    </a>
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-mail"></i>
+                        {% if request.session.user_role == 'Marketing Manager' %}
+                        <span class="label label-success">{{total_count}}</span>
+                        {% endif %}
+                    </a>
+                    {% if request.session.user_role == 'Marketing Manager' %}
+                    <ul class="dropdown-menu hdropdown animated flipInX">
+                        <div class="title">
+                            You have {{total_count}} new messages
+                        </div>
+                        <li>
+                            <a href="/open-discussion-forum/">
+                                Question ({{question_count}})
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/open-discussion-forum/">
+                                Response ({{response_count}})
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/open-discussion-forum/">
+                                Reply ({{responseto_count}})
+                            </a>
+                        </li>
+                        <li class="summary"><a href="/open-discussion-forum/">See All Messages</a></li>
+                    </ul>
+                    {% endif %}
+                </li>
+                <li class="dropdown">
+                    <a href="/signing-out/">
+                        <i title="Logout" class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.full_name }}</span><br>
+                <small class="text-muted">{{ request.session.user_role }}</small>
+
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            <!--<li class="treeview active">-->
+                <!--<a href="#"><span class="nav-label">Portfolio Management</span><span class="fa arrow"></span> </a>-->
+                <!--<ul class="nav nav-second-level">-->
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Marketing Manager' %}
+            <li class="active">
+                <a href="/crm-index/"> <span class="nav-label">Client Relationship Management</span></a>
+            </li>
+            {% endif %}
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+            <li><a href="/open-research-page/?tab_id=1">Research</a></li>
+            {% endif %}
+            <li><a href="/open-discussion-forum/">Discussion Forum</a></li>
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+            <li class="treeview">
+                <a href="#"><span class="nav-label">Security Data Management</span><span
+                        class="fa arrow"></span> </a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/open-security-page/">Security</a></li>
+                    <li><a href="/open-security-price-page/">Price</a></li>
+                </ul>
+            </li>
+            {% endif %}
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' %}
+            <li>
+                <a href="/open-trade/"> <span class="nav-label">Trade</span></a>
+            </li>
+            <li>
+                <a href="/open-position/"> <span class="nav-label">Position</span></a>
+            </li>
+            {% endif %}
+            <li>
+                <a href="/index/"> <span class="nav-label">Dashboard</span></a>
+            </li>
+                <!--</ul>-->
+            <!--</li>-->
+            {% if request.session.user_role == 'Super Admin' %}
+            <li class="treeview"><a href="#"><span class="nav-label">Planning Tool</span><span class="fa arrow"></span>
+            </a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/open-YFinAdvisor-index/">Planning Tool Input</a></li>
+                    <li><a href="/open-YFinAdvisor-customer/">Customer</a></li>
+                </ul>
+            </li>
+            {% endif %} {% if request.session.user_role == 'Super Admin' or request.session.user_role == 'Admin' %}
+            <li><a href="/open-user-index/"> <span class="nav-label">User Management</span></a></li>
+            {% endif %}
+            <li>
+                <a href="/open-rename-password/"> <span class="nav-label">Change Password</span></a>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+
+
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel baccol">
+            <div class="bac-clr">
+                <!-- <a class="small-header-action" href="">
+                    <div class="clip-header">
+                        <i class="fa fa-arrow-up"></i>
+                    </div>
+                </a> -->
+                <div>
+                    <h3 style="display:inline;" class="font-light m-b-xs font-col">
+                        <a href="/crm-index/" style="color:#FFFFFF;">Client Relationship Management</a> >
+                    </h3>
+                    <h4 style="display:inline;" class="font-light m-b-xs font-col">
+                        Add Client
+                    </h4>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="content animate-panel">
+        <div class="hpanel hblue">
+            <div class="panel-body">
+
+                <div class="text-left m-b-md" id="wizardControl">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#tab-1"><h5>Client Basic Info</h5></a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-2"><h5>Client IP</h5></a></li>
+
+                        <!-- <div id="hbreadcrumb" class="pull-right ">
+                            <a href="crm_index.html" class="btn btn-outline btn-primary2">&nbsp;&nbsp;Back&nbsp;&nbsp;</a>
+                        </div> -->
+                    </ul>
+                </div>
+
+                <div class="tab-content" id="tabs">
+                    <div id="tab-1" class="tab-pane active">
+                        <form role="form" name="firm_details" id="form_cl" method="POST" onsubmit="return false;">
+                            <!-- ---------------Person Details------------------- -->
+                            <!-- <div class="hpanel "> -->
+
+                            <legend>Firm Details</legend>
+
+                            <!-- <div class="panel-body"> -->
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label id="lbl_name">Name*</label>
+                                    <input type="text" value="" autocomplete="off" name="txt_firm_name"
+                                           id="txt_firm_name"
+                                           class="form-control" required>
+                                </div>
+
+                                <div class="form-group col-lg-6">
+                                    <label id="lbl_type">Type*</label>
+                                    <select class="form-control js-source-states" autocomplete="off"
+                                            name="select_firm_type" required
+                                            id="select_firm_type">
+                                        <option value="" selected></option>
+                                        {% for type in firm_type %}
+                                            <option value="{{ type.firm_type_id }}">{{ type.firm_type_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-lg-4">
+                                    <label>Contact No</label><label id="lbl_contact_no" style="color:white"></label> 
+                                    <input type="text" onkeypress="return validateFloatKeyPresss(this,event);"
+                                           autocomplete="off" class="form-control"
+                                           required id="txt_firm_contact_no" name="txt_firm_contact_no">
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label id="lbl_email">Email ID*</label><label id="lbl_emailc" style="color:white">&nbsp </label>
+                                    <input type="email" value="" autocomplete="off" id="txt_firm_email_add" required
+                                           class="form-control"
+                                           pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" name="txt_firm_email_add">
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label>Relationship Manager</label>
+                                    <input type="text" value="" name="txt_rln_manag" autocomplete="off"
+                                           id="txt_rln_manag"
+                                           class="form-control">
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label id="lbl_add">Address Line 1*</label>
+                                    <input type="text" value="" id="txt_address_line1" autocomplete="off" required
+                                           name="txt_address_line1"
+                                           class="form-control">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Address Line 2</label>
+                                    <input type="text" value="" id="txt_address_line2" autocomplete="off"
+                                           name="txt_address_line2"
+                                           class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-lg-3">
+                                    <label id="lbl_country">Country*</label>
+                                    <select class="form-control js-source-states" required
+                                            name="client_country" autocomplete="off" id="client_country">
+                                        <option value='' disabled selected></option>
+                                        {% for country in country_list %}
+                                            <option value="{{ country.country_id }}">{{ country.country_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-lg-3">
+                                    <label>State</label>
+                                    <input type="text" value="" id="select_state" autocomplete="off" name="select_state"
+                                           class="form-control">
+                                </div>
+
+                                <div class="form-group col-lg-3">
+                                    <label>City</label>
+                                    <input type="text" value="" id="select_city" autocomplete="off" name="select_city"
+                                           class="form-control">
+                                </div>
+
+                                <div class="form-group col-lg-3">
+                                    <label>Pincode</label>
+                                    <input type="text" onkeypress="return isNumberKey(event)" id="txt_pin_code"
+                                           autocomplete="off" class="form-control"
+                                           maxlength="6" name="txt_pin_code">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-lg-12">
+                                    <label>Note(s)</label>
+																<textarea style="resize: none;" autocomplete="off"
+                                                                          class="form-control"
+                                                                          id="txt_note" name="txt_note">
+	                                       		</textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label id="lbl_pri">Client Priority*</label>
+                                    <select class="form-control js-source-states" id="client_priority"
+                                            autocomplete="off" name="client_priority">
+                                        <option value='' disabled selected></option>
+                                        {% for prior in priority %}
+                                            <option value="{{ prior.priority_id }}">{{ prior.priority_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-lg-6">
+                                    <label>Reference Person</label>
+                                    <input type="text" value="" id="refrence_person" autocomplete="off"
+                                           class="form-control"
+                                           name="refrence_person"></input>
+                                </div>
+                            </div>
+                        </form>
+                            <div class="text-right m-t-xs">
+                                <a class="btn btn-outline btn-danger" href="/crm-index/">Cancel</a>
+                                <button class="btn btn-outline btn-success " id="button_client_basic_info">&nbsp; Save
+                                    &nbsp;</button>
+                                <button class="btn btn-outline btn-success " id="client_basic_info" value="Save & Next">
+                                    Save & Next
+                                </button>
+                            </div>
+                    </div>
+
+                    <div id="tab-2" class="tab-pane">
+                        <form id="ip_client" method="POST">
+                            {% csrf_token %}
+                            <input type="text" hidden id="client_id" name="client_id"></input>
+                            <legend>Client IP Details</legend>
+                            <p id="IP" style="color:white; text-align:center;">Please fill Client Basic Info First
+                                !!!</p>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label>Client ECV </label>&nbsp;(US$ m)<!-- <label id="lbl_ecv" style="color:#6A6C6F">&nbsp Fill
+                                            out ECV</label> -->
+                                            <input type="text" pattern="[0-9]*\.[0-9]{2}$" id="txt_client_ecv"
+                                                   onkeypress="return validateFloatKeyPress(this,event);"
+                                                   name="txt_client_ecv" autocomplete="off" class="form-control">
+                                        </div>
+
+                                        <div class="col-xs-6 form-group">
+                                            <label id="lbl_risk">Risk Category*</label>
+                                            <select class="form-control js-source-states" autocomplete="off"
+                                                    name="risk_cat" id="risk_cat">
+                                                <option value='' selected></option>
+                                                <option>High</option>
+                                                <option>Medium</option>
+                                                <option>Low</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label>First Asset Class Name</label><!-- <label id="lbl_first"
+                                                                                        style="color:#6A6C6F">&nbsp Select
+                                            Asset Class</label> -->
+                                            <select class="form-control js-source-states" id="txt_first_asset_class"
+                                                    name="txt_first_asset_class" autocomplete="off">
+                                                <option value='' selected></option>
+                                                {% for assets in asset_class %}
+                                                    <option value="{{ assets.assetclass_id }}">{{ assets.assetclass_name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label>First Asset Class %</label><label id="lbl_firstp"
+                                                                                     style="color:#6A6C6F"> </label>
+                                            <input type="text" pattern="(^100([.]0{1,2})?)$|(^\d{1,2}([.]\d{1,2})?)$"
+                                                   onkeypress="return validateFloatKeyPress(this,event);"
+                                                   id="txt_first_asset_class_per" class="form-control"
+                                                   autocomplete="off" name="txt_first_asset_class_per">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-6 form-group">
+                                            <label>Second Asset Class Name</label><!-- <label id="lbl_second"
+                                                                                         style="color:#6A6C6F">&nbsp
+                                            Select Asset Class</label> -->
+                                            <select class="form-control js-source-states" id="txt_second_asset_class"
+                                                    name="txt_second_asset_class" autocomplete="off"
+                                                    required='required'>
+                                                <option selected></option>
+                                                {% for assets in asset_class %}
+                                                    <option value="{{ assets.assetclass_id }}">{{ assets.assetclass_name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+
+                                        <div class="col-xs-6 form-group">
+                                            <label>Second Asset Class %</label> <label id="lbl_secondp"
+                                                                                      style="color:#6A6C6F"></label>
+                                            <input class="form-control"
+                                                   pattern="(^100([.]0{1,2})?)$|(^\d{1,2}([.]\d{1,2})?)$"
+                                                   onkeypress="return validateFloatKeyPress(this,event);"
+                                                   id="txt_second_asset_class_per" name="txt_second_asset_class_per"
+                                                   type="text" autocomplete="off">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-6 form-group">
+                                            <label>Third Asset Class Name</label><!-- <label id="lbl_third"
+                                                                                        style="color:#6A6C6F">&nbsp Select
+                                            Asset Class</label> -->
+                                            <select class="form-control js-source-states" id="txt_third_asset_class"
+                                                    name="txt_third_asset_class" autocomplete="off">
+                                                <option value='' selected></option>
+                                                {% for assets in asset_class %}
+                                                    <option value="{{ assets.assetclass_id }}">{{ assets.assetclass_name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+
+                                        <div class="col-xs-6 form-group">
+                                            <label>Third Asset Class %</label><label id="lbl_thirdp"
+                                                                                     style="color:#6A6C6F"></label>
+                                            <input class="form-control" type="text" autocomplete="off"
+                                                   onkeypress="return validateFloatKeyPress(this,event);"
+                                                   pattern="(^100([.]0{1,2})?)$|(^\d{1,2}([.]\d{1,2})?)$"
+                                                   id="txt_third_asset_class_per" name="txt_third_asset_class_per">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-right m-t-xs">
+                                <a class="btn btn-outline btn-danger" href="/crm-index/">Cancel</a>
+
+                                <div id="btn_save_client_ip" class="btn btn-outline btn-success">Save</div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+<script src="{% static 'vendor/sparkline/validator.js' %}"></script>
+<script src="{% static 'vendor/sweetalert/lib/sweet-alert.min.js' %}"></script>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-validation/jquery.validate.min.js' %}"></script>
+<script src="{% static 'custom-js/client-add.js' %}"></script>
+
+
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"></script>
+
+<script>
+
+    $(function () {
+        $("#txt_note").val('');
+        //-----------------------add the client basic info----------------//
+        $('#button_client_basic_info').click(function () {
+           check=client_validation();
+            if(check==false)
+                return false
+
+            $.ajax({
+                type: 'POST',
+                url: '/save-client/',
+                data: $('#form_cl').serialize(),
+
+                success: function (response) {
+                    if (response.success == 'true') {
+                        location.href = "/crm-index/";
+                    } else {
+                        alert('Failed to Save');
+                    }
+                },
+                error: function (response) {
+                    console.log(response);
+                    alert("Error");
+                },
+                  beforeSend: function () {
+                $("#load").show();
+            },
+            	error : function(response){
+                console.log(response);
+                alert('error');
+                $("#load").hide();
+            },
+            		complete: function () {
+                $("#load").hide();
+            }
+
+
+            });
+
+        });
+
+        //----------------------------end-----------------//
+
+
+        //-----------------------add the client basic info----------------//
+
+
+        $('#client_basic_info').click(function () {
+            check=client_validation();
+            if(check==false)
+                return false
+            $.ajax({
+                type: 'POST',
+                url: '/save-client/',
+                data: $('#form_cl').serialize(),
+                success: function (response) {
+                    if (response.success == 'true') {
+                        console.log(response.client_id);
+                        $('#client_id').val(response.client_id);
+                        $("#tab-1").removeClass("active");
+                        $("#tab-2").addClass("active");
+                    }
+                },
+                error: function (response) {
+                    console.log(response);
+                    alert("Error");
+                },
+                  beforeSend: function () {
+                $("#load").show();
+            },
+            	error : function(response){
+                console.log(response);
+                alert('error');
+                $("#load").hide();
+            },
+            		complete: function () {
+                $("#load").hide();
+            }
+            });
+
+        });
+
+        //----------------------------end-----------------//
+
+        //-------------------------------------Client IP----------------------------//
+
+        $('#btn_save_client_ip').click(function () {
+            var check_first_status=false;
+            var check_second_status=false;
+            var check_third_status=false;
+
+            if ($('#client_id').val() === "") {
+                $('#IP').css("color", "red");
+                return false;
+
+            } else {
+                $('#IP').css("color", "white");
+            }
+
+            if ($('#risk_cat option:selected').val() === "") {
+                $('#lbl_risk').css("color", "red");
+            } else {
+                $('#lbl_risk').css("color", "#6A6C6F");
+            }
+
+            var z = $("#txt_first_asset_class_per").val();
+            if ((z!=null || z!="")&&(z< 0 || z > 100)) {
+                $('#lbl_firstp').css("color", "red");
+                $("#lbl_firstp").html("&nbsp Value should be between 0 to 100");
+                check_first_status=false;
+            }else{
+                $("#lbl_firstp").html("");
+                $('#lbl_firstp').css("color", "#6A6C6F");
+                check_first_status=true;
+
+            }
+
+            var y = $("#txt_second_asset_class_per").val();
+            if ((y!=null || y!="")&&(y< 0 || y > 100)) {
+                $('#lbl_secondp').css("color", "red");
+                $("#lbl_secondp").html("&nbsp Value should be between 0 to 100");
+                check_second_status=false;
+            }else{
+                $("#lbl_secondp").html("");
+                $('#lbl_secondp').css("color", "#6A6C6F");
+                check_second_status=true;
+
+            }
+
+            var m = $("#txt_third_asset_class_per").val();
+             if ((m!=null || m!="")&&(m< 0 || m > 100)) {
+                $('#lbl_thirdp').css("color", "red");
+                $("#lbl_thirdp").html("&nbsp Value should be between 0 to 100");
+                 check_third_status=false;
+            }else{
+                $("#lbl_thirdp").html("");
+                $('#lbl_thirdp').css("color", "#6A6C6F");
+                 check_third_status=true;
+            }
+
+            if(check_second_status==false||check_first_status==false||check_third_status==false||$('#client_id_ip').val() === "" ||$('#risk_cat option:selected').val() === ""){
+                return false;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/save-client-ip/',
+                data: $('#ip_client').serialize(),
+                success: function (response) {
+                    if (response.success == 'true') {
+                        location.href = "/crm-index/";
+                    } else {
+                        alert('Failed to Save');
+                    }
+                },
+                error: function (response) {
+                    console.log(response);
+                    alert("Error");
+                },
+                  beforeSend: function () {
+                $("#load").show();
+            },
+            	error : function(response){
+                console.log(response);
+                alert('error');
+                $("#load").hide();
+            },
+            		complete: function () {
+                $("#load").hide();
+            }
+            });
+
+        });
+
+    });
+
+    //---------------------------------------validation for number----------------//
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57 || charCode == 43 || charCode == 45 ))
+            return false;
+        return true;
+    }
+
+    function validateFloatKeyPresss(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var number = el.value.split('+');
+        var number1 = el.value.split('-');
+        if (charCode != 45 && charCode != 43 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        //just one dot
+        if (number.length > 1 && charCode == 43) {
+            return false;
+        }
+        if (number1.length > 1 && charCode == 45) {
+            return false;
+        }
+        return true;
+    }
+
+    //------------------------------------end---------------------------//
+
+    //------------------------------validation for float field for Client IP-------------------//
+
+    function validateFloatKeyPress(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var number = el.value.split('.');
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+
+        if (number.length > 1 && charCode == 46) {
+            return false;
+        }
+
+        var caratPos = getSelectionStart(el);
+        var dotPos = el.value.indexOf(".");
+        if (caratPos > dotPos && dotPos > -1 && (number[1].length > 1)) {
+            if (charCode == 8)
+                return true;
+            else
+                return false;
+        }
+        return true;
+    }
+
+    //thanks: http://javascript.nwbox.com/cursor_position/
+    function getSelectionStart(o) {
+        if (o.createTextRange) {
+            var r = document.selection.createRange().duplicate()
+            r.moveEnd('character', o.value.length)
+            if (r.text == '') return o.value.length
+            return o.value.lastIndexOf(r.text)
+        } else return o.selectionStart
+    }
+
+    //-----------------------------------end-------------------------//
+</script>
+
+</body>
+</html>

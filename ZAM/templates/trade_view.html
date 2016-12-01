@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    {% if type == 'view' %}
+        <title>ZAM | View Trade</title>
+    {% else %}
+        <title>ZAM | Edit Trade</title>
+    {% endif %}
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.css' %}">
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/toastr/build/toastr.min.css' %}"/>
+
+    <style type="text/css">
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+    </style>
+
+    <style type="text/css">
+
+        .page-header {
+            margin-top: 1%;
+        }
+
+        .bac-but {
+            margin-bottom: 1px;
+            text-align: right;
+        }
+
+        .pad-top {
+            padding-top: 7px;
+        }
+
+        .pad-bottom {
+            padding-bottom: 7px;
+        }
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        .btn-primary2:hover {
+
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+
+        }
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        .bac-clr {
+            background: linear-gradient(to left, #fff -20%, #7160A9 40%) repeat scroll 0% 0% !important;
+            border: 1px solid #E4E5E7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+        }
+
+        #side-menu li .nav-second-level li a {
+            color: #FFFFFF;
+        }
+
+        .hpanel.hblue .panel-body {
+            border-top: 2px solid #7160A9;
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+        .small-logo {
+            display: none;
+            text-align: center;
+            padding-top: 6px;
+            font-size: 28px;
+            font-weight: 800;
+            float: left;
+            display: block;
+
+            color: #7160A9;
+
+        }
+
+        .text-primary {
+            color: #7160A9;
+        }
+
+        #side-menu li.treeview ul li a {
+            background: #fff !important;
+            color: #6A6C6F !important;
+            font-weight: 700;
+        }
+
+        #side-menu li.treeview ul li.active a {
+            background-color: #7160A9 !important;
+            color: #FFF !important;
+        }
+
+        #side-menu li.treeview ul li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff !important;
+
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+
+    <!-- <div id="logo" class="light-version">
+        <span>
+            Zeus Assets Management
+        </span>
+    </div> -->
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo">
+            <span class="text-primary">Zeus Asset Management</span>
+        </div>
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-speaker"></i>
+                    </a>
+
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-mail"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="/signing-out/">
+                        <i title="Logout" class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.full_name }}</span><br>
+                <small class="text-muted">{{ request.session.user_role }}</small>
+
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Marketing Manager' %}
+                <li>
+                    <a href="/crm-index/"> <span class="nav-label">Client Relationship Management</span></a>
+                </li>
+            {% endif %}
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+            <li><a href="/open-research-page/?tab_id=1">Research</a></li>
+            {% endif %}
+                <li><a href="/open-discussion-forum/">Discussion Forum</a></li>
+              {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+            <li class="treeview">
+               <a href="#"><span class="nav-label">Security Data Management</span><span class="fa arrow"></span> </a>
+                   <ul class="nav nav-second-level">
+                       <li><a href="/open-security-page/">Security</a></li>
+                       <li><a href="/open-security-price-page/">Price</a></li>
+                   </ul>
+            </li>
+            {% endif %}
+	        {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' %}
+                <li class="active">
+                    <a href="/open-trade/"> <span class="nav-label">Trade</span></a>
+                </li>
+                <li>
+                    <a href="/open-position/"> <span class="nav-label">Position</span></a>
+                </li>
+	        {% endif %}
+            <li >
+                <a href="/index/"> <span class="nav-label">Dashboard</span></a>
+            </li>
+            {% if request.session.user_role == 'Super Admin' %}             	<li class="treeview">                     <a href="#"><span class="nav-label">Planning Tool</span><span class="fa arrow"></span> </a>                     <ul class="nav nav-second-level">                         <li><a href="/open-YFinAdvisor-index/">Planning Tool Input</a></li>                         <li><a href="/open-YFinAdvisor-customer/">Customer</a></li>                     </ul>                 </li>             {% endif %}             {% if request.session.user_role == 'Super Admin' or request.session.user_role == 'Admin' %}	 		<li>                     <a href="/open-user-index/"> <span class="nav-label">User Management</span></a>                 </li>             {% endif %}
+                <li>
+                    <a href="/open-rename-password/"> <span class="nav-label">Change Password</span></a>
+                </li>
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+
+    <!--     <div class="normalheader transition animated fadeIn">
+            <div class="hpanel">
+                <div class="panel-body">
+                    <a class="small-header-action" href="">
+                        <div class="clip-header">
+                            <i class="fa fa-arrow-up"></i>
+                        </div>
+                    </a>
+
+                    <div id="hbreadcrumb" class="pull-right m-t-lg">
+
+                    </div>
+
+                    <h2 class="font-light m-b-xs">
+                        CRM[Customer Relationship Management]
+                    </h2>
+                    <small>Here you can add new clien and view existing.</small>
+                </div>
+            </div>
+        </div> -->
+
+
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel">
+            <div class="bac-clr">
+                <a class="small-header-action" href="">
+                    <!-- <div class="clip-header">
+                        <i class="fa fa-arrow-up"></i>
+                    </div> -->
+                </a>
+
+                <h3 style="display:inline;" class="font-light m-b-xs font-col">
+                    <a href="/open-trade/" style="color: #FFFFFF"> Trade > </a>
+                </h3>
+                {% if type == 'view' %}
+                    <h4 style="display:inline;" class="font-light m-b-xs font-col">
+                        View Trade
+                    </h4>
+                {% else %}
+                    <h4 style="display:inline;" class="font-light m-b-xs font-col">
+                        Edit Trade
+                    </h4>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="content animate-panel">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="hpanel hblue">
+                    <div class="panel-body">
+                        <div class="page-header row">
+                            <div class="col-md-9">
+                                <h4 class="pull-left">Trade Details</h4>
+                            </div>
+                            {% if type == 'view' %}
+                                <div class="col-md-3 bac-but">
+                                    <a href="/open-trade/" class="btn btn-outline btn-danger2">Cancel</a>
+
+                                    <input id="edit_sts" hidden type="text" value="0">
+                                    <a id="edit_button" type="button" class="btn btn-outline btn-success">&nbsp;&nbsp;Edit&nbsp;&nbsp;</a>
+                                </div>
+                            {% else %}
+                                <div class="col-md-3 bac-but">
+                                    <a href="/open-trade/" class="btn btn-outline btn-danger2">Cancel</a>
+
+                                    <a onclick="save()" type="button" class="btn btn-outline btn-success">&nbsp;&nbsp;Save&nbsp;&nbsp;</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="ibox-content">
+                            <form id="trade_form">
+                                <div class="row">
+
+                                    <div class="form-group col-lg-4">
+                                        <label id="lbl_date" class="control-label">Date*</label>
+                                        <div class="input-group date">
+                                            <input id="date" type="text" class="form-control" readonly
+                                                   value="{{ trade_obj.trade_date }}">
+                                    	<span class="input-group-addon">
+                                    	<i class="glyphicon glyphicon-th"></i>
+                                    	</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-lg-4">
+                                        <label class="control-label">Security*</label>
+                                        <input name="security_name" type="text" id="security_name" readonly
+                                               value="{{ trade_obj.security_name }}"
+                                               class="form-control">
+                                    </div>
+
+                                    <div class="form-group col-lg-4">
+                                        <label id="lbl_tr_type" class="control-label">Trade Type*</label>
+                                        <select class="form-control js-source-states" name="trade_type"
+                                                id="trade_type">
+                                                <option value="Buy">Buy</option>
+                                                <option value="Sell">Sell</option>
+                                                <option value="Sell Short">Sell Short</option>
+                                                <option value="Cover Short">Cover Short</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-lg-4">
+                                        <label id="lbl_quantity" class="control-label">Quantity*</label>
+                                        <input id="present_quantity" type="text" hidden value="{{ trade_obj.present_quantity }}">
+                                        <input name="quantity" type="text" id="quantity"
+                                               value="{{ trade_obj.trade_security_quantity }}"
+                                               onkeypress="return validateIntKeyPress(this,event);"
+                                               class="form-control" onblur="cal_total_amnt();">
+                                    </div>
+
+                                    <div class="form-group col-lg-4">
+                                        <label id="lbl_tr_price" class="control-label">Trade Price*</label>
+                                        <input name="trd_price" type="text" id="trd_price"
+                                               value="{{ trade_obj.trade_price|floatformat:2 }}"
+                                               onkeypress="return validateFloatKeyPress(this,event);"
+                                               class="form-control" onblur="cal_total_amnt();">
+                                    </div>
+
+                                    <div class="form-group col-lg-4">
+                                        <label id="lbl_fx_price" class="control-label">FX Price*</label>
+                                        <input name="fx_price" type="text" id="fx_price"
+                                               value="{{ trade_obj.fx_price|floatformat:2 }}"
+                                               onkeypress="return validateFloatKeyPress(this,event);"
+                                               class="form-control">
+                                    </div>
+
+                                    <div class="form-group col-lg-4">
+                                        <label class="control-label">Lot Size</label>
+                                        <input name="lot_size" type="text" id="lot_size"
+                                               readonly value="{{ trade_obj.lot_size }}" class="form-control">
+                                    </div>
+
+                                    <div class="form-group col-lg-4">
+                                        <label class="control-label">Total Amount</label>
+                                        <input name="total_amount" type="text" id="total_amount"
+                                               value="{{ trade_obj.trade_amount|floatformat:2 }}"
+                                               readonly
+                                               onkeypress="return validateFloatKeyPress(this,event);"
+                                               class="form-control">
+                                    </div>
+
+                                    <div class="form-group col-lg-4">
+                                        <label class="control-label">Broker</label>
+                                        <input name="broker" type="text" id="broker"
+                                               value="{{ trade_obj.broker }}" class="form-control">
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+<div class="modal fade hmodal-danger" id="modal_delete" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header" style="padding:10px;">
+                <h4 class="modal-title">ZAM</h4>
+            </div>
+            <div class="modal-body">
+                <p>Do you really want to delete this record?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+<script src="{% static 'vendor/datatables/media/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' %}"></script>
+
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"></script>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+<script src="{% static 'vendor/toastr/build/toastr.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js' %}"></script>
+
+<script>
+
+    toastr.options = {
+        "debug": false,
+        "newestOnTop": false,
+        "positionClass": "toast-top-center",
+        "closeButton": true,
+        "debug": false,
+        "toastClass": "animated fadeInDown",
+    };
+
+    $(function () {
+        $(".js-source-states").select2();
+        $(".js-source-states-2").select2();
+        $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+        $.fn.datepicker.defaults.endDate = "+0d";
+        $('.input-group.date').datepicker({});
+        //$.fn.datepicker.defaults.format = "dd/mm/yyyy";
+        //$.fn.datepicker.defaults.endDate = "+0d";
+        $('.input-group.date').datepicker({}).on('changeDate', function (e) {
+            $(this).datepicker('hide');
+        });
+    });
+
+    $(document).ready(function () {
+        $("#trade_form input").prop("disabled", true);
+        $("#trade_form select").prop("disabled", true);
+        $("span").css("pointer-events", "none");
+        var trade_type = $("#trade_type").val();
+        $("#trade_type").select2("val", "{{trade_obj.buy_sell_indicator}}");
+        var type = "{{ type }}"
+        if(type == "edit"){
+            $("#trade_form input").prop("disabled", false);
+            $("#trade_form select").prop("disabled", false);
+        }
+    });
+
+    $("#edit_button").click(function () {
+        var edit_sts = $("#edit_sts").val();
+        if (edit_sts == "0") {
+            $("#edit_sts").val("1");
+            $("#trade_form input").prop("disabled", false);
+            $("#trade_form select").prop("disabled", false);
+            $("span").css("pointer-events", "auto");
+            $('#edit_button').text('Save');
+            //$('#edit_button').attr('id', 'save_button');
+        } else {
+            save();
+        }
+    });
+
+    function validateIntKeyPress(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        //var number = el.value.split('.');
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+
+        //if (number.length > 1) {
+        //  return false;
+        //}
+
+        return true;
+    }
+
+    function getSelectionStart(o) {
+        if (o.createTextRange) {
+            var r = document.selection.createRange().duplicate()
+            r.moveEnd('character', o.value.length)
+            if (r.text == '') return o.value.length
+            return o.value.lastIndexOf(r.text)
+        } else return o.selectionStart
+    }
+
+    function validateFloatKeyPress(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var number = el.value.split('.');
+
+        if (charCode == 8){
+            return true;
+        }
+
+        if (number[1].length > 1){
+            return false;
+        }
+
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+
+        //just one dot
+        if (number.length > 1 && charCode == 46) {
+            return false;
+        }
+        //get the carat position
+        var caratPos = getSelectionStart(el);
+        var dotPos = el.value.indexOf(".");
+        if (caratPos > dotPos && dotPos > -1 && (number[1].length > 1)) {
+            if (charCode == 8) {
+                //alert("number backspace");
+                return true;
+            }
+            else {
+                //alert("number");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function cal_total_amnt(){
+        var quantity = $("#quantity").val();
+        var mkt_pric = $("#trd_price").val();
+        var lot_size = $("#lot_size").val();
+        console.log(quantity,mkt_pric,lot_size);
+
+        if (quantity == "" || mkt_pric == ""){
+            $("#total_amount").val('');
+        }else
+        {
+            var total_amount = quantity * mkt_pric * lot_size
+            total_amount = total_amount.toFixed(2);
+            $("#total_amount").val(total_amount);
+        }
+    }
+
+    function save() {
+        //alert("save")
+
+        var date = $('#date').val();
+        var trade_type = $('#trade_type').val();
+        var quantity = $('#quantity').val();
+        var trd_price = $('#trd_price').val();
+        var fx_price = $('#fx_price').val();
+        var total_amount = $('#total_amount').val();
+        var broker = $('#broker').val();
+        var lot_size = $('#lot_size').val();
+        var re = new RegExp("^[0-9]+$");
+
+        if (date === "") {
+            $('#lbl_date').css("color", "red");
+        } else {
+            $('#lbl_date').css("color", "#6a6c6f");
+        }
+
+        if (trade_type === "") {
+            $('#lbl_tr_type').css("color", "red");
+        } else {
+            $('#lbl_tr_type').css("color", "#6a6c6f");
+        }
+
+        if (quantity === "") {
+            $('#lbl_quantity').css("color", "red");
+        } else {
+            $('#lbl_quantity').css("color", "#6a6c6f");
+        }
+
+        if (trd_price === "") {
+            $('#lbl_tr_price').css("color", "red");
+        } else {
+            $('#lbl_tr_price').css("color", "#6a6c6f");
+        }
+
+        if (fx_price === "") {
+            $('#lbl_fx_price').css("color", "red");
+        } else {
+            $('#lbl_fx_price').css("color", "#6a6c6f");
+        }
+
+        if (trade_type == "Sell"){
+            var present_quantity = $("#present_quantity").val();
+            var quan = parseInt(present_quantity) - parseInt(quantity);
+            if (quan < 0){
+                toastr.error("Sell quantity is greater than Buy quantity for this Security")
+                return false;
+            }
+        }
+
+        if (date === "" || trade_type === "" || quantity === "" || trd_price === "" || fx_price === "") {
+            return false;
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: '/edit-trade/',
+                data: {
+                    'trade_id':{{trade_obj.trade_id}},
+                    'date': date,
+                    'trade_type': trade_type,
+                    'security_id': {{trade_obj.security_id}},
+                    'trd_price': trd_price,
+                    'fx_price': fx_price,
+                    'quantity': quantity,
+                    'total_amount': total_amount,
+                    'broker': broker,
+                    'lot_size': lot_size
+                },
+                success: function (response) {
+                    if (response.success == 'true') {
+                        location.href = "/open-trade/"
+                    } else {
+                        //alert('false');
+                    }
+                },
+                error: function (response) {
+                    alert("Error!");
+                },
+
+            });
+        }
+    }
+
+</script>
+
+</body>
+</html>

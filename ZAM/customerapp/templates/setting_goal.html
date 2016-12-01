@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>YfinAdvisor | Setting Goal</title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"/>
+    <link rel="stylesheet"
+          href="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.css' %}"/>
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/sweetalert/lib/sweet-alert.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/toastr/build/toastr.min.css' %}"/>
+
+    <link rel="stylesheet" href="{% static 'vendor/rangeslider.js-2.1.1/rangeslider.css' %}"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <!--<script src="vendor/jquery-ui.js"></script>-->
+    <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
+
+
+    <style type="text/css">
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        #edit_txt_target_date{
+            z-index:2000;
+        }
+
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        .btn-primary2:hover {
+
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+
+        }
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        .bac-clr {
+            background: linear-gradient(to left, #fff -20%, #7160A960%) repeat scroll 0% 0% !important;
+            border: 1px solid #E4E5E7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+        }
+
+        #side-menu li .nav-second-level li a {
+            color: #FFFFFF;
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+        .small-logo {
+            display: none;
+            text-align: center;
+            padding-top: 18px;
+            font-size: 14px;
+            font-weight: 800;
+            float: left;
+            display: block;
+
+            color: #7160A9;
+
+        }
+
+
+
+        .text-primary {
+            color: #7160A9;
+        }
+
+        .alignRight {
+            text-align: right;
+        }
+
+        #next {
+            padding: 10px;
+            display: block;
+            background-color: #7160A9;
+            color: white;
+            *text-align: center;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        #refresh {
+            padding: 7px;
+            display: block;
+            background-color: #7160A9;
+            color: white;
+            text-align: center;
+            position: right;
+            top: 7px;
+            right: 7px;
+        }
+
+        #search_bank {
+            font-size: 22px;
+
+            background-color: #7160A9;
+            color: white;
+            text-align: center;
+
+        }
+
+        #other_add {
+            margin-left: 303px;
+            font-size: 17px;
+            width: 525px;
+            padding: 7px;
+            display: block;
+            background-color: #7160A9;
+            color: white;
+            text-align: center;
+            position: right;
+
+        }
+
+        #lbl_pb {
+            margin-left: 109px;
+        }
+
+        #pbank {
+            margin-left: 109px;
+        }
+
+        #lbl_pa {
+            margin-left: 122px;
+        }
+
+        #bank_usr {
+            height: 20px;
+            width: 40px;
+        }
+
+        #bank_pass {
+            height: 20px;
+            width: 40px;
+        }
+
+        .btn-primary2:focus {
+
+            background-color: transparent;
+            border-color: #7160A9 !important;
+            color: #6a6c6f;
+        }
+
+        #other_submit {
+            margin-left: 303px;
+            font-size: 17px;
+            width: 525px;
+            padding: 7px;
+            display: block;
+            background-color: #7160A9;
+            color: white;
+            text-align: center;
+            position: right;
+
+        }
+
+        #form_other {
+            margin-left: 200px;
+        }
+
+        #form_other2 {
+            margin-left: 200px;
+        }
+
+        #plus {
+            width: 70px;
+            background-color: #7160A9;
+            color: white;
+        }
+
+        .rangeslider__handle {
+            width: 25px;
+            height: 25px;
+            top: -8px !important;
+        }
+
+        .rangeslider--horizontal {
+            height: 12px;
+            width: 100%;
+        }
+
+        input {
+            width: 100%;
+        }
+
+        .label-right {
+            float: right;
+            top: 1px;
+            position: absolute;
+            vertical-align: middle;
+            right: 0px;
+        }
+
+        .label-left {
+            float: left;
+            top: 1px;
+            position: absolute;
+            vertical-align: middle;
+            left: 0px;
+        }
+
+        .div_padding {
+            padding-top: 4px;
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+
+        .rangeslider__fill {
+            background: #7160A9 none repeat scroll 0% 0%;
+            position: absolute;
+        }
+
+        .modal-header {
+            padding: 5px 30px;
+            background: white none repeat scroll 0% 0%;
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+        }
+
+        .modal-header .close {
+            margin-top: 13px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<div class="splash" style="opacity:0.4;" id="load">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a
+        href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo" style="padding-top: 0px">
+            <img src="{% static 'images/zam-logo-1.png' %}" style="width: 130px" class="img-circle m-b"
+                 alt="logo"></img>
+        </div>
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                {% if request.session.user_role == 'Super Admin' %}
+                <li>
+                    <a href="/open-YFinAdvisor-customer/">
+                       <i title="Back to Super Admin" class="fa fa-user-secret"></i>
+                   </a>
+                </li>
+                {% endif %}
+                <li class="dropdown">
+                    <a href="/signing-out/">
+                        <i title="Logout" class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.customer_full_name }}</span><br>
+                <small class="text-muted">{{ request.session.customer_user_role }}</small>
+
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            <li class="active">
+                <a href="/customer/"> <span class="nav-label">My Planning Tool</span></a>
+            </li>
+            <li>
+                <a href="/customer/customer-details/"> <span class="nav-label">Personal Information</span></a>
+            </li>
+            {% if request.session.user_role != 'Super Admin' %}
+                <li><a href="/open-discussion-forum/">Discussion Forum</a></li>
+                </li>
+                <li >
+                    <a href="/customer/change-password/"> <span class="nav-label">Change Password</span></a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+
+    <div class="content animate-panel">
+
+        <div class="hpanel">
+
+            <div class="panel-heading hbuilt">
+                <div class="row">
+                    <br>
+
+                    <div class="col-lg-3 col-md-3 col-xs-3">
+                        <div class=" pull-left">
+                            <a href="/customer/open-new-worth/" class="btn btn-outline btn-primary2 ">Back</a>&nbsp;&nbsp;
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-6 text-center">
+                        <h4>Setting Goals</h4>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-3">
+                        <div class=" pull-right">
+                            <a href="/customer/customer-report/" target="_blank" class="btn btn-outline btn-primary2 " title="Download Report"><i class="fa fa-download"></i></a>&nbsp;&nbsp;
+                            <a href="/customer/open-implementation/" class="btn btn-outline btn-primary2 ">Next</a>&nbsp;&nbsp;
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+
+                <div class="row">
+                    <form id="goal_form" method="POST">
+                        <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="form-group">
+                                <input type="hidden" name="username" value="{{ request.session.user_id }}"/>
+                                <input type="hidden" name="users_id" value="{{ request.session.login_user }}"/>
+                                <label id="lbl_cat" class="control-label">Category*</label>
+                                <select class="form-control js-source-states" name="goal_cat" id="goal_cat">
+                                    <option value='' disabled selected></option>
+                                    {% for goal in goal_cat %}
+                                        <option value="{{ goal.goal_cat_id }}">{{ goal.goal }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-xs-12">
+                            <div class="form-group">
+                                <label id="lbl_nam" class="control-label">Goal Name</label>
+                                <input name="txt_name" type="text" id="txt_name" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-xs-5">
+                            <div class="form-group">
+                                <label id="lbl_amt" class="control-label">Amount*</label>
+                                <input name="amount" type="text" id="amount"
+                                       onkeypress="return validateFloatKeyPress(this,event);" class="form-control"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-xs-5">
+                            <div class="form-group">
+                                <label id="lbl_amt_allocated" class="control-label">Amount Allocated (Per Month)*</label>
+                                <input name="amount_allocated" type="text" id="amount_allocated"
+                                       onkeypress="return validateFloatKeyPress(this,event);" class="form-control"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-xs-5">
+                            <div class="form-group">
+                                <label id="lbl_tr_yr" class="control-label">Target Date*</label>
+                                <div class="input-group date">
+                                    <input required id="txt_target_date" name="txt_target_date"
+                                           type="text" readonly
+                                           class="form-control" autocomplete="off"
+                                           >
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-th"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="col-lg-3 col-md-3 col-xs-5">-->
+                            <!---->
+                        <!--</div>-->
+                        <div class="col-lg-1 col-md-1 col-xs-2">
+                            <div class="form-group pull-right">
+                                <label class="control-label">&nbsp;&nbsp;&nbsp;</label>
+                                <button type="button" id="add_goal" class="btn btn-outline btn-success">
+                                    &nbsp;&nbsp; + &nbsp;&nbsp;</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="panel-body">
+
+                    <div>
+                        <div class="row">
+                            <div class="col-md-6">
+
+                            </div>
+
+                            <div class="col-md-6" style="text-align: right">
+                                <a style="color: blue;text-decoration: underline" href="#calc_model" data-toggle="modal" data-target="#calc_model">
+                                    Retirement Calculator</a>
+                            </div>
+                        </div>
+                        <table cellpadding="1" cellspacing="1" id="goal_table"
+                               class="table table-condensed table-striped"
+                               style="width:100%;height:100%">
+                            <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Name</th>
+                                <th>Amount</th>
+                                <th>Amount Allocated</th>
+                                <th>Target Date</th>
+                                <th hidden></th>
+                                <th hidden></th>
+
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="goal_model" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <legend style="text-align:center">Edit Goal</legend>
+                <div class="row">
+                    <input type="text" id="edit_goal_id" hidden="hidden"
+                           required="required">
+
+                    <div class="col-md-6">
+                        <label id="edit_lbl_cat" class="control-label">Category*</label>
+                        <select class="form-control js-source-states" name="goal_cat" id="edit_goal_cat">
+                            <option value='' disabled selected></option>
+                            {% for goal in goal_cat %}
+                                <option value="{{ goal.goal_cat_id }}">{{ goal.goal }}</option>
+                            {% endfor %}
+                        </select>
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-12 form-group">
+                        <label id="edit_lbl_nam" class="control-label">Goal Name</label>
+                        <input name="txt_name" type="text" id="edit_txt_name" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-12 form-group">
+                        <label id="edit_lbl_amt" class="control-label">Amount*</label>
+                        <input name="amount" type="text" id="edit_amount"
+                               onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-12 form-group">
+                        <label id="edit_lbl_amt_allocated" class="control-label">Amount Allocated (Per Month)*</label>
+                        <input name="amount_allocated" type="text" id="edit_amount_allocated"
+                               onkeypress="return validateFloatKeyPress(this,event);" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" >
+                        <div class="form-group" id="target_date" >
+                                <label id="edit_lbl_tr_yr" class="control-label">Target Date*</label>
+                                <div class="input-group date">
+                                    <input required id="edit_txt_target_date" name="txt_target_date"
+                                           type="text" readonly
+                                           class="form-control" autocomplete="off"
+                                           >
+                                    <span class="input-group-addon">
+                                        <i class="glyphicon glyphicon-th"></i>
+                                    </span>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-md-offset-2 col-md-4 col-xs-4 " style="text-align: right">
+                        <br>
+                        <div style="padding-top:5px;">
+                            <button type="button" class="btn btn-outline btn-danger" data-dismiss="modal">Cancel</button>
+                            <button type="button" onclick="edit_goal_data();" class="btn  btn-outline btn-success wid">
+                                &nbsp;Save&nbsp;</button>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="calc_model" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"     aria-hidden="true">×</button>
+                <h3 style="text-align:center">Retirement Calculator</h3>
+            </div>
+            <div class="modal-body">
+                <form id="calc_form">
+
+
+                    <input hidden id="pension" value="{{ pension }}">
+
+                    <div class="row">
+                        <div class="col-md-3 col-xs-3 ">
+                            <label>Current age</label>
+                        </div>
+                        <div class="col-md-6 col-xs-6 ">
+                            <div class="div_padding">
+                                <label class="label-left">18</label>
+                                <input type="range" id="slider_age" min="18" max="50" autocomplete="off" value="18"
+                                       name="current_age"
+                                       onchange="change_value(this.value,this.name);" data-rangeslider>
+                                <label class="label-right">50</label>
+                                <output hidden></output>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-3 ">
+                            <input type="number" min="18" onkeypress="return validateIntKeyPress(this,event);" max="50"
+                                   id="current_age" name="slider_age" value="18"
+                                   onblur="change_slider(this,this.value,this.name,this.min,this.max);"
+                                   autocomplete="off">
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-3 col-xs-3 ">
+                            <label>Retirement age</label>
+                        </div>
+                        <div class="col-md-6 col-xs-6 ">
+                            <div class="div_padding">
+                                <label class="label-left">30</label>
+                                <input type="range" id="slider_rage" min="30" autocomplete="off" max="60" value="30" name="retirement_age"
+                                       onchange="change_value(this.value,this.name);" data-rangeslider>
+                                <label class="label-right">60</label>
+                                <output hidden></output>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-3 ">
+                            <input type="number" min="30" name="slider_rage" max="60"
+                                   onkeypress="return validateIntKeyPress(this,event);"
+                                   onblur="change_slider(this,this.value,this.name,this.min,this.max);"
+                                   id="retirement_age" value="30" autocomplete="off">
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-3 col-xs-3 ">
+                            <label>Inflation</label>
+                        </div>
+                        <div class="col-md-6 col-xs-6 ">
+                            <div class="div_padding">
+                                <label class="label-left">4</label>
+                                <input type="range" id="slider_inflation" min="4" autocomplete="off" max="14" value="6" name="inflation"
+                                       onchange="change_value(this.value,this.name);" data-rangeslider>
+                                <label class="label-right">14</label>
+                                <output hidden></output>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-3 ">
+                            <input type="number" min="4" name="slider_inflation" max="14"
+                                   onkeypress="return validateIntKeyPress(this,event);"
+                                   onblur="change_slider(this,this.value,this.name,this.min,this.max);"
+                                   id="inflation" value="6" autocomplete="off">
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-3 col-xs-3 ">
+                            <label>Current salary</label>
+                        </div>
+                        <div class="col-md-6 col-xs-6 ">
+                            <div class="div_padding">
+                                <label class="label-left">0</label>
+                                <input autocomplete="off" id="slider_salary" type="range" min="0" max="99999999" name="salary"
+                                       onchange="change_value(this.value,this.name);" value="0" data-rangeslider>
+                                <label class="label-right">--</label>
+                                <output hidden></output>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-3 ">
+                            <input type="number" name="slider_salary" min="0" max="99999999"
+                                   onkeypress="return validateIntKeyPress(this,event);"
+                                   onblur="change_slider(this,this.value,this.name,this.min,this.max);"
+                                   autocomplete="off" id="salary" value="0">
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-3 col-xs-3 ">
+                            <label>Future inflation</label>
+                        </div>
+                        <div class="col-md-6 col-xs-6 ">
+                            <div class="div_padding">
+                                <label class="label-left">4</label>
+                                <input id="slider_future" autocomplete="off" type="range" min="4" max="14" name="future_inflation"
+                                       onchange="change_value(this.value,this.name);" value="6" data-rangeslider>
+                                <label class="label-right">14</label>
+                                <output hidden></output>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-3 ">
+                            <input autocomplete="off" id="future_inflation" name="slider_future"
+                                   onblur="change_slider(this,this.value,this.name,this.min,this.max);"
+                                   onkeypress="return validateIntKeyPress(this,event);" value="6" type="number" min="4"
+                                   max="14">
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-3 col-xs-3 ">
+                            <label>Return on FD</label>
+                        </div>
+                        <div class="col-md-6 col-xs-6 ">
+                            <div class="div_padding">
+                                <label class="label-left">4</label>
+                                <input id="slider_return" autocomplete="off" type="range" min="4" max="14" value="8" name="return_fd"
+                                       onchange="change_value(this.value,this.name);" data-rangeslider>
+                                <label class="label-right">14</label>
+                                <output hidden></output>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-3 ">
+                            <input autocomplete="off" id="return_fd" name="slider_return"
+                                   onkeypress="return validateIntKeyPress(this,event);"
+                                   onblur="change_slider(this,this.value,this.name,this.min,this.max);"
+                                   value="8" type="number" min="4" max="14">
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-3 col-xs-3 ">
+                            <label>Years post retirement</label>
+                        </div>
+                        <div class="col-md-6 col-xs-6 ">
+                            <div class="div_padding">
+                                <label class="label-left">0</label>
+                                <input id="slider_year" autocomplete="off" type="range" min="0" max="30" value="0" name="year"
+                                       onchange="change_value(this.value,this.name);" data-rangeslider>
+                                <label class="label-right">30</label>
+                                <output hidden></output>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-3 ">
+                            <input autocomplete="off" id="year" name="slider_year"
+                                   onkeypress="return validateIntKeyPress(this,event);"
+                                   onblur="change_slider(this,this.value,this.name,this.min,this.max);"
+                                   value="0" type="number" min="0" max="30">
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-3 col-xs-3 ">
+                            <label>Return expectation</label>
+                        </div>
+                        <div class="col-md-6 col-xs-6 ">
+                            <div class="div_padding">
+                                <label class="label-left">4</label>
+                                <input id="slider_return_exe" autocomplete="off" type="range" min="4" max="14" value="12" name="return_exp"
+                                       onchange="change_value(this.value,this.name);" data-rangeslider>
+                                <label class="label-right">14</label>
+                                <output hidden></output>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-xs-3 ">
+                            <input autocomplete="off" id="return_exp" name="slider_return_exe"
+                                   onkeypress="return validateIntKeyPress(this,event);"
+                                   onblur="change_slider(this,this.value,this.name,this.min,this.max);"
+                                   value="12" type="number" min="4" max="14">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6 col-xs-6 ">
+                            <label>Income required at retirement</label>
+                            <input id="income_at_retirement" type="number" readonly>
+                        </div>
+                        <div class="col-md-6 col-xs-6 ">
+                            <label>Corpus required for retirement</label>
+                            <input id="corpus" type="number" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 ">
+                            <label>EMI required</label>
+                            <input id="emi" type="number" readonly>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/rangeslider.js-2.1.1/rangeslider.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+<script src="{% static 'vendor/datatables/media/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' %}"></script>
+
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"></script>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+<!--<script src="{% static 'vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js' %}"></script>-->
+<script src="{% static 'vendor/toastr/build/toastr.min.js' %}"></script>
+<script src="{% static 'vendor/sweetalert/lib/sweet-alert.min.js' %}"></script>
+
+
+
+<script>
+
+    $('#calc_model').on('hidden', function () {
+        $("#calc_from").reset();
+    })
+
+    var dateToday = new Date();
+
+    $("#txt_target_date").datepicker({
+        dateFormat: 'dd/mm/yy',
+        autoclose: false,
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-0:+50",
+        minDate: dateToday
+    });
+
+    $("#edit_txt_target_date").datepicker({
+        dateFormat: 'dd/mm/yy',
+        autoclose: false,
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-0:+50",
+        minDate: dateToday
+    });
+
+    function calculator() {
+        var current_salary = $("#salary").val();
+        var inflation = $("#inflation").val();
+        var retirement_age = $("#retirement_age").val();
+        var current_age = $("#current_age").val();
+        var pension = $("#pension").val();
+        var return_fd = $("#return_fd").val();
+        var future_inflation = $("#future_inflation").val();
+        var year = $("#year").val();
+        var return_exp = $("#return_exp").val();
+        var real_return = 0;
+        var real_return = ((1 + (return_fd / 100)) / (1 + (future_inflation / 100)) - 1) * 100;
+        //console.log(real_return);
+        //real_return = real_return.toFixed(1);
+        var age = 0;
+        var age = retirement_age - current_age;
+        inflation = (1 + (inflation / 100));
+        var inflation_pw = 0;
+        var inflation_pw = Math.pow(inflation, age);
+        var income_at_retirement = 0;
+        var income_at_retirement = Math.round(current_salary * inflation_pw);
+        var payment = 0;
+        var payment = income_at_retirement * 12
+        pension = pension * 100000
+        var pension_pw = Math.pow(inflation, age)
+        var pension_pw = pension * pension_pw
+        var pv_value = (PV(real_return / 100, year, payment, '', 1) + pension_pw) * -1
+        cp_required = pv_value/inflation_pw
+        cp_required = Math.round(cp_required);
+        pv_value = Math.round(pv_value);
+        return_exp = return_exp / 100
+        if (age == 0){
+            var pmt = 0;
+        }else{
+            var pmt = PMT(return_exp / 12, age * 12, 1, pv_value, 1) * -1;
+        }
+        pmt = Math.round(pmt);
+        $("#income_at_retirement").val(income_at_retirement);
+        $("#corpus").val(cp_required);
+        $("#emi").val(pmt);
+    }
+
+    $(function () {
+        var $document = $(document);
+        var selector = '[data-rangeslider]';
+        var $inputRange = $(selector);
+
+        function valueOutput(element) {
+            var value = element.value;
+            var output = element.parentNode.getElementsByTagName('output')[0];
+            output.innerHTML = value;
+        }
+
+        for (var i = $inputRange.length - 1; i >= 0; i--) {
+            valueOutput($inputRange[i]);
+        }
+        ;
+        $document.on('input', selector, function (e) {
+            valueOutput(e.target);
+        });
+        $inputRange.rangeslider({polyfill: false});
+        calculator();
+    });
+
+    function change_value(value, name) {
+        $("#" + name).val(value);
+        calculator();
+    }
+
+    function change_slider(e,vale, name,min,max) {
+        $('#' + name).val(vale).change();
+        calculator();
+    }
+
+
+
+    function PV(rate, periods, payment, future, type) {
+        // Initialize type
+        var type = (typeof type === 'undefined') ? 0 : type;
+
+        // Evaluate rate and periods (TODO: replace with secure expression evaluator)
+        rate = eval(rate);
+        periods = eval(periods);
+        // Return present value
+        if (rate === 0) {
+            return -payment * periods - future;
+        } else {
+            return (((1 - Math.pow(1 + rate, periods)) / rate) * payment * (1 + rate * type) - future) / Math.pow(1 + rate, periods);
+        }
+
+    }
+
+
+    function PMT(ir, np, pv, fv, type) {
+        /*
+         * ir   - interest rate per month
+         * np   - number of periods (months)
+         * pv   - present value
+         * fv   - future value
+         * type - when the payments are due:
+         *        0: end of the period, e.g. end of month (default)
+         *        1: beginning of period
+         */
+        var pmt, pvif;
+
+        fv || (fv = 0);
+        type || (type = 0);
+
+        if (ir === 0)
+            return -(pv + fv) / np;
+
+        pvif = Math.pow(1 + ir, np);
+        pmt = -ir * pv * (pvif + fv) / (pvif - 1);
+
+        if (type === 1)
+            pmt /= (1 + ir);
+
+        return pmt;
+    }
+
+    function validateIntKeyPress(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        //var number = el.value.split('.');
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+
+
+    $(function () {
+        console.log('==========================>');
+        $(".js-source-states").select2();
+        $(".js-source-states-2").select2();
+
+
+        toastr.options = {
+            "debug": false,
+            "newestOnTop": false,
+            "positionClass": "toast-top-center",
+            "closeButton": true,
+            "debug": false,
+            "toastClass": "animated fadeInDown",
+        };
+
+        var dataTable = $('#goal_table').dataTable({
+            'destroy': true,
+            "ajax": "/customer/get-goal-list/",
+            drawCallback: function () {
+                var page_min = 10;
+                var $api = this.api();
+                var pages = $api.page.info().pages;
+                var rows = $api.data().length;
+                var page = $api.page.info().page;
+
+                if (pages === 1) {
+                    $('#goal_table_paginate').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                    $('#goal_table_next').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                    $('#goal_table_previous').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                } else if (page === 0) {
+                    $('#goal_table_previous').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                }
+            },
+            "columns": [
+                {"data": "goal_category"},
+                {"data": "goal_name"},
+                {"data": "goal_amount"},
+                {"data": "goal_amount_allocated"},
+                {"data": "goal_tr_year"},
+                {"data": "edit_btn"},
+                {"data": "delete_btn"},
+                /*     {"data": "final_value"}, */
+            ],
+        });
+
+        $("#add_goal").click(function () {
+
+            if ($('#goal_cat').val() === "" || $('#goal_cat').val() === null) {
+                $('#lbl_cat').css("color", "red");
+            } else {
+                $('#lbl_cat').css("color", "#6A6C6F");
+            }
+
+
+            if ($('#amount').val() === "") {
+                $('#lbl_amt').css("color", "red");
+            } else {
+                $('#lbl_amt').css("color", "#6A6C6F");
+            }
+
+            if ($('#amount_allocated').val() === "") {
+                $('#lbl_amt_allocated').css("color", "red");
+            } else {
+                $('#lbl_amt_allocated').css("color", "#6A6C6F");
+            }
+
+            if ($('#txt_target_date').val() === "" || $('#txt_target_date').val() === null) {
+                $('#lbl_tr_yr').css("color", "red");
+            } else {
+                $('#lbl_tr_yr').css("color", "#6A6C6F");
+            }
+
+
+            if ($('#goal_cat').val() === "" || $('#goal_cat').val() === null ||
+                    $('#amount').val() === null || $('#amount').val() === "" ||
+                    $('#amount_allocated').val() === "" ||
+                    $('#txt_target_date').val() === null || $('#txt_target_date').val() === ""
+
+            ) {
+
+                return false;
+            }
+
+            var amount_allocated = $('#amount_allocated').val();
+            amount_allocated = parseInt(amount_allocated)
+            var amount = $('#amount').val();
+            amount = parseInt(amount)
+            if (amount_allocated > amount){
+                toastr.error("Amount allocated (Per Month) can't be greater than Amount");
+                return false;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/customer/save-goal/',
+                data: $('#goal_form').serialize(),
+                success: function (response) {
+                    console.log(response);
+                    if (response.success == "true") {
+
+
+                        var dataTable = $('#goal_table').dataTable({
+                            'destroy': true,
+                            "ajax": "/customer/get-goal-list/",
+                            drawCallback: function () {
+                                var page_min = 10;
+                                var $api = this.api();
+                                var pages = $api.page.info().pages;
+                                var rows = $api.data().length;
+                                var page = $api.page.info().page;
+
+                                if (pages === 1) {
+                                    $('#goal_table_paginate').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                                    $('#goal_table_next').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                                    $('#goal_table_previous').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                                } else if (page === 0) {
+                                    $('#goal_table_previous').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                                }
+                            },
+                            "columns": [
+                                {"data": "goal_category"},
+                                {"data": "goal_name"},
+                                {"data": "goal_amount"},
+                                {"data": "goal_amount_allocated"},
+                                {"data": "goal_tr_year"},
+                                {"data": "edit_btn"},
+                                {"data": "delete_btn"},
+                                /*    {"data": "final_value"}, */
+                            ]
+
+                        });
+
+                    }
+                    $('#goal_cat').select2().select2("val", '');
+                    $('#amount').val("");
+                    $('#amount_allocated').val("");
+                    $('#txt_target_date').val("");
+                    $('#txt_name').val("");
+                },
+                error: function (response) {
+                    toastr.error('Sever Error');
+                    $("#load").hide();
+                },
+                beforeSend: function () {
+                    $("#load").show();
+                },
+                complete: function () {
+                    $("#load").hide();
+                }
+            })
+        });
+
+    });
+
+    function validateFloatKeyPress(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var number = el.value.split('.');
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+
+        if (number.length > 1 && charCode == 46) {
+            return false;
+        }
+
+        var caratPos = getSelectionStart(el);
+        var dotPos = el.value.indexOf(".");
+        if (caratPos > dotPos && dotPos > -1 && (number[1].length > 1)) {
+            if (charCode == 8)
+                return true;
+            else
+                return false;
+        }
+        return true;
+    }
+
+    //thanks: http://javascript.nwbox.com/cursor_position/
+    function getSelectionStart(o) {
+        if (o.createTextRange) {
+            var r = document.selection.createRange().duplicate()
+            r.moveEnd('character', o.value.length)
+            if (r.text == '') return o.value.length
+            return o.value.lastIndexOf(r.text)
+        } else return o.selectionStart
+    }
+
+    function edit_goal(data) {
+        bank_data = data.split('|$|');
+        console.log(bank_data);
+        $("#edit_goal_id").val(bank_data[0]);
+        $("#edit_goal_cat").select2("val", bank_data[3]);
+        $("#edit_txt_name").val(bank_data[1]);
+        $("#edit_amount").val(bank_data[2]);
+        $("#edit_txt_target_date").val(bank_data[4]);
+        $("#edit_amount_allocated").val(bank_data[5]);
+        $("#goal_model").modal('show');
+    }
+
+    function delete_goal(id) {
+        var goal_id = id;
+        swal({
+                    title: "Are you sure you want to delete this goal?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                    closeOnConfirm: true,
+                    closeOnCancel: true
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            type: 'POST',
+                            url: '/customer/delete-goal-data/',
+                            data: {
+                                'goal_id': goal_id
+                            },
+                            success: function (response) {
+                                if (response.success == "true") {
+                                    var dataTable = $('#goal_table').dataTable({
+                                        'destroy': true,
+                                        "ajax": "/customer/get-goal-list/",
+                                        drawCallback: function () {
+                                            var page_min = 10;
+                                            var $api = this.api();
+                                            var pages = $api.page.info().pages;
+                                            var rows = $api.data().length;
+                                            var page = $api.page.info().page;
+
+                                            if (pages === 1) {
+                                                $('#goal_table_paginate').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                                                $('#goal_table_next').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                                                $('#goal_table_previous').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                                            } else if (page === 0) {
+                                                $('#goal_table_previous').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                                            }
+                                        },
+                                        "columns": [
+                                            {"data": "goal_category"},
+                                            {"data": "goal_name"},
+                                            {"data": "goal_amount"},
+                                            {"data": "goal_amount_allocated"},
+                                            {"data": "goal_tr_year"},
+                                            {"data": "edit_btn"},
+                                            {"data": "delete_btn"},
+                                            /*    {"data": "final_value"}, */
+                                        ]
+
+                                    });
+                                }
+                                else {
+                                    toastr.error('Server Error');
+                                }
+
+                            },
+                            error: function (response) {
+                                toastr.error('Sever Error');
+                                $("#load").hide();
+                            },
+                            beforeSend: function () {
+                                $("#load").show();
+                            },
+                            complete: function () {
+                                $("#load").hide();
+                            }
+                        });
+                    } else {
+
+                    }
+                });
+    }
+
+    function edit_goal_data() {
+        if ($('#edit_goal_cat').val() === "" || $('#edit_goal_cat').val() === null) {
+            $('#edit_lbl_cat').css("color", "red");
+        } else {
+            $('#edit_lbl_cat').css("color", "#6A6C6F");
+        }
+
+
+        if ($('#edit_amount').val() === "") {
+            $('#edit_lbl_amt').css("color", "red");
+        } else {
+            $('#edit_lbl_amt').css("color", "#6A6C6F");
+        }
+
+        if ($('#edit_amount_allocated').val() === "") {
+            $('#edit_lbl_amt_allocated').css("color", "red");
+        } else {
+            $('#edit_lbl_amt_allocated').css("color", "#6A6C6F");
+        }
+
+        if ($('#edit_txt_target_date').val() === "" || $('#edit_txt_target_date').val() === null) {
+            $('#edit_lbl_tr_yr').css("color", "red");
+        } else {
+            $('#edit_lbl_tr_yr').css("color", "#6A6C6F");
+        }
+
+
+        if ($('#edit_goal_cat').val() === "" || $('#edit_goal_cat').val() === null ||
+                $('#edit_amount').val() === null || $('#edit_amount').val() === "" ||
+                $('#edit_amount_allocated').val() === "" ||
+                $('#edit_txt_target_date').val() === null || $('#edit_txt_target_date').val() === ""
+
+        ) {
+
+            return false;
+        }
+
+        var amount_allocated = $('#edit_amount_allocated').val();
+            amount_allocated = parseInt(amount_allocated)
+            var amount = $('#edit_amount').val();
+            amount = parseInt(amount)
+        if (amount_allocated > amount){
+            toastr.error("Amount allocated (Per Month) can't be greater than Amount");
+            return false;
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/customer/edit-goal-data/',
+            data: {
+                'goal_id': $("#edit_goal_id").val(),
+                'txt_name': $('#edit_txt_name').val(),
+                'amount': $('#edit_amount').val(),
+                'amount_allocated': $('#edit_amount_allocated').val(),
+                'goal_cat': $('#edit_goal_cat').val(),
+                'txt_target_date': $('#edit_txt_target_date').val(),
+            },
+            success: function (response) {
+                if (response.success == 'true') {
+                    $("#goal_model").modal('hide');
+                    toastr.success('Goal updated successfully');
+                    var dataTable = $('#goal_table').dataTable({
+                        'destroy': true,
+                        "ajax": "/customer/get-goal-list/",
+                        drawCallback: function () {
+                            var page_min = 10;
+                            var $api = this.api();
+                            var pages = $api.page.info().pages;
+                            var rows = $api.data().length;
+                            var page = $api.page.info().page;
+
+                            if (pages === 1) {
+                                $('#goal_table_paginate').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                                $('#goal_table_next').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                                $('#goal_table_previous').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                            } else if (page === 0) {
+                                $('#goal_table_previous').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                            }
+                        },
+                        "columns": [
+                            {"data": "goal_category"},
+                            {"data": "goal_name"},
+                            {"data": "goal_amount"},
+                            {"data": "goal_amount_allocated"},
+                            {"data": "goal_tr_year"},
+                            {"data": "edit_btn"},
+                            {"data": "delete_btn"},
+                            /*    {"data": "final_value"}, */
+                        ]
+
+                    });
+                } else {
+                    toastr.error('Sever Error');
+                }
+            },
+            error: function (response) {
+                toastr.error('Sever Error');
+                $("#load").hide();
+            },
+            beforeSend: function () {
+                $("#load").show();
+            },
+            complete: function () {
+                $("#load").hide();
+            }
+
+        });
+    }
+
+    $('#goal_model').on('hidden.bs.modal', function () {
+        $('#edit_lbl_cat').css("color", "#6A6C6F");
+        $('#edit_lbl_amt').css("color", "#6A6C6F");
+        $('#edit_lbl_tr_yr').css("color", "#6A6C6F");
+    });
+
+
+
+</script>
+

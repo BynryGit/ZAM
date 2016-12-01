@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>YfinAdvisor | Edit Personal Info</title>
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"/>
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}"/>
+    <link rel="stylesheet"
+          href="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'dataTables.tableTools.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/toastr/build/toastr.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/sweetalert/lib/sweet-alert.css' %}"/>
+{#    <link rel="stylesheet" href="{% static 'vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.css' %}"/>#}
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="vendor/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+
+    <style type="text/css">
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .btn-primary2:focus {
+
+            background-color: transparent;
+            border-color: #7160A9 !important;
+            color: #6a6c6f;
+        }
+
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        .btn-primary2:hover {
+
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+
+        }
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        #side-menu li .nav-second-level li a {
+            color: #FFFFFF;
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+        .small-logo {
+            display: none;
+            text-align: center;
+            padding-top: 18px;
+            font-size: 14px;
+            font-weight: 800;
+            float: left;
+            display: block;
+
+            color: #7160A9;
+
+        }
+
+        .text-primary {
+            color: #7160A9;
+        }
+
+        .table td {
+            text-align: center;
+
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<div class="splash" style="opacity:0.4;" id="load">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a
+        href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+
+    <!-- <div id="logo" class="light-version">
+        <span>
+            ZAM
+        </span>
+    </div> -->
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo" style="padding-top: 0px">
+            <img src="{% static 'images/zam-logo-1.png' %}" style="width: 130px" class="img-circle m-b" alt="logo">
+        </div>
+        <div>
+
+        </div>
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <!--  <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                         <i class="pe-7s-mail"></i>
+                         <span class="label label-success">4</span>
+                     </a> -->
+                    <ul class="dropdown-menu hdropdown animated flipInX">
+                        <div class="title">
+                            You have 4 new messages
+                        </div>
+                        <li>
+                            <a>
+                                It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Lorem Ipsum is simply dummy.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See All Messages</a></li>
+                    </ul>
+                </li>
+                {% if request.session.user_role == 'Super Admin' %}
+                <li>
+                    <a href="/open-YFinAdvisor-customer/">
+                       <i title="Back to Super Admin" class="fa fa-user-secret"></i>
+                   </a>
+                </li>
+                {% endif %}
+                <li class="dropdown">
+                    <a href="/signing-out/">
+                        <i class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.customer_full_name }}</span><br>
+                <small class="text-muted">{{ request.session.customer_user_role }}</small>
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            <li>
+                <a href="/customer/"> <span class="nav-label">My Planning Tool</span></a>
+            </li>
+            <li class="active">
+                <a href="/customer/customer-details/"> <span class="nav-label">Personal Information</span></a>
+            </li>
+            {% if request.session.user_role != 'Super Admin' %}
+                <li><a href="/open-discussion-forum/">Discussion Forum</a></li>
+                </li>
+                <li >
+                    <a href="/customer/change-password/"> <span class="nav-label">Change Password</span></a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+
+    <div class="content animate-panel">
+
+        <div class="text-right m-t-xs">
+            <a class="btn btn-outline btn-danger" href="/customer/">Cancel</a>&nbsp;
+            <button class="btn btn-outline btn-success " id="button_client_basic_info">&nbsp; Edit
+                &nbsp;</button>
+        </div>
+        <br>
+
+        <div class="hpanel">
+            <div class="panel-heading hbuilt">
+
+                <div class="panel-body">
+                    <div class="text-left m-b-md" id="wizardControl">
+                        <ul class="nav nav-tabs">
+                            <li id="tab1" class="active"><a id="tab-a1" data-toggle="tab" href="#tab-1"><h5>Personal
+                                Info</h5></a></li>
+                            <li id="tab2" class=""><a id="tab-a2" data-toggle="tab" href="#tab-2"><h5>Financial
+                                Info</h5></a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane active">
+
+                            <form role="form" name="customer_details" id="customer_details" method="POST">
+                                <!-- ---------------Person Details------------------- -->
+                                <!-- <div class="hpanel "> -->
+
+
+                                <legend>Personal Details</legend>
+
+                                <!-- <div class="panel-body"> -->
+                                <div class="row">
+                                    <div class="col-md-2" style="padding-right: 0px;">
+                                        <label class="control-label">
+                                            Title
+                                        </label>
+                                        <select name="title" id="title" class="form-control js-source-states">
+                                            <option value="Mr."> Mr.</option>
+                                            <option value="Mrs."> Mrs.</option>
+                                            <option value="Ms."> Ms.</option>
+                                            <option value="Dr."> Dr.</option>
+                                            <option value="Mas."> Mas.</option>
+                                            <option value="Prof."> Prof.</option>
+                                            <option value="Smt."> Smt.</option>
+                                            <option value="Miss."> Miss.</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-lg-3">
+                                        <label id="lbl_name">First Name*</label>
+                                        <input type="text" value="{{ customer_obj.first_name }}" autocomplete="off"
+                                               name="txt_name"
+                                               id="txt_name"
+                                               class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group col-lg-3">
+                                        <label id="lbl_last_name">Last Name*</label>
+                                        <input type="text" value="{{ customer_obj.last_name }}" autocomplete="off"
+                                               name="txt_last_name"
+                                               id="txt_last_name"
+                                               class="form-control" required>
+                                    </div>
+                                    <div class="form-group col-lg-4">
+                                        <label id="lbl_dor">Date of Registration*</label>
+
+                                        <div class="input-group date">
+                                            <input required id="txt_dor" autocomplete="off" name="txt_dor"
+                                                   type="text" class="form-control" value="{{ dor }}">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-th"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-lg-3">
+                                        <label id="lbl_dob">Date of Birth*</label>
+
+                                        <div class="input-group date">
+                                            <input required id="txt_dob" autocomplete="off" name="txt_dob"
+                                                   type="text" class="form-control" value="{{ dob }}"
+                                                   onchange="age_calc(this,txt_age)">
+                                            <span class="input-group-addon">
+                                                <i class="glyphicon glyphicon-th"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-3">
+                                        <label id="lbl_age">Age</label>
+                                        <input type="text" onkeypress="return validateIntKeyPress(this,event);"
+                                               autocomplete="off" class="form-control" maxlength="2" readonly
+                                               required id="txt_age" name="txt_age" value="{{ customer_obj.age }}">
+                                    </div>
+                                    <div class="form-group col-lg-3">
+                                        <label id="lbl_gender">Gender*</label>
+                                        <select class="form-control js-source-states" required
+                                                name="gender" autocomplete="off" id="gender">
+                                            {% if customer_obj.gender == "Male" %}
+                                                <option value="Male" selected>Male</option>
+                                                <option value="Female" >Female</option>
+                                            {% else %}
+                                                <option value="Male" >Male</option>
+                                                <option value="Female" selected>Female</option>
+                                            {% endif %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-lg-3">
+                                        <label id="lbl_marital">Marital Status*</label>
+                                        <select class="form-control js-source-states" required onchange="add_family();"
+                                                 autocomplete="off" id="txt_marital_status">
+                                            {% if customer_obj.marital_status == "Married" %}
+                                                <option value="Married" selected>Married</option>
+                                                <option value="Unmarried">Unmarried</option>
+                                            {% else %}
+                                                <option value="Married">Married</option>
+                                                <option value="Unmarried" selected>Unmarried</option>
+                                            {% endif %}
+                                        </select>
+                                    </div>
+
+                                    <input hidden name="txt_marital_status" id="txt_marital_state" value="{{customer_obj.marital_status}}">
+
+                                </div>
+                                <div id="family_details">
+                                    <legend>Family Details</legend>
+
+                                    <div class="row">
+                                        <div class="form-group col-lg-6">
+                                            <label id="lbl_spouse_name">Spouse First Name*</label>
+                                            <input type="text" value="{{ customer_obj.spouse_first_name }}"
+                                                   autocomplete="off"
+                                                   name="txt_spouse_first_name"
+                                                   id="txt_spouse_first_name"
+                                                   class="form-control" required>
+                                        </div>
+
+                                        <div class="form-group col-lg-6">
+                                            <label id="lbl_spouse_last_name">Spouse Last Name*</label>
+                                            <input type="text" value="{{ customer_obj.spouse_last_name }}"
+                                                   autocomplete="off"
+                                                   name="txt_spouse_last_name"
+                                                   id="txt_spouse_last_name"
+                                                   class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-3">
+                                            <label id="lbl_spouse_dob">Date of Birth*</label>
+
+                                            <div class="input-group date">
+                                                <input required id="txt_spouse_dob" name="txt_spouse_dob"
+                                                       type="text" value="{{spouse_dob }}"
+                                                       class="form-control" autocomplete="off"
+                                                       onchange="age_calc(this,txt_spouse_age)">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-th"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-3">
+                                            <label id="lbl_spouse_age">Age</label>
+                                            <input type="text" onkeypress="return validateIntKeyPress(this,event);"
+                                                   autocomplete="off" class="form-control" maxlength="2"
+                                                   value="{{ customer_obj.spouse_age }}" readonly
+                                                   required id="txt_spouse_age" name="txt_spouse_age">
+                                        </div>
+                                        <div class="form-group col-lg-3">
+                                            <label id="lbl_spouse_gender">Gender*</label>
+                                            <select class="form-control js-source-states" required
+                                                    name="spouse_gender" autocomplete="off" id="spouse_gender">
+                                                {% if customer_obj.spouse_gender == "Male" %}
+                                                    <option value="Male" selected>Male</option>
+                                                    <option value="Female" >Female</option>
+                                                {% elif customer_obj.spouse_gender == "Female"%}
+                                                    <option value="Male" >Male</option>
+                                                    <option value="Female" selected>Female</option>
+                                                {% else %}
+                                                    <option value='' disabled selected></option>
+                                                    <option value="Male" >Male</option>
+                                                    <option value="Female">Female</option>
+                                                {% endif %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-lg-3">
+                                            <label id="lbl_no_child">No. of Children*</label>
+                                            <input type="text" onblur="add_child()"
+                                                   value="{{ customer_obj.no_of_child }}"
+                                                   autocomplete="off" class="form-control"
+                                                   required id="txt_child_no" name="txt_child_no">
+                                        </div>
+                                    </div>
+
+                                    <div id="child_details">
+                                        {% if customer_obj.no_of_child != 0 %}
+                                        <legend>Children Details</legend>
+                                        <div class="row">
+                                            {% for child in child_obj %}
+                                            <div class="form-group col-lg-3"><label
+                                                    id="lbl_child_name{{ child.child_count }}">Child
+                                                Name*</label>
+                                                <input type="text" value="{{ child.child_name }}"
+                                                       id="txt_child_name{{ child.child_count }}'" autocomplete="off"
+                                                       name="txt_child_name" class="form-control">
+                                            </div>
+                                            <div class="form-group col-lg-3">
+                                                <label id="lbl_child_dob">Date of Birth*</label>
+
+                                                <div class="input-group date">
+                                                    <input required id="txt_child_dob" name="txt_child_dob"
+                                                           type="text" value="{{ child.child_dob }}"
+                                                           class="form-control child_dob" autocomplete="off"
+                                                           onchange="age_child_calc(this,txt_child_age)">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-th"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-3"><label
+                                                    id="lbl_child_age{{ child.child_count }}">Child
+                                                Age</label>
+                                                <input type="text" value="{{ child.child_age }}"
+                                                       id="txt_child_age{{ child.child_count }}" maxlength="2"
+                                                       autocomplete="off" readonly
+                                                       onkeypress="return validateIntKeyPress(this,event);"
+                                                       name="txt_child_age" class="form-control">
+                                            </div>
+                                            <div class="form-group col-lg-3"><label
+                                                    id="lbl_child_gender{{ child.child_count }}">Child
+                                                Gender*</label>
+                                                <input type="text" value="{{ child.child_gender }}"
+                                                       id="txt_child_gender{{ child.child_count }}" hidden>
+                                                <select class="form-control js-source-states" name="child_gender"
+                                                        autocomplete="off" id="child_gender{{ child.child_count }}">
+                                                    {% if child.child_gender == "Male" %}
+                                                        <option value="Male" selected>Male</option>
+                                                        <option value="Female" >Female</option>
+                                                    {% elif child.child_gender == "Female"%}
+                                                        <option value="Male" >Male</option>
+                                                        <option value="Female" selected>Female</option>
+                                                    {% else %}
+                                                        <option value='' disabled selected></option>
+                                                        <option value="Male" >Male</option>
+                                                        <option value="Female">Female</option>
+                                                    {% endif %}
+                                                </select>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                        {% else %}
+                                        <legend id="child_legend">Children Details</legend>
+                                        {% endif %}
+                                        <div class="row">
+                                            <div id="child">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div id="tab-2" class="tab-pane ">
+                            <form role="form" name="customer_details_2" id="customer_details_2" method="POST">
+                                <legend>Financial Details&nbsp;
+                                    <small>(INR)</small>
+                                </legend>
+
+                                <!-- <div class="panel-body"> -->
+                                <div class="row">
+                                    <div class="form-group col-lg-4">
+                                        <label id="lbl_score">CIBIL Score</label><a href="http://www.cibil.com/" target="_blank" style="color:blue;"> (www.cibil.com)</a>
+                                        <input type="text" value="{{ customer_obj.cibil_score|floatformat:2 }}"
+                                               autocomplete="off" name="txt_score" maxlength="13"
+                                               id="txt_score" onkeypress="return validateFloatKeyPress(this,event);"
+                                               class="form-control" required>
+                                    </div>
+                                    <div class="form-group col-lg-4">
+                                        <label id="lbl_salary">Total Household Salary*</label>
+                                        <input type="text" value="{{ customer_obj.total_salary|floatformat:2 }}"
+                                               autocomplete="off" name="txt_salary" maxlength="13"
+                                               id="txt_salary" onkeypress="return validateFloatKeyPress(this,event);"
+                                               class="form-control" required>
+                                    </div>
+                                    <div class="form-group col-lg-4">
+                                        <label id="lbl_saving">Starting Saving*</label>
+                                        <input type="text" value="{{ customer_obj.start_saving|floatformat:2 }}"
+                                               autocomplete="off" name="txt_saving" maxlength="13"
+                                               id="txt_saving" onkeypress="return validateFloatKeyPress(this,event);"
+                                               class="form-control" required>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-lg-4">
+                                        <label id="lbl_occupation">Occupation (Self)*</label>
+                                        <select class="form-control js-source-states" required
+                                                name="txt_occupation" autocomplete="off" id="txt_occupation">
+                                            {% if customer_obj.occupation == "SELF EMPLOYED" %}
+                                                <option value="SELF EMPLOYED" selected>Self Employed</option>
+                                                <option value="PRIVATE SALARIED">Private Salaried</option>
+                                                <option value="GOVT SALARIED">Govt. Salaried</option>
+                                            {% elif customer_obj.occupation == "PRIVATE SALARIED"%}
+                                                <option value="SELF EMPLOYED">Self Employed</option>
+                                                <option value="PRIVATE SALARIED" selected>Private Salaried</option>
+                                                <option value="GOVT SALARIED">Govt. Salaried</option>
+                                            {% elif customer_obj.occupation == "GOVT SALARIED"%}
+                                                <option value="SELF EMPLOYED">Self Employed</option>
+                                                <option value="PRIVATE SALARIED">Private Salaried</option>
+                                                <option value="GOVT SALARIED" selected>Govt. Salaried</option>
+                                            {% else %}
+                                                <option value='' disabled selected></option>
+                                                <option value="SELF EMPLOYED">Self Employed</option>
+                                                <option value="PRIVATE SALARIED">Private Salaried</option>
+                                                <option value="GOVT SALARIED">Govt. Salaried</option>
+                                            {% endif %}
+
+
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-lg-4">
+                                        <label id="lbl_monthly_salary">Monthly Net Salary (Self)*</label>
+                                        <input type="text" autocomplete="off" name="txt_monthly_salary"
+                                               maxlength="13" value="{{ customer_obj.monthly_salary|floatformat:2 }}"
+                                               id="txt_monthly_salary"
+                                               onkeypress="return validateFloatKeyPress(this,event);"
+                                               class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group col-lg-4">
+                                        <label id="lbl_gov_benefits">Eligible for Govt. Defined Benefit Pension*</label>
+                                        <select class="form-control js-source-states" required
+                                                name="txt_gov_benefits" autocomplete="off" id="txt_gov_benefits">
+                                            {% if customer_obj.govt_benefit == "YES" %}
+                                                <option value="YES" selected>Yes</option>
+                                                <option value="NO">No</option>
+                                            {% elif customer_obj.govt_benefit == "NO" %}
+                                                <option value="YES">Yes</option>
+                                                <option value="NO" selected>No</option>
+                                            {% else %}
+                                                <option value='' disabled selected></option>
+                                                <option value="YES">Yes</option>
+                                                <option value="NO">No</option>
+                                            {% endif %}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-lg-4">
+                                        <label>Occupation (Spouse)</label>
+                                        <select class="form-control js-source-states" required
+                                                name="txt_spouse_occupation" autocomplete="off"
+                                                id="txt_spouse_occupation">
+                                            {% if customer_obj.spouse_occupation == "SELF EMPLOYED" %}
+                                                <option value="SELF EMPLOYED" selected>Self Employed</option>
+                                                <option value="PRIVATE SALARIED">Private Salaried</option>
+                                                <option value="GOVT SALARIED">Govt. Salaried</option>
+                                            {% elif customer_obj.spouse_occupation == "PRIVATE SALARIED"%}
+                                                <option value="SELF EMPLOYED">Self Employed</option>
+                                                <option value="PRIVATE SALARIED" selected>Private Salaried</option>
+                                                <option value="GOVT SALARIED">Govt. Salaried</option>
+                                            {% elif customer_obj.spouse_occupation == "GOVT SALARIED"%}
+                                                <option value="SELF EMPLOYED">Self Employed</option>
+                                                <option value="PRIVATE SALARIED">Private Salaried</option>
+                                                <option value="GOVT SALARIED" selected>Govt. Salaried</option>
+                                            {% else %}
+                                                <option value='' disabled selected></option>
+                                                <option value="SELF EMPLOYED">Self Employed</option>
+                                                <option value="PRIVATE SALARIED">Private Salaried</option>
+                                                <option value="GOVT SALARIED">Govt. Salaried</option>
+                                            {% endif %}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-lg-4">
+                                        <label>Monthly Net Salary (Spouse)</label>
+                                        <input type="text" autocomplete="off" name="txt_spouse_monthly_salary"
+                                               maxlength="13" value="{{ customer_obj.spouse_monthly_salary|floatformat:2 }}"
+                                               id="txt_spouse_monthly_salary"
+                                               onkeypress="return validateFloatKeyPress(this,event);"
+                                               class="form-control" required>
+                                    </div>
+
+                                    <div class="form-group col-lg-4">
+                                        <label>Eligible for Govt. Defined Benefit Pension</label>
+                                        <select class="form-control js-source-states" required
+                                                name="txt_spouse_gov_benefits" autocomplete="off"
+                                                id="txt_spouse_gov_benefits">
+                                            {% if customer_obj.spouse_govt_benefit == "YES" %}
+                                                <option value="YES" selected>Yes</option>
+                                                <option value="NO">No</option>
+                                            {% elif customer_obj.spouse_govt_benefit == "NO" %}
+                                                <option value="YES">Yes</option>
+                                                <option value="NO" selected>No</option>
+                                            {% else %}
+                                                <option value='' disabled selected></option>
+                                                <option value="YES">Yes</option>
+                                                <option value="NO">No</option>
+                                            {% endif %}
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <legend>Debt Details&nbsp;
+                                    <small>(INR)</small>
+                                </legend>
+
+                                <div class="row">
+                                    <div class="form-group col-lg-4">
+                                        <label>Mortgage</label>
+                                        <input type="text" value="{{ customer_obj.mortgage|floatformat:2 }}"
+                                               onkeypress="return validateFloatKeyPress(this,event);"
+                                               autocomplete="off" class="form-control" maxlength="13"
+                                               required id="txt_mortgage" name="txt_mortgage">
+                                    </div>
+                                    <div class="form-group col-lg-4">
+                                        <label>Credit Card Debt</label>
+                                        <input type="text" value="{{ customer_obj.credit_card_deb|floatformat:2 }}"
+                                               onkeypress="return validateFloatKeyPress(this,event);"
+                                               autocomplete="off" class="form-control" maxlength="13"
+                                               required id="txt_credit" name="txt_credit">
+                                    </div>
+                                    <div class="form-group col-lg-4">
+                                        <label>Other Loans</label>
+                                        <input type="text" value="{{ customer_obj.other_loans|floatformat:2 }}"
+                                               onkeypress="return validateFloatKeyPress(this,event);"
+                                               autocomplete="off" class="form-control" maxlength="13"
+                                               required id="txt_loans" name="txt_loans">
+                                    </div>
+                                </div>
+
+                                <legend>Cost Details&nbsp;
+                                    <small>(INR)</small>
+                                </legend>
+
+                                <div class="row">
+                                    <div class="form-group col-lg-6">
+                                        <label id="lbl_category">Category</label>
+                                        <select class="form-control js-source-states" required
+                                                name="category" autocomplete="off" id="category">
+                                            <option value='' disabled selected></option>
+                                            {% for varibles in variable_obj %}
+                                            <option value="{{ varibles.variable_id }}">{{ varibles.variable }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-lg-5">
+                                        <label id="lbl_amount">Amount</label>
+                                        <input type="text" value="" autocomplete="off" name="txt_amount" maxlength="13"
+                                               id="txt_amount" onkeypress="return validateFloatKeyPress(this,event);"
+                                               class="form-control" required>
+                                    </div>
+                                    <div class="form-group col-lg-1" style="margin-top: 5px; ">
+                                        <br>
+                                        <a class="btn btn-outline btn-primary2" onclick="add_cat();">+</a>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-lg-12">
+                                        <table id="category_table" class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center">Category Name</th>
+                                                <th class="text-center">Amount</th>
+                                                <th class="text-center"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for varibles in variable_lists %}
+                                            <tr>
+                                                <td>{{ varibles.variable }}</td>
+                                                <td>{{ varibles.amount|floatformat:2 }}</td>
+                                                <td><a id="{{ varibles.variable_id }}" name="{{ varibles.variable }}"
+                                                       class="infont"> <i
+                                                        class="fa fa-trash-o"></i></i> </a></td>
+                                            </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <input type="text" name="totalData" id="totalData" hidden>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Vendor scripts -->
+    <script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery-flot/jquery.flot.js' %}"></script>
+    <script src="{% static 'vendor/jquery-flot/jquery.flot.resize.js' %}"></script>
+    <script src="{% static 'vendor/jquery-flot/jquery.flot.pie.js' %}"></script>
+    <script src="{% static 'vendor/flot.curvedlines/curvedLines.js' %}"></script>
+    <script src="{% static 'vendor/jquery.flot.spline/index.js' %}"></script>
+    <script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+    <script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+    <script src="{% static 'vendor/peity/jquery.peity.min.js' %}"></script>
+    <script src="{% static 'vendor/sparkline/index.js' %}"></script>
+    <script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables/media/js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' %}"></script>
+    <script src="{% static 'dataTables.tableTools.js' %}"></script>
+    <script src="{% static 'vendor/toastr/build/toastr.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery.tabletojson.min.js' %}"></script>
+    <script src="{% static 'vendor/sweetalert/lib/sweet-alert.min.js' %}"></script>
+{#    <script src="{% static 'vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js' %}"></script>#}
+
+    <!-- App scripts -->
+    <script src="{% static 'scripts/homer.js' %}"></script>
+    <script src="{% static 'scripts/charts.js' %}"></script>
+
+    <script>
+
+        var edit_btn = 0;
+
+
+        $("#title").val("{{user_title}}").change();
+
+        toastr.options = {
+            "debug": false,
+            "newestOnTop": false,
+            "positionClass": "toast-top-center",
+            "closeButton": true,
+            "debug": false,
+            "toastClass": "animated fadeInDown",
+        };
+
+        var dateToday = new Date();
+        var NextDate = new Date();
+        NextDate.setMonth(NextDate.getMonth()+3);
+        var LastDate = new Date();
+        LastDate.setMonth(LastDate.getMonth()-3);
+
+
+        $("#txt_dor").datepicker({
+            dateFormat: 'dd/mm/yy',
+            autoclose: false,
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-0:+0",
+            maxDate: NextDate,
+            minDate: LastDate
+        });
+
+        $("#txt_dob").datepicker({
+            dateFormat: 'dd/mm/yy',
+            autoclose: false,
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0",
+            maxDate: dateToday
+        });
+
+        $(".child_dob").datepicker({
+            dateFormat: 'dd/mm/yy',
+            autoclose: false,
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0",
+            maxDate: dateToday
+        });
+
+        $("#txt_spouse_dob").datepicker({
+            dateFormat: 'dd/mm/yy',
+            autoclose: false,
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0",
+            maxDate: dateToday
+        });
+
+        $(function () {
+            $(".js-source-states").select2();
+            var variable_list = "{{ variable_list }}";
+            variable_list = variable_list.split(',');
+            for (l = 1; l <= variable_list.length; l++) {
+                $("#category").select2("val", "" + variable_list[l] + "");
+                $("#category option:selected").attr('disabled', 'disabled');
+            }
+            $('input').prop("disabled", true);
+            $('select').prop("disabled", true);
+            var mar_status = "{{ customer_obj.marital_status }}"
+            if (mar_status == "Unmarried") {
+                $("#txt_spouse_first_name").val('');
+                $("#txt_spouse_last_name").val('');
+                $("#txt_spouse_age").val('');
+            }
+{#            date_init();#}
+        });
+
+
+
+
+{#        function date_init() {#}
+{#            $.fn.datepicker.defaults.format = "dd/mm/yyyy";#}
+{#            $.fn.datepicker.defaults.endDate = "+0d";#}
+{#            $('.input-group.date').datepicker({});#}
+{#            $('.input-group.date').datepicker({}).on('changeDate', function (e) {#}
+{#                $(this).datepicker('hide');#}
+{#            });#}
+{#        }#}
+
+        function age_calc(year,age_input){
+            dob_year = $(year).val();
+            dob_year = dob_year.split("/");
+            var d = new Date().toISOString().split('T')[0];;
+
+            d = d.split("-");
+
+            age = d[0] - dob_year[2];
+            day = d[2] - dob_year[0];
+            month = d[1] - dob_year[1];
+            year = d[0] - dob_year[2];
+
+            if(month < 0){
+                age = age - 1;
+            }
+            if(month == 0 && day < 0){
+                age = age - 1;
+            }
+
+            if (age < 18){
+                year.value = '';
+                toastr.error('Age can not be less than 18');
+                age_input.value = '';
+            }
+            else if (age >= 18){
+                age_input.value = age;
+            }
+        }
+
+        function age_child_calc(year, age_input) {
+            dob_year = $(year).val();
+            dob_year = dob_year.split("/");
+            var parents1 = $("#txt_age").val();
+            var parents2 = $("#txt_spouse_age").val();
+            var d = new Date().toISOString().split('T')[0];
+            d = d.split("-");
+
+            age = d[0] - dob_year[2];
+            day = d[2] - dob_year[0];
+            month = d[1] - dob_year[1];
+            year = d[0] - dob_year[2];
+
+            if (age == '0') {
+                age = 1;
+            }
+            else{
+                if(month < 0){
+                    age = age - 1;
+                }
+                if(month == 0 && day < 0){
+                    age = age - 1;
+                }
+            }
+            if (age > parents1 || age > parents2) {
+                year.value = '';
+                toastr.error('Child age can not be greater than parents age');
+                age_input.value = '';
+            }
+            else if (age < parents1 || age < parents2) {
+                age_input.value = age;
+            }
+        }
+
+        var table = $('#category_table').DataTable({
+            "bSort": false,
+            drawCallback: function () {
+                var page_min = 10;
+                var $api = this.api();
+                var pages = $api.page.info().pages;
+                var rows = $api.data().length;
+                var page = $api.page.info().page;
+
+                if (pages === 1) {
+                    $('#category_table_paginate').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                    $('#category_table_next').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                    $('#category_table_previous').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                } else if (page === 0) {
+                    $('#category_table_previous').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                    $('#category_table_next').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                }
+            }
+
+        });
+
+        $('#category_table tbody').on('click', 'i.fa-trash-o', function () {
+            if (edit_btn == 0) {
+                return false;
+            }
+            var cat_text = $(this).closest("tr").find("td:eq(0)").text();
+            $("#category").find("option:contains(" + cat_text + ")").removeAttr('disabled');
+            table
+                    .row($(this).parents('tr'))
+                    .remove()
+                    .draw();
+        });
+
+        /*
+         function delete_variable(id, cat_text) {
+            var variable_id = id;
+             if (edit_btn == 0) {
+                return false;
+             }
+             swal({
+                 title: "Are you sure you want to delete this record?",
+                 type: "warning",
+                 showCancelButton: true,
+                 confirmButtonColor: "#DD6B55",
+                 confirmButtonText: "Yes",
+                 cancelButtonText: "No",
+                 closeOnConfirm: true,
+                 closeOnCancel: true
+             },
+             function (isConfirm) {
+                 if (isConfirm) {
+                     $.ajax({
+                     type: 'POST',
+                     url: '/customer/delete-variable/',
+                     data: {
+                        'variable_id': variable_id
+                     },
+                     success: function (response) {
+                        if (response.success == "true") {
+                            $("#category").find("option:contains(" + cat_text + ")").removeAttr('disabled');
+                            location.reload();
+                        }
+                        else {
+                            toastr.error('Server Error');
+                        }
+                     },
+                 });
+                } else {
+
+                }
+             });
+         }
+         */
+        function add_family() {
+
+            var marital_status = $("#txt_marital_status option:selected").val();
+            $("txt_marital_state").val(marital_status);
+            if (marital_status == "Married") {
+                $("#family_details :input").attr("disabled", false);
+                $("#txt_spouse_occupation").attr("disabled", false);
+                $("#txt_spouse_monthly_salary").attr("disabled", false);
+                $("#txt_spouse_gov_benefits").attr("disabled", false);
+            } else {
+                $("#family_details :input").attr("disabled", true);
+                $("#family_details :input").val('');
+                $("#txt_spouse_occupation").attr("disabled", true);
+                $("#txt_spouse_monthly_salary").attr("disabled", true);
+                $("#txt_spouse_gov_benefits").attr("disabled", true);
+                $("#lbl_spouse_name").css('color', '#6A6C6F');
+                $("#lbl_spouse_last_name").css('color', '#6A6C6F');
+                $("#lbl_spouse_dob").css('color', '#6A6C6F');
+                $("#lbl_spouse_gender").css('color', '#6A6C6F');
+                $("#lbl_no_child").css('color', '#6A6C6F');
+                $("#txt_child_no").val(0);
+                $("#spouse_gender").html('');
+                $("#spouse_gender").append('<option value="" disabled selected></option><option value="Male" >Male</option><option value="Female">Female</option>');
+                $("#child_details").hide();
+                $("#child").html('');
+            }
+        }
+
+        $("#child_legend").hide();
+        function add_child() {
+            var count = $("#txt_child_no").val();
+            var old_count = {{ customer_obj.no_of_child }} ;
+            if (count < old_count) {
+                $("#txt_child_no").val(old_count);
+            }
+            count = count - {{ customer_obj.no_of_child }} ;
+            $("#child").html('');
+            if (old_count == '0'){
+                $("#child_legend").show();
+            }
+            for (i = 1; i <= count; i++) {
+                var n = old_count + i
+                $("#child").append(
+                        '<div class="form-group col-lg-3"><label id="lbl_child_name' + n + '">Child Name*</label>' +
+                        '<input type="text" value="" id="txt_child_name' + n + '" autocomplete="off" name="txt_child_name" class="form-control">' +
+                        '</div>' +
+                        '<div class="form-group col-lg-3"><label id="lbl_child_dob' + n + '">Date of Birth*</label><div class="input-group date">' +
+                        '<input required id="txt_child_dob' + n + '" autocomplete="off" name="txt_child_dob" onchange="age_child_calc(this,txt_child_age' + n + ')" type="text" class="form-control" ><span class="input-group-addon">' +
+                        '<i class="glyphicon glyphicon-th"></i></span></div></div>' +
+                        '<div class="form-group col-lg-3"><label id="lbl_child_age' + n + '">Child Age</label>' +
+                        '<input type="text" value="" id="txt_child_age' + n + '" readonly maxlength="2" autocomplete="off" onkeypress="return validateIntKeyPress(this,event);" name="txt_child_age" class="form-control">' +
+                        '</div>' +
+                        '<div class="form-group col-lg-3"><label id="lbl_child_gender' + n + '">Child Gender*</label>' +
+                        '<select class="form-control js-source-state" name="child_gender" autocomplete="off" id="child_gender' + n + '">' +
+                        '<option value="" disabled selected></option><option value="Male">Male</option><option value="Female">Female</option>' +
+                        '</select></div>'
+                )
+                $("#txt_child_dob" + i).datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    autoclose: false,
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: "-60:+0",
+                    maxDate: dateToday
+                });
+            }
+            $(".js-source-state").select2();
+            //date_init();
+        }
+
+        var j = 0;
+        function add_cat() {
+            if (edit_btn == 0) {
+                return false;
+            }
+            j = j + 1;
+            var category = $("#category option:selected").text();
+            var category_id = $("#category option:selected").val();
+            var amount = $("#txt_amount").val();
+            if (category == "") {
+                toastr.error('Please select category from dropdown');
+                return false;
+            }
+            if (amount == "") {
+                toastr.error('Please add amount for selected category');
+                return false;
+            }
+            $("#category option:selected").attr('disabled', 'disabled');
+            var dlt_btn = '<a class="infont"><i class="fa fa-trash-o"></i></a>';
+            table.row.add([
+                category,
+                amount,
+                dlt_btn
+            ]).draw(false);
+            $("#category").select2("val", "");
+            $("#txt_amount").val("");
+        }
+
+        function validateFloatKeyPress(el, evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            var number = el.value.split('.');
+
+            if (charCode == 8){
+                return true;
+            }
+
+            if (number[1].length > 1){
+                return false;
+            }
+
+            if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+
+            //just one dot
+            if (number.length > 1 && charCode == 46) {
+                return false;
+            }
+            //get the carat position
+            var caratPos = getSelectionStart(el);
+            var dotPos = el.value.indexOf(".");
+            if (caratPos > dotPos && dotPos > -1 && (number[1].length > 1)) {
+                if (charCode == 8) {
+                    //alert("number backspace");
+                    return true;
+                }
+                else {
+                    //alert("number");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function validateIntKeyPress(el, evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            //var number = el.value.split('.');
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+
+        function validate_form() {
+            var name = $("#txt_name").val()
+            var last_name = $("#txt_last_name").val()
+            var dor = $("#txt_dor").val()
+            var dob = $("#txt_dob").val()
+            var gender = $("#gender option:selected").val()
+            var marital_status = $("#txt_marital_status option:selected").val()
+            var spouse_name = $("#txt_spouse_first_name").val()
+            var spouse_last_name = $("#txt_spouse_last_name").val()
+            var spouse_dob = $("#txt_spouse_dob").val()
+            var spouse_gender = $("#spouse_gender option:selected").val()
+            var no_child = $("#txt_child_no").val()
+            flag = 0;
+
+            if (name == '') {
+                $("#lbl_name").css('color', 'red');
+                flag = 1;
+            } else {
+                $("#lbl_name").css('color', '#6A6C6F');
+            }
+            if (last_name == '') {
+                $("#lbl_last_name").css('color', 'red');
+                flag = 1;
+            } else {
+                $("#lbl_last_name").css('color', '#6A6C6F');
+            }
+            if (dor == '') {
+                $("#lbl_dor").css('color', 'red');
+                flag = 1;
+            } else {
+                $("#lbl_dor").css('color', '#6A6C6F');
+            }
+            if (dob == '') {
+                $("#lbl_dob").css('color', 'red');
+                flag = 1;
+            } else {
+                $("#lbl_dob").css('color', '#6A6C6F');
+            }
+            if (gender == '') {
+                $("#lbl_gender").css('color', 'red');
+                flag = 1;
+            } else {
+                $("#lbl_gender").css('color', '#6A6C6F');
+            }
+            if (marital_status == '') {
+                $("#lbl_marital").css('color', 'red');
+                flag = 1;
+            } else {
+                $("#lbl_marital").css('color', '#6A6C6F');
+            }
+            if (marital_status == "Married") {
+                if (spouse_name == '') {
+                    $("#lbl_spouse_name").css('color', 'red');
+                    flag = 1;
+                } else {
+                    $("#lbl_spouse_name").css('color', '#6A6C6F');
+                }
+                if (spouse_last_name == '') {
+                    $("#lbl_spouse_last_name").css('color', 'red');
+                    flag = 1;
+                } else {
+                    $("#lbl_spouse_last_name").css('color', '#6A6C6F');
+                }
+                if (spouse_dob == '') {
+                    $("#lbl_spouse_dob").css('color', 'red');
+                    flag = 1;
+                } else {
+                    $("#lbl_spouse_dob").css('color', '#6A6C6F');
+                }
+                if (spouse_gender == '') {
+                    $("#lbl_spouse_gender").css('color', 'red');
+                    flag = 1;
+                } else {
+                    $("#lbl_spouse_gender").css('color', '#6A6C6F');
+                }
+                if (no_child == '') {
+                    $("#lbl_no_child").css('color', 'red');
+                    flag = 1;
+                } else {
+                    $("#lbl_no_child").css('color', '#6A6C6F');
+                }
+            }
+            if (no_child != "" && no_child > 0) {
+
+                for (x = 1; x <= no_child; x++) {
+
+                    if ($("#txt_child_name" + x).val() == "") {
+                        $("#lbl_child_name" + x).css('color', 'red');
+                        flag = 1;
+                    } else {
+                        $("#lbl_child_name" + x).css('color', '#6A6C6F');
+                    }
+                    if ($("#txt_child_dob" + x).val() == "") {
+                        $("#lbl_child_dob" + x).css('color', 'red');
+                        flag = 1;
+                    } else {
+                        $("#lbl_child_dob" + x).css('color', '#6A6C6F');
+                    }
+                    if ($("#child_gender" + x + " option:selected").val() == "") {
+                        $("#lbl_child_gender" + x).css('color', 'red');
+                        flag = 1;
+                    } else {
+                        $("#lbl_child_gender" + x).css('color', '#6A6C6F');
+                    }
+                }
+            }
+            if (flag == 1){
+                $("#tab2").removeClass("active");
+                $("#tab-2").removeClass("active");
+                $("#tab1").addClass("active");
+                $("#tab-1").addClass("active");
+            }
+            return flag;
+        }
+
+        function validate_tab(){
+            flag = 0;
+            var salary = $("#txt_salary").val();
+            var saving = $("#txt_saving").val();
+            var occupation = $("#txt_occupation option:selected").val();
+            var monthly_salary = $("#txt_monthly_salary").val();
+            var gov_benefits = $("#txt_gov_benefits option:selected").val();
+
+            if (salary == '') {
+                $("#lbl_salary").css('color', 'red');
+                flag = 1;
+            } else {
+                $("#lbl_salary").css('color', '#6A6C6F');
+            }
+            if (saving == '') {
+                $("#lbl_saving").css('color', 'red');
+                flag = 1;
+            } else {
+                $("#lbl_saving").css('color', '#6A6C6F');
+            }
+            if (occupation == '') {
+                $("#lbl_occupation").css('color', 'red');
+                flag = 1;
+            } else {
+                $("#lbl_occupation").css('color', '#6A6C6F');
+            }
+            if (monthly_salary == '') {
+                $("#lbl_monthly_salary").css('color', 'red');
+                flag = 1;
+            } else {
+                $("#lbl_monthly_salary").css('color', '#6A6C6F');
+            }
+            if (gov_benefits == '') {
+                $("#lbl_gov_benefits").css('color', 'red');
+                flag = 1;
+            } else {
+                $("#lbl_gov_benefits").css('color', '#6A6C6F');
+            }
+            if (flag == 1){
+                $("#tab1").removeClass("active");
+                $("#tab-1").removeClass("active");
+                $("#tab2").addClass("active");
+                $("#tab-2").addClass("active");
+            }
+            return flag;
+        }
+
+        $("#button_client_basic_info").click(function () {
+
+            if (edit_btn == 0) {
+                edit_btn = 1;
+                $("#button_client_basic_info").text(' Save ');
+                $('input').prop("disabled", false);
+                $('select').prop("disabled", false);
+                if ($("#txt_marital_status option:selected").val() == 'Unmarried'){
+                    $("#family_details :input").attr("disabled", true);
+                }
+                else{
+                    $("#txt_marital_status").attr("disabled", true);
+                }
+                return false;
+            }
+            edit_btn = 0;
+            var flag_val = validate_form();
+            var flag_vals = validate_tab();
+            var rowCount = table.data().length;
+            if (flag_val == 1 || flag_vals == 1) {
+                edit_btn = 1;
+                return false;
+            }
+            if (rowCount == 0) {
+                edit_btn = 1;
+                toastr.error('Please add atleast one Category and Amount in Cost Details');
+                return false;
+            }
+
+
+            $("#tab1").removeClass("active");
+            $("#tab-1").removeClass("active");
+            $("#tab2").addClass("active");
+            $("#tab-2").addClass("active");
+
+            var tables = $('#category_table').tableToJSON();
+            var tot_data = (JSON.stringify(tables));
+            $('#totalData').val(tot_data);
+            var form_1= $('#customer_details').serialize();
+            var form_2= $('#customer_details_2').serialize();
+            form = form_1+'&'+form_2;
+
+            $.ajax({
+                type: 'POST',
+                url: '/customer/update-customer-details/',
+                data: form,
+                success: function (response) {
+                    if (response.success == "true") {
+                        toastr.success('User information updated successfully');
+                        setTimeout(function(){
+                            location.href = '/customer/customer-details/'
+                        }, 2000);
+
+                    }
+                    else {
+                        toastr.error('Server error');
+                    }
+                },
+                error: function (response) {
+                    toastr.error('Sever Error');
+                    $("#load").hide();
+                },
+                beforeSend: function () {
+                    $("#load").show();
+                },
+                complete: function () {
+                    $("#load").hide();
+                },
+
+            });
+        });
+
+
+
+    </script>
+
+</body>
+</html>

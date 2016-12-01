@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>Security | Security Bulk Add</title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css' %}"/>
+
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/sweetalert/lib/sweet-alert.css' %}"/>
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/toastr/build/toastr.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'dataTables.tableTools.css' %}"/>     
+      <style type="text/css">
+
+	.page-header{
+	margin-top:1%;
+	}
+	
+	.bac-but{
+			margin-bottom: 2px;
+	      text-align: right;
+	}
+
+	.btn-success.btn-outline:hover {
+    background-color: #62cb31;
+}
+
+	.over{
+
+	overflow:auto;
+	}
+	
+	.fil{
+		padding: 1%;	
+	}
+
+	.fil-sel{
+		width:55%;
+	}
+	
+	
+	</style>
+	<style type="text/css">
+
+	.page-header{
+	margin-top:1%;
+	}
+	
+	.bac-but{
+			margin-bottom: 2px;
+	      text-align: right;
+	}
+	
+	.span-width{
+			width: 83%;
+	}
+	
+	.label-margin{
+			margin: 1%;
+	}	
+
+	.pad-bottom{
+			padding-bottom: 20px;	
+	}	
+	
+	.right-align{
+			text-align: right;
+	}
+	
+	btn-success.btn-outline:hover {
+    	background-color: #62cb31;
+	}
+	
+	.baccol{
+		background-color: #0A37B8 ;		   
+	}
+	
+	.font-col{
+		color: #FFFFFF;
+	
+	}
+	#side-menu li.active a{
+	background-color: #7160A9!important ;	
+	color: #fff;
+
+	}
+	
+	 #side-menu li:hover a{
+	 background-color: #7160A9!important ;	
+	color: #fff;
+	
+	}
+	
+	.btn-primary2:hover{
+	
+	 background-color: #7160A9!important;
+    border-color: #7160A9!important;
+		color: #FFFFFF
+	}
+	
+	.btn-primary2.btn-outline:hover {
+    color: #6a6c6f; !important;
+	 color: #FFFFFF;
+	 
+	 }	
+	
+	.btn-primary2.btn-outline {
+    color: #6a6c6f; !important;
+	 }	
+	 
+	 .btn-primary2{
+	 	border-color: #7160A9!important ;
+	 } 
+	 
+	 .bac-clr {
+		  background: linear-gradient(to left , #fff -20%, #7160A9 40%) repeat scroll 0% 0% !important;
+		  border: 1px solid #E4E5E7;
+		  border-radius: 2px;
+		  padding: 20px;
+		  position: relative;	
+	} 
+	
+	#side-menu li .nav-second-level li a{
+		    color: #FFFFFF !important;
+	} 
+	
+		.hpanel.hblue .panel-body {
+    border-top: 2px solid #7160A9;
+}
+
+	.label-success {
+    background-color: #7160A9;
+}
+
+.small-logo {
+    display: none;
+    text-align: center;
+    padding-top: 6px;
+    font-size: 28px;
+    font-weight: 800;
+    float: left;
+    display: block;
+    
+    color: #7160A9;
+
+}
+
+.text-primary {
+    color: #7160A9;
+}
+
+.table td {
+	  text-align: center;
+	  font-weight : 600;	
+}
+
+        /*--------------------------------------------------*/
+        #side-menu li.treeview ul li a {
+            background: #fff !important;
+            color: #6A6C6F !important;
+            font-weight: 700;
+        }
+
+        #side-menu li.treeview ul li.active a {
+            background-color: #7160A9 !important;
+            color: #FFF !important;
+        }
+
+        #side-menu li.treeview ul li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff !important;
+
+        }
+/*--------------------------------------------------*/
+	</style>
+
+</head>
+<body>
+
+<!-- Simple splash screen-->
+<div class="splash"> <div class="splash-title"><img src="{%static 'images/loading-bars.gif' %}" width="64" height="64" /> </div> </div>
+
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+
+    <!-- <div id="logo" class="light-version">
+        <span>
+           ZAM
+        </span>
+    </div> -->
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo">
+            <span class="text-primary">Zeus Asset Management</span>
+        </div>
+        
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-speaker"></i>
+                    </a>
+
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-mail"></i>
+                        <span class="label label-success"></span>
+                    </a>
+                    <ul class="dropdown-menu hdropdown animated flipInX">
+                        <div class="title">
+                            You have 4 new messages
+                        </div>
+                        <li>
+                            <a>
+                                It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Lorem Ipsum is simply dummy.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See All Messages</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="login.html">
+                        <i class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.full_name }}</span><br>
+                <small class="text-muted">{{ request.session.user_role }}</small>
+
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Marketing Manager' %}
+                <li>
+                    <a href="/crm-index/"> <span class="nav-label">Client Relationship Management</span></a>
+                </li>
+            {% endif %}
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+            <li><a href="/open-research-page/?tab_id=1">Research</a></li>
+            {% endif %}
+                <li><a href="/open-discussion-forum/">Discussion Forum</a></li>
+              {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+            <li class="treeview active">
+               <a href="#"><span class="nav-label">Security Data Management</span><span class="fa arrow"></span> </a>
+                   <ul class="nav nav-second-level">
+                    	<li class="active"><a href="/open-security-page/">Security</a></li>
+                    	 <li><a href="/open-security-price-page/">Price</a></li>
+                   </ul>
+            </li>
+            {% endif %}
+	        {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' %}
+	           <li>
+	                    <a href="/open-trade/"> <span class="nav-label">Trade</span></a>
+	                </li>
+	                <li>
+	                    <a href="/open-position/"> <span class="nav-label">Position</span></a>
+	                </li>
+	        {% endif %} 
+            <li >
+                <a href="/index/"> <span class="nav-label">Dashboard</span></a>
+            </li>
+            {% if request.session.user_role == 'Super Admin' %}
+            <li class="treeview"><a href="#"><span class="nav-label">Planning Tool</span><span class="fa arrow"></span>
+            </a>
+                <ul class="nav nav-second-level">
+                    <li><a href="/open-YFinAdvisor-index/">Planning Tool Input</a></li>
+                    <li><a href="/open-YFinAdvisor-customer/">Customer</a></li>
+                </ul>
+            </li>
+            {% endif %} {% if request.session.user_role == 'Super Admin' or request.session.user_role == 'Admin' %}
+            <li><a href="/open-user-index/"> <span class="nav-label">User Management</span></a></li>
+            {% endif %}
+                <li>
+                    <a href="/open-rename-password/"> <span class="nav-label">Change Password</span></a>
+                </li>
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper"> 
+
+<div class="normalheader transition animated fadeIn">
+<div class="hpanel">
+		        <div class="bac-clr">	
+		           <h3 style="display:inline;" class="font-light m-b-xs font-col">
+                    Security Data Management >
+                </h3>
+                    <h4 style="display:inline;" class="font-light m-b-xs font-col">
+                    Bulk Add Security
+                </h4>
+		        </div>
+		    </div>
+</div>
+
+
+
+
+<div class="content animate-panel">
+<div class="hpanel hblue">
+  <!--   	<div class="row">
+        <div class="col-lg-12">
+            <div class="hpanel">             
+                <div class="hpanel">
+            <div class="panel-heading hbuilt">
+                <div class="row">                   
+                    <div class="col-md-6">
+                        Add Security
+                    </div>                                                    
+                </div>
+            </div> -->
+            
+            
+						<div class="panel-body ">
+							<div class="page-header row">
+									<div class="col-md-10">
+										<h4 class="pull-left">Add Price</h4>
+									</div>									
+							</div>
+							                   	
+                    	<div class="row pad-bottom">
+		                    <div class="col-md-7">
+		                    	 <label class="control-label label-margin">Select File</label>				               	               
+									 <span class="form-control pull-right span-width">
+									   <input required id="file" type="file" name="file" size="50"
+                                              onchange="openFile(event)" accept=".csv">
+                              <input id="totalData" type="text" hidden="">
+									 </span>                               
+               			  </div>
+               			  <div class="col-md-3 pull-right right-align">
+               			  	  <a href="/open-security-page/" class="btn btn-outline btn-danger2">Cancel</a>&nbsp;&nbsp;
+                             <input id="save" type="button" class="btn btn-success" onclick="save_trade()"
+                                           value="&nbsp;&nbsp;Save&nbsp;&nbsp;" disabled>
+               			  </div>
+	                    </div>
+	                    	
+						
+						<div class="row">
+							<div class="table-responsive">	
+							<table id="price_tbl" class="table table-striped" >
+                        <thead>
+                        <tr>                            
+                            <th>Security*</th>
+                            <th>Asset Class*</th>
+                            <th>Asset Sub Class*</th>
+                            <th>Sector*</th>
+                            <th>Type*</th> 
+                            <th>Benchmark Index*</th>                            
+                            <th>Bloomberg Ticker*</th>
+                            <th>Country*</th>     
+                            <th>Currency*</th>
+                            <th>Lot Size*</th>
+                            <th>ISIN</th>
+                            <th>Beta</th>
+                            <th>State*</th>
+                            <th>Status</th>                          
+                        </tr>
+                        </thead>
+                    </table>
+						</div>                    	
+                </div>
+             </div>                             
+        	</div>
+      </div>
+  </div>                        
+
+ 
+
+<!-- Vendor scripts -->
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+<script src="{% static 'vendor/datatables/media/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' %}"></script>
+
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"></script>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'vendor/toastr/build/toastr.min.js' %}"></script>
+<script src="{% static 'dataTables.tableTools-csv.js' %}"></script>
+<script src="{%static 'vendor/jquery.tabletojson.min.js'%}"></script>
+
+<script>
+    toastr.options = {
+        "debug": false,
+        "newestOnTop": false,
+        "positionClass": "toast-top-center",
+        "closeButton": true,
+        "debug": false,
+        "toastClass": "animated fadeInDown",
+    };
+    
+    $(function(){
+   	   $('#price_tbl').dataTable({
+            "iDisplayLength": 100,
+            "dom": 'T<"clear">lfrtip',
+            tableTools: {
+                "sSwfPath": "{% static 'swf/copy_csv_xls_pdf.swf' %}",
+                "aButtons": [{
+                    "sExtends": "csv",
+                    "sFileName": "bulkSecurity.csv",
+                    "sButtonText": "Export to CSV",
+                    "oSelectorOpts": {filter: 'applied', order: 'current'},
+                    "mColumns": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                }],
+            }
+
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $.fn.hasExtension = function (exts) {
+        return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test($(this).val());
+    }
+</script>
+
+<script>
+    var check_error = 0;
+	 var row_list = []
+    var openFile = function (event) {
+    	  row_list = []
+        var table = $('#price_tbl').DataTable();
+        $('#save').attr("disabled", false);
+        $('#save').addClass("btn-outline");
+        var input = event.target;
+        var reader = new FileReader();
+        table.clear().draw();
+        if (!$('#file').hasExtension(['.csv'])) {
+            toastr.error('Please upload file in .csv format');
+            $("#file").val('');
+            return false;
+        }
+        reader.onload = function (e) {
+            var chars = new Uint8Array(e.target.result);
+            var CHUNK_SIZE = 0x8000;
+            var index = 0;
+            var length = chars.length;
+            var result = '';
+            var slice;
+
+            while (index < length) {
+                slice = chars.subarray(index, Math.min(index + CHUNK_SIZE, length));
+                result += String.fromCharCode.apply(null, slice);
+                index += CHUNK_SIZE;
+            }
+            var row = result.split("\n");
+            if (row.length > 101) {
+                toastr.error('Please upload file containing upto 100 rows only !!!');
+                $("#file").val('');
+                return false;
+            }
+            $.each(row, function (index, item) {
+                if (index == 0) {
+                    console.log(item);
+                 	   var cols = item.split(",");
+                     if (cols.length != 13){
+                         toastr.error('Please upload a valid file with specified columns !!!');
+                         $("#file").val('');
+                         return false;
+                     }
+                     var security = cols[0].replace(/["*]/g, "");
+                     var as_cls = cols[1].replace(/["*]/g, "");
+                     var as_sub_cls = cols[2].replace(/["*]/g, "");
+                     var sector = cols[3].replace(/["*]/g, "");
+                     var security_type = cols[4].replace(/["*]/g, "");
+                     var bench_index = cols[5].replace(/["*]/g, "")
+                     var bloom_ticker = cols[6].replace(/["*]/g, "")
+                     var country = cols[7].replace(/["*]/g, "")
+                     var currency  = cols[8].replace(/["*]/g, "")
+                     var lot_size = cols[9].replace(/["]/g, "");
+                     var isin  = cols[10].replace(/["*]/g, "")
+                     var security_beta = cols[11].replace(/["*]/g, "")
+                     var state  = cols[12].replace(/["*]/g, "")
+
+
+                    console.log('sector'+ sector);
+                    console.log('state'+state);
+                    console.log('security_beta'+ security_beta);
+                     
+                    	if (security == "Security" && as_cls == "Asset Class" && as_sub_cls == "Asset Sub Class" && sector=="Sector" && security_type == "Type" &&
+								 bench_index == "Benchmark Index" && bloom_ticker == "Bloomberg Ticker" && country == "Country" &&
+								currency == "Currency" && lot_size == "Lot Size" &&
+								isin == "ISIN" && security_beta == "Beta" && state == "State") {
+								return true;
+							}else {
+								toastr.error("File headers should be in the following sequence: Security, Asset Class, Asset Sub Class, Sector,Type, Benchmark Index, Bloomberg Ticker, Country, Currency, Lot Size, ISIN, Beta, State");
+								return false;	
+							}
+                } else {
+                    if (item == "") {
+                        return false;
+                    } else {
+                        console.log(item);
+                        row_status = "";
+                        check_error = 0;
+                        var cols = item.split(",");
+                        table = $('#price_tbl').DataTable();
+                        var security = cols[0].replace(/["]/g, "");
+                        var as_cls = cols[1].replace(/["*]/g, "");
+                        var as_sub_cls = cols[2].replace(/["]/g, "");
+                        var sector = cols[3].replace(/["*]/g, "");
+                        var security_type = cols[4].replace(/["]/g, "");
+                        var bench_index = cols[5].replace(/["]/g, "");
+                        var bloom_ticker = cols[6].replace(/["]/g, "");
+                        var country = cols[7].replace(/["]/g, "");
+                        var currency  = cols[8].replace(/["]/g, "");
+                        var lot_size = cols[9].replace(/["]/g, "");
+                        var isin  = cols[10].replace(/["]/g, "");
+                        var security_beta = cols[11].replace(/["]/g, "");
+                        var state  = cols[12].replace(/["]/g, "");
+
+
+                        security = check_string_value(security,index)
+                        as_cls = check_string_value(as_cls,index)
+                        as_sub_cls = check_string_value(as_sub_cls,index)
+                        sector= check_string_value(sector,index)
+                        security_type = check_string_value(security_type,index)
+                        bench_index = check_string_value(bench_index,index)
+                        bloom_ticker = check_string_value(bloom_ticker,index)
+                        country = check_string_value(country,index)
+                        currency = check_string_value(currency,index)
+                        lot_size = check_number(lot_size, index)
+                        isin = check_str_value(isin,index)
+                        state = check_string_value(state,index)
+                        security_beta = check_beta_value(security_beta,index)
+                        
+                        if (check_error == 0)
+                            row_status = '<td class="text-center "><span class="label label-success ">Valid Data</span></td>'
+                        else
+                            row_status = '<td class="text-center "><span class="label label-danger ">Invalid Data</span></td>'
+
+                        table.row.add([
+                            security, as_cls, as_sub_cls,sector,
+                            security_type, bench_index,
+                            bloom_ticker, country, 
+                            currency, lot_size,
+                            isin,
+                            security_beta, state,
+                            row_status
+                        ]).draw(false);
+                        return true;
+                    }
+                    return true;
+                }
+
+            });
+        };
+        reader.readAsArrayBuffer(input.files[0]);
+    };
+    
+    function check_string_value(str_val,index) {
+        if (str_val == null || str_val == "" || !str_val.trim()) {
+        		row_list.push(index);
+            check_error = 1
+            str_val = '      '
+            return '<td class="text-center"><span class="label label-danger ">' + str_val + '</span></td>';
+        }
+        else if ($.isNumeric(str_val.trim())) {
+            row_list.push(index);
+            check_error = 1
+            return '<td class="text-center"><span class="label label-danger ">' + str_val + '</span></td>';
+        }
+        else {
+            return str_val
+        }
+    }
+    
+
+    function check_str_value(str_val,index) {
+        if (str_val == null || str_val == "") {
+            return str_val;
+        }
+        else if ($.isNumeric(str_val.trim())) {
+            row_list.push(index);
+            check_error = 1
+            return '<td class="text-center"><span class="label label-danger ">' + str_val + '</span></td>';
+        }
+        else {
+            return str_val
+        }
+    }
+
+    function check_beta_value(security_beta,index) {
+    	  if (security_beta == "") {
+            	return security_beta;
+			   }
+		  else if (!$.isNumeric(security_beta.trim()) || security_beta % 1 !== 0 || security_beta > 10) {
+        		row_list.push(index);
+            check_error = 1
+            return '<td class="text-center"><span class="label label-danger ">' + security_beta + '</span></td>';
+        }
+        else {
+            return security_beta;
+        }
+    }
+
+    function check_number(quantity, index) {
+        if (quantity == "") {
+            row_list.push(index);
+            check_error = 1
+            quantity = '      '
+            return '<td class="text-center"><span class="label label-danger ">' + quantity + '</span></td>';
+        }
+        else if (!$.isNumeric(quantity.trim()) || quantity % 1 !== 0) {
+            row_list.push(index);
+            check_error = 1
+            return '<td class="text-center"><span class="label label-danger ">' + quantity + '</span></td>';
+        }
+        else {
+            return quantity;
+        }
+    }
+
+	 function remove_duplicates(arr) {
+	    var obj = {};
+	    var arr2 = [];
+	    for (var i = 0; i < arr.length; i++) {
+	        if (!(arr[i] in obj)) {
+	            arr2.push(arr[i]);
+	            obj[arr[i]] = true;
+	        }
+	    }
+	    return arr2;
+	 }
+
+    function save_trade() {
+        //$('#save').attr("disabled", true);
+        //$('#save').removeClass("btn-outline");
+        var table = $('#price_tbl').tableToJSON();
+        var tot_data = (JSON.stringify(table));
+        $('#totalData').val(tot_data);
+        if (row_list != "") {
+        		$("#file").val('');
+        		err_row = remove_duplicates(row_list);
+	         toastr.error("Please check row number: " + err_row + " and upload file again !!!");
+	         return false;
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/add-bulk-security/',
+            data: {
+                'totalData': $('#totalData').val()
+            },
+            success: function (response) {
+                if (response.success == 'true') {
+                    $("#file").val('');
+                    toastr.success('Data is saved successfully');
+                    var table = $('#price_tbl').DataTable();
+                    table.clear().draw();
+                } else if (response.success == 'false') {
+                    $("#file").val('');
+                    var table = $('#price_tbl').DataTable();
+                    table.clear().draw();
+                    $.each(response.data_list, function (index, item) {
+                        table = $('#price_tbl').DataTable();
+                        table.row.add([
+                            item.security,
+                            item.as_cls,
+                            item.as_sub_cls,
+                            item.sector,
+                            item.sec_type,
+                            item.bench_index,
+                            item.bloom_ticker,
+                            item.country,
+                            item.currency,
+                            item.lot_size,
+                            item.isin,
+                            item.sec_beta,
+                            item.sec_state,
+                            item.status,
+                        ]).draw(false);
+                    });
+                }
+
+            },
+
+        });
+        return true;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page title -->
+    <title>ZAM | Trade</title>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}"/>
+    <link rel="stylesheet"
+          href="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.css' %}">
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'dataTables.tableTools.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendor/toastr/build/toastr.min.css' %}"/>
+
+    <style type="text/css">
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .btn-success.btn-outline:hover {
+            background-color: #62cb31;
+        }
+
+        .baccol {
+            background-color: #0A37B8;
+        }
+
+        .font-col {
+            color: #FFFFFF;
+
+        }
+
+        #side-menu li.active a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        #side-menu li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff;
+
+        }
+
+        .btn-primary2:hover {
+
+            background-color: #7160A9 !important;
+            border-color: #7160A9 !important;
+            color: #FFFFFF
+        }
+
+        .btn-primary2.btn-outline:hover {
+            color: #6a6c6f;
+        !important;
+            color: #FFFFFF;
+
+        }
+
+        .btn-primary2.btn-outline {
+            color: #6a6c6f;
+        !important;
+        }
+
+        .btn-primary2 {
+            border-color: #7160A9 !important;
+        }
+
+        .bac-clr {
+            background: linear-gradient(to left, #fff -20%, #7160A9 40%) repeat scroll 0% 0% !important;
+            border: 1px solid #E4E5E7;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+        }
+
+        #side-menu li .nav-second-level li a {
+            color: #FFFFFF;
+        }
+
+        .label-success {
+            background-color: #7160A9;
+        }
+
+        .small-logo {
+            display: none;
+            text-align: center;
+            padding-top: 6px;
+            font-size: 28px;
+            font-weight: 800;
+            float: left;
+            display: block;
+            color: #7160A9;
+        }
+
+        .text-primary {
+            color: #7160A9;
+        }
+
+        .input-group-addon {
+            padding: 5px 8px;
+            width: 0%;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+
+        .form-control[select-box] {
+            height: 28px;
+            padding: 0px 3px;
+            font-size: 12px;
+        }
+
+        .inputbox-css {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 4px 9px;
+            font-size: 12px;
+            width: 90px;
+        }
+
+        .inputbox-css:focus {
+            border-color: #66afe9;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+        }
+
+        .check-css {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 4px 9px;
+            font-size: 12px;
+            width: 20px;
+        }
+
+        input[type="checkbox"] {
+            margin: 7px 0 0;
+
+            line-height: normal;
+        }
+
+        .inputbox-css[readonly] {
+            cursor: not-allowed;
+            background-color: #eee;
+            opacity: 1;
+        }
+
+        .securitybox-css {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 4px 9px;
+            font-size: 12px;
+            width: 200px;
+        }
+
+        .securitybox-css[readonly] {
+            cursor: not-allowed;
+            background-color: #eee;
+            opacity: 1;
+        }
+
+        .securitybox-css:focus {
+            border-color: #66afe9;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+        }
+
+        .text-center {
+            text-align: left
+        }
+
+        .autocomplete-suggestions {
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            background: #fff;
+            cursor: default;
+            overflow: auto;
+        }
+
+        .autocomplete-suggestion {
+            padding: 5px 5px;
+            font-size: 1em;
+            white-space: nowrap;
+            overflow: hidden;
+            #font-weight: bold;
+        }
+
+        .autocomplete-selected {
+            background: #f0f0f0;
+        }
+
+        .autocomplete-suggestions strong {
+            font-weight: bold;
+            color: #7160A9;
+            #color: #3399ff;
+        }
+
+        #side-menu li.treeview ul li a {
+            background: #fff !important;
+            color: #6A6C6F !important;
+            font-weight: 700;
+        }
+
+        #side-menu li.treeview ul li.active a {
+            background-color: #7160A9 !important;
+            color: #FFF !important;
+        }
+
+        #side-menu li.treeview ul li:hover a {
+            background-color: #7160A9 !important;
+            color: #fff !important;
+
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!-- Simple splash screen-->
+<div class="splash">
+    <div class="splash-title"><img src="{% static 'images/loading-bars.gif' %}" width="64" height="64"/></div>
+</div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+
+    <!-- <div id="logo" class="light-version">
+        <span>
+            Zeus Assets Management
+        </span>
+    </div> -->
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo">
+            <span class="text-primary">Zeus Asset Management</span>
+        </div>
+
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-speaker"></i>
+                    </a>
+
+                    <ul class="dropdown-menu hdropdown notification animated flipInX">
+                        <li>
+                            <a>
+                                <span class="label label-success">NEW</span> It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-warning">WAR</span> There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="label label-danger">ERR</span> Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See all notifications</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-mail"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="/signing-out/">
+                        <i title="Logout" class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <div>
+                <img src="{% static 'images/images.png' %}" class="img-circle m-b" alt="logo">
+            </div>
+
+            <div class="stats-label text-color">
+                <span class="font-extra-bold">{{ request.session.full_name }}</span><br>
+                <small class="text-muted">{{ request.session.user_role }}</small>
+
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Marketing Manager' %}
+                <li>
+                    <a href="/crm-index/"> <span class="nav-label">Client Relationship Management</span></a>
+                </li>
+            {% endif %}
+            {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+            <li><a href="/open-research-page/?tab_id=1">Research</a></li>
+            {% endif %}
+                <li><a href="/open-discussion-forum/">Discussion Forum</a></li>
+              {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' or request.session.user_role == 'Analyst' %}
+            <li class="treeview">
+               <a href="#"><span class="nav-label">Security Data Management</span><span class="fa arrow"></span> </a>
+                   <ul class="nav nav-second-level">
+                       <li><a href="/open-security-page/">Security</a></li>
+                       <li><a href="/open-security-price-page/">Price</a></li>
+                   </ul>
+            </li>
+            {% endif %}
+	        {% if request.session.user_role == 'Portfolio Manager' or request.session.user_role == 'Super Admin' %}
+                <li class="active">
+                    <a href="/open-trade/"> <span class="nav-label">Trade</span></a>
+                </li>
+                <li>
+                    <a href="/open-position/"> <span class="nav-label">Position</span></a>
+                </li>
+	        {% endif %}
+            <li >
+                <a href="/index/"> <span class="nav-label">Dashboard</span></a>
+            </li>
+            {% if request.session.user_role == 'Super Admin' %}             	<li class="treeview">                     <a href="#"><span class="nav-label">Planning Tool</span><span class="fa arrow"></span> </a>                     <ul class="nav nav-second-level">                         <li><a href="/open-YFinAdvisor-index/">Planning Tool Input</a></li>                         <li><a href="/open-YFinAdvisor-customer/">Customer</a></li>                     </ul>                 </li>             {% endif %}             {% if request.session.user_role == 'Super Admin' or request.session.user_role == 'Admin' %}	 		<li>                     <a href="/open-user-index/"> <span class="nav-label">User Management</span></a>                 </li>             {% endif %}
+                <li>
+                    <a href="/open-rename-password/"> <span class="nav-label">Change Password</span></a>
+                </li>
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel">
+            <div class="bac-clr">
+                <a class="small-header-action" href="">
+                    <!-- <div class="clip-header">
+                        <i class="fa fa-arrow-up"></i>
+                    </div> -->
+                </a>
+
+                <h3 style="display:inline;" class="font-light m-b-xs font-col">
+                    <a href="/open-trade/" style="color: #FFFFFF"> Trade > </a>
+                </h3>
+                <h4 style="display:inline;" class="font-light m-b-xs font-col">
+                    Add Trade
+                </h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="content animate-panel">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="hpanel">
+                    <div class="panel-heading hbuilt">
+
+                        <div class="row ">
+                            <div class="col-lg-8 form-group">
+
+                            </div>
+                            <div class="col-lg-4 form-group pull-right">
+                                <div id="hbreadcrumb" class="pull-right">
+                                    <a href="/open-trade/" class="btn btn-outline btn-danger2">Cancel</a>
+
+                                    <a id="save" onclick="return save();" class="btn btn-outline btn-success">&nbsp;&nbsp;Save&nbsp;&nbsp;</a>
+
+                                    <button id="delete_raw" class="btn btn-outline btn-primary">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row ">
+                            <div class="col-lg-12 form-group">
+                                <div class="input-group form-group">
+                                    <input type="search" class="form-control " placeholder="Search Security"
+                                           name="search_txt" id="search_txt">
+								<span class="input-group-btn">
+									<button id="search_security" onclick="search()" class="btn btn btn-default">
+                                        <span class="fa fa-search"></span>
+                                    </button>
+								</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="security_div" style="height: 140px;" class="table-responsive panel-body">
+                            <table id="security_table" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">Security</th>
+                                    <th class="text-center">Bloomberg Ticker</th>
+                                    <th class="text-center">Asset Class</th>
+                                    <th class="text-center">Asset Sub Class</th>
+                                    <th class="text-center">Country</th>
+                                    <th style="display: none"></th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <div class="table-responsive panel-body">
+                            <input id="totalData" type="text" hidden="" value="{{ securities }}">
+
+                            <form id="trade_form">
+                                <table id="trade_table" class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center"><input class="check-css" type="checkbox" id="checkAll"></th>
+                                        <th class="text-center">Date*</th>
+                                        <th class="text-center">Security*</th>
+                                        <th class="text-center">Trade Type*</th>
+                                        <th class="text-center">Quantity*</th>
+                                        <th class="text-center">Trade Price*</th>
+                                        <th class="text-center">FX Price*</th>
+                                        <th class="text-center">Lot Size</th>
+                                        <th class="text-center">Total Amount</th>
+                                        <th class="text-center">Broker</th>
+
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<div class="modal fade hmodal-danger" id="modal_delete" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-header" style="padding:10px;">
+                <h4 class="modal-title">ZAM</h4>
+            </div>
+            <div class="modal-body">
+                <p>Do you really want to delete this record?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<!-- Vendor scripts -->
+<script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+<script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+<script src="{% static 'vendor/sparkline/index.js' %}"></script>
+<script src="{% static 'vendor/datatables/media/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js' %}"></script>
+>
+<script src="{% static 'dataTables.tableTools.js' %}"></script>
+<script src="{% static 'vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+<script src="{% static 'vendor/toastr/build/toastr.min.js' %}"></script>
+<script src="{% static 'vendor/jquery.tabletojson.min.js' %}"></script>
+<script src="{% static 'vendor/jquery.autocomplete.min.js' %}"></script>
+<!-- App scripts -->
+<script src="{% static 'scripts/homer.js' %}"></script>
+
+
+<script>
+
+    var sec_list = []
+    var add_quan = []
+    var sec_quan = []
+    var add_sec = []
+    var sec_ids = []
+    var add_ids = []
+    var err_sec = []
+
+    var sec_table = $('#security_table').DataTable({
+        "bSort": false,
+        "bPaginate": false
+    });
+    var table = $('#trade_table').DataTable({
+        "bSort": false,
+        drawCallback: function () {
+            var page_min = 10;
+            var $api = this.api();
+            var pages = $api.page.info().pages;
+            var rows = $api.data().length;
+            var page = $api.page.info().page;
+
+            if (pages === 1) {
+                $('#trade_table_paginate').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                //$('#trade_table_next').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                //$('#trade_table_previous').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+            } else if (page === 0) {
+                $('#trade_table_previous').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+                //$('#trade_table_next').css('display', 'none').next('.dataTables_paginate').css('display', 'none');
+            }
+        }
+    });
+
+    $(function () {
+        $(".js-source-states").select2();
+        $(".js-source-states-2").select2();
+
+        $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+        $.fn.datepicker.defaults.endDate = "+0d";
+        $('.input-group.date').datepicker({});
+        $('.input-group.date').datepicker({}).on('changeDate', function (e) {
+            $(this).datepicker('hide');
+        });
+
+
+        $('#save').attr("disabled", true);
+        $('#security_div').hide();
+    });
+
+
+    toastr.options = {
+        "debug": false,
+        "newestOnTop": false,
+        "positionClass": "toast-top-center",
+        "closeButton": true,
+        "debug": false,
+        "toastClass": "animated fadeInDown",
+    };
+
+    $('#trade_table tbody').on('click', 'tr', function () {
+        var check = $(this).find("input[name='ck']").is(':checked');
+        if (check) {
+            $(this).addClass('selected');
+        } else {
+            $(this).removeClass('selected');
+        }
+    });
+
+    $('#delete_raw').click(function () {
+        var data = table.rows().data();
+        var selected_data = table.rows('.selected').data();
+        if (data.length == 1 || data.length == selected_data.length){
+            $('#save').attr("disabled", true);
+        }
+        table.row('.selected').remove().draw(false);
+        $('#checkAll').prop('checked', false);
+    });
+
+    $("#checkAll").change(function () {
+        $("input:checkbox").prop('checked', $(this).prop("checked"));
+        $('#trade_table > tbody  > tr').each(function() {
+            $(this).addClass('selected');
+        });
+    });
+
+    function validateFloatKeyPress(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var number = el.value.split('.');
+
+
+        if (number[1].length > 1){
+            return false;
+        }
+
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+
+        if (number.length > 1 && charCode == 46) {
+            return false;
+        }
+
+        var caratPos = getSelectionStart(el);
+        var dotPos = el.value.indexOf(".");
+
+        if (caratPos > dotPos && dotPos > -1 && (number[1].length > 1) && (number[1].length < 3)) {
+            if (charCode == 8)
+                return true;
+            else
+                return false;
+        }
+        return true;
+    }
+
+    function validateIntKeyPress(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        //var number = el.value.split('.');
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+
+    function cal_total_amnt(id){
+        var quantity = $("#quantity_"+id).val();
+        var mkt_pric = $("#trade_price_"+id).val();
+        var lot_size = $("#lot_size_"+id).val();
+        console.log(quantity,mkt_pric,lot_size);
+
+        if (quantity == "" || mkt_pric == ""){
+            $("#amount_"+id).val('');
+        }else
+        {
+            var total_amount = quantity * mkt_pric * lot_size
+            total_amount = total_amount.toFixed(2);
+            $("#amount_"+id).val(total_amount);
+        }
+    }
+
+    function save() {
+
+        var rowCount = table.data().length;
+        if (rowCount == 0) {
+            toastr.error('No data available in table');
+            return false;
+        }
+        var val = validate_table();
+        if (val == 1) {
+            return false;
+        }
+
+        sec_list = remove_duplicates(add_sec);
+        sec_quan = remove_duplicates(add_quan);
+        sec_ids = remove_duplicates(add_ids);
+
+        for (i = 0; i < sec_list.length; i++) {
+            var flag = check_quantity(sec_list[i],sec_quan[i],sec_ids[i]);
+            err_sec  =  [];
+            if (flag < 0){
+                err_sec.push(sec_list[i]);
+            }
+        }
+
+        if (err_sec.length > 0){
+            toastr.error('Sell trade quantity is greater then Buy trade quantity for Security :'+ err_sec );
+            return false;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/add-trade/',
+            data: $('#trade_form').serialize(),
+            success: function (response) {
+                if (response.success == "true") {
+                    //location.href = "/open-trade/"
+                    if (response.sts == 1) {
+                        toastr.success('Data is saved successfully');
+                    }else{
+                        toastr.error('Nothing to Save');
+                    }
+                    $('#security_div').hide();
+                    sec_table.clear().draw();
+                    table.clear().draw();
+                    $('#search_txt').val("");
+                    $('#save').attr("disabled", true);
+                }
+                else {
+                    toastr.error('Server error');
+                }
+            },
+
+        });
+        return true;
+    }
+
+    function validate_table() {
+        var values = "";
+        var row = 0;
+        $("#trade_table tr").each(function () {
+            values = "";
+            $(this).find("td").each(function (index) {
+                if ($(this).find("input").val() != undefined)
+                    values += $(this).find("input").val() + ";";
+                if ($(this).find("select option:selected").text() != "")
+                    values += $(this).find("select option:selected").text() + ";";
+            });
+            row = row + 1;
+            if (row == 1) {
+                values = "";
+                row = 1
+            }
+            else {
+                var val = values.split(";")
+
+                raw = row - 1;
+                if (val[1] == "" && val[4] == "" && val[5] == "" && val[6] == "") {
+                    i = 0;
+                    return true;
+                }
+                else if (val[1] == "") {
+                    toastr.error('Please Enter Date in Row number-' + raw);
+                    i = 1;
+                    return false;
+                } else if (val[2] == "") {
+                    toastr.error('Please Enter Security in Row number-' + raw);
+                    i = 1;
+                    return false;
+                } else if (val[3] == "") {
+                    toastr.error('Please Select Trade Type in Row number-' + raw);
+                    i = 1;
+                    return false;
+                } else if (val[4] == "") {
+                    toastr.error('Please Enter Quantity in Row number-' + raw);
+                    i = 1;
+                    return false;
+                } else if (val[5] == "") {
+                    toastr.error('Please Enter Trade Price in Row number-' + raw);
+                    i = 1;
+                    return false;
+                } else if (val[6] == "") {
+                    toastr.error('Please Enter FX Price in Row number-' + raw);
+                    i = 1;
+                    return false;
+                } else if (val[0] == "" || val[1] == "" || val[2] == "" || val[3] == "" || val[4] == "" || val[5] == "") {
+                    i = 1;
+                    return false;
+                }
+                else {
+                    i = 0;
+                    return true;
+                }
+                values = "";
+            }
+        });
+        return i;
+    }
+
+    var k = 0;
+
+    function add_trade_form(name, id, vals) {
+        //alert(val);
+        //alert(name);
+        add_sec.push(name);
+        add_ids.push(id);
+        vals = parseInt(vals);
+        $.ajax({
+            type: 'POST',
+            url: '/check-price/',
+            data: {'sec_id':id},
+            success: function (response) {
+                if (response.security_price == "Yes") {
+                    k = k + 1;
+                    $('#save').attr("disabled", false);
+                    table.row.add([
+                        '<input name="ck" class="check-css" type="checkbox">',
+                        '<div class="input-group date"><input required id="date" name="date" type="text" class="inputbox-css" readonly><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span></div>',
+                        '<input class="securitybox-css" readonly type="text" id="security_name" value="' + name + '"><input required hidden class="securitybox-css" id="security_id" name="security_id" type="text" value="' + id + '">',
+                        '<select class="form-control js-source-states" select-box name="trade_type" style="width:100px"><option value="Buy">Buy</option><option value="Sell">Sell</option><option value="Sell Short">Sell Short</option><option value="Cover Short">Cover Short</option></select>',
+                        '<input class="inputbox-css" maxlength="10" required id="quantity_'+k+'" onblur="cal_total_amnt('+k+');" name="quantity" type="text" onkeypress="return validateIntKeyPress(this,event);">',
+                        '<input class="inputbox-css" maxlength="10" required id="trade_price_'+k+'" onblur="cal_total_amnt('+k+');" name="trade_price" type="text" onkeypress="return validateFloatKeyPress(this,event);">',
+                        '<input class="inputbox-css" maxlength="10" required name="fx_price" type="text" onkeypress="return validateFloatKeyPress(this,event);">',
+                        '<input class="inputbox-css" readonly name="lot_size" id="lot_size_'+k+'" type="text" value="' + vals + '">',
+                        '<input class="inputbox-css" readonly name="amount" id="amount_'+k+'" type="text" onkeypress="return validateFloatKeyPress(this,event);">',
+                        '<input class="inputbox-css" name="broker" type="text">'
+                    ]).draw(false);
+
+                    $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+                    $.fn.datepicker.defaults.endDate = "+0d";
+                    $('.input-group.date').datepicker({}).on('changeDate', function (e) {
+                        $(this).datepicker('hide');
+                    });
+
+                    //$('#security_name').attr('readonly', 'readonly');
+                    $('#trade_table tbody').on('click', 'i.fa-times', function () {
+                        table
+                                .row($(this).parents('tr'))
+                                .remove()
+                                .draw();
+                    });
+                    $('.input-group.date').datepicker({});
+
+                    add_quan.push(response.trade_quantity);
+                }
+                else {
+                    toastr.error('Please add price for this security to add trade');
+                }
+            },
+
+        });
+
+    }
+
+    var currencies = JSON.parse($("#totalData").val());
+
+    $('#search_txt').autocomplete({
+        lookup: currencies,
+        onSelect: function (suggestion) {
+            $.ajax({
+                type: 'POST',
+                url: '/view-security-list/',
+                data: {
+                    'search_txt': suggestion.value
+                },
+                success: function (response) {
+                    sec_table
+                            .clear()
+                            .draw();
+                    if (response.success == "true") {
+                        $('#security_div').show();
+                        console.log(response);
+                        $.each(response.data_list, function (index, item) {
+                            sec_table.row.add([
+                                item.security,
+                                item.b_ticker,
+                                item.asset_cls,
+                                item.asset_sub_cls,
+                                item.country,
+                                item.add_btn,
+                            ]).draw(false);
+                        });
+                    }
+                    else {
+                        toastr.error('No result found');
+                    }
+
+                },
+            });
+        }
+    });
+
+    $("#search_txt").keyup(function (e) {
+        if (e.which == 13) {
+            search();
+        }
+    });
+
+    function search() {
+        var search_txt = $("#search_txt").val();
+        //alert(search_txt.length);
+        if (search_txt.length < 3) {
+            toastr.error('Search string should contain atleast three characters');
+            return false;
+        }
+        //return false;
+        $.ajax({
+            type: 'POST',
+            url: '/view-security-lists/',
+            data: {
+                'search_txt': search_txt
+            },
+            success: function (response) {
+                var table = $('#security_table').DataTable();
+                table
+                        .clear()
+                        .draw();
+                if (response.success == "true") {
+                    $('#security_div').show();
+                    console.log(response);
+                    $.each(response.data_list, function (index, item) {
+                        table = $('#security_table').DataTable();
+                        table.row.add([
+                            item.security,
+                            item.b_ticker,
+                            item.asset_cls,
+                            item.asset_sub_cls,
+                            item.country,
+                            item.add_btn,
+                        ]).draw(false);
+                    });
+                }
+                else {
+                    toastr.error('No result found');
+                }
+
+            },
+        });
+        return true;
+    };
+
+    function remove_duplicates(arr) {
+        var obj = {};
+        var arr2 = [];
+        for (var i = 0; i < arr.length; i++) {
+            if (!(arr[i] in obj)) {
+                arr2.push(arr[i]);
+                obj[arr[i]] = true;
+            }
+        }
+        return arr2;
+    }
+
+    function check_quantity(security,quantity,id) {
+        var values = "";
+        var row = 0;
+        var pre_quantity = 0;
+        var last_quantity = parseInt(quantity);
+        $("#trade_table tr").each(function () {
+            values = "";
+            $(this).find("td").each(function (index) {
+                if ($(this).find("input").val() != undefined)
+                    values += $(this).find("input").val() + ";";
+                if ($(this).find("input[name=security_id]").val() != undefined)
+                    values += $(this).find("input[name=security_id]").val() + ";";
+                if ($(this).find("select option:selected").text() != "")
+                    values += $(this).find("select option:selected").text() + ";";
+            });
+            row = row + 1;
+            if (row == 1) {
+                values = "";
+                row = 1
+            }
+            else {
+                console.log(values);
+                var val = values.split(";")
+                if (val[2] == security && val[3] == id) {
+                    var type = val[4];
+                    if (type == "Buy" ){
+                        last_quantity = parseInt(last_quantity) + parseInt(val[5])
+                        console.log(security,last_quantity);
+                        pre_quantity = last_quantity;
+                    }else if ( type == "Sell" ){
+                        last_quantity = parseInt(last_quantity) - parseInt(val[5])
+                        console.log(security,last_quantity);
+                        pre_quantity = last_quantity;
+                    }
+                }
+                values = "";
+            }
+        });
+        //alert(pre_quantity);
+        return pre_quantity;
+    }
+
+</script>
+
+</body>
+</html>
